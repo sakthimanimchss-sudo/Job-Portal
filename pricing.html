@@ -21,10 +21,9 @@ tailwind.config = { darkMode: 'class' }
     alt=""
   />
 </div>
-
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full bg-white/90 dark:bg-black/90 backdrop-blur z-50 shadow">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
     <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
@@ -35,22 +34,53 @@ tailwind.config = { darkMode: 'class' }
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
-      <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
+      <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-
       <a href="admin.html"
-         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded">
         Admin
       </a>
-
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
     <!-- MOBILE BUTTON -->
-    <button onclick="toggleMenu()" class="md:hidden text-3xl text-yellow-400">
-      ☰
+    <button onclick="toggleMenu()"
+      class="md:hidden relative w-10 h-10">
+      <span class="hamburger"></span>
     </button>
+
+  </div>
+</nav>
+
+<!-- ================= MOBILE MENU (ADD HERE) ================= -->
+<div id="mobileMenu"
+  class="hidden fixed inset-0 bg-black text-white px-6 pt-28 z-40">
+
+  <a href="index.html" class="block py-4 text-xl border-b">Home</a>
+  <a href="jobs.html" class="block py-4 text-xl border-b">Jobs</a>
+  <a href="pricing.html" class="block py-4 text-xl border-b">Pricing</a>
+  <a href="faq.html" class="block py-4 text-xl border-b">FAQ</a>
+  <a href="contact.html" class="block py-4 text-xl border-b">Contact</a>
+
+  <a href="admin.html"
+    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+    Admin
+  </a>
+
+  <button onclick="toggleDark()" class="mt-6 text-2xl">
+    🌙
+  </button>
+
+</div>
+
+
+    <!-- MOBILE BUTTON -->
+     <button onclick="toggleMenu()"
+     class="md:hidden relative w-10 h-10 focus:outline-none">
+     <span class="hamburger"></span>
+     </button>
+
 
   </div>
 
@@ -95,7 +125,8 @@ Annually <span class="text-xs text-green-400">(Save 20%)</span>
 </button>
 </div>
 </div>
-</div>
+</div>which place it will added
+  
 
 </div>
 </section>
@@ -263,6 +294,12 @@ Annually <span class="text-xs text-green-400">(Save 20%)</span>
     background-position: 0% 50%;
   }
 }
+  <!-- MOBILE BUTTON -->
+<button onclick="toggleMenu()"
+  class="md:hidden relative w-10 h-10 focus:outline-none">
+  <span class="hamburger"></span>
+</button>
+
 
 </style>
 
@@ -288,11 +325,16 @@ function setPlan(year) {
     document.getElementById("p3").innerText = year ? "20" : "24";
   }
 }
+  function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.body.classList.toggle("menu-open");
+}
 </script>
 
 
 </body>
 </html>
+
 
 
 

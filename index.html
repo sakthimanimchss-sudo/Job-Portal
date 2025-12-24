@@ -41,36 +41,43 @@ html{scroll-behavior:smooth}
 }
 
 /* ================= NAVBAR ================= */
-nav{
-  position:fixed; top:0; width:100%;
-  background:rgba(0,0,0,.7);
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,.75);
   backdrop-filter:blur(10px);
   padding:14px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  z-index:100;
+  z-index:1000;
 }
-.logo{
-  color:#facc15;
-  font-size:22px;
-  font-weight:700;
-}
+
+.logo{color:#facc15;font-weight:700}
+
 .nav-links{
-  display:flex; gap:20px;
+  display:flex;
+  gap:18px;
+  list-style:none;
 }
-.nav-links a{
-  color:white; text-decoration:none;
+.nav-links a,.login-btn,.theme-btn{
+  color:white;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:15px;
 }
+
 .admin{
   background:#facc15;
   color:black;
-  padding:6px 12px;
+  padding:6px 10px;
   border-radius:8px;
 }
 
-/* HAMBURGER */
-.menu{
+.hamburger{
   display:none;
   font-size:22px;
   color:#facc15;
@@ -78,21 +85,63 @@ nav{
 }
 
 /* MOBILE MENU */
-.mobile{
-  position:fixed; inset:0;
+.mobile-menu{
+  position:fixed;
+  inset:0;
   background:black;
   display:none;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   gap:25px;
-  z-index:99;
+  z-index:999;
 }
-.mobile a{
+.mobile-menu a{
   color:white;
   font-size:20px;
   text-decoration:none;
 }
+
+/* LOGIN MODAL */
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.login-box{
+  background:#111;
+  padding:30px;
+  border-radius:14px;
+  width:300px;
+  color:white;
+}
+.login-box input{
+  width:100%;
+  margin:10px 0;
+  padding:10px;
+  border-radius:6px;
+  border:none;
+}
+
+/* DARK / LIGHT MODE */
+body.light{
+  background:#f4f4f4;
+  color:black;
+}
+body.light nav{background:white}
+body.light a{color:black}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+}
+
+
 
 /* ================= HERO ================= */
 .hero{
@@ -218,27 +267,35 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
 </div>
 
 <!-- NAVBAR -->
-<nav>
+<nav class="navbar">
   <div class="logo">SmartHire</div>
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="jobs.html">Jobs</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-    <a href="faq.html">FAQ</a>
-    <a href="admin.html" class="admin">Admin</a>
-  </div>
-  <div class="menu" onclick="toggle()">☰</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="jobs.html">Jobs</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="admin.html" class="admin">Admin</a></li>
+    <li><button onclick="openLogin()" class="login-btn">Login</button></li>
+    <li><button onclick="toggleTheme()" class="theme-btn">🌙</button></li>
+  </ul>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 </nav>
 
-<div class="mobile" id="mobile">
-  <a href="#home">Home</a>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu">
+  <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="contact.html">Contact</a>
   <a href="faq.html">FAQ</a>
   <a href="admin.html">Admin</a>
+  <a onclick="openLogin()">Login</a>
+  <a onclick="toggleTheme()">🌗 Theme</a>
 </div>
+
 
 <!-- HERO -->
 <div class="hero reveal" id="home">
@@ -295,18 +352,28 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
 </footer>
 
 <script>
-function toggle(){
-  const m=document.getElementById("mobile");
-  m.style.display=m.style.display==="flex"?"none":"flex";
+function toggleMenu(){
+  const m=document.getElementById("mobileMenu");
+  m.style.display = m.style.display==="flex" ? "none" : "flex";
 }
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"))
-},{threshold:.2});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* LOGIN */
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+function closeLogin(){
+  document.getElementById("loginModal").style.display="none";
+}
+
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
 </script>
 
 </body>
 </html>
+
 
 
 

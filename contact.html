@@ -47,7 +47,7 @@ tailwind.config = { darkMode: 'class' }
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
-    <!-- MOBILE BUTTON -->
+    <!-- MOBILE -->
     <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
       <span class="hamburger"></span>
     </button>
@@ -70,9 +70,7 @@ tailwind.config = { darkMode: 'class' }
     Admin
   </a>
 
-  <button onclick="toggleDark()" class="mt-6 text-2xl">
-    🌙
-  </button>
+  <button onclick="toggleDark()" class="mt-6 text-2xl">🌙</button>
 </div>
 
 <!-- ================= HERO ================= -->
@@ -91,7 +89,15 @@ tailwind.config = { darkMode: 'class' }
 
 <!-- LEFT -->
 <div class="space-y-6">
+
   <h2 class="text-3xl font-bold">Let’s Start a Conversation</h2>
+
+  <!-- ✅ SMALL IMAGE ADDED -->
+  <img
+    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+    alt="Contact support"
+    class="w-full max-w-sm rounded-xl shadow-lg opacity-90"
+  />
 
   <p class="text-gray-300 md:text-gray-600">
     Reach out to us for support, demos, or hiring solutions.
@@ -178,7 +184,6 @@ body { padding-top: 88px; }
 .menu-open .hamburger::before{transform:rotate(45deg)}
 .menu-open .hamburger::after{transform:rotate(-45deg)}
 
-/* Background animation */
 @keyframes bgMove{
   from{transform:scale(1)}
   to{transform:scale(1.08)}

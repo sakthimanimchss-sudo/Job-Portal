@@ -5,71 +5,20 @@
 <title>SmartHire | Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
-
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <script>
-tailwind.config = {
-  darkMode: 'class'
-}
+tailwind.config = { darkMode:'class' }
 </script>
-
-<style>
-/* ===== animations ===== */
-.fade-up{opacity:0;transform:translateY(25px);animation:fadeUp .7s forwards}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-
-.card-hover{transition:.3s}
-.card-hover:hover{transform:translateY(-6px)}
-
-.shine::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.15),transparent);
-  transform:translateX(-100%);
-  animation:shine 3s infinite;
-}
-@keyframes shine{to{transform:translateX(100%)}}
-</style>
 </head>
 
 <body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen">
 
-<!-- ================= LOGIN ================= -->
-<div id="loginScreen" class="fixed inset-0 bg-black flex items-center justify-center z-50">
-  <div class="bg-[#0e0e0e] p-8 rounded-xl w-80 fade-up">
-    <h2 class="text-xl font-bold text-yellow-400 mb-4 text-center">Admin Login</h2>
-
-    <select id="role" class="w-full p-2 rounded bg-black border border-gray-700 mb-3">
-      <option value="admin">Admin</option>
-      <option value="recruiter">Recruiter</option>
-    </select>
-
-    <input id="email" placeholder="Email" class="w-full p-2 rounded bg-black border border-gray-700 mb-3">
-    <input id="pass" type="password" placeholder="Password"
-           class="w-full p-2 rounded bg-black border border-gray-700 mb-4">
-
-    <button onclick="login()"
-      class="w-full bg-yellow-400 text-black py-2 rounded font-semibold">
-      Login
-    </button>
-  </div>
-</div>
-
-<!-- ================= DASHBOARD ================= -->
-<div id="dashboard" class="hidden">
-
 <!-- TOP BAR -->
-<header class="flex justify-between items-center p-4 bg-white dark:bg-[#0e0e0e] shadow">
-  <button onclick="toggleMenu()" class="md:hidden text-xl"><i class="fa fa-bars"></i></button>
-
+<header class="flex justify-between items-center px-6 py-4 bg-white dark:bg-[#0e0e0e] shadow">
   <h1 class="text-xl font-bold text-yellow-400">SmartHire Admin</h1>
-
   <div class="flex items-center gap-4">
     <button onclick="toggleTheme()" class="text-xl">🌙</button>
     <img src="https://randomuser.me/api/portraits/men/32.jpg"
@@ -77,132 +26,129 @@ tailwind.config = {
   </div>
 </header>
 
-<!-- MOBILE HOME -->
-<section class="md:hidden p-4 fade-up">
-  <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-4">
-    <h2 class="text-yellow-400 font-bold">Welcome back 👋</h2>
-    <p class="text-xs opacity-70">Today’s activity overview</p>
-
-    <div class="grid grid-cols-2 gap-3 mt-3">
-      <div class="bg-black/40 p-3 rounded text-center">
-        <p class="text-xs">New Jobs</p>
-        <p class="text-lg text-yellow-400" id="newJobs">+4</p>
-      </div>
-      <div class="bg-black/40 p-3 rounded text-center">
-        <p class="text-xs">Applicants</p>
-        <p class="text-lg text-yellow-400" id="newApps">+12</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- STATS -->
-<section class="p-4 grid md:grid-cols-4 gap-4">
-  <div class="relative stat bg-slate-800 p-4 rounded-xl text-center text-yellow-400 shine card-hover fade-up">
-    <i class="fa fa-briefcase text-xl"></i>
-    <h3 id="jobs">78</h3>
-    <p class="text-xs">Total Jobs</p>
+<section class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <div class="bg-slate-800 rounded-xl p-4 text-center text-yellow-400">
+    <h2 class="text-2xl">78</h2><p class="text-sm">Total Jobs</p>
   </div>
-
-  <div class="stat bg-slate-800 p-4 rounded-xl text-center text-yellow-400 card-hover fade-up">
-    <i class="fa fa-users text-xl"></i>
-    <h3 id="apps">214</h3>
-    <p class="text-xs">Applicants</p>
+  <div class="bg-slate-800 rounded-xl p-4 text-center text-yellow-400">
+    <h2 class="text-2xl">214</h2><p class="text-sm">Applicants</p>
   </div>
-
-  <div class="stat bg-slate-800 p-4 rounded-xl text-center text-yellow-400 card-hover fade-up">
-    <i class="fa fa-clock text-xl"></i>
-    <h3 id="tasks">93</h3>
-    <p class="text-xs">Pending Tasks</p>
+  <div class="bg-slate-800 rounded-xl p-4 text-center text-yellow-400">
+    <h2 class="text-2xl">93</h2><p class="text-sm">Pending Tasks</p>
   </div>
-
-  <div class="stat bg-slate-800 p-4 rounded-xl text-center text-yellow-400 card-hover fade-up">
-    <i class="fa fa-envelope text-xl"></i>
-    <h3 id="msgs">12</h3>
-    <p class="text-xs">Messages</p>
+  <div class="bg-slate-800 rounded-xl p-4 text-center text-yellow-400">
+    <h2 class="text-2xl">12</h2><p class="text-sm">Messages</p>
   </div>
 </section>
 
-<!-- AI INSIGHTS -->
-<section class="p-4 fade-up">
+<!-- CHARTS -->
+<section class="p-6 grid md:grid-cols-3 gap-6">
   <div class="bg-white dark:bg-[#0e0e0e] rounded-xl p-4 shadow">
-    <h3 class="font-bold mb-3">🧠 AI Insights – Suggested Hires</h3>
-
-    <div class="space-y-2 text-sm">
-      <div class="flex justify-between">
-        <span>Alex Martin – AI Engineer</span>
-        <span class="text-green-400">92% Match</span>
-      </div>
-      <div class="flex justify-between">
-        <span>Sneha R – Frontend Dev</span>
-        <span class="text-green-400">89% Match</span>
-      </div>
-      <div class="flex justify-between">
-        <span>Rahul K – Data Scientist</span>
-        <span class="text-green-400">87% Match</span>
-      </div>
-    </div>
+    <h3 class="font-semibold mb-2">Jobs Created</h3>
+    <canvas id="jobChart" height="200"></canvas>
   </div>
-</section>
 
-<!-- CHART -->
-<section class="p-4 fade-up">
   <div class="bg-white dark:bg-[#0e0e0e] rounded-xl p-4 shadow">
-    <h3 class="font-bold mb-2">📊 Jobs Created</h3>
-    <canvas id="chart" height="120"></canvas>
+    <h3 class="font-semibold mb-2">Applicants Growth</h3>
+    <canvas id="appChart" height="200"></canvas>
+  </div>
+
+  <div class="bg-white dark:bg-[#0e0e0e] rounded-xl p-4 shadow">
+    <h3 class="font-semibold mb-2">Social Media Reach</h3>
+    <canvas id="socialChart" height="200"></canvas>
   </div>
 </section>
 
-<!-- MOBILE QUICK ACTION -->
-<div class="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden
-bg-yellow-400 text-black px-6 py-3 rounded-full flex gap-6 shadow-lg">
-  <i class="fa fa-plus"></i>
-  <i class="fa fa-briefcase"></i>
-  <i class="fa fa-user"></i>
-</div>
+<!-- TOP LPA JOBS -->
+<section class="p-6">
+<h2 class="font-bold mb-4">Top LPA Jobs</h2>
+<div class="grid md:grid-cols-4 gap-4">
+  <div class="bg-slate-900 p-4 rounded-xl text-center">
+    <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e"
+         class="h-20 w-full object-cover rounded mb-2">
+    <h3 class="text-yellow-400">AI Engineer</h3>
+    <p>₹18 LPA</p>
+  </div>
 
-</div>
+  <div class="bg-slate-900 p-4 rounded-xl text-center">
+    <img src="https://images.unsplash.com/photo-1526378722484-cc5c5102aa1d"
+         class="h-20 w-full object-cover rounded mb-2">
+    <h3 class="text-yellow-400">Data Scientist</h3>
+    <p>₹16 LPA</p>
+  </div>
 
-<!-- ================= JS ================= -->
+  <div class="bg-slate-900 p-4 rounded-xl text-center">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475"
+         class="h-20 w-full object-cover rounded mb-2">
+    <h3 class="text-yellow-400">DevOps Engineer</h3>
+    <p>₹15 LPA</p>
+  </div>
+
+  <div class="bg-slate-900 p-4 rounded-xl text-center">
+    <img src="https://images.unsplash.com/photo-1581091215367-59ab6cfd7c8c"
+         class="h-20 w-full object-cover rounded mb-2">
+    <h3 class="text-yellow-400">Robotics Engineer</h3>
+    <p>₹14 LPA</p>
+  </div>
+</div>
+</section>
+
+<!-- USER TABLE -->
+<section class="p-6">
+<h2 class="font-bold mb-3">Users</h2>
+<div class="overflow-x-auto bg-white dark:bg-[#0e0e0e] rounded-xl shadow">
+<table class="w-full text-sm">
+<thead class="border-b">
+<tr>
+<th class="p-3 text-left">User</th>
+<th>Title</th>
+<th>Status</th>
+<th>Role</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b">
+<td class="p-3 flex items-center gap-2">
+<img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-8 h-8 rounded-full">
+Alex Martin
+</td>
+<td>AI Engineer</td>
+<td><span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full">Active</span></td>
+<td>Recruiter</td>
+<td class="text-yellow-400 cursor-pointer">Edit</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- JS -->
 <script>
-/* LOGIN */
-function login(){
-  document.getElementById("loginScreen").style.display="none";
-  document.getElementById("dashboard").classList.remove("hidden");
-}
-
-/* THEME */
 function toggleTheme(){
   document.documentElement.classList.toggle("dark");
 }
 
-/* MENU */
-function toggleMenu(){
-  alert("Sidebar can be added if needed");
-}
-
-/* REAL-TIME DATA */
-setInterval(()=>{
-  jobs.innerText = +jobs.innerText + 1;
-  apps.innerText = +apps.innerText + 2;
-  msgs.innerText = +msgs.innerText + 1;
-},4000);
-
-/* CHART */
-new Chart(chart,{
+/* Charts */
+new Chart(jobChart,{
   type:'bar',
-  data:{
-    labels:['06','07','08','09','10','11','12'],
-    datasets:[{
-      data:[4,6,8,5,7,6,9],
-      backgroundColor:'#facc15',
-      borderRadius:6
-    }]
-  },
-  options:{
-    plugins:{legend:{display:false}},
-    maintainAspectRatio:false
-  }
+  data:{labels:['Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  datasets:[{data:[4,6,8,5,7,6,9],backgroundColor:'#facc15'}]},
+  options:{plugins:{legend:{display:false}}}
+});
+
+new Chart(appChart,{
+  type:'line',
+  data:{labels:['Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  datasets:[{data:[20,35,40,50,65,70,90],borderColor:'#facc15',tension:.4}]},
+  options:{plugins:{legend:{display:false}}}
+});
+
+new Chart(socialChart,{
+  type:'doughnut',
+  data:{labels:['LinkedIn','Instagram','Twitter'],
+  datasets:[{data:[45,35,20],backgroundColor:['#facc15','#22c55e','#38bdf8']}]}
 });
 </script>
 

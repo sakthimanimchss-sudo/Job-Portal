@@ -5,146 +5,337 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-html{scroll-behavior:smooth}
-body{background:#000;color:#fff}
 
-/* BACKGROUND SLIDER */
-.bg{position:fixed;inset:0;z-index:-1}
-.bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.75)}
+/* =========================================================
+   RESET & BASE
+========================================================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont;
+}
+html{scroll-behavior:smooth}
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE SLIDER (DESKTOP + MOBILE)
+========================================================= */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+}
+.bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.75);
+}
 .bg img{
-  position:absolute;width:100%;height:100%;
-  object-fit:cover;opacity:0;
-  animation:fade 30s infinite
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:bgFade 30s infinite;
 }
 .bg img:nth-child(2){animation-delay:10s}
 .bg img:nth-child(3){animation-delay:20s}
-@keyframes fade{
+
+@keyframes bgFade{
   0%{opacity:0}
   10%{opacity:.6}
   30%{opacity:.6;transform:scale(1.05)}
   40%{opacity:0}
 }
 
-/* NAVBAR */
+/* =========================================================
+   NAVBAR
+========================================================= */
 .navbar{
-  position:fixed;top:0;width:100%;
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:14px 20px;
   background:rgba(0,0,0,.85);
   backdrop-filter:blur(10px);
-  padding:14px 20px;
-  display:flex;justify-content:space-between;align-items:center;
-  z-index:1000
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
 }
-.logo{color:#facc15;font-size:20px;font-weight:700}
-.nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a,.login-btn{color:white;text-decoration:none;background:none;border:none;cursor:pointer}
-.admin{background:#facc15;color:black;padding:6px 12px;border-radius:10px}
+.logo{
+  color:#facc15;
+  font-size:20px;
+  font-weight:700;
+}
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:18px;
+}
+.nav-links a,
+.login-btn{
+  color:white;
+  text-decoration:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+.admin{
+  background:#facc15;
+  color:black;
+  padding:6px 12px;
+  border-radius:10px;
+}
 
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer}
-.hamburger span{width:26px;height:3px;background:#facc15;transition:.3s}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:#facc15;
+  transition:.3s;
+}
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
 
 /* MOBILE MENU */
 .mobile-menu{
-  position:fixed;inset:0;background:black;
-  display:none;flex-direction:column;
-  padding-top:110px;gap:26px;align-items:center;
-  z-index:999
+  position:fixed;
+  inset:0;
+  background:black;
+  display:none;
+  flex-direction:column;
+  padding-top:110px;
+  gap:28px;
+  align-items:center;
+  z-index:999;
 }
-.mobile-menu a{color:white;font-size:22px;text-decoration:none}
+.mobile-menu a{
+  color:white;
+  font-size:22px;
+  text-decoration:none;
+}
 
-/* HERO */
+/* =========================================================
+   HERO SECTION
+========================================================= */
 .hero{
   min-height:100vh;
   padding:120px 20px 60px;
 }
-.hero h1{font-size:40px}
-.hero span{background:#facc15;color:black;padding:6px 18px;border-radius:30px}
-.hero p{margin-top:14px;max-width:520px;opacity:.9}
-.btns{margin-top:26px}
-.btn{padding:12px 26px;border-radius:30px;text-decoration:none;margin-right:10px}
+.hero h1{
+  font-size:40px;
+}
+.hero span{
+  background:#facc15;
+  color:black;
+  padding:6px 18px;
+  border-radius:30px;
+}
+.hero p{
+  margin-top:14px;
+  max-width:520px;
+  opacity:.9;
+}
+.btns{
+  margin-top:26px;
+}
+.btn{
+  padding:12px 26px;
+  border-radius:30px;
+  text-decoration:none;
+  margin-right:10px;
+}
 .primary{background:#facc15;color:black}
 .outline{border:1px solid white;color:white}
 
-/* MOBILE SLIDER (SMALLER IMAGE) */
-.hero-slider{
+/* MOBILE HERO IMAGE SLIDER */
+.mobile-slider{
   display:none;
   margin-top:20px;
-  max-width:420px;
-  border-radius:16px;
-  overflow:hidden
+  position:relative;
+  height:220px;
 }
-.hero-slider img{width:100%;animation:slide 15s infinite}
-@keyframes slide{
+.mobile-slider img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+  opacity:0;
+  animation:mobileSlide 18s infinite;
+}
+.mobile-slider img:nth-child(2){animation-delay:6s}
+.mobile-slider img:nth-child(3){animation-delay:12s}
+
+@keyframes mobileSlide{
   0%{opacity:0}
   10%{opacity:1}
-  40%{opacity:1}
-  50%{opacity:0}
+  30%{opacity:1}
+  40%{opacity:0}
 }
 
-/* SECTIONS */
-section{padding:80px 20px}
-.title{text-align:center;font-size:32px;margin-bottom:40px}
+/* =========================================================
+   SECTION BASE
+========================================================= */
+section{
+  padding:80px 20px;
+}
+.title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:40px;
+}
 
-/* FEATURES */
-.features{display:grid;gap:24px;max-width:1100px;margin:auto}
+/* =========================================================
+   WHY CHOOSE
+========================================================= */
+.features{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  gap:24px;
+}
 .feature{
   background:rgba(0,0,0,.6);
-  padding:30px;border-radius:20px
+  padding:30px;
+  border-radius:20px;
 }
-.feature img{width:100%;border-radius:14px;margin-bottom:12px}
+.feature img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+.feature i{
+  color:#facc15;
+  font-size:26px;
+}
 
-/* JOBS */
-.jobs{display:grid;gap:20px;max-width:1000px;margin:auto}
+/* =========================================================
+   FEATURED JOBS
+========================================================= */
+.jobs{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  gap:20px;
+}
 .job{
   background:rgba(0,0,0,.6);
-  padding:24px;border-radius:18px
+  padding:24px;
+  border-radius:18px;
 }
-.job img{width:100%;border-radius:14px;margin-bottom:10px}
+.job img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:10px;
+}
 .job span{color:#facc15}
 
-/* FAQ */
-.faq{max-width:900px;margin:auto}
+/* =========================================================
+   FAQ
+========================================================= */
+.faq{
+  max-width:900px;
+  margin:auto;
+}
 .faq-item{
   background:rgba(0,0,0,.6);
-  padding:20px;border-radius:14px;margin-bottom:14px
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:14px;
 }
-.faq-item img{width:100%;border-radius:12px;margin-bottom:10px}
+.faq-item img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
 
-/* FOOTER */
-footer{background:black;padding:60px 20px}
+/* =========================================================
+   FOOTER
+========================================================= */
+footer{
+  background:black;
+  padding:60px 20px;
+}
 .footer-grid{
-  max-width:1200px;margin:auto;
-  display:grid;gap:30px
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  gap:30px;
 }
 footer h4{color:#facc15}
 
-/* LOGIN MODAL */
+/* =========================================================
+   LOGIN MODAL
+========================================================= */
 .login-modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.8);
-  display:none;align-items:center;justify-content:center;
-  z-index:2000
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
 }
 .login-box{
-  background:#111;padding:30px;border-radius:18px;width:320px
+  background:#111;
+  padding:30px;
+  border-radius:18px;
+  width:320px;
 }
 .login-box input{
-  width:100%;padding:10px;margin:10px 0;
-  border-radius:8px;border:none
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
 }
 
-/* ANIMATIONS */
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 .reveal{opacity:0;transform:translateY(30px);transition:1s}
 .show{opacity:1;transform:none}
 
-/* RESPONSIVE */
+.zoom{opacity:0;transform:scale(.9);transition:1s}
+.zoom-in{opacity:1;transform:scale(1)}
+
+.fade-left{opacity:0;transform:translateX(-40px);transition:1s}
+.from-left{opacity:1;transform:none}
+
+.fade-right{opacity:0;transform:translateX(40px);transition:1s}
+.from-right{opacity:1;transform:none}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 @media(max-width:900px){
   .nav-links{display:none}
   .hamburger{display:flex}
@@ -152,8 +343,9 @@ footer h4{color:#facc15}
 @media(max-width:768px){
   .hero h1{font-size:28px}
   .hero{padding-top:110px}
-  .hero-slider{display:block}
+  .mobile-slider{display:block}
 }
+
 </style>
 </head>
 
@@ -202,10 +394,71 @@ footer h4{color:#facc15}
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
-  <div class="hero-slider">
+
+  <div class="mobile-slider">
     <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
   </div>
 </div>
+
+<!-- WHY CHOOSE -->
+<section class="reveal">
+  <h2 class="title">Why Choose SmartHire</h2>
+  <div class="features">
+    <div class="feature fade-left">
+      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+      <h3>AI Matching</h3>
+      <p>Skill-based intelligent recommendations.</p>
+    </div>
+    <div class="feature zoom">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
+      <h3>Fast Hiring</h3>
+      <p>Apply once, reach many companies.</p>
+    </div>
+    <div class="feature fade-right">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+      <h3>Verified Companies</h3>
+      <p>Work only with trusted employers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED JOBS -->
+<section class="reveal">
+  <h2 class="title">Featured Jobs</h2>
+  <div class="jobs">
+    <div class="job zoom">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+      <h3>Frontend Developer</h3>
+      <p>React • Tailwind • UI</p>
+      <span>₹6–10 LPA</span>
+    </div>
+    <div class="job zoom">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <h3>AI Engineer</h3>
+      <p>Python • ML • NLP</p>
+      <span>₹10–18 LPA</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="reveal">
+  <h2 class="title">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item fade-left">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <strong>Is SmartHire free?</strong>
+      <p>Yes, job seekers can apply for free.</p>
+    </div>
+    <div class="faq-item fade-right">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+      <strong>Do you support freshers?</strong>
+      <p>Yes, freshers and professionals are welcome.</p>
+    </div>
+  </div>
+</section>
 
 <!-- LOGIN MODAL -->
 <div id="loginModal" class="login-modal">
@@ -222,9 +475,10 @@ footer h4{color:#facc15}
   <div class="footer-grid">
     <div>
       <h4>SmartHire</h4>
-      <p>AI-Powered Job Platform</p>
+      <p>AI Powered Job Platform</p>
       <p>Email: support@smarthire.com</p>
       <p>Phone: +91 90000 00000</p>
+      <p>India</p>
     </div>
   </div>
 </footer>
@@ -241,10 +495,21 @@ function openLogin(){
 document.getElementById("loginModal").onclick=e=>{
   if(e.target.id==="loginModal") e.target.style.display="none";
 }
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})
-},{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* SCROLL OBSERVER */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("show");
+      if(e.target.classList.contains("zoom")) e.target.classList.add("zoom-in");
+      if(e.target.classList.contains("fade-left")) e.target.classList.add("from-left");
+      if(e.target.classList.contains("fade-right")) e.target.classList.add("from-right");
+    }
+  });
+},{threshold:0.15});
+
+document.querySelectorAll(".reveal,.zoom,.fade-left,.fade-right")
+  .forEach(el=>observer.observe(el));
 </script>
 
 </body>

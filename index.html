@@ -4,272 +4,200 @@
 <meta charset="UTF-8">
 <title>SmartHire | Job Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
 
-<!-- ================= BACKGROUND SLIDER ================= -->
-<div class="bg-container">
-  <div class="bg-slide bg1"></div>
-  <div class="bg-slide bg2"></div>
-  <div class="bg-slide bg3"></div>
+<!-- ===== BACKGROUND IMAGE SLIDER ===== -->
+<div class="bg-wrapper">
+  <div class="bg bg-1"></div>
+  <div class="bg bg-2"></div>
+  <div class="bg bg-3"></div>
 </div>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <h1 class="logo">SmartHire</h1>
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo">SmartHire</div>
 
-    <ul class="nav-links">
-      <li><a href="job.html">Jobs</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="admin.html" class="admin-btn">Admin</a></li>
-    </ul>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#jobs">Jobs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#admin" class="admin-btn">Admin</a>
+      <button class="login-btn" onclick="openLogin()">Login</button>
+    </nav>
 
-    <!-- Hamburger -->
     <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </div>
-</nav>
+</header>
 
-<!-- ================= MOBILE MENU ================= -->
+<!-- ===== MOBILE MENU ===== -->
 <div id="mobileMenu" class="mobile-menu">
-  <a href="job.html">Jobs</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a href="admin.html" class="admin-mobile">Admin</a>
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#jobs" onclick="toggleMenu()">Jobs</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#admin" class="admin-mobile" onclick="toggleMenu()">Admin</a>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="hero reveal">
-  <h2 class="hero-title">Build Your <span>Career</span> With Confidence</h2>
+<!-- ===== HOME ===== -->
+<section id="home" class="section hero reveal">
+  <h1 class="hero-title">
+    The best jobsite <span>for your future</span>
+  </h1>
   <p class="hero-sub">
-    Discover IT, AI, Robotics & Engineering jobs with AI-powered matching.
+    Build your career in IT, AI, Robotics & Engineering.
   </p>
-
   <div class="hero-actions">
-    <a href="job.html" class="primary-btn">Browse Jobs</a>
-    <button class="secondary-btn" onclick="openLogin()">Login</button>
+    <a href="#jobs" class="primary-btn">Get Started</a>
+    <a href="#pricing" class="secondary-btn">Explore →</a>
   </div>
 </section>
 
-<!-- ================= JOB PREVIEW ================= -->
-<section class="section reveal">
-  <h3 class="section-title">Featured Jobs</h3>
-
+<!-- ===== JOBS ===== -->
+<section id="jobs" class="section light reveal">
+  <h2 class="section-title">Featured Jobs</h2>
   <div class="cards">
-    <a href="job.html" class="job-card">
-      <h4>Frontend Developer</h4>
-      <p>₹6–10 LPA</p>
-    </a>
-
-    <a href="job.html" class="job-card">
-      <h4>AI Engineer</h4>
-      <p>₹10–18 LPA</p>
-    </a>
-
-    <a href="job.html" class="job-card">
-      <h4>Robotics Engineer</h4>
-      <p>₹8–14 LPA</p>
-    </a>
+    <div class="job-card">Frontend Developer <span>₹6–10 LPA</span></div>
+    <div class="job-card">AI Engineer <span>₹10–18 LPA</span></div>
+    <div class="job-card">Robotics Engineer <span>₹8–14 LPA</span></div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer reveal">
-  <p>© 2025 SmartHire</p>
-  <p>Professional AI-Driven Hiring Platform</p>
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="section reveal">
+  <h2 class="section-title">Pricing Plans</h2>
+  <div class="cards">
+    <div class="price-card">Free<br><b>₹0</b></div>
+    <div class="price-card highlight">Pro<br><b>₹499</b></div>
+    <div class="price-card">Enterprise<br><b>₹999</b></div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section light reveal">
+  <h2 class="section-title">FAQ</h2>
+  <p class="center-text">Common questions about jobs, payments and access.</p>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section reveal">
+  <h2 class="section-title">Contact Us</h2>
+  <p class="center-text">support@smarthire.com | +91 98765 43210</p>
+</section>
+
+<!-- ===== ADMIN ===== -->
+<section id="admin" class="section light reveal">
+  <h2 class="section-title">Admin Dashboard Preview</h2>
+  <p class="center-text">Manage jobs, users, analytics & hiring tools.</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div>
+    <h3>SmartHire</h3>
+    <p>AI-powered hiring platform for modern careers.</p>
+    <small>© 2025 SmartHire. All rights reserved.</small>
+  </div>
 </footer>
 
-<!-- ================= LOGIN MODAL ================= -->
+<!-- ===== LOGIN MODAL ===== -->
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h3>User Login</h3>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+    <input placeholder="Email">
+    <input placeholder="Password" type="password">
     <button class="primary-btn">Login</button>
-    <span onclick="closeLogin()">✕</span>
+    <span class="close" onclick="closeLogin()">✕</span>
   </div>
 </div>
-<style>
-  /* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+
+  <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 
 /* BACKGROUND */
-.bg-container{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
-.bg-slide{
-  position:absolute;
-  inset:0;
+.bg-wrapper{position:fixed;inset:0;z-index:-1}
+.bg{
+  position:absolute;inset:0;
   background-size:cover;
   background-position:center;
   opacity:0;
-  animation:bgFade 36s infinite;
+  animation:bgFade 45s infinite;
 }
-.bg1{background-image:url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d")}
-.bg2{background-image:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4");animation-delay:12s}
-.bg3{background-image:url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");animation-delay:24s}
+.bg-1{background-image:url("https://images.unsplash.com/photo-1522071820081-009f0129c71c")}
+.bg-2{background-image:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4");animation-delay:15s}
+.bg-3{background-image:url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");animation-delay:30s}
 
 @keyframes bgFade{
-  0%{opacity:0;transform:scale(1)}
-  10%{opacity:.35}
-  30%{opacity:.35;transform:scale(1.07)}
+  0%{opacity:0}
+  10%{opacity:.55}
+  30%{opacity:.55;transform:scale(1.06)}
   40%{opacity:0}
-  100%{opacity:0}
 }
 
 /* NAVBAR */
-.navbar{
-  position:fixed;
-  top:0;width:100%;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(10px);
-  z-index:100;
-}
-.nav-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+.navbar{position:fixed;width:100%;background:rgba(0,0,0,.65);backdrop-filter:blur(10px);z-index:100}
+.nav-container{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px}
 .logo{color:#facc15;font-size:22px;font-weight:700}
-
-.nav-links{display:flex;gap:20px}
+.nav-links{display:flex;gap:18px;align-items:center}
 .nav-links a{color:white;text-decoration:none}
-.admin-btn{background:#facc15;color:black;padding:4px 10px;border-radius:6px}
+.admin-btn{background:#facc15;color:black;padding:6px 12px;border-radius:6px}
+.login-btn{border:1px solid #fff;color:#fff;padding:6px 14px;border-radius:20px}
 
 /* HAMBURGER */
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  cursor:pointer;
-}
-.hamburger span{
-  width:26px;height:3px;
-  background:#facc15;
-  transition:.4s;
-}
+.hamburger{display:none;flex-direction:column;gap:5px}
+.hamburger span{width:26px;height:3px;background:#facc15}
 
 /* MOBILE MENU */
 .mobile-menu{
-  position:fixed;
-  inset:0;
-  background:black;
-  padding-top:120px;
-  display:none;
-  flex-direction:column;
-  gap:20px;
-  text-align:center;
-  z-index:90;
+  display:none;position:fixed;inset:0;background:black;
+  padding-top:120px;text-align:center;z-index:90
 }
-.mobile-menu a{color:white;font-size:20px}
-.admin-mobile{background:#facc15;color:black;padding:12px;border-radius:8px}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  padding:0 20px;
-}
-.hero-title{
-  font-size:42px;
-  animation:textPop 1.5s ease;
-}
-.hero-title span{color:#facc15}
-.hero-sub{margin-top:16px;opacity:.85}
-
-@keyframes textPop{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1}
-}
-
-/* BUTTONS */
-.primary-btn{
-  background:#facc15;color:black;
-  padding:12px 26px;
-  border-radius:30px;
-  font-weight:600;
-}
-.secondary-btn{
-  border:1px solid white;
-  padding:12px 26px;
-  border-radius:30px;
-  color:white;
-}
+.mobile-menu a{display:block;color:white;padding:14px;font-size:20px}
 
 /* SECTIONS */
-.section{
-  background:rgba(255,255,255,.85);
-  padding:80px 20px;
-  text-align:center;
-}
-.section-title{font-size:30px;margin-bottom:30px}
+.section{min-height:100vh;padding:120px 20px;color:white}
+.light{background:rgba(255,255,255,.9);color:black}
+.section-title{text-align:center;font-size:34px;margin-bottom:30px}
+.center-text{text-align:center}
 
+/* HERO */
+.hero{text-align:center}
+.hero-title{font-size:48px;animation:slideUp 1.2s ease}
+.hero-title span{color:#facc15}
+.hero-sub{margin:20px 0;opacity:.9}
+.hero-actions{display:flex;gap:20px;justify-content:center}
+
+/* CARDS */
 .cards{display:grid;gap:20px;max-width:900px;margin:auto}
-.job-card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.1);
-  transition:.4s;
+.job-card,.price-card{
+  background:white;color:black;
+  padding:20px;border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15)
 }
-.job-card:hover{transform:translateY(-8px)}
+.highlight{border:2px solid #facc15}
 
 /* FOOTER */
-.footer{
-  background:black;
-  color:#aaa;
-  padding:40px;
-  text-align:center;
-}
+.footer{background:black;color:#aaa;text-align:center;padding:40px}
 
 /* LOGIN */
-.login-modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  justify-content:center;
-  align-items:end;
-}
+.login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:flex-end}
 .login-box{
-  background:white;
-  width:100%;
-  max-width:400px;
-  padding:30px;
-  border-radius:20px 20px 0 0;
-  animation:slideUp .4s ease;
+  background:white;width:100%;max-width:400px;
+  padding:30px;border-radius:20px 20px 0 0;
+  animation:slideUp .4s ease
 }
-@keyframes slideUp{
-  from{transform:translateY(100%)}
-  to{transform:translateY(0)}
-}
+.close{position:absolute;top:12px;right:16px;cursor:pointer}
 
-/* SCROLL ANIMATION */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1.2s;
-}
+/* ANIMATIONS */
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(40px);transition:1.2s}
 .reveal.show{opacity:1;transform:none}
 
 /* MOBILE */
@@ -279,9 +207,9 @@
 }
 </style>
 <script>
-  function toggleMenu(){
-  const menu=document.getElementById("mobileMenu");
-  menu.style.display=menu.style.display==="flex"?"none":"flex";
+function toggleMenu(){
+  const m=document.getElementById("mobileMenu");
+  m.style.display=m.style.display==="block"?"none":"block";
 }
 
 function openLogin(){
@@ -291,17 +219,12 @@ function closeLogin(){
   document.getElementById("loginModal").style.display="none";
 }
 
-/* SCROLL REVEAL */
+/* SCROLL ANIMATION */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
-    }
+    if(e.isIntersecting)e.target.classList.add("show");
   });
 },{threshold:.2});
-
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
 </script>
-</body>
-</html>
+

@@ -5,30 +5,30 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ================= ICONS ================= -->
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
-/* =========================================================
+/* =====================================================
    RESET & BASE
-========================================================= */
+===================================================== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family:system-ui,-apple-system,BlinkMacSystemFont;
 }
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth}
 body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
 }
 
-/* =========================================================
-   BACKGROUND IMAGE SLIDER (UNCHANGED)
-========================================================= */
+/* =====================================================
+   BACKGROUND IMAGE SLIDER (MORE VISIBLE)
+===================================================== */
 .bg{
   position:fixed;
   inset:0;
@@ -38,7 +38,10 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.78));
+  background:linear-gradient(
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.65)
+  ); /* reduced darkness */
 }
 .bg img{
   position:absolute;
@@ -53,24 +56,19 @@ body{
 
 @keyframes bgFade{
   0%{opacity:0;transform:scale(1)}
-  10%{opacity:.6}
-  30%{opacity:.6;transform:scale(1.05)}
+  10%{opacity:.7}
+  30%{opacity:.7;transform:scale(1.06)}
   40%{opacity:0}
 }
 
-/* Desktop calm */
-@media(min-width:1024px){
-  .bg img{transform:scale(1)}
-}
-
-/* =========================================================
+/* =====================================================
    NAVBAR
-========================================================= */
+===================================================== */
 .navbar{
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.85);
   backdrop-filter:blur(10px);
   padding:14px 22px;
   display:flex;
@@ -83,8 +81,6 @@ body{
   font-size:22px;
   font-weight:700;
 }
-
-/* NAV LINKS */
 .nav-links{
   list-style:none;
   display:flex;
@@ -97,10 +93,7 @@ body{
   background:none;
   border:none;
   cursor:pointer;
-  font-size:15px;
 }
-
-/* ADMIN */
 .admin{
   background:#facc15;
   color:black;
@@ -109,9 +102,9 @@ body{
   font-weight:600;
 }
 
-/* =========================================================
-   HAMBURGER (ANIMATED — NEW)
-========================================================= */
+/* =====================================================
+   HAMBURGER (ANIMATED)
+===================================================== */
 .hamburger{
   display:none;
   width:32px;
@@ -130,23 +123,19 @@ body{
 .hamburger span:nth-child(1){top:0}
 .hamburger span:nth-child(2){top:9px}
 .hamburger span:nth-child(3){top:18px}
-
-/* Active animation */
 .hamburger.active span:nth-child(1){
   transform:rotate(45deg);
   top:9px;
 }
-.hamburger.active span:nth-child(2){
-  opacity:0;
-}
+.hamburger.active span:nth-child(2){opacity:0}
 .hamburger.active span:nth-child(3){
   transform:rotate(-45deg);
   top:9px;
 }
 
-/* =========================================================
+/* =====================================================
    MOBILE MENU
-========================================================= */
+===================================================== */
 .mobile-menu{
   position:fixed;
   inset:0;
@@ -154,7 +143,7 @@ body{
   display:none;
   flex-direction:column;
   justify-content:center;
-  padding-left:26px;
+  padding-left:28px;
   gap:28px;
   z-index:999;
 }
@@ -163,25 +152,16 @@ body{
   font-size:22px;
   text-decoration:none;
 }
-.mobile-menu a.active{
-  color:#facc15;
-}
-
-/* =========================================================
-   THEME BUTTON (MOON SIZE FIX)
-========================================================= */
 .theme-btn{
-  font-size:26px;           /* increased size */
-  cursor:pointer;
-  margin-top:10px;
+  font-size:28px;
 }
 
-/* =========================================================
-   HERO SECTION (TEXT MINOR FIX)
-========================================================= */
+/* =====================================================
+   HERO
+===================================================== */
 .hero{
   min-height:100vh;
-  padding:160px 20px 60px;
+  padding:200px 20px 60px;
   max-width:1200px;
   margin:auto;
 }
@@ -190,7 +170,7 @@ body{
   font-weight:800;
   animation:slideUp 1.2s ease;
 }
-.hero h1 span{
+.hero span{
   background:#facc15;
   color:black;
   padding:6px 18px;
@@ -200,20 +180,12 @@ body{
   margin-top:18px;
   max-width:560px;
   font-size:18px;
-  opacity:.9;
+  opacity:.95;
 }
 
-/* Desktop hero micro-adjust */
-@media(min-width:1024px){
-  .hero{
-    padding-top:210px;   /* pushed down */
-    padding-left:90px;   /* slight right */
-  }
-}
-
-/* =========================================================
+/* =====================================================
    BUTTONS
-========================================================= */
+===================================================== */
 .btns{margin-top:36px}
 .btn{
   display:inline-block;
@@ -226,19 +198,72 @@ body{
 .primary{background:#facc15;color:black}
 .outline{border:1px solid white;color:white}
 
-/* =========================================================
-   SECTIONS / FEATURES / JOBS (UNCHANGED)
-========================================================= */
+/* =====================================================
+   IMAGE SECTIONS (MORE IMAGES ADDED)
+===================================================== */
 section{padding:100px 20px}
 .title{text-align:center;font-size:34px;margin-bottom:50px}
 
-/* =========================================================
-   SCROLL ANIMATIONS
-========================================================= */
+.grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  gap:26px;
+}
+.card{
+  background:rgba(0,0,0,.6);
+  border-radius:20px;
+  overflow:hidden;
+  transition:.4s;
+}
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+.card .content{
+  padding:24px;
+}
+.card:hover{transform:translateY(-10px)}
+
+/* =====================================================
+   LOGIN MODAL (ANIMATED)
+===================================================== */
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.login-box{
+  background:#111;
+  padding:34px;
+  border-radius:20px;
+  width:320px;
+  animation:loginPop .45s ease;
+}
+@keyframes loginPop{
+  from{opacity:0;transform:scale(.8) translateY(40px)}
+  to{opacity:1;transform:scale(1)}
+}
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+}
+
+/* =====================================================
+   SCROLL ANIMATIONS (STRONGER)
+===================================================== */
 .reveal{
   opacity:0;
-  transform:translateY(40px);
-  transition:1s;
+  transform:translateY(60px) scale(.96);
+  transition:1.2s cubic-bezier(.2,.8,.2,1);
 }
 .reveal.show{
   opacity:1;
@@ -249,9 +274,33 @@ section{padding:100px 20px}
   to{opacity:1;transform:none}
 }
 
-/* =========================================================
+/* =====================================================
+   FOOTER (MORE INFORMATION)
+===================================================== */
+footer{
+  background:black;
+  padding:80px 20px;
+}
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  gap:36px;
+}
+footer h4{color:#facc15;margin-bottom:12px}
+footer p,footer a{
+  color:#ccc;
+  text-decoration:none;
+  margin:6px 0;
+}
+.social i{
+  font-size:22px;
+  margin-right:14px;
+}
+
+/* =====================================================
    RESPONSIVE
-========================================================= */
+===================================================== */
 @media(max-width:900px){
   .nav-links{display:none}
   .hamburger{display:block}
@@ -273,28 +322,24 @@ section{padding:100px 20px}
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="jobs.html">Jobs</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><button class="login-btn">Login</button></li>
+    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
 
-  <!-- Animated Hamburger -->
   <div class="hamburger" onclick="toggleMenu(this)">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
-  <a class="active">Home</a>
+  <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
@@ -313,20 +358,84 @@ section{padding:100px 20px}
   </div>
 </div>
 
+<!-- IMAGE GRID -->
+<section class="reveal">
+  <h2 class="title">Why Choose SmartHire</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+      <div class="content">
+        <h3>AI Matching</h3>
+        <p>Smart skill-based job recommendations.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
+      <div class="content">
+        <h3>Fast Hiring</h3>
+        <p>Apply once and get noticed quickly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>SmartHire</h4>
+      <p>AI-powered hiring platform.</p>
+      <p>Email: support@smarthire.com</p>
+      <p>Phone: +91 90000 00000</p>
+      <p>Location: India</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="jobs.html">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Follow Us</h4>
+      <div class="social">
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- LOGIN -->
+<div id="loginModal" class="login-modal">
+  <div class="login-box">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button class="btn primary" onclick="closeLogin()">Login</button>
+  </div>
+</div>
+
 <script>
-/* HAMBURGER TOGGLE */
 function toggleMenu(btn){
   btn.classList.toggle("active");
   const menu=document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+  menu.style.display = menu.style.display==="flex"?"none":"flex";
+}
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+function closeLogin(){
+  document.getElementById("loginModal").style.display="none";
 }
 
-/* SCROLL REVEAL */
+/* Scroll reveal */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting) e.target.classList.add("show");
   });
-},{threshold:.2});
+},{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
 

@@ -14,10 +14,9 @@ tailwind.config = { darkMode: 'class' }
 <body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+<nav class="fixed top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
       SmartHire
     </a>
@@ -26,49 +25,45 @@ tailwind.config = { darkMode: 'class' }
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
-      <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
+      <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
 
       <a href="admin.html"
-         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+         class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded">
         Admin
       </a>
 
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
-    <!-- MOBILE ☰ -->
+    <!-- ☰ MOBILE BUTTON -->
     <button onclick="toggleMenu()" class="md:hidden text-3xl text-yellow-400">
       ☰
     </button>
+
   </div>
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu"
-       class="hidden md:hidden bg-white dark:bg-black px-6 pb-6 pt-4 space-y-4 border-t">
+       class="hidden md:hidden bg-black text-white px-6 pb-6 space-y-4">
 
-    <div class="flex justify-end">
-      <button onclick="toggleMenu()" class="text-2xl">✕</button>
-    </div>
-
-    <a href="index.html" class="block">Home</a>
-    <a href="jobs.html" class="block">Jobs</a>
-    <a href="pricing.html" class="block text-yellow-400 font-semibold">Pricing</a>
-    <a href="faq.html" class="block">FAQ</a>
-    <a href="contact.html" class="block">Contact</a>
+    <a href="index.html" class="block border-b pb-2">Home</a>
+    <a href="jobs.html" class="block border-b pb-2">Jobs</a>
+    <a href="pricing.html" class="block border-b pb-2">Pricing</a>
+    <a href="faq.html" class="block border-b pb-2">FAQ</a>
+    <a href="contact.html" class="block border-b pb-2">Contact</a>
 
     <a href="admin.html"
        class="block text-center bg-yellow-400 text-black py-2 rounded font-semibold">
       Admin
     </a>
 
-    <button onclick="toggleDark()" class="text-xl w-full text-left">
-      🌙 Dark Mode
+    <button onclick="toggleDark()" class="text-2xl">
+      🌙
     </button>
   </div>
 </nav>
-
 
 <!-- ================= HERO ================= -->
 <section class="pt-32 pb-24 min-h-screen bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')] bg-cover bg-center">
@@ -217,31 +212,36 @@ Annually <span class="text-xs text-green-400">(Save 20%)</span>
   from{opacity:0;transform:translateY(40px)}
   to{opacity:1}
 }
+  body{
+  padding-top:88px;
+}
+
 </style>
 
 <!-- ================= JS ================= -->
 <script>
 function toggleDark(){
-  document.documentElement.classList.toggle('dark')
+  document.documentElement.classList.toggle('dark');
 }
 
 function setPlan(year){
-  document.getElementById("monthlyBtn").classList.toggle("bg-yellow-400", !year)
-  document.getElementById("monthlyBtn").classList.toggle("text-black", !year)
-  document.getElementById("annualBtn").classList.toggle("bg-yellow-400", year)
-  document.getElementById("annualBtn").classList.toggle("text-black", year)
+  document.getElementById("monthlyBtn").classList.toggle("bg-yellow-400", !year);
+  document.getElementById("monthlyBtn").classList.toggle("text-black", !year);
+  document.getElementById("annualBtn").classList.toggle("bg-yellow-400", year);
+  document.getElementById("annualBtn").classList.toggle("text-black", year);
 
-  document.getElementById("p1").innerText = "0"
-  document.getElementById("p2").innerText = year ? "10" : "12"
-  document.getElementById("p3").innerText = year ? "20" : "24"
+  document.getElementById("p1").innerText = "0";
+  document.getElementById("p2").innerText = year ? "10" : "12";
+  document.getElementById("p3").innerText = year ? "20" : "24";
 }
+
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
 }
- body { padding-top: 88px; }
 </script>
 
 </body>
 </html>
+
 
 

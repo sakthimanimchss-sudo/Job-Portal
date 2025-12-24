@@ -27,7 +27,7 @@ body{
 }
 
 /* =====================================================
-   BACKGROUND IMAGE SLIDER (MORE VISIBLE)
+   BACKGROUND IMAGE SLIDER
 ===================================================== */
 .bg{
   position:fixed;
@@ -38,10 +38,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    rgba(0,0,0,.65),
-    rgba(0,0,0,.65)
-  ); /* reduced darkness */
+  background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65));
 }
 .bg img{
   position:absolute;
@@ -57,7 +54,7 @@ body{
 @keyframes bgFade{
   0%{opacity:0;transform:scale(1)}
   10%{opacity:.7}
-  30%{opacity:.7;transform:scale(1.06)}
+  30%{opacity:.7;transform:scale(1.05)}
   40%{opacity:0}
 }
 
@@ -103,7 +100,7 @@ body{
 }
 
 /* =====================================================
-   HAMBURGER (ANIMATED)
+   HAMBURGER
 ===================================================== */
 .hamburger{
   display:none;
@@ -152,9 +149,6 @@ body{
   font-size:22px;
   text-decoration:none;
 }
-.theme-btn{
-  font-size:28px;
-}
 
 /* =====================================================
    HERO
@@ -168,7 +162,6 @@ body{
 .hero h1{
   font-size:46px;
   font-weight:800;
-  animation:slideUp 1.2s ease;
 }
 .hero span{
   background:#facc15;
@@ -180,12 +173,7 @@ body{
   margin-top:18px;
   max-width:560px;
   font-size:18px;
-  opacity:.95;
 }
-
-/* =====================================================
-   BUTTONS
-===================================================== */
 .btns{margin-top:36px}
 .btn{
   display:inline-block;
@@ -199,11 +187,14 @@ body{
 .outline{border:1px solid white;color:white}
 
 /* =====================================================
-   IMAGE SECTIONS (MORE IMAGES ADDED)
+   SECTIONS
 ===================================================== */
 section{padding:100px 20px}
 .title{text-align:center;font-size:34px;margin-bottom:50px}
 
+/* =====================================================
+   WHY CHOOSE SMART HIRE
+===================================================== */
 .grid{
   max-width:1200px;
   margin:auto;
@@ -214,20 +205,86 @@ section{padding:100px 20px}
   background:rgba(0,0,0,.6);
   border-radius:20px;
   overflow:hidden;
-  transition:.4s;
 }
 .card img{
   width:100%;
   height:220px;
   object-fit:cover;
 }
-.card .content{
-  padding:24px;
-}
-.card:hover{transform:translateY(-10px)}
+.card .content{padding:24px}
 
 /* =====================================================
-   LOGIN MODAL (ANIMATED)
+   FEATURED JOBS
+===================================================== */
+.jobs{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  gap:26px;
+}
+.job{
+  background:rgba(0,0,0,.6);
+  border-radius:20px;
+  padding:26px;
+}
+.job img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+
+/* =====================================================
+   🔥 NEW 5-IMAGE SCROLLING SECTION 🔥
+===================================================== */
+.image-scroll-section{
+  padding:100px 0;
+  overflow:hidden;
+}
+.image-scroll-track{
+  display:flex;
+  gap:30px;
+  width:max-content;
+  animation:imageScroll 40s linear infinite;
+}
+.image-scroll-track img{
+  width:360px;
+  height:220px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  transition:transform .4s;
+}
+.image-scroll-track img:hover{
+  transform:scale(1.05);
+}
+@keyframes imageScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(max-width:768px){
+  .image-scroll-track img{
+    width:260px;
+    height:180px;
+  }
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer{
+  background:black;
+  padding:80px 20px;
+}
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  gap:36px;
+}
+footer h4{color:#facc15}
+
+/* =====================================================
+   LOGIN
 ===================================================== */
 .login-modal{
   position:fixed;
@@ -243,11 +300,6 @@ section{padding:100px 20px}
   padding:34px;
   border-radius:20px;
   width:320px;
-  animation:loginPop .45s ease;
-}
-@keyframes loginPop{
-  from{opacity:0;transform:scale(.8) translateY(40px)}
-  to{opacity:1;transform:scale(1)}
 }
 .login-box input{
   width:100%;
@@ -255,47 +307,6 @@ section{padding:100px 20px}
   margin:10px 0;
   border:none;
   border-radius:8px;
-}
-
-/* =====================================================
-   SCROLL ANIMATIONS (STRONGER)
-===================================================== */
-.reveal{
-  opacity:0;
-  transform:translateY(60px) scale(.96);
-  transition:1.2s cubic-bezier(.2,.8,.2,1);
-}
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-@keyframes slideUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:none}
-}
-
-/* =====================================================
-   FOOTER (MORE INFORMATION)
-===================================================== */
-footer{
-  background:black;
-  padding:80px 20px;
-}
-.footer-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  gap:36px;
-}
-footer h4{color:#facc15;margin-bottom:12px}
-footer p,footer a{
-  color:#ccc;
-  text-decoration:none;
-  margin:6px 0;
-}
-.social i{
-  font-size:22px;
-  margin-right:14px;
 }
 
 /* =====================================================
@@ -331,7 +342,6 @@ footer p,footer a{
     <li><button class="login-btn" onclick="openLogin()">Login</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
-
   <div class="hamburger" onclick="toggleMenu(this)">
     <span></span><span></span><span></span>
   </div>
@@ -345,11 +355,10 @@ footer p,footer a{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html" class="admin">Admin</a>
-  <div class="theme-btn">🌙</div>
 </div>
 
 <!-- HERO -->
-<div class="hero reveal">
+<div class="hero">
   <h1>Find Your <span>Dream Job</span></h1>
   <p>Explore IT, AI, Robotics & Engineering opportunities</p>
   <div class="btns">
@@ -358,24 +367,60 @@ footer p,footer a{
   </div>
 </div>
 
-<!-- IMAGE GRID -->
-<section class="reveal">
+<!-- WHY CHOOSE -->
+<section>
   <h2 class="title">Why Choose SmartHire</h2>
   <div class="grid">
     <div class="card">
       <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <div class="content">
-        <h3>AI Matching</h3>
-        <p>Smart skill-based job recommendations.</p>
-      </div>
+      <div class="content"><h3>AI Matching</h3></div>
     </div>
     <div class="card">
       <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <div class="content">
-        <h3>Fast Hiring</h3>
-        <p>Apply once and get noticed quickly.</p>
-      </div>
+      <div class="content"><h3>Fast Hiring</h3></div>
     </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+      <div class="content"><h3>Verified Companies</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED JOBS -->
+<section>
+  <h2 class="title">Featured Jobs</h2>
+  <div class="jobs">
+    <div class="job">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+      <h3>Frontend Developer</h3>
+    </div>
+    <div class="job">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <h3>AI Engineer</h3>
+    </div>
+    <div class="job">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+      <h3>Robotics Engineer</h3>
+    </div>
+  </div>
+</section>
+
+<!-- 🔥 SCROLLING IMAGE SECTION -->
+<section class="image-scroll-section">
+  <h2 class="title">Careers in Action</h2>
+  <div class="image-scroll-track">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+
+    <!-- duplicate for smooth loop -->
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
   </div>
 </section>
 
@@ -384,25 +429,9 @@ footer p,footer a{
   <div class="footer-grid">
     <div>
       <h4>SmartHire</h4>
-      <p>AI-powered hiring platform.</p>
+      <p>AI-powered hiring platform</p>
       <p>Email: support@smarthire.com</p>
       <p>Phone: +91 90000 00000</p>
-      <p>Location: India</p>
-    </div>
-    <div>
-      <h4>Quick Links</h4>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Follow Us</h4>
-      <div class="social">
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-x-twitter"></i>
-      </div>
     </div>
   </div>
 </footer>
@@ -420,8 +449,8 @@ footer p,footer a{
 <script>
 function toggleMenu(btn){
   btn.classList.toggle("active");
-  const menu=document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display==="flex"?"none":"flex";
+  const m=document.getElementById("mobileMenu");
+  m.style.display=m.style.display==="flex"?"none":"flex";
 }
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
@@ -429,14 +458,6 @@ function openLogin(){
 function closeLogin(){
   document.getElementById("loginModal").style.display="none";
 }
-
-/* Scroll reveal */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
-  });
-},{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
 
 </body>

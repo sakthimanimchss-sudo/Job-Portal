@@ -14,18 +14,13 @@
   --text:#fff;
   --card:rgba(0,0,0,.65);
   --nav:rgba(0,0,0,.85);
-
-  /* 🔹 lighter overlay (was .7) */
   --overlay:rgba(0,0,0,.45);
 }
-
 body.light{
   --bg:#f4f4f4;
   --text:#111;
   --card:#ffffff;
   --nav:#ffffff;
-
-  /* 🔹 softer white overlay (was .6) */
   --overlay:rgba(255,255,255,.35);
 }
 
@@ -43,18 +38,12 @@ body{
 .bg{position:fixed;inset:0;z-index:-1}
 .bg::before{content:"";position:absolute;inset:0;background:var(--overlay)}
 .bg img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
+  position:absolute;width:100%;height:100%;
+  object-fit:cover;opacity:0;
   animation:bgFade 36s infinite;
-
-  /* ultra-light blur */
-  filter: blur(0.8px);
-  transform: scale(1.04);
+  filter:blur(0.8px);
+  transform:scale(1.04);
 }
-
 .bg img:nth-child(2){animation-delay:12s}
 .bg img:nth-child(3){animation-delay:24s}
 @keyframes bgFade{
@@ -73,14 +62,18 @@ body{
   display:flex;justify-content:space-between;align-items:center;
   z-index:1000;
 }
-.logo{color:#facc15;font-weight:700}
+.logo{color:#facc15;font-weight:700;font-size:20px}
 .nav-links{display:flex;gap:18px;list-style:none}
 .nav-links a,.login-btn,.theme-btn{
   color:var(--text);
   background:none;border:none;
   cursor:pointer;text-decoration:none;
 }
-.admin{background:#facc15;color:black;padding:6px 14px;border-radius:10px}
+.login-btn:hover,.theme-btn:hover{color:#facc15}
+.admin{
+  background:#facc15;color:black;
+  padding:6px 14px;border-radius:10px
+}
 
 /* ================= HAMBURGER ================= */
 .hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer}
@@ -92,84 +85,46 @@ body{
   background:var(--bg);
   display:none;flex-direction:column;
   padding-top:120px;gap:26px;
-  align-items:center;
-  z-index:999;
+  align-items:center;z-index:999;
 }
 .mobile-menu a{color:var(--text);font-size:22px;text-decoration:none}
 
 /* ================= HERO ================= */
-.hero{
-  min-height:100vh;
-  padding:140px 20px;
-}
+.hero{min-height:100vh;padding:140px 20px}
 .hero h1{font-size:42px}
 .hero span{
   background:#facc15;color:black;
   padding:6px 18px;border-radius:30px
 }
-.hero p{
-  margin-top:14px;
-  max-width:600px;
-  opacity:.9;
-  font-size:17px;
-}
+.hero p{margin-top:14px;max-width:600px;opacity:.9}
 .btns{margin-top:26px}
 .btn{
-  padding:12px 28px;
-  border-radius:30px;
-  text-decoration:none;
+  padding:12px 28px;border-radius:30px;
+  text-decoration:none
 }
 .primary{background:#facc15;color:black}
 .outline{border:1px solid var(--text);color:var(--text)}
 
-/* ================= SECTION ================= */
+/* ================= SECTIONS ================= */
 section{padding:90px 20px}
-.title{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:14px;
-}
-.subtitle{
-  text-align:center;
-  opacity:.8;
-  max-width:700px;
-  margin:0 auto 40px;
-}
+.title{text-align:center;font-size:32px;margin-bottom:12px}
+.subtitle{text-align:center;opacity:.8;margin-bottom:40px}
 
-/* ================= WHY CHOOSE ================= */
-.features{
-  max-width:1200px;margin:auto;
-  display:grid;gap:26px;
-}
-.feature{
-  background:var(--card);
-  border-radius:22px;
-  padding:26px;
-}
-.feature img{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:12px;
-}
-.feature p{opacity:.85;font-size:15px}
-
-/* ================= JOB PREVIEW ================= */
-.jobs{
+/* ================= FEATURES ================= */
+.features,.jobs,.stats{
   max-width:1100px;margin:auto;
-  display:grid;gap:26px;
+  display:grid;gap:26px
 }
-.job{
+.feature,.job,.stat{
   background:var(--card);
-  border-radius:22px;
-  padding:26px;
+  border-radius:22px;padding:26px
 }
-.job img{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:12px;
+.feature img,.job img{
+  width:100%;border-radius:16px;margin-bottom:12px
 }
 .job span{color:#facc15}
-.job p{opacity:.85}
+.stat{text-align:center}
+.stat h3{font-size:36px;color:#facc15}
 
 /* ================= CAREERS STRIP ================= */
 .scroll-strip{
@@ -178,9 +133,8 @@ section{padding:90px 20px}
   url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
 }
 .scroll-track{
-  display:flex;gap:30px;
-  width:max-content;
-  animation:scrollX 45s linear infinite;
+  display:flex;gap:30px;width:max-content;
+  animation:scrollX 45s linear infinite
 }
 @keyframes scrollX{
   from{transform:translateX(0)}
@@ -188,181 +142,51 @@ section{padding:90px 20px}
 }
 .career-card{
   width:320px;height:240px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
+  border-radius:20px;overflow:hidden;
+  position:relative
 }
 .career-card img{
   width:100%;height:100%;
-  object-fit:cover;
-  filter:brightness(.8);
+  object-fit:cover;filter:brightness(.8)
 }
 .career-info{
   position:absolute;bottom:0;width:100%;
   padding:16px;
-  background:linear-gradient(transparent,rgba(0,0,0,.9));
+  background:linear-gradient(transparent,rgba(0,0,0,.9))
 }
-.career-info p{font-size:14px;opacity:.85}
 
-/* ================= STATS ================= */
-.stats{
-  max-width:1100px;margin:auto;
-  display:grid;gap:26px;
-}
-.stat{
-  background:var(--card);
-  border-radius:22px;
-  padding:30px;
-  text-align:center;
-}
-.stat h3{color:#facc15;font-size:36px}
-
-  /* ================= ADVANCED LOGIN ================= */
+/* ================= LOGIN ================= */
 .login-modal{
-  position:fixed;
-  inset:0;
+  position:fixed;inset:0;
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(8px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
+  display:none;align-items:center;
+  justify-content:center;z-index:2000
 }
-
 .login-container{
-  width:800px;
-  max-width:95%;
+  width:800px;max-width:95%;
   background:var(--card);
   border-radius:22px;
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  animation:pop .4s ease;
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden
 }
-
-/* LEFT SIDE */
 .login-image{
   background:
-    linear-gradient(var(--overlay),var(--overlay)),
-    url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d")
-    center/cover;
-  padding:40px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  linear-gradient(var(--overlay),var(--overlay)),
+  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
+  padding:40px;color:#facc15
 }
-.login-image h2{
-  font-size:28px;
-  color:#facc15;
-}
-.login-image p{
-  margin-top:10px;
-  opacity:.9;
-  font-size:15px;
-}
-
-/* RIGHT SIDE */
-.login-form{
-  padding:40px;
-}
-.login-form h2{
-  margin-bottom:6px;
-}
-.login-sub{
-  font-size:14px;
-  opacity:.7;
-  margin-bottom:20px;
-}
-
+.login-form{padding:40px}
 .login-form input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  outline:none;
-  background:var(--bg);
-  color:var(--text);
-  margin-bottom:14px;
+  width:100%;padding:14px;
+  border-radius:12px;border:none;
+  background:var(--bg);color:var(--text);
+  margin-bottom:14px
 }
-
-/* PASSWORD */
-.password-box{
-  position:relative;
-}
-.password-box i{
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-50%);
-  cursor:pointer;
-  opacity:.7;
-}
-
-/* OPTIONS */
-.login-options{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  opacity:.8;
-  margin-bottom:14px;
-}
-.forgot{cursor:pointer}
-
-/* ERROR */
-.login-error{
-  color:#ff6b6b;
-  font-size:13px;
-  display:none;
-  margin-bottom:10px;
-}
-
-/* BUTTON */
-.full{
-  width:100%;
-  padding:14px;
-  border-radius:30px;
-  border:none;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-/* FOOTER */
-.login-footer{
-  text-align:center;
-  font-size:13px;
-  margin-top:16px;
-  opacity:.8;
-}
-.login-footer span{
-  color:#facc15;
-  cursor:pointer;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .login-container{
-    grid-template-columns:1fr;
-  }
-  .login-image{
-    display:none;
-  }
-}
-
-@keyframes pop{
-  from{opacity:0;transform:scale(.9)}
-  to{opacity:1;transform:scale(1)}
-}
-
+.login-error{display:none;color:#ff6b6b;font-size:13px}
 
 /* ================= FOOTER ================= */
-footer{
-  background:#000;
-  padding:80px 20px;
-}
-.footer-grid{
-  max-width:1200px;margin:auto;
-  display:grid;gap:30px;
-}
+footer{background:#000;padding:80px 20px}
 footer h4{color:#facc15}
 
 /* ================= RESPONSIVE ================= */
@@ -372,8 +196,8 @@ footer h4{color:#facc15}
 }
 @media(max-width:768px){
   .hero h1{font-size:28px}
-  .scroll-track{animation:none;overflow-x:auto}
-  .career-card{scroll-snap-align:center}
+  .login-container{grid-template-columns:1fr}
+  .login-image{display:none}
 }
 </style>
 </head>
@@ -386,271 +210,104 @@ footer h4{color:#facc15}
   <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
 </div>
-  
- <!-- NAVBAR -->
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-<ul class="nav-links">
-  <li><a href="#">Home</a></li>
-  <li><a href="jobs.html">Jobs</a></li>
-  <li><a href="pricing.html">Pricing</a></li>
-  <li><a href="faq.html">FAQ</a></li>
-  <li><a href="contact.html">Contact</a></li>
 
-  <!-- ✅ LOGIN -->
-  <li>
-    <button class="login-btn" onclick="openLogin()">Login</button>
-  </li>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="jobs.html">Jobs</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
+    <li><button class="theme-btn" onclick="toggleTheme()">🌙</button></li>
+    <li><a href="admin.html" class="admin">Admin</a></li>
+  </ul>
 
-  <!-- 🌙 THEME -->
-  <li>
-    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
-  </li>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-  <li>
-    <a href="admin.html" class="admin">Admin</a>
-  </li>
-</ul>
-  
-
-
+<!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
   <a href="#">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
+  <a onclick="openLogin()">Login</a>
   <a onclick="toggleTheme()">Toggle Theme</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Find Your <span>Dream Job</span></h1>
-  <p>
-    SmartHire connects talent with top IT, AI, Robotics and Engineering
-    companies using intelligent matching technology.
-  </p>
+  <p>SmartHire connects talent with top IT, AI, Robotics and Engineering companies.</p>
   <div class="btns">
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
 </div>
 
-<!-- WHY CHOOSE -->
-<section>
-  <h2 class="title">Why Choose SmartHire</h2>
-  <p class="subtitle">A smarter, faster and more transparent hiring platform</p>
-
-  <div class="features">
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-      <p>Advanced algorithms match candidates with the right roles.</p>
-    </div>
-
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-      <p>Reduce hiring time with smart filtering and automation.</p>
-    </div>
-
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-      <p>Only trusted recruiters and verified employers.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED JOBS -->
-<section>
-  <h2 class="title">Featured Jobs</h2>
-  <p class="subtitle">Top opportunities hand-picked for you</p>
-
-  <div class="jobs">
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>Frontend Developer</h3>
-      <p>React • Tailwind • UI</p>
-      <span>₹6–10 LPA</span>
-    </div>
-
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • NLP</p>
-      <span>₹10–18 LPA</span>
-    </div>
-
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Robotics Engineer</h3>
-      <p>ROS • Embedded Systems</p>
-      <span>₹8–14 LPA</span>
-    </div>
-  </div>
-</section>
-
-<!-- CAREERS -->
-<section class="scroll-strip">
-  <h2 class="title">Careers in Action</h2>
-
-  <div class="scroll-track">
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info">
-        <h4>AI Development</h4>
-        <p>Building intelligent solutions</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info">
-        <h4>Team Collaboration</h4>
-        <p>Modern workplaces</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <div class="career-info">
-        <h4>Electronics</h4>
-        <p>Next-gen hardware</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section>
-  <h2 class="title">Platform Impact</h2>
-
-  <div class="stats">
-    <div class="stat"><h3>50K+</h3><p>Job Seekers</p></div>
-    <div class="stat"><h3>8K+</h3><p>Companies</p></div>
-    <div class="stat"><h3>120K+</h3><p>Applications</p></div>
-  </div>
-</section>
-
 <!-- LOGIN MODAL -->
 <div id="loginModal" class="login-modal">
-
-  <div class="login-box zoom">
-
-    <h2>Welcome Back</h2>
-    <p class="login-sub">Login to explore your dream career</p>
-
-    <!-- ✅ EMAIL -->
-    <input id="loginEmail" type="email" placeholder="Email">
-
-    <!-- ✅ PASSWORD -->
-    <input id="loginPassword" type="password" placeholder="Password">
-
-    <!-- ❌ ERROR (hidden by default) -->
-    <p id="loginError" style="display:none;color:#ff6b6b;font-size:13px">
-      Invalid email or password
-    </p>
-
-    <!-- LOGIN BUTTON -->
-    <button class="btn primary login-btn-full" onclick="validateLogin()">
-      Login
-    </button>
-
-    <p class="login-footer">
-      New user? <span>Create account</span>
-    </p>
-
+  <div class="login-container">
+    <div class="login-image">
+      <h2>Careers in Action</h2>
+      <p>Discover opportunities that match your skills.</p>
+    </div>
+    <div class="login-form">
+      <h2>Welcome Back</h2>
+      <p class="login-sub">Login to continue</p>
+      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginPassword" type="password" placeholder="Password">
+      <p id="loginError" class="login-error">Invalid email or password</p>
+      <button class="btn primary" onclick="validateLogin()">Login</button>
+    </div>
   </div>
-
 </div>
-
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <h4>SmartHire</h4>
-      <p>AI-powered hiring platform</p>
-      <p>Email: support@smarthire.com</p>
-      <p>India • 24×7 Support</p>
-    </div>
-  </div>
+  <h4>SmartHire</h4>
+  <p>AI-powered hiring platform</p>
 </footer>
 
 <script>
-/* ================= MENU ================= */
 function toggleMenu(){
-  const m = document.getElementById("mobileMenu");
-  m.style.display = m.style.display === "flex" ? "none" : "flex";
+  const m=document.getElementById("mobileMenu");
+  m.style.display=m.style.display==="flex"?"none":"flex";
 }
-
-/* ================= THEME ================= */
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("light") ? "light" : "dark"
-  );
+  localStorage.setItem("theme",
+    document.body.classList.contains("light")?"light":"dark");
 }
-
-if(localStorage.getItem("theme") === "light"){
+if(localStorage.getItem("theme")==="light"){
   document.body.classList.add("light");
 }
-
-/* ================= LOGIN ================= */
 function openLogin(){
-  const modal = document.getElementById("loginModal");
-  modal.style.display = "flex";
-
-  const email = document.getElementById("loginEmail");
-  if(email) email.focus();
+  document.getElementById("loginModal").style.display="flex";
 }
-
-/* CLOSE LOGIN (CLICK OUTSIDE) */
-document.addEventListener("click", e => {
-  const modal = document.getElementById("loginModal");
-  if(e.target === modal){
-    modal.style.display = "none";
-  }
-});
-
-/* PASSWORD TOGGLE */
-function togglePassword(){
-  const p = document.getElementById("loginPassword");
-  if(p) p.type = p.type === "password" ? "text" : "password";
-}
-
-/* LOGIN VALIDATION */
 function validateLogin(){
-  const email = document.getElementById("loginEmail").value.trim();
-  const pass  = document.getElementById("loginPassword").value.trim();
-  const err   = document.getElementById("loginError");
-
-  if(!email.includes("@") || pass.length < 6){
-    if(err) err.style.display = "block";
+  const e=document.getElementById("loginEmail").value;
+  const p=document.getElementById("loginPassword").value;
+  const err=document.getElementById("loginError");
+  if(!e.includes("@")||p.length<6){
+    err.style.display="block";
   }else{
-    if(err) err.style.display = "none";
+    err.style.display="none";
     alert("Login successful (demo)");
-    document.getElementById("loginModal").style.display = "none";
+    document.getElementById("loginModal").style.display="none";
   }
 }
-
-/* ENTER KEY SUPPORT */
-document.addEventListener("keydown", e => {
-  if(
-    e.key === "Enter" &&
-    document.getElementById("loginModal")?.style.display === "flex"
-  ){
-    validateLogin();
-  }
-});
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal") e.target.style.display="none";
+};
 </script>
-
 
 </body>
 </html>
-
-
-
-

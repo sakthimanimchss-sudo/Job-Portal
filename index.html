@@ -7,293 +7,304 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/png"
- href="assets/images/job-hunting-employment-agency-career.png">
+href="assets/images/job-hunting-employment-agency-career-others-3983e800d728fb5d7d79e780c3e9e3a3.png">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = {
-  darkMode: 'class'
-}
+tailwind.config = { darkMode: 'class' }
 </script>
 
-<style>
-/* ================= GLOBAL FIX ================= */
-html,body{
-  overflow-x:hidden;
-}
-
-/* ================= HERO SLIDER ================= */
-.hero-slider{
-  position:relative;
-  height:100vh;
-}
-.slide{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  opacity:0;
-  transition:opacity 1.2s ease;
-}
-.slide.active{opacity:1}
-
-/* ================= ANIMATIONS ================= */
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-}
-.animate-float{animation:float 3s infinite}
-
-/* ================= MOBILE MENU ================= */
-#mobileMenu{
-  transition:transform .3s ease;
-}
-</style>
 </head>
 
-<body class="bg-white dark:bg-black text-black dark:text-white">
+<body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 overflow-x-hidden">
 
-<!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 w-full bg-white/90 dark:bg-black/90 backdrop-blur z-50 shadow">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+<!-- =====================================================
+NAVBAR
+===================================================== -->
+<nav class="fixed top-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <a href="index.html" class="text-xl font-bold text-yellow-400">
-      SmartHire
-    </a>
+    <h1 class="text-2xl font-bold text-yellow-400">SmartHire</h1>
 
-    <!-- DESKTOP MENU -->
-    <div class="hidden md:flex gap-6 items-center">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-
-      <button onclick="openLogin()"
-        class="px-4 py-1 border rounded-full">
-        Login
-      </button>
-
-      <a href="admin.html"
-        class="px-3 py-1 bg-black text-white rounded">
+    <!-- DESKTOP LINKS -->
+    <div class="hidden md:flex gap-6 items-center font-medium">
+      <a href="#home">Home</a>
+      <a href="#jobs">Jobs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#admin"
+        class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black">
         Admin
       </a>
-
       <button onclick="toggleTheme()">🌙</button>
     </div>
 
     <!-- MOBILE BUTTON -->
-    <button onclick="toggleMenu()"
-      class="md:hidden text-3xl text-yellow-400">
-      ☰
-    </button>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-    class="fixed inset-0 bg-black text-white hidden flex-col px-8 py-6 space-y-6 z-50">
-
-    <button onclick="toggleMenu()" class="self-end text-3xl">✕</button>
-
-    <a href="index.html" class="text-lg">Home</a>
-    <a href="jobs.html" class="text-lg">Jobs</a>
-    <a href="pricing.html" class="text-lg">Pricing</a>
-    <a href="faq.html" class="text-lg">FAQ</a>
-
-    <button onclick="openLogin()"
-      class="border py-3 rounded">
-      Login
+    <button onclick="toggleMenu()" class="md:hidden w-10 h-10 relative">
+      <span class="hamburger"></span>
     </button>
 
-    <a href="admin.html"
-      class="bg-yellow-400 text-black py-3 rounded text-center font-semibold">
-      Admin
-    </a>
-
-    <button onclick="toggleTheme()" class="text-2xl">🌙</button>
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
-<section class="hero-slider pt-20">
+<!-- MOBILE MENU -->
+<div id="mobileMenu"
+class="hidden fixed inset-0 bg-black text-white pt-28 px-6 z-40">
+  <a href="#home" class="block py-4 border-b">Home</a>
+  <a href="#jobs" class="block py-4 border-b">Jobs</a>
+  <a href="#pricing" class="block py-4 border-b">Pricing</a>
+  <a href="#faq" class="block py-4 border-b">FAQ</a>
+  <a href="#contact" class="block py-4 border-b">Contact</a>
+  <a href="#admin" class="block mt-6 bg-yellow-400 text-black py-3 rounded text-center font-semibold">Admin</a>
+</div>
 
-  <div class="slide active"
-    style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')"></div>
+<!-- =====================================================
+HERO / HOME (Background Slider – SLOW)
+===================================================== -->
+<section id="home" class="relative min-h-screen flex items-center">
 
-  <div class="slide"
-    style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4')"></div>
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d')"></div>
 
   <div class="absolute inset-0 bg-black/70"></div>
 
-  <div class="relative z-10 h-full flex items-center">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
-      <!-- TEXT -->
-      <div>
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white">
-          The best jobsite for your
-          <span class="bg-yellow-400 text-black px-4 py-1 rounded-full">
-            future
-          </span>
-        </h1>
+    <div>
+      <h2 class="text-5xl font-extrabold text-white leading-tight">
+        Build your
+        <span class="bg-yellow-400 text-black px-3 rounded">Career</span>
+        with Confidence
+      </h2>
 
-        <p class="mt-5 text-gray-200">
-          Build your career in IT, AI, Robotics & Engineering.
-        </p>
+      <p class="mt-6 text-gray-200 max-w-md">
+        IT • AI • Robotics • Engineering opportunities from top companies.
+      </p>
 
-        <div class="mt-8 flex flex-col md:flex-row gap-4">
-          <a href="jobs.html"
-            class="bg-yellow-400 text-black py-3 px-8 rounded-full text-center">
-            Get Started
-          </a>
-
-          <a href="pricing.html"
-            class="border border-white py-3 px-8 rounded-full text-center">
-            Explore →
-          </a>
-        </div>
-      </div>
-
-      <!-- AVATARS -->
-      <div class="hidden md:flex gap-6 justify-end">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg"
-          class="w-20 h-20 rounded-full border-4 border-yellow-400 animate-float">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg"
-          class="w-24 h-24 rounded-full border-4 border-yellow-400">
+      <div class="mt-8 flex gap-4">
+        <a href="#jobs" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold">
+          Explore Jobs
+        </a>
+        <a href="#pricing" class="border border-white text-white px-6 py-3 rounded-full">
+          Plans →
+        </a>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ================= JOBS ================= -->
-<section class="py-20 bg-gray-50 dark:bg-gray-900">
-  <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-2">Latest Jobs</h2>
-    <p class="text-gray-500 mb-8">IT • AI • Robotics • Engineering</p>
+<!-- =====================================================
+JOBS SECTION
+===================================================== -->
+<section id="jobs" class="py-24 bg-gray-100 dark:bg-black">
+<div class="max-w-7xl mx-auto px-6">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white dark:bg-black p-6 rounded-xl shadow">
-        <h3 class="font-semibold">AI Engineer</h3>
-        <p class="text-sm text-gray-500">Bangalore</p>
-      </div>
+<h2 class="text-3xl font-bold mb-12 text-center">Latest Jobs</h2>
 
-      <div class="bg-white dark:bg-black p-6 rounded-xl shadow">
-        <h3 class="font-semibold">Robotics Developer</h3>
-        <p class="text-sm text-gray-500">Chennai</p>
-      </div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <div class="bg-white dark:bg-black p-6 rounded-xl shadow">
-        <h3 class="font-semibold">Full Stack Engineer</h3>
-        <p class="text-sm text-gray-500">Remote</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PRICING ================= -->
-<section class="py-20">
-  <div class="max-w-7xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold mb-10">Pricing</h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="border p-8 rounded-xl">
-        <h3 class="font-bold">Free</h3>
-        <p class="text-3xl">₹0</p>
-      </div>
-
-      <div class="border-2 border-yellow-400 p-8 rounded-xl">
-        <h3 class="font-bold">Pro</h3>
-        <p class="text-3xl">₹499</p>
-      </div>
-
-      <div class="border p-8 rounded-xl">
-        <h3 class="font-bold">Enterprise</h3>
-        <p class="text-3xl">₹999</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section class="py-20 bg-gray-50 dark:bg-gray-900">
-  <div class="max-w-5xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8">FAQ</h2>
-
-    <div class="space-y-4">
-      <div class="bg-white dark:bg-black p-5 rounded-xl">
-        Is SmartHire free? — Yes
-      </div>
-      <div class="bg-white dark:bg-black p-5 rounded-xl">
-        Can I apply from mobile? — Yes
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-black text-gray-300 py-16">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-    <div>
-      <h3 class="text-yellow-400 font-bold mb-3">SmartHire</h3>
-      <p>Connecting talent with opportunity.</p>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Contact</h4>
-      <p>📍 Chennai</p>
-      <p>📞 +91 9876543210</p>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Links</h4>
-      <p>Jobs</p>
-      <p>Pricing</p>
-      <p>FAQ</p>
-    </div>
-
-    <div>
-      <h4 class="font-semibold mb-3">Newsletter</h4>
-      <input class="w-full p-2 rounded text-black" placeholder="Email">
-    </div>
-  </div>
-
-  <div class="text-center mt-10 text-sm">
-    © 2025 SmartHire
-  </div>
-</footer>
-
-<!-- ================= LOGIN MODAL ================= -->
-<div id="loginModal"
- class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
-  <div class="bg-white p-8 rounded-xl text-black w-80">
-    <h3 class="font-bold mb-4">Login</h3>
-    <input class="w-full mb-3 p-2 border rounded" placeholder="Email">
-    <input class="w-full mb-4 p-2 border rounded" placeholder="Password">
-    <button class="w-full bg-yellow-400 py-2 rounded">Login</button>
-  </div>
+<div class="job-card">
+<img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e">
+<div class="p-5">
+<h3 class="font-bold">Frontend Developer</h3>
+<p class="text-sm opacity-70">React • Tailwind</p>
+<p class="mt-3 font-semibold text-yellow-400">₹6–10 LPA</p>
+</div>
 </div>
 
-<!-- ================= SCRIPTS ================= -->
-<script>
-let slides=document.querySelectorAll('.slide');
-let i=0;
-setInterval(()=>{
-  slides[i].classList.remove('active');
-  i=(i+1)%slides.length;
-  slides[i].classList.add('active');
-},5000);
+<div class="job-card">
+<img src="assets/images/pexels-cottonbro-6153354.jpg">
+<div class="p-5">
+<h3 class="font-bold">AI Engineer</h3>
+<p class="text-sm opacity-70">Python • ML</p>
+<p class="mt-3 font-semibold text-yellow-400">₹8–15 LPA</p>
+</div>
+</div>
 
-function toggleTheme(){
-  document.documentElement.classList.toggle('dark');
-}
+<div class="job-card">
+<img src="assets/images/pexels-pavel-danilyuk-8439082.jpg">
+<div class="p-5">
+<h3 class="font-bold">Robotics Engineer</h3>
+<p class="text-sm opacity-70">ROS • Automation</p>
+<p class="mt-3 font-semibold text-yellow-400">₹7–12 LPA</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =====================================================
+PRICING
+===================================================== -->
+<section id="pricing" class="py-24 bg-white dark:bg-[#050b18]">
+<div class="max-w-6xl mx-auto px-6">
+
+<h2 class="text-3xl font-bold text-center mb-14">Pricing Plans</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="price-card">
+<h3>Starter</h3>
+<p class="price">₹0</p>
+<ul>
+<li>Browse Jobs</li>
+<li>Apply to 5 jobs</li>
+</ul>
+</div>
+
+<div class="price-card highlight">
+<h3>Professional</h3>
+<p class="price">₹999</p>
+<ul>
+<li>Unlimited Applications</li>
+<li>Resume Builder</li>
+</ul>
+</div>
+
+<div class="price-card">
+<h3>Enterprise</h3>
+<p class="price">₹1999</p>
+<ul>
+<li>Admin Dashboard</li>
+<li>Candidate Analytics</li>
+</ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =====================================================
+FAQ
+===================================================== -->
+<section id="faq" class="py-24 bg-gray-100 dark:bg-black">
+<div class="max-w-4xl mx-auto px-6">
+
+<h2 class="text-3xl font-bold mb-10 text-center">FAQ</h2>
+
+<div class="faq-item">
+<button onclick="toggleFAQ(this)">How to apply?</button>
+<div class="faq-answer">Browse jobs and submit your resume.</div>
+</div>
+
+<div class="faq-item">
+<button onclick="toggleFAQ(this)">Is it free?</button>
+<div class="faq-answer">Yes, basic job search is free.</div>
+</div>
+
+</div>
+</section>
+
+<!-- =====================================================
+CONTACT
+===================================================== -->
+<section id="contact" class="py-24 bg-white dark:bg-[#050b18]">
+<div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+<div>
+<h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+<p>Email: support@smarthire.com</p>
+<p>Phone: +91 98765 43210</p>
+</div>
+
+<div class="bg-white dark:bg-[#0b1220] p-8 rounded-xl shadow">
+<input placeholder="Name" class="input">
+<input placeholder="Email" class="input">
+<textarea placeholder="Message" class="input"></textarea>
+<button class="bg-yellow-400 text-black px-6 py-3 rounded w-full">Send</button>
+</div>
+
+</div>
+</section>
+
+<!-- =====================================================
+ADMIN (Preview)
+===================================================== -->
+<section id="admin" class="py-24 bg-gray-900 text-gray-200 text-center">
+<h2 class="text-3xl font-bold mb-4">Admin Dashboard</h2>
+<p>Analytics • Jobs • Users • Reports</p>
+</section>
+
+<!-- =====================================================
+FOOTER (PROFESSIONAL)
+===================================================== -->
+<footer class="bg-black text-gray-400 py-16">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+
+<div>
+<h3 class="text-yellow-400 font-bold text-xl">SmartHire</h3>
+<p class="text-sm mt-3">Professional hiring & career platform.</p>
+</div>
+
+<div>
+<h4 class="font-semibold mb-3">Company</h4>
+<p>About</p><p>Careers</p><p>Privacy</p>
+</div>
+
+<div>
+<h4 class="font-semibold mb-3">Support</h4>
+<p>Help Center</p><p>Terms</p>
+</div>
+
+<div>
+<h4 class="font-semibold mb-3">Connect</h4>
+<p>Email • LinkedIn • GitHub</p>
+</div>
+
+</div>
+
+<p class="text-center text-sm mt-10">
+© 2025 SmartHire. All rights reserved.
+</p>
+</footer>
+
+<!-- =====================================================
+SCRIPTS
+===================================================== -->
+<script>
+function toggleTheme(){document.documentElement.classList.toggle("dark")}
 function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('hidden');
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.body.classList.toggle("menu-open");
 }
-function openLogin(){
-  document.getElementById('loginModal').classList.remove('hidden');
-}
+
+let slides=document.querySelectorAll(".slide"),i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},12000); // VERY SLOW
 </script>
+
+<style>
+.slide{
+position:absolute;inset:0;background-size:cover;background-position:center;
+opacity:0;transition:opacity 2.5s ease;
+}
+.slide.active{opacity:1}
+.job-card img{height:180px;width:100%;object-fit:cover}
+.job-card{background:white;border-radius:16px;overflow:hidden}
+.price-card{background:white;padding:2rem;border-radius:16px}
+.highlight{border:2px solid #facc15}
+.faq-item{background:white;padding:1rem;border-radius:10px;margin-bottom:1rem}
+.faq-answer{display:none;margin-top:.5rem}
+.input{width:100%;padding:.8rem;border-radius:.5rem;margin-bottom:.8rem;border:1px solid #ccc}
+.hamburger,.hamburger:before,.hamburger:after{
+content:"";position:absolute;width:24px;height:3px;background:#facc15;
+transition:.3s;border-radius:5px
+}
+.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
+.hamburger:before{transform:translateY(-8px)}
+.hamburger:after{transform:translateY(8px)}
+.menu-open .hamburger{background:transparent}
+.menu-open .hamburger:before{transform:rotate(45deg)}
+.menu-open .hamburger:after{transform:rotate(-45deg)}
+</style>
 
 </body>
 </html>
-

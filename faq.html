@@ -31,7 +31,6 @@ tailwind.config = { darkMode: 'class' }
       SmartHire
     </a>
 
-    <!-- DESKTOP MENU -->
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
@@ -47,11 +46,9 @@ tailwind.config = { darkMode: 'class' }
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
-    <!-- MOBILE BUTTON -->
     <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
       <span class="hamburger"></span>
     </button>
-
   </div>
 </nav>
 
@@ -70,13 +67,11 @@ tailwind.config = { darkMode: 'class' }
     Admin
   </a>
 
-  <button onclick="toggleDark()" class="mt-6 text-2xl">
-    🌙
-  </button>
+  <button onclick="toggleDark()" class="mt-6 text-2xl">🌙</button>
 </div>
 
 <!-- ================= HERO ================= -->
-<section class="pt-32 pb-20 text-center relative">
+<section class="pt-32 pb-20 text-center">
   <h1 class="text-4xl md:text-5xl font-extrabold">
     How can we <span class="text-yellow-400">help?</span>
   </h1>
@@ -91,10 +86,22 @@ tailwind.config = { darkMode: 'class' }
   />
 </section>
 
+<!-- ================= FAQ IMAGE ================= -->
+<section class="pb-12">
+  <div class="max-w-4xl mx-auto px-6">
+    <img
+      src="https://images.unsplash.com/photo-1551836022-d5d88e9218df"
+      class="rounded-xl shadow-lg w-full object-cover"
+      alt="Support"
+    />
+  </div>
+</section>
+
 <!-- ================= FAQ LIST ================= -->
-<section class="pb-24 relative">
+<section class="pb-24">
   <div class="max-w-4xl mx-auto px-6 space-y-4">
 
+    <!-- FAQ ITEM -->
     <div class="faq-item">
       <button onclick="toggleFAQ(this)">How do I apply for a job?</button>
       <div class="faq-answer">
@@ -105,21 +112,42 @@ tailwind.config = { darkMode: 'class' }
     <div class="faq-item">
       <button onclick="toggleFAQ(this)">Is SmartHire free?</button>
       <div class="faq-answer">
-        Yes. Applying for jobs is free. Paid plans are optional.
+        Yes. Applying for jobs is completely free.
       </div>
     </div>
 
     <div class="faq-item">
       <button onclick="toggleFAQ(this)">Can I apply from mobile?</button>
       <div class="faq-answer">
-        Yes. SmartHire is fully mobile responsive.
+        Yes. SmartHire works smoothly on all mobile devices.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">Do you support freshers?</button>
+      <div class="faq-answer">
+        Yes. Freshers and experienced professionals are welcome.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">How does AI job matching work?</button>
+      <div class="faq-answer">
+        Our AI matches your skills, experience and preferences with suitable jobs.
       </div>
     </div>
 
     <div class="faq-item">
       <button onclick="toggleFAQ(this)">How do recruiters post jobs?</button>
       <div class="faq-answer">
-        Recruiters can post jobs via Admin dashboard after choosing a plan.
+        Recruiters can post jobs via the Admin dashboard after selecting a plan.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">Is my data secure?</button>
+      <div class="faq-answer">
+        Yes. We use secure systems to protect your personal information.
       </div>
     </div>
 
@@ -185,7 +213,6 @@ body { padding-top: 88px; }
 .menu-open .hamburger::before{transform:rotate(45deg)}
 .menu-open .hamburger::after{transform:rotate(-45deg)}
 
-/* Background animation */
 @keyframes bgMove{
   from{transform:scale(1)}
   to{transform:scale(1.08)}

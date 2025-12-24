@@ -11,342 +11,148 @@
 tailwind.config = { darkMode: 'class' }
 </script>
 
+<style>
+body{padding-top:88px}
+
+/* Background animation */
+.bg-img{animation:slowZoom 30s ease-in-out infinite alternate}
+.bg-layer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    rgba(250,204,21,.15),
+    rgba(0,0,0,.55),
+    rgba(250,204,21,.15)
+  );
+  animation:gradientMove 18s ease-in-out infinite;
+}
+
+@keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Hamburger */
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:3px;
+  background:#facc15;
+  border-radius:999px;
+  transition:.35s;
+}
+.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
+.hamburger::before{transform:translateY(-8px)}
+.hamburger::after{transform:translateY(8px)}
+
+.menu-open .hamburger{background:transparent}
+.menu-open .hamburger::before{transform:rotate(45deg)}
+.menu-open .hamburger::after{transform:rotate(-45deg)}
+</style>
 </head>
 
 <body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
 
-
-<!-- ================= BACKGROUND IMAGE ================= -->
-<!-- BACKGROUND IMAGE -->
-<div class="fixed inset-0 -z-10 pointer-events-none bg-layer">
-  <img
-    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-    class="w-full h-full object-cover opacity-20 dark:opacity-10 bg-img"
-    alt=""
-  />
+<!-- BACKGROUND -->
+<div class="fixed inset-0 -z-10 bg-layer">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+       class="w-full h-full object-cover opacity-20 dark:opacity-10 bg-img">
 </div>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">SmartHire</a>
 
-    <!-- LOGO -->
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">
-      SmartHire
-    </a>
-
-    <!-- DESKTOP LINKS -->
+    <!-- Desktop -->
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
+      <a href="jobs.html" class="text-yellow-400 font-semibold">Jobs</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-      <a href="admin.html"
-        class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded">
-        Admin
-      </a>
-      <button onclick="toggleDark()" class="text-xl">🌙</button>
+      <a href="admin.html" class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded">Admin</a>
+      <button onclick="toggleDark()">🌙</button>
     </div>
 
-    <!-- MOBILE BUTTON -->
-    <button onclick="toggleMenu()"
-      class="md:hidden relative w-10 h-10">
+    <!-- Mobile -->
+    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
       <span class="hamburger"></span>
     </button>
-
   </div>
 </nav>
-<!-- ✅ NAVBAR ENDS HERE -->
 
-<!-- ================= MOBILE MENU (ADD HERE) ================= -->
-<div id="mobileMenu"
-  class="hidden fixed inset-0 bg-black text-white px-6 pt-28 z-40">
-
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="hidden fixed inset-0 bg-black text-white px-6 pt-28 z-40">
   <a href="index.html" class="block py-4 text-xl border-b">Home</a>
-  <a href="jobs.html" class="block py-4 text-xl border-b">Jobs</a>
+  <a href="jobs.html" class="block py-4 text-xl border-b text-yellow-400">Jobs</a>
   <a href="pricing.html" class="block py-4 text-xl border-b">Pricing</a>
   <a href="faq.html" class="block py-4 text-xl border-b">FAQ</a>
   <a href="contact.html" class="block py-4 text-xl border-b">Contact</a>
 
-  <a href="admin.html"
-    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+  <a href="admin.html" class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
     Admin
   </a>
 
-  <button onclick="toggleDark()" class="mt-6 text-2xl">
-    🌙
-  </button>
-
+  <button onclick="toggleDark()" class="mt-6 text-2xl">🌙</button>
 </div>
 
-
-
-
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 <section class="pt-32 pb-20 text-center">
-<h1 class="text-4xl md:text-5xl font-extrabold">
-Find Your <span class="text-yellow-400">Dream Job</span>
-</h1>
-<p class="mt-4 text-gray-600 dark:text-gray-400">
-Explore top IT, AI, Robotics & Engineering jobs
-</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold">
+    Find Your <span class="text-yellow-400">Dream Job</span>
+  </h1>
+  <p class="mt-4 text-gray-600 dark:text-gray-400">
+    Explore top IT, AI, Robotics & Engineering jobs
+  </p>
 </section>
 
-<!-- ================= JOB LIST ================= -->
+<!-- JOB LIST -->
 <section class="pb-20">
 <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<!-- JOB CARD -->
-<div class="job-card">
-<img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" class="job-img">
-<div class="job-body">
-<h3>Frontend Developer</h3>
-<p>React • Tailwind • UI</p>
-<div class="job-footer">
-<span>₹6–10 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
-</div>
-
-<div class="job-card">
-<img src="assets/images/pexels-cottonbro-6153354.jpg" class="job-img">
-<div class="job-body">
-<h3>AI Engineer</h3>
-<p>Python • ML • Deep Learning</p>
-<div class="job-footer">
-<span>₹8–15 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
-</div>
-
-<div class="job-card">
-<img src="assets/images/pexels-pavel-danilyuk-8439082.jpg" class="job-img">
-<div class="job-body">
-<h3>Robotics Engineer</h3>
-<p>ROS • Automation • PLC</p>
-<div class="job-footer">
-<span>₹7–12 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
-</div>
-
-<div class="job-card">
-<img src="assets/images/pexels-goumbik-574069.jpg" class="job-img">
-<div class="job-body">
-<h3>Backend Developer</h3>
-<p>Node • API • Database</p>
-<div class="job-footer">
-<span>₹6–11 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
-</div>
-
-<div class="job-card">
-<img src="assets/images/pexels-goumbik-669610.jpg" class="job-img">
-<div class="job-body">
-<h3>Data Scientist</h3>
-<p>Python • Pandas • AI</p>
-<div class="job-footer">
-<span>₹10–18 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
-</div>
-
-<div class="job-card">
-<img src="assets/images/pexels-jakubzerdzicki-34212988.jpg" class="job-img">
-<div class="job-body">
-<h3>DevOps Engineer</h3>
-<p>AWS • Docker • CI/CD</p>
-<div class="job-footer">
-<span>₹9–14 LPA</span>
-<button class="view-btn">👁 View</button>
-</div>
-</div>
+<div class="bg-white dark:bg-[#0e0e0e] rounded-xl shadow hover:-translate-y-2 transition">
+  <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" class="h-48 w-full object-cover rounded-t-xl">
+  <div class="p-5">
+    <h3 class="font-bold">Frontend Developer</h3>
+    <p class="text-sm opacity-70">React • Tailwind • UI</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="font-semibold">₹6–10 LPA</span>
+      <button class="border border-yellow-400 px-4 py-1 rounded-lg text-yellow-400 hover:bg-yellow-400 hover:text-black">
+        👁 View
+      </button>
+    </div>
+  </div>
 </div>
 
 </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-gray-900 text-gray-300 py-10">
-<div class="max-w-7xl mx-auto text-center">
-<p>© 2025 SmartHire. All rights reserved.</p>
-</div>
+<footer class="bg-gray-900 text-gray-300 py-10 text-center">
+© 2025 SmartHire. All rights reserved.
 </footer>
 
-<!-- ================= STYLES ================= -->
-<style>
-.job-card{
-  background:white;
-  border-radius:1rem;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  transition:.4s;
-  animation:fadeUp .8s ease both;
-}
-.dark .job-card{background:#0e0e0e}
-
-.job-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(250,204,21,.25);
-}
-
-.job-img{
-  height:180px;
-  width:100%;
-  object-fit:cover;
-}
-
-.job-body{padding:1.25rem}
-.job-body h3{font-weight:700;font-size:1.1rem}
-.job-body p{font-size:.9rem;opacity:.7;margin:.4rem 0}
-
-.job-footer{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:1rem;
-}
-
-.view-btn{
-  border:1px solid #facc15;
-  padding:.35rem .9rem;
-  border-radius:.5rem;
-  color:#facc15;
-  transition:.3s;
-}
-.view-btn:hover{
-  background:#facc15;
-  color:black;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1}
-}
-  body { padding-top: 88px; }
-  /* Smooth background motion */
-.bg-img {
-  animation: slowZoom 30s ease-in-out infinite alternate;
-}
-
-/* Gradient movement overlay */
-.bg-layer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(250, 204, 21, 0.15),
-    rgba(0, 0, 0, 0.55),
-    rgba(250, 204, 21, 0.15)
-  );
-  animation: gradientMove 18s ease-in-out infinite;
-}
-
-/* Image slow zoom (very subtle) */
-@keyframes slowZoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.08);
-  }
-}
-
-/* Gradient flow */
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-/* Clean hamburger */
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 3px;
-  background: #facc15;
-  border-radius: 999px;
-  transition: all 0.35s ease;
-}
-
-.hamburger {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hamburger::before {
-  transform: translateY(-8px);
-}
-
-.hamburger::after {
-  transform: translateY(8px);
-}
-
-/* When menu open → X */
-.menu-open .hamburger {
-  background: transparent;
-}
-
-.menu-open .hamburger::before {
-  transform: rotate(45deg);
-}
-
-.menu-open .hamburger::after {
-  transform: rotate(-45deg);
-}
-
-  
-</style>
-
-<!-- ================= JS ================= -->
 <script>
-function toggleDark() {
+function toggleDark(){
   document.documentElement.classList.toggle("dark");
 }
 
-function toggleMenu() {
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-}
-
-function setPlan(year) {
-  document.getElementById("monthlyBtn")?.classList.toggle("bg-yellow-400", !year);
-  document.getElementById("monthlyBtn")?.classList.toggle("text-black", !year);
-  document.getElementById("annualBtn")?.classList.toggle("bg-yellow-400", year);
-  document.getElementById("annualBtn")?.classList.toggle("text-black", year);
-
-  if (document.getElementById("p1")) {
-    document.getElementById("p1").innerText = "0";
-    document.getElementById("p2").innerText = year ? "10" : "12";
-    document.getElementById("p3").innerText = year ? "20" : "24";
-  }
-}
-  
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
   document.body.classList.toggle("menu-open");
 }
-
 </script>
 
 </body>
 </html>
+
 
 
 

@@ -71,7 +71,7 @@ tailwind.config = { darkMode: 'class' }
 
 
 <!-- ================= HERO ================= -->
-<section class="pt-32 pb-24 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')] bg-cover bg-center">
+<section class="pt-32 pb-24 min-h-screen bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')] bg-cover bg-center">
 <div class="bg-black/75 py-24">
 
 <div class="max-w-4xl mx-auto text-center px-6 animate-fadeUp">
@@ -238,8 +238,10 @@ function setPlan(year){
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
 }
+ body { padding-top: 88px; }
 </script>
 
 </body>
 </html>
+
 

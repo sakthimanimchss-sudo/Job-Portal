@@ -17,7 +17,11 @@ body{background:#000;color:#fff;overflow-x:hidden}
 /* ================= BACKGROUND SLIDER ================= */
 .bg{position:fixed;inset:0;z-index:-1}
 .bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.75)}
-.bg img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;animation:bgFade 30s infinite}
+.bg img{
+  position:absolute;width:100%;height:100%;
+  object-fit:cover;opacity:0;
+  animation:bgFade 30s infinite
+}
 .bg img:nth-child(2){animation-delay:10s}
 .bg img:nth-child(3){animation-delay:20s}
 @keyframes bgFade{
@@ -38,7 +42,10 @@ body{background:#000;color:#fff;overflow-x:hidden}
 }
 .logo{color:#facc15;font-weight:700}
 .nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a{color:white;text-decoration:none}
+.nav-links a,.login-btn{
+  color:white;text-decoration:none;
+  background:none;border:none;cursor:pointer
+}
 .admin{background:#facc15;color:black;padding:6px 14px;border-radius:10px}
 
 /* ================= HAMBURGER ================= */
@@ -51,10 +58,14 @@ body{background:#000;color:#fff;overflow-x:hidden}
 .mobile-menu{
   position:fixed;inset:0;background:black;
   display:none;flex-direction:column;
-  padding-top:110px;gap:28px;align-items:center;
+  padding-top:110px;gap:28px;
+  align-items:center;
+  overflow-y:auto;
   z-index:999
 }
-.mobile-menu a{color:white;font-size:22px;text-decoration:none}
+.mobile-menu a{
+  color:white;font-size:22px;text-decoration:none
+}
 
 /* ================= HERO ================= */
 .hero{min-height:100vh;padding:140px 20px}
@@ -71,25 +82,13 @@ section{padding:90px 20px}
 .title{text-align:center;font-size:32px;margin-bottom:40px}
 
 /* ================= FEATURES ================= */
-.features{
-  max-width:1200px;margin:auto;
-  display:grid;gap:24px
-}
-.feature{
-  background:rgba(0,0,0,.65);
-  border-radius:20px;padding:24px;
-}
+.features{max-width:1200px;margin:auto;display:grid;gap:24px}
+.feature{background:rgba(0,0,0,.65);border-radius:20px;padding:24px}
 .feature img{width:100%;border-radius:14px;margin-bottom:10px}
 
 /* ================= JOBS ================= */
-.jobs{
-  max-width:1000px;margin:auto;
-  display:grid;gap:24px
-}
-.job{
-  background:rgba(0,0,0,.65);
-  border-radius:20px;padding:24px
-}
+.jobs{max-width:1000px;margin:auto;display:grid;gap:24px}
+.job{background:rgba(0,0,0,.65);border-radius:20px;padding:24px}
 .job img{width:100%;border-radius:14px;margin-bottom:10px}
 .job span{color:#facc15}
 
@@ -97,7 +96,8 @@ section{padding:90px 20px}
 .scroll-strip{overflow:hidden}
 .scroll-track{
   display:flex;gap:30px;width:max-content;
-  animation:scrollX 40s linear infinite
+  animation:scrollX 40s linear infinite;
+  will-change:transform;
 }
 .scroll-track img{
   width:300px;height:200px;
@@ -121,15 +121,35 @@ section{padding:90px 20px}
 footer{background:black;padding:70px 20px}
 footer h4{color:#facc15}
 
+/* ================= LOGIN ================= */
+.login-modal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;justify-content:center;
+  z-index:2000
+}
+.login-box{
+  background:rgba(15,15,15,.95);
+  width:340px;padding:36px;
+  border-radius:22px;text-align:center
+}
+.login-sub{opacity:.7;font-size:14px;margin-bottom:20px}
+.login-box input{
+  width:100%;padding:12px;margin:10px 0;
+  border-radius:10px;border:none;outline:none
+}
+
 /* ================= ANIMATIONS ================= */
 .reveal{opacity:0;transform:translateY(30px);transition:1s}
 .show{opacity:1;transform:none}
 .zoom{opacity:0;transform:scale(.9);transition:1s}
 .zoom-in{opacity:1;transform:scale(1)}
 .left{opacity:0;transform:translateX(-40px);transition:1s}
-.left-in{opacity:1;transform:none}
+.left-in{opacity:1}
 .right{opacity:0;transform:translateX(40px);transition:1s}
-.right-in{opacity:1;transform:none}
+.right-in{opacity:1}
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:900px){
@@ -139,74 +159,6 @@ footer h4{color:#facc15}
 @media(max-width:768px){
   .hero h1{font-size:28px}
 }
-/* ================= LOGIN ENHANCED ================= */
-.login-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(6px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
-}
-.login-box{
-  background:rgba(15,15,15,.95);
-  width:340px;
-  padding:36px;
-  border-radius:22px;
-  text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
-}
-.login-box h2{margin-bottom:6px}
-.login-sub{opacity:.7;font-size:14px;margin-bottom:20px}
-.login-box input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
-  outline:none;
-}
-.login-btn-full{
-  display:block;
-  margin-top:16px;
-}
-.login-footer{
-  margin-top:18px;
-  font-size:13px;
-  opacity:.7;
-}
-.login-footer span{color:#facc15;cursor:pointer}
-/* ================= CAREERS IN ACTION ENHANCED ================= */
-.scroll-strip{
-  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
-}
-
-.career-card{
-  position:relative;
-  width:300px;
-  height:220px;
-  border-radius:18px;
-  overflow:hidden;
-}
-.career-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.8);
-}
-.career-info{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:14px;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));
-}
-.career-info h4{font-size:16px}
-.career-info p{font-size:13px;opacity:.8}
-
 
 </style>
 </head>
@@ -215,9 +167,9 @@ footer h4{color:#facc15}
 
 <!-- BACKGROUND -->
 <div class="bg">
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="">
 </div>
 
 <!-- NAVBAR -->
@@ -229,6 +181,7 @@ footer h4{color:#facc15}
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu(this)">
@@ -242,151 +195,50 @@ footer h4{color:#facc15}
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
+  <a onclick="openLogin()">Login</a>
 </div>
 
-<!-- HERO -->
-<div class="hero reveal">
-  <h1>Find Your <span>Dream Job</span></h1>
-  <p>Explore IT, AI, Robotics & Engineering opportunities</p>
-  <div class="btns">
-    <a href="jobs.html" class="btn primary">Browse Jobs</a>
-    <a href="jobs.html" class="btn outline">Explore →</a>
-  </div>
-</div>
-
-<!-- WHY CHOOSE -->
-<section class="reveal">
-  <h2 class="title">Why Choose SmartHire</h2>
-  <div class="features">
-    <div class="feature left"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789"><h3>AI Matching</h3></div>
-    <div class="feature zoom"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf"><h3>Fast Hiring</h3></div>
-    <div class="feature right"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786"><h3>Verified Companies</h3></div>
-  </div>
-</section>
-
-<!-- FEATURED JOBS -->
-<section class="reveal">
-  <h2 class="title">Featured Jobs</h2>
-  <div class="jobs">
-    <div class="job zoom"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"><h3>Frontend Developer</h3><span>₹6–10 LPA</span></div>
-    <div class="job zoom"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><h3>AI Engineer</h3><span>₹10–18 LPA</span></div>
-    <div class="job zoom"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Robotics Engineer</h3><span>₹8–14 LPA</span></div>
-  </div>
-</section>
-
-<!-- IMAGE SCROLL -->
-<section class="scroll-strip reveal">
-  <h2 class="title">Careers in Action</h2>
-
-  <div class="scroll-track">
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info">
-        <h4>AI Development</h4>
-        <p>Building intelligent systems</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info">
-        <h4>Team Collaboration</h4>
-        <p>Modern tech workplaces</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <div class="career-info">
-        <h4>Robotics</h4>
-        <p>Hands-on innovation</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <div class="career-info">
-        <h4>Electronics</h4>
-        <p>Next-gen hardware design</p>
-      </div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <div class="career-info">
-        <h4>Engineering Labs</h4>
-        <p>Real-world problem solving</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- FAQ -->
-<section class="reveal">
-  <h2 class="title">FAQ</h2>
-  <div class="faq">
-    <div class="faq-item left"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><p>Is SmartHire free? – Yes</p></div>
-    <div class="faq-item right"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><p>Do you support freshers? – Yes</p></div>
-  </div>
-</section>
-  
-<!-- LOGIN MODAL -->
+<!-- LOGIN -->
 <div id="loginModal" class="login-modal">
   <div class="login-box zoom">
     <h2>Welcome Back</h2>
     <p class="login-sub">Login to explore your dream career</p>
-
-    <input type="email" placeholder="Email address">
+    <input type="email" placeholder="Email">
     <input type="password" placeholder="Password">
-
-    <a class="btn primary login-btn-full">Login</a>
-
-    <p class="login-footer">New user? <span>Create account</span></p>
+    <a class="btn primary">Login</a>
   </div>
 </div>
-
-
-<!-- FOOTER -->
-<footer>
-  <h4>SmartHire</h4>
-  <p>AI-powered hiring platform</p>
-  <p>Email: support@smarthire.com</p>
-</footer>
 
 <script>
 function toggleMenu(btn){
   const m=document.getElementById("mobileMenu");
-  m.style.display=m.style.display==="flex"?"none":"flex";
+  const open=m.style.display==="flex";
+  m.style.display=open?"none":"flex";
   btn.classList.toggle("active");
+  document.body.style.overflow=open?"auto":"hidden";
+}
+
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal") e.target.style.display="none";
 }
 
 /* SCROLL ANIMATION */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      e.target.classList.add("show");
-      if(e.target.classList.contains("zoom")) e.target.classList.add("zoom-in");
-      if(e.target.classList.contains("left")) e.target.classList.add("left-in");
-      if(e.target.classList.contains("right")) e.target.classList.add("right-in");
+      e.target.classList.add("show","zoom-in","left-in","right-in");
+      observer.unobserve(e.target);
     }
   });
 },{threshold:.15});
 
 document.querySelectorAll(".reveal,.zoom,.left,.right")
   .forEach(el=>observer.observe(el));
-  function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
-document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal"){
-    e.target.style.display="none";
-  }
-}
 </script>
 
 </body>
 </html>
-

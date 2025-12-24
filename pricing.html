@@ -5,6 +5,7 @@
 <title>SmartHire | Pricing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = { darkMode: 'class' }
@@ -31,7 +32,7 @@ tailwind.config = { darkMode: 'class' }
       SmartHire
     </a>
 
-    <!-- DESKTOP MENU -->
+    <!-- DESKTOP -->
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
@@ -39,25 +40,24 @@ tailwind.config = { darkMode: 'class' }
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
 
+      <button onclick="toggleTheme()" class="text-xl">🌙</button>
+
       <a href="admin.html"
         class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
         Admin
       </a>
-
-      <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
-    <!-- MOBILE BUTTON -->
+    <!-- MOBILE -->
     <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
       <span class="hamburger"></span>
     </button>
-
   </div>
 </nav>
 
 <!-- ================= MOBILE MENU ================= -->
 <div id="mobileMenu"
-  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden transition-all duration-300">
+  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
 
   <a href="index.html" class="block py-4 text-xl">Home</a>
   <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
@@ -65,18 +65,19 @@ tailwind.config = { darkMode: 'class' }
   <a href="faq.html" class="block py-4 text-xl">FAQ</a>
   <a href="contact.html" class="block py-4 text-xl">Contact</a>
 
+  <!-- ADMIN (MOBILE) -->
   <a href="admin.html"
     class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
     Admin
   </a>
 
-  <button onclick="toggleDark()" class="mt-6 text-2xl">
-    🌙
+  <button onclick="toggleTheme()" class="mt-6 text-2xl">
+    🌙 Toggle Theme
   </button>
 </div>
 
 <!-- ================= HERO ================= -->
-<section class="pt-32 pb-24 text-center relative">
+<section class="pt-32 pb-24 text-center">
   <h1 class="text-4xl md:text-5xl font-extrabold">
     Simple <span class="text-yellow-400">Pricing</span> Plans
   </h1>
@@ -102,7 +103,7 @@ tailwind.config = { darkMode: 'class' }
 </section>
 
 <!-- ================= PRICING ================= -->
-<section class="pb-20 relative">
+<section class="pb-20">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
     <!-- FREE -->
@@ -222,7 +223,6 @@ body { padding-top: 88px; }
 .menu-open .hamburger::before{transform:rotate(45deg)}
 .menu-open .hamburger::after{transform:rotate(-45deg)}
 
-/* Background motion */
 @keyframes bgMove{
   from{transform:scale(1)}
   to{transform:scale(1.08)}
@@ -232,8 +232,14 @@ body { padding-top: 88px; }
 
 <!-- ================= JS ================= -->
 <script>
-function toggleDark(){
+function toggleTheme(){
   document.documentElement.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.documentElement.classList.contains("dark") ? "dark" : "light"
+  );
+}
+if(localStorage.getItem("theme")==="dark"){
+  document.documentElement.classList.add("dark");
 }
 
 function toggleMenu(){

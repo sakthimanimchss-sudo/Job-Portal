@@ -12,27 +12,28 @@ tailwind.config = { darkMode: 'class' }
 </script>
 </head>
 
-<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
+<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
 
 <!-- ================= BACKGROUND ================= -->
-<div class="fixed inset-0 -z-10 pointer-events-none bg-layer">
+<div class="fixed inset-0 -z-10">
   <img
     src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-    class="w-full h-full object-cover opacity-20 dark:opacity-10 bg-img"
+    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
     alt=""
   />
+  <div class="absolute inset-0 bg-black/40"></div>
 </div>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- Logo -->
+    <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
       SmartHire
     </a>
 
-    <!-- Desktop Menu -->
+    <!-- DESKTOP MENU -->
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html" class="text-yellow-400 font-semibold">Jobs</a>
@@ -41,14 +42,14 @@ tailwind.config = { darkMode: 'class' }
       <a href="contact.html">Contact</a>
 
       <a href="admin.html"
-        class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
         Admin
       </a>
 
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
-    <!-- Mobile Button -->
+    <!-- MOBILE HAMBURGER -->
     <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
       <span class="hamburger"></span>
     </button>
@@ -58,16 +59,16 @@ tailwind.config = { darkMode: 'class' }
 
 <!-- ================= MOBILE MENU ================= -->
 <div id="mobileMenu"
-  class="hidden fixed inset-0 bg-black text-white px-6 pt-28 z-40">
+  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden transition-all duration-300">
 
-  <a href="index.html" class="mobile-link">Home</a>
-  <a href="jobs.html" class="mobile-link">Jobs</a>
-  <a href="pricing.html" class="mobile-link">Pricing</a>
-  <a href="faq.html" class="mobile-link">FAQ</a>
-  <a href="contact.html" class="mobile-link">Contact</a>
+  <a href="index.html" class="block py-4 text-xl">Home</a>
+  <a href="jobs.html" class="block py-4 text-xl text-yellow-400">Jobs</a>
+  <a href="pricing.html" class="block py-4 text-xl">Pricing</a>
+  <a href="faq.html" class="block py-4 text-xl">FAQ</a>
+  <a href="contact.html" class="block py-4 text-xl">Contact</a>
 
   <a href="admin.html"
-    class="block mt-8 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
     Admin
   </a>
 
@@ -77,108 +78,85 @@ tailwind.config = { darkMode: 'class' }
 </div>
 
 <!-- ================= HEADER ================= -->
-<section class="pt-32 pb-20 text-center">
+<section class="pt-32 pb-20 text-center relative">
   <h1 class="text-4xl md:text-5xl font-extrabold">
     Find Your <span class="text-yellow-400">Dream Job</span>
   </h1>
-  <p class="mt-4 text-gray-600 dark:text-gray-400">
+  <p class="mt-4 text-gray-200 md:text-gray-600">
     Explore top IT, AI, Robotics & Engineering jobs
   </p>
 </section>
 
 <!-- ================= JOB LIST ================= -->
-<section class="pb-20">
-<div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<section class="pb-20 relative">
+  <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-  <!-- Job Card -->
-  <div class="job-card">
-    <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" class="job-img">
-    <div class="job-body">
-      <h3>Frontend Developer</h3>
-      <p>React • Tailwind • UI</p>
-      <div class="job-footer">
-        <span>₹6–10 LPA</span>
-        <button class="view-btn">👁 View</button>
+    <!-- CARD -->
+    <div class="job-card">
+      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" class="job-img">
+      <div class="job-body">
+        <h3>Frontend Developer</h3>
+        <p>React • Tailwind • UI</p>
+        <div class="job-footer">
+          <span>₹6–10 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="job-card">
-    <img src="https://images.unsplash.com/photo-1537432376769-00a9b01fa6c3" class="job-img">
-    <div class="job-body">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • DL</p>
-      <div class="job-footer">
-        <span>₹8–15 LPA</span>
-        <button class="view-btn">👁 View</button>
+    <div class="job-card">
+      <img src="https://images.unsplash.com/photo-1526378722484-cc5c5102aa1d" class="job-img">
+      <div class="job-body">
+        <h3>AI Engineer</h3>
+        <p>Python • ML • DL</p>
+        <div class="job-footer">
+          <span>₹8–15 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="job-card">
-    <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9b1c6d" class="job-img">
-    <div class="job-body">
-      <h3>Robotics Engineer</h3>
-      <p>ROS • PLC • Automation</p>
-      <div class="job-footer">
-        <span>₹7–12 LPA</span>
-        <button class="view-btn">👁 View</button>
+    <div class="job-card">
+      <img src="https://images.unsplash.com/photo-1581091215367-59ab6cfd7c8c" class="job-img">
+      <div class="job-body">
+        <h3>Robotics Engineer</h3>
+        <p>ROS • PLC • Automation</p>
+        <div class="job-footer">
+          <span>₹7–12 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-gray-900 text-gray-300 py-10">
-  <div class="max-w-7xl mx-auto text-center">
-    <p>© 2025 SmartHire. All rights reserved.</p>
-  </div>
+<footer class="bg-black text-gray-400 py-10 text-center">
+  © 2025 SmartHire. All rights reserved.
 </footer>
 
 <!-- ================= STYLES ================= -->
 <style>
 body { padding-top: 88px; }
 
-/* Background animation */
-.bg-img {
-  animation: slowZoom 30s ease-in-out infinite alternate;
-}
-
-@keyframes slowZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
-}
-
-/* Job cards */
+/* Job Card */
 .job-card{
   background:white;
   border-radius:1rem;
   overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
   transition:.4s;
 }
 .dark .job-card{background:#0e0e0e}
+.job-card:hover{transform:translateY(-8px)}
 
-.job-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(250,204,21,.25);
-}
+.job-img{height:180px;width:100%;object-fit:cover}
+.job-body{padding:1.2rem}
+.job-body h3{font-weight:700}
+.job-body p{opacity:.7;margin:.3rem 0}
 
-.job-img{
-  height:180px;
-  width:100%;
-  object-fit:cover;
-}
-
-.job-body{padding:1.25rem}
-.job-footer{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:1rem;
-}
+.job-footer{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
 
 .view-btn{
   border:1px solid #facc15;
@@ -186,48 +164,34 @@ body { padding-top: 88px; }
   border-radius:.5rem;
   color:#facc15;
 }
-.view-btn:hover{
-  background:#facc15;
-  color:black;
-}
+.view-btn:hover{background:#facc15;color:black}
 
-/* Mobile menu links FIX */
-.mobile-link{
-  display:block;
-  padding:16px 0;
-  font-size:1.2rem;
-  border-bottom:1px solid rgba(255,255,255,0.15);
-  transition:all .3s ease;
-}
-.mobile-link:last-child{border-bottom:none}
-.mobile-link:hover{
-  color:#facc15;
-  transform:translateX(6px);
-}
-
-/* Hamburger animation */
+/* Hamburger */
 .hamburger,
 .hamburger::before,
 .hamburger::after{
+  content:"";
   position:absolute;
-  width:24px;
+  width:26px;
   height:3px;
   background:#facc15;
-  border-radius:999px;
-  transition:.3s;
-  content:"";
+  border-radius:10px;
+  transition:.35s;
 }
-
-.hamburger{
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-}
+.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
 .hamburger::before{transform:translateY(-8px)}
 .hamburger::after{transform:translateY(8px)}
 
 .menu-open .hamburger{background:transparent}
 .menu-open .hamburger::before{transform:rotate(45deg)}
 .menu-open .hamburger::after{transform:rotate(-45deg)}
+
+/* Background animation */
+@keyframes bgMove{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
 </style>
 
 <!-- ================= JS ================= -->
@@ -244,15 +208,3 @@ function toggleMenu(){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

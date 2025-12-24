@@ -12,7 +12,17 @@ tailwind.config = { darkMode: 'class' }
 </script>
 
 <style>
-body{padding-top:90px;background:#000;color:#fff}
+/* ================= BASE ================= */
+body{
+  padding-top:90px;
+  background:#000;
+  color:#fff;
+  transition:.3s;
+}
+.light body{
+  background:#f4f4f4;
+  color:#111;
+}
 
 /* ================= JOB CARD ================= */
 .job-card{
@@ -22,6 +32,7 @@ body{padding-top:90px;background:#000;color:#fff}
   box-shadow:0 10px 30px rgba(0,0,0,.45);
   transition:.5s;
 }
+.light .job-card{background:#fff}
 .job-card:hover{
   transform:translateY(-10px) scale(1.02);
 }
@@ -32,14 +43,13 @@ body{padding-top:90px;background:#000;color:#fff}
   object-fit:cover;
 }
 .job-body{padding:1.2rem}
-.job-body h3{font-weight:700}
-.job-body p{opacity:.7;margin:.3rem 0}
+.job-body p{opacity:.7}
 
 .job-footer{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:1rem
+  margin-top:1rem;
 }
 
 .view-btn{
@@ -70,7 +80,7 @@ body{padding-top:90px;background:#000;color:#fff}
 .menu-open .hamburger::before{transform:rotate(45deg)}
 .menu-open .hamburger::after{transform:rotate(-45deg)}
 
-/* ================= ANIMATION ================= */
+/* ================= SCROLL REVEAL ================= */
 .reveal{
   opacity:0;
   transform:translateY(40px);
@@ -80,13 +90,30 @@ body{padding-top:90px;background:#000;color:#fff}
   opacity:1;
   transform:none;
 }
+
+/* ================= SWIPE (MOBILE) ================= */
+@media(max-width:768px){
+  .jobs-swipe{
+    display:flex !important;
+    gap:16px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .jobs-swipe::-webkit-scrollbar{display:none}
+  .jobs-swipe .job-card{
+    min-width:85%;
+    scroll-snap-align:center;
+    flex-shrink:0;
+  }
+}
 </style>
 </head>
 
 <body class="relative min-h-screen overflow-x-hidden">
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 light:bg-white/90 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
@@ -100,6 +127,9 @@ body{padding-top:90px;background:#000;color:#fff}
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
+
+      <button onclick="toggleTheme()" class="text-xl">🌙</button>
+
       <a href="admin.html"
         class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
         Admin
@@ -115,7 +145,7 @@ body{padding-top:90px;background:#000;color:#fff}
 
 <!-- ================= MOBILE MENU ================= -->
 <div id="mobileMenu"
-  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
+  class="fixed inset-0 bg-black light:bg-white text-white light:text-black z-40 pt-28 px-6 hidden">
 
   <a href="index.html" class="block py-4 text-xl">Home</a>
   <a href="jobs.html" class="block py-4 text-xl text-yellow-400">Jobs</a>
@@ -123,10 +153,9 @@ body{padding-top:90px;background:#000;color:#fff}
   <a href="faq.html" class="block py-4 text-xl">FAQ</a>
   <a href="contact.html" class="block py-4 text-xl">Contact</a>
 
-  <a href="admin.html"
-    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
-    Admin
-  </a>
+  <button onclick="toggleTheme()" class="mt-6 text-2xl">
+    🌙 Toggle Theme
+  </button>
 </div>
 
 <!-- ================= HEADER ================= -->
@@ -134,19 +163,18 @@ body{padding-top:90px;background:#000;color:#fff}
   <h1 class="text-4xl md:text-5xl font-extrabold">
     Find Your <span class="text-yellow-400">Dream Job</span>
   </h1>
-  <p class="mt-4 text-gray-400">
+  <p class="mt-4 opacity-70">
     Explore IT, AI, Robotics & Engineering opportunities
   </p>
 </section>
 
 <!-- ================= JOB LIST ================= -->
 <section class="pb-24">
-  <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 jobs-swipe">
 
-    <!-- 1 -->
+    <!-- JOB 1 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>Frontend Developer</h3>
         <p>React • Tailwind • UI</p>
@@ -157,10 +185,9 @@ body{padding-top:90px;background:#000;color:#fff}
       </div>
     </div>
 
-    <!-- 2 -->
+    <!-- JOB 2 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>AI Engineer</h3>
         <p>Python • ML • DL</p>
@@ -171,10 +198,9 @@ body{padding-top:90px;background:#000;color:#fff}
       </div>
     </div>
 
-    <!-- 3 -->
+    <!-- JOB 3 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>Robotics Engineer</h3>
         <p>ROS • PLC • Automation</p>
@@ -185,10 +211,9 @@ body{padding-top:90px;background:#000;color:#fff}
       </div>
     </div>
 
-    <!-- 4 -->
+    <!-- JOB 4 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/7988082/pexels-photo-7988082.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/7988082/pexels-photo-7988082.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>Backend Developer</h3>
         <p>Node • MongoDB • APIs</p>
@@ -199,10 +224,9 @@ body{padding-top:90px;background:#000;color:#fff}
       </div>
     </div>
 
-    <!-- 5 -->
+    <!-- JOB 5 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/7988214/pexels-photo-7988214.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/7988214/pexels-photo-7988214.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>Data Scientist</h3>
         <p>Python • SQL • Analytics</p>
@@ -213,10 +237,9 @@ body{padding-top:90px;background:#000;color:#fff}
       </div>
     </div>
 
-    <!-- 6 -->
+    <!-- JOB 6 -->
     <div class="job-card reveal">
-      <img class="job-img"
-        src="https://images.pexels.com/photos/163073/pexels-photo-163073.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img class="job-img" src="https://images.pexels.com/photos/163073/pexels-photo-163073.jpeg?auto=compress&cs=tinysrgb&w=1200">
       <div class="job-body">
         <h3>Embedded Engineer</h3>
         <p>C • IoT • Microcontrollers</p>
@@ -231,28 +254,55 @@ body{padding-top:90px;background:#000;color:#fff}
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-black text-gray-400 py-10 text-center">
+<footer class="bg-black light:bg-gray-100 text-gray-400 light:text-gray-700 py-10 text-center">
   © 2025 SmartHire. All rights reserved.
 </footer>
 
 <!-- ================= JS ================= -->
 <script>
-/* Hamburger */
+/* MENU */
 function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("hidden");
   document.body.classList.toggle("menu-open");
 }
 
-/* Scroll Animation */
-const observer = new IntersectionObserver(entries=>{
+/* DARK / LIGHT */
+function toggleTheme(){
+  document.documentElement.classList.toggle("light");
+  localStorage.setItem("theme",
+    document.documentElement.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("theme")==="light"){
+  document.documentElement.classList.add("light");
+}
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
-    }
+    if(e.isIntersecting){e.target.classList.add("show")}
   });
 },{threshold:.15});
-
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+/* DRAG SWIPE (DESKTOP SUPPORT) */
+const slider=document.querySelector(".jobs-swipe");
+let isDown=false,startX,scrollLeft;
+if(slider){
+  slider.addEventListener("mousedown",e=>{
+    isDown=true;
+    startX=e.pageX-slider.offsetLeft;
+    scrollLeft=slider.scrollLeft;
+  });
+  slider.addEventListener("mouseleave",()=>isDown=false);
+  slider.addEventListener("mouseup",()=>isDown=false);
+  slider.addEventListener("mousemove",e=>{
+    if(!isDown) return;
+    e.preventDefault();
+    const x=e.pageX-slider.offsetLeft;
+    const walk=(x-startX)*2;
+    slider.scrollLeft=scrollLeft-walk;
+  });
+}
 </script>
 
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <title>SmartHire | Jobs</title>
@@ -10,14 +10,55 @@
 <script>
 tailwind.config = { darkMode: 'class' }
 </script>
+
+<style>
+body { padding-top: 88px; }
+
+/* Job Card */
+.job-card{
+  background:#111;
+  border-radius:1rem;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+  transition:.4s;
+}
+.job-card:hover{transform:translateY(-8px)}
+
+.job-img{
+  height:180px;
+  width:100%;
+  object-fit:cover;
+}
+.job-body{padding:1.2rem}
+.job-body h3{font-weight:700}
+.job-body p{opacity:.7;margin:.3rem 0}
+
+.job-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:1rem
+}
+
+.view-btn{
+  border:1px solid #facc15;
+  padding:.35rem .9rem;
+  border-radius:.5rem;
+  color:#facc15;
+}
+.view-btn:hover{background:#facc15;color:black}
+</style>
 </head>
 
-<body class="bg-black text-white min-h-screen">
+<body class="relative min-h-screen bg-black text-white overflow-x-hidden">
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur">
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">SmartHire</a>
+
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
 
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
@@ -25,100 +66,109 @@ tailwind.config = { darkMode: 'class' }
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-      <a href="admin.html" class="px-4 py-1 border border-yellow-400 rounded text-yellow-400">Admin</a>
-      <button onclick="toggleDark()">🌙</button>
+      <a href="admin.html"
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
+        Admin
+      </a>
     </div>
+
   </div>
 </nav>
 
 <!-- ================= HEADER ================= -->
-<section class="pt-32 pb-16 text-center">
-  <h1 class="text-4xl md:text-5xl font-bold">
+<section class="pt-32 pb-20 text-center">
+  <h1 class="text-4xl md:text-5xl font-extrabold">
     Find Your <span class="text-yellow-400">Dream Job</span>
   </h1>
-  <p class="mt-4 opacity-80">
+  <p class="mt-4 text-gray-400">
     Explore IT, AI, Robotics & Engineering opportunities
   </p>
 </section>
 
-<!-- ================= JOB GRID ================= -->
-<section class="pb-20">
+<!-- ================= JOB LIST ================= -->
+<section class="pb-24">
   <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <!-- JOB 1 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">Frontend Developer</h3>
-        <p class="text-sm opacity-70">React • Tailwind • UI</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹6–10 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 1 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>Frontend Developer</h3>
+        <p>React • Tailwind • UI</p>
+        <div class="job-footer">
+          <span>₹6–10 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
 
-    <!-- JOB 2 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">AI Engineer</h3>
-        <p class="text-sm opacity-70">Python • ML • DL</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹8–15 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 2 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>AI Engineer</h3>
+        <p>Python • ML • DL</p>
+        <div class="job-footer">
+          <span>₹8–15 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
 
-    <!-- JOB 3 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9c1b6b?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">Robotics Engineer</h3>
-        <p class="text-sm opacity-70">ROS • PLC • Automation</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹7–12 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 3 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>Robotics Engineer</h3>
+        <p>ROS • PLC • Automation</p>
+        <div class="job-footer">
+          <span>₹7–12 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
 
-    <!-- JOB 4 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">Backend Developer</h3>
-        <p class="text-sm opacity-70">Node • MongoDB • APIs</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹7–13 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 4 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/7988082/pexels-photo-7988082.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>Backend Developer</h3>
+        <p>Node • MongoDB • APIs</p>
+        <div class="job-footer">
+          <span>₹7–13 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
 
-    <!-- JOB 5 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">Data Scientist</h3>
-        <p class="text-sm opacity-70">Python • SQL • Analytics</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹9–16 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 5 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/7988214/pexels-photo-7988214.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>Data Scientist</h3>
+        <p>Python • SQL • Analytics</p>
+        <div class="job-footer">
+          <span>₹9–16 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
 
-    <!-- JOB 6 -->
-    <div class="bg-[#111] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition">
-      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=80" class="h-48 w-full object-cover">
-      <div class="p-5">
-        <h3 class="font-bold">Embedded Engineer</h3>
-        <p class="text-sm opacity-70">C • IoT • Microcontrollers</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-yellow-400">₹6–11 LPA</span>
-          <button class="border border-yellow-400 px-3 py-1 rounded text-yellow-400">👁 View</button>
+    <!-- 6 -->
+    <div class="job-card">
+      <img class="job-img"
+        src="https://images.pexels.com/photos/163073/pexels-photo-163073.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="job-body">
+        <h3>Embedded Engineer</h3>
+        <p>C • IoT • Microcontrollers</p>
+        <div class="job-footer">
+          <span>₹6–11 LPA</span>
+          <button class="view-btn">👁 View</button>
         </div>
       </div>
     </div>
@@ -126,15 +176,10 @@ tailwind.config = { darkMode: 'class' }
   </div>
 </section>
 
-<footer class="text-center py-8 text-gray-400">
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-gray-400 py-10 text-center">
   © 2025 SmartHire. All rights reserved.
 </footer>
-
-<script>
-function toggleDark(){
-  document.documentElement.classList.toggle("dark");
-}
-</script>
 
 </body>
 </html>

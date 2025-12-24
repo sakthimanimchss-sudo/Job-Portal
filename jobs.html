@@ -26,11 +26,9 @@ tailwind.config = { darkMode: 'class' }
   />
 </div>
 
-
-
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full bg-white/90 dark:bg-black/90 backdrop-blur z-50 shadow">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
     <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
@@ -41,41 +39,49 @@ tailwind.config = { darkMode: 'class' }
     <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
-      <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
+      <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-
       <a href="admin.html"
-         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        class="px-3 py-1 border border-yellow-400 text-yellow-400 rounded">
         Admin
       </a>
-
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
     <!-- MOBILE BUTTON -->
-    <button onclick="toggleMenu()" class="md:hidden text-3xl text-yellow-400">
-      ☰
+    <button onclick="toggleMenu()"
+      class="md:hidden relative w-10 h-10">
+      <span class="hamburger"></span>
     </button>
 
   </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="hidden bg-black text-white px-6 pb-6 space-y-4 md:hidden">
-    <a href="index.html" class="block border-b pb-2">Home</a>
-    <a href="jobs.html" class="block border-b pb-2">Jobs</a>
-    <a href="pricing.html" class="block border-b pb-2">Pricing</a>
-    <a href="faq.html" class="block border-b pb-2">FAQ</a>
-    <a href="contact.html" class="block border-b pb-2">Contact</a>
-
-    <a href="admin.html"
-       class="block text-center bg-yellow-400 text-black py-2 rounded font-semibold">
-      Admin
-    </a>
-
-    <button onclick="toggleDark()" class="text-2xl mt-2">🌙</button>
-  </div>
 </nav>
+<!-- ✅ NAVBAR ENDS HERE -->
+
+<!-- ================= MOBILE MENU (ADD HERE) ================= -->
+<div id="mobileMenu"
+  class="hidden fixed inset-0 bg-black text-white px-6 pt-28 z-40">
+
+  <a href="index.html" class="block py-4 text-xl border-b">Home</a>
+  <a href="jobs.html" class="block py-4 text-xl border-b">Jobs</a>
+  <a href="pricing.html" class="block py-4 text-xl border-b">Pricing</a>
+  <a href="faq.html" class="block py-4 text-xl border-b">FAQ</a>
+  <a href="contact.html" class="block py-4 text-xl border-b">Contact</a>
+
+  <a href="admin.html"
+    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+    Admin
+  </a>
+
+  <button onclick="toggleDark()" class="mt-6 text-2xl">
+    🌙
+  </button>
+
+</div>
+
+
+
 
 <!-- ================= HEADER ================= -->
 <section class="pt-32 pb-20 text-center">
@@ -266,6 +272,48 @@ Explore top IT, AI, Robotics & Engineering jobs
     background-position: 0% 50%;
   }
 }
+  <style>
+/* Clean hamburger */
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  background: #facc15;
+  border-radius: 999px;
+  transition: all 0.35s ease;
+}
+
+.hamburger {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger::before {
+  transform: translateY(-8px);
+}
+
+.hamburger::after {
+  transform: translateY(8px);
+}
+
+/* When menu open → X */
+.menu-open .hamburger {
+  background: transparent;
+}
+
+.menu-open .hamburger::before {
+  transform: rotate(45deg);
+}
+
+.menu-open .hamburger::after {
+  transform: rotate(-45deg);
+}
+</style>
+
   
 </style>
 
@@ -291,10 +339,18 @@ function setPlan(year) {
     document.getElementById("p3").innerText = year ? "20" : "24";
   }
 }
+  <script>
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.body.classList.toggle("menu-open");
+}
+</script>
+
 </script>
 
 </body>
 </html>
+
 
 
 

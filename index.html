@@ -90,7 +90,7 @@ body{
 .mobile-menu a{color:var(--text);font-size:22px;text-decoration:none}
 
 /* ================= HERO ================= */
-.hero{min-height:100vh;padding:140px 20px}
+.hero{min-height:85vh;padding:140px 20px}
 .hero h1{font-size:42px}
 .hero span{
   background:#facc15;color:black;
@@ -200,6 +200,24 @@ footer h4{color:#facc15}
   .login-image{display:none}
   .scroll-track{animation:none;overflow-x:auto}
 }
+/* ================= SECTION VISIBILITY FIX ================= */
+section {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.55)
+  );
+}
+
+/* Light mode section background */
+body.light section {
+  background: linear-gradient(
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.75)
+  );
+}
+
 </style>
 </head>
 
@@ -389,3 +407,4 @@ document.getElementById("loginModal").onclick=e=>{
 
 </body>
 </html>
+

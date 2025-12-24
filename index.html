@@ -2,286 +2,311 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SmartHire | AI Job Platform</title>
+<title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html{scroll-behavior:smooth}
+
+/* ================= BACKGROUND SLIDER ================= */
+.bg{
+  position:fixed; inset:0; z-index:-1;
+}
+.bg::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75));
+}
+.bg img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:fade 30s infinite;
+}
+.bg img:nth-child(2){animation-delay:10s}
+.bg img:nth-child(3){animation-delay:20s}
+
+@keyframes fade{
+  0%{opacity:0}
+  10%{opacity:.6}
+  30%{opacity:.6;transform:scale(1.05)}
+  40%{opacity:0}
+  100%{opacity:0}
+}
+
+/* ================= NAVBAR ================= */
+nav{
+  position:fixed; top:0; width:100%;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(10px);
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100;
+}
+.logo{
+  color:#facc15;
+  font-size:22px;
+  font-weight:700;
+}
+.nav-links{
+  display:flex; gap:20px;
+}
+.nav-links a{
+  color:white; text-decoration:none;
+}
+.admin{
+  background:#facc15;
+  color:black;
+  padding:6px 12px;
+  border-radius:8px;
+}
+
+/* HAMBURGER */
+.menu{
+  display:none;
+  font-size:22px;
+  color:#facc15;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+.mobile{
+  position:fixed; inset:0;
+  background:black;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  z-index:99;
+}
+.mobile a{
+  color:white;
+  font-size:20px;
+  text-decoration:none;
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  padding:140px 20px 60px;
+  color:white;
+}
+.hero h1{
+  font-size:42px;
+  animation:up 1.4s ease;
+}
+.hero span{
+  background:#facc15;
+  color:black;
+  padding:6px 16px;
+  border-radius:30px;
+}
+.hero p{
+  margin-top:16px;
+  max-width:520px;
+  opacity:.9;
+}
+.btns{
+  margin-top:30px;
+}
+.btn{
+  padding:12px 26px;
+  border-radius:30px;
+  margin-right:10px;
+  text-decoration:none;
+}
+.primary{background:#facc15;color:black}
+.outline{border:1px solid white;color:white}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:80px 20px;
+  color:white;
+}
+.title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:40px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  gap:20px;
+  max-width:1000px;
+  margin:auto;
+}
+.card{
+  background:rgba(0,0,0,.6);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,170,0,.25);
+  transition:.4s;
+}
+.card:hover{transform:translateY(-8px)}
+.card i{
+  font-size:30px;
+  color:#facc15;
+}
+
+/* FIXED SECTION */
+.fixed{
+  height:80vh;
+  background:url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d") center/cover fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.fixed-box{
+  background:rgba(0,0,0,.75);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  background:black;
+  padding:60px 20px;
+}
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  gap:30px;
+}
+footer h4{color:#facc15}
+footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
+.social i{
+  font-size:20px;
+  margin-right:12px;
+}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:1.2s}
+.show{opacity:1;transform:none}
+@keyframes up{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .menu{display:block}
+  .hero h1{font-size:30px}
+}
+</style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">⚡ SmartHire</div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
-</header>
+<!-- BACKGROUND -->
+<div class="bg">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+</div>
 
-<!-- MOBILE MENU -->
-<div id="mobileMenu" class="mobile-menu">
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">SmartHire</div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html">FAQ</a>
+    <a href="admin.html" class="admin">Admin</a>
+  </div>
+  <div class="menu" onclick="toggle()">☰</div>
+</nav>
+
+<div class="mobile" id="mobile">
   <a href="#home">Home</a>
   <a href="jobs.html">Jobs</a>
-  <a href="#departments">Departments</a>
-  <a href="#trending">Trending</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="faq.html">FAQ</a>
+  <a href="admin.html">Admin</a>
 </div>
 
 <!-- HERO -->
-<section id="home" class="hero reveal">
-  <h1>
-    Discover Your <span>Future Career</span>
-  </h1>
-  <p>AI-powered job matching in IT, AI, Robotics & Engineering</p>
-
-  <div class="hero-btns">
-    <a href="jobs.html" class="btn primary">Browse Jobs</a>
-    <a href="#departments" class="btn outline">Explore</a>
+<div class="hero reveal" id="home">
+  <h1>The best jobsite for your <span>future</span></h1>
+  <p>Build your career in IT, AI, Robotics & Engineering with SmartHire.</p>
+  <div class="btns">
+    <a href="jobs.html" class="btn primary">Get Started</a>
+    <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
-</section>
+</div>
 
 <!-- DEPARTMENTS -->
-<section id="departments" class="section reveal">
-  <h2>Browse Departments</h2>
-
-  <div class="card-grid">
-    <div class="card glow">
-      <h3>Tech & AI</h3>
-      <p>Software, AI, ML, Data</p>
-      <a href="jobs.html">Discover →</a>
-    </div>
-
-    <div class="card glow">
-      <h3>Robotics</h3>
-      <p>Automation & Embedded</p>
-      <a href="jobs.html">View Jobs →</a>
-    </div>
-
-    <div class="card glow">
-      <h3>Engineering</h3>
-      <p>Core & Industrial Roles</p>
-      <a href="jobs.html">Browse →</a>
-    </div>
+<section class="reveal">
+  <h2 class="title">Browse Departments</h2>
+  <div class="cards">
+    <div class="card"><i class="fa-solid fa-robot"></i><h3>AI & Robotics</h3></div>
+    <div class="card"><i class="fa-solid fa-code"></i><h3>IT & Software</h3></div>
+    <div class="card"><i class="fa-solid fa-industry"></i><h3>Engineering</h3></div>
   </div>
 </section>
 
-<!-- FIXED IMAGE SECTION (LIKE 8TH IMAGE) -->
-<section class="fixed-section">
-  <div class="fixed-content reveal">
+<!-- FIXED -->
+<div class="fixed">
+  <div class="fixed-box reveal">
     <h2>AI Driven Hiring</h2>
-    <p>Smart matching. Faster hiring. Better careers.</p>
+    <p>Smart matching. Faster results.</p>
     <a href="jobs.html" class="btn primary">Apply Now</a>
   </div>
-</section>
-
-<!-- TRENDING -->
-<section id="trending" class="section reveal">
-  <h2>Trending Jobs</h2>
-
-  <div class="job-list">
-    <div class="job-card">
-      <h4>AI Engineer</h4>
-      <span>₹12–20 LPA</span>
-      <a href="jobs.html">Apply</a>
-    </div>
-
-    <div class="job-card">
-      <h4>Frontend Developer</h4>
-      <span>₹6–10 LPA</span>
-      <a href="jobs.html">Apply</a>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- FOOTER -->
-<footer class="footer">
-  © 2025 SmartHire • AI Job Platform
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>SmartHire</h4>
+      <p>Professional AI Job Platform</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="jobs.html">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Follow Us</h4>
+      <div class="social">
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+      </div>
+    </div>
+  </div>
 </footer>
-<style>
-  * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui;
-}
 
-body {
-  background: radial-gradient(circle at top, #ff9800, #0b0b0b 60%);
-  color: white;
-}
-
-/* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 14px 20px;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  z-index: 100;
-}
-
-.logo {
-  color: #ffcc00;
-  font-weight: 700;
-}
-
-.menu-btn {
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* MOBILE MENU */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.mobile-menu a {
-  color: white;
-  font-size: 22px;
-}
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  padding: 120px 20px 40px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 38px;
-  animation: pop 1.2s ease;
-}
-
-.hero span {
-  background: linear-gradient(90deg,#ff9800,#ffd54f);
-  padding: 6px 18px;
-  border-radius: 30px;
-  color: black;
-}
-
-.hero p {
-  margin-top: 16px;
-  opacity: 0.9;
-}
-
-.hero-btns {
-  margin-top: 30px;
-}
-
-.btn {
-  padding: 12px 26px;
-  border-radius: 30px;
-  margin: 6px;
-  display: inline-block;
-}
-
-.primary {
-  background: linear-gradient(90deg,#ff5722,#ff9800);
-  color: black;
-}
-
-.outline {
-  border: 1px solid white;
-}
-
-/* SECTIONS */
-.section {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-/* CARDS */
-.card-grid {
-  display: grid;
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.card {
-  background: rgba(0,0,0,0.6);
-  padding: 30px;
-  border-radius: 18px;
-}
-
-.glow {
-  box-shadow: 0 0 30px rgba(255,153,0,0.25);
-}
-
-/* FIXED SECTION */
-.fixed-section {
-  height: 80vh;
-  background: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d") center/cover fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.fixed-content {
-  background: rgba(0,0,0,0.7);
-  padding: 40px;
-  border-radius: 20px;
-}
-
-/* JOB LIST */
-.job-card {
-  background: rgba(0,0,0,0.6);
-  padding: 20px;
-  border-radius: 14px;
-  margin: 14px auto;
-  max-width: 420px;
-}
-
-/* FOOTER */
-.footer {
-  padding: 40px;
-  text-align: center;
-  opacity: 0.6;
-}
-
-/* ANIMATIONS */
-@keyframes pop {
-  from {opacity:0; transform:translateY(40px)}
-  to {opacity:1}
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1.1s;
-}
-.reveal.show {
-  opacity: 1;
-  transform: none;
-}
-
-</style>
 <script>
-  function toggleMenu() {
-  const m = document.getElementById("mobileMenu");
-  m.style.display = m.style.display === "flex" ? "none" : "flex";
+function toggle(){
+  const m=document.getElementById("mobile");
+  m.style.display=m.style.display==="flex"?"none":"flex";
 }
-
-/* SCROLL REVEAL */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("show");
-    }
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll(".reveal")
-  .forEach(el => observer.observe(el));
-
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"))
+},{threshold:.2});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
+
 </body>
 </html>
+
 
 

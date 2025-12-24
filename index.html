@@ -10,31 +10,21 @@
 
 <style>
 /* ================= RESET ================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 html{scroll-behavior:smooth}
+body{background:#000;color:#fff}
 
 /* ================= BACKGROUND SLIDER ================= */
 .bg{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  overflow:hidden;
+  position:fixed; inset:0; z-index:-1; overflow:hidden;
 }
 .bg::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:""; position:absolute; inset:0;
   background:rgba(0,0,0,.75);
 }
 .bg img{
   position:absolute;
-  width:100%;
-  height:100%;
+  width:100%; height:100%;
   object-fit:cover;
   opacity:0;
   animation:fade 30s infinite;
@@ -47,241 +37,129 @@ html{scroll-behavior:smooth}
   10%{opacity:.6}
   30%{opacity:.6;transform:scale(1.05)}
   40%{opacity:0}
-  100%{opacity:0}
-}
-
-/* MOBILE BACKGROUND FIX */
-@media(max-width:768px){
-  .bg img{
-    object-position:top center;
-  }
 }
 
 /* ================= NAVBAR ================= */
 .navbar{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(0,0,0,.8);
+  position:fixed; top:0; width:100%;
+  background:rgba(0,0,0,.85);
   backdrop-filter:blur(10px);
   padding:14px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display:flex; justify-content:space-between; align-items:center;
   z-index:1000;
 }
-
-.logo{
-  color:#facc15;
-  font-weight:700;
-  font-size:20px;
+.logo{color:#facc15;font-size:20px;font-weight:700}
+.nav-links{display:flex;gap:18px;list-style:none}
+.nav-links a,.login-btn{
+  color:white;background:none;border:none;cursor:pointer;text-decoration:none
 }
-
-.nav-links{
-  display:flex;
-  gap:18px;
-  list-style:none;
-}
-.nav-links a,
-.login-btn,
-.theme-btn{
-  color:white;
-  background:none;
-  border:none;
-  cursor:pointer;
-  font-size:15px;
-}
-
 .admin{
-  background:#facc15;
-  color:black;
-  padding:6px 12px;
-  border-radius:10px;
+  background:#facc15;color:black;
+  padding:6px 12px;border-radius:10px;
 }
 
-/* ================= HAMBURGER ================= */
+/* HAMBURGER */
 .hamburger{
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  cursor:pointer;
+  display:none;flex-direction:column;gap:6px;cursor:pointer
 }
 .hamburger span{
-  width:26px;
-  height:3px;
-  background:#facc15;
-  transition:.3s;
+  width:26px;height:3px;background:#facc15;transition:.3s
 }
-.hamburger.active span:nth-child(1){
-  transform:rotate(45deg) translate(5px,5px);
-}
-.hamburger.active span:nth-child(2){
-  opacity:0;
-}
-.hamburger.active span:nth-child(3){
-  transform:rotate(-45deg) translate(6px,-6px);
-}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU */
 .mobile-menu{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:none;
-  flex-direction:column;
-  padding-top:120px;
-  align-items:center;
-  gap:30px;
+  position:fixed; inset:0; background:black;
+  display:none; flex-direction:column;
+  padding-top:120px; gap:30px; align-items:center;
   z-index:999;
 }
-.mobile-menu a{
-  color:white;
-  font-size:22px;
-  text-decoration:none;
-}
+.mobile-menu a{color:white;font-size:22px;text-decoration:none}
 
 /* ================= HERO ================= */
 .hero{
   min-height:100vh;
   padding:140px 20px 60px;
-  color:white;
 }
 .hero h1{
   font-size:40px;
   animation:up 1.2s ease;
 }
 .hero span{
-  background:#facc15;
-  color:black;
-  padding:6px 18px;
-  border-radius:30px;
+  background:#facc15;color:black;
+  padding:6px 18px;border-radius:30px;
 }
-.hero p{
-  margin-top:16px;
-  max-width:520px;
-  opacity:.9;
-}
-.btns{
-  margin-top:30px;
-}
+.hero p{margin-top:16px;max-width:520px;opacity:.9}
+.btns{margin-top:30px}
 .btn{
-  padding:12px 26px;
-  border-radius:30px;
-  margin-right:10px;
-  text-decoration:none;
+  padding:12px 26px;border-radius:30px;
+  text-decoration:none;margin-right:10px
 }
 .primary{background:#facc15;color:black}
 .outline{border:1px solid white;color:white}
 
 /* MOBILE HERO IMAGE */
-.hero-img{
-  margin-top:30px;
-  display:none;
-}
-.hero-img img{
-  width:100%;
-  border-radius:18px;
-}
+.hero-img{margin-top:30px;display:none}
+.hero-img img{width:100%;border-radius:18px}
 
 /* ================= SECTIONS ================= */
-section{
-  padding:80px 20px;
-  color:white;
-}
-.title{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:40px;
-}
+section{padding:80px 20px}
+.title{text-align:center;font-size:32px;margin-bottom:20px}
+.subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
-/* CARDS */
-.cards{
-  display:grid;
-  gap:20px;
-  max-width:1000px;
-  margin:auto;
+/* FEATURE GRID */
+.features{
+  display:grid;gap:24px;max-width:1100px;margin:auto
 }
-.card{
+.feature{
   background:rgba(0,0,0,.6);
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 0 40px rgba(255,170,0,.25);
-  transition:.4s;
+  padding:30px;border-radius:20px;
+  box-shadow:0 0 40px rgba(255,200,0,.2);
 }
-.card:hover{transform:translateY(-8px)}
-.card i{
-  font-size:30px;
-  color:#facc15;
+.feature i{font-size:30px;color:#facc15;margin-bottom:10px}
+
+/* JOB CARDS */
+.jobs{
+  display:grid;gap:20px;max-width:1000px;margin:auto
 }
+.job{
+  background:rgba(0,0,0,.6);
+  padding:24px;border-radius:18px;
+}
+.job span{color:#facc15}
 
 /* FIXED SECTION */
 .fixed{
   height:80vh;
   background:url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d") center/cover fixed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex;justify-content:center;align-items:center;
 }
 .fixed-box{
   background:rgba(0,0,0,.75);
-  padding:40px;
-  border-radius:20px;
-  text-align:center;
+  padding:40px;border-radius:20px;text-align:center;
+}
+
+/* FAQ */
+.faq{max-width:900px;margin:auto}
+.faq-item{
+  background:rgba(0,0,0,.6);
+  padding:20px;border-radius:14px;margin-bottom:14px
 }
 
 /* FOOTER */
-footer{
-  background:black;
-  padding:60px 20px;
-}
+footer{background:black;padding:60px 20px}
 .footer-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  gap:30px;
+  max-width:1200px;margin:auto;
+  display:grid;gap:30px
 }
 footer h4{color:#facc15}
 footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
-.social i{
-  font-size:20px;
-  margin-right:12px;
-}
-
-/* LOGIN MODAL */
-.login-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-.login-box{
-  background:#111;
-  padding:30px;
-  border-radius:16px;
-  width:300px;
-  color:white;
-}
-.login-box input{
-  width:100%;
-  margin:10px 0;
-  padding:10px;
-  border-radius:6px;
-  border:none;
-}
 
 /* ANIMATIONS */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1.2s;
-}
-.show{
-  opacity:1;
-  transform:none;
-}
+.reveal{opacity:0;transform:translateY(40px);transition:1.2s}
+.show{opacity:1;transform:none}
 @keyframes up{
   from{opacity:0;transform:translateY(40px)}
   to{opacity:1}
@@ -311,17 +189,14 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="jobs.html">Jobs</a></li>
     <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="contact.html">Contact</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
-    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
   </ul>
-
   <div class="hamburger" onclick="toggleMenu(this)">
     <span></span><span></span><span></span>
   </div>
@@ -335,42 +210,60 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html">Admin</a>
-  <a onclick="openLogin()">Login</a>
 </div>
 
 <!-- HERO -->
 <div class="hero reveal">
   <h1>Find Your <span>Dream Job</span></h1>
-  <p>Explore top IT, AI, Robotics & Engineering jobs</p>
-
+  <p>Explore top IT, AI, Robotics & Engineering opportunities powered by AI matching.</p>
   <div class="btns">
-    <a href="jobs.html" class="btn primary">Get Started</a>
+    <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
-
   <div class="hero-img">
     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
   </div>
 </div>
 
-<!-- DEPARTMENTS -->
+<!-- FEATURES -->
 <section class="reveal">
-  <h2 class="title">Browse Departments</h2>
-  <div class="cards">
-    <div class="card"><i class="fa-solid fa-code"></i><h3>Frontend Developer</h3></div>
-    <div class="card"><i class="fa-solid fa-robot"></i><h3>AI Engineer</h3></div>
-    <div class="card"><i class="fa-solid fa-industry"></i><h3>Robotics Engineer</h3></div>
+  <h2 class="title">Why Choose SmartHire</h2>
+  <p class="subtitle">Built for modern job seekers</p>
+  <div class="features">
+    <div class="feature"><i class="fa-solid fa-brain"></i><h3>AI Matching</h3><p>Smart recommendations based on your skills.</p></div>
+    <div class="feature"><i class="fa-solid fa-clock"></i><h3>Faster Hiring</h3><p>Apply once and get matched instantly.</p></div>
+    <div class="feature"><i class="fa-solid fa-shield"></i><h3>Verified Companies</h3><p>Work only with trusted employers.</p></div>
   </div>
 </section>
 
-<!-- FIXED SECTION -->
+<!-- FEATURED JOBS -->
+<section class="reveal">
+  <h2 class="title">Featured Jobs</h2>
+  <div class="jobs">
+    <div class="job"><h3>Frontend Developer</h3><p>React • Tailwind • UI</p><span>₹6–10 LPA</span></div>
+    <div class="job"><h3>AI Engineer</h3><p>Python • ML • NLP</p><span>₹10–18 LPA</span></div>
+    <div class="job"><h3>Robotics Engineer</h3><p>ROS • Embedded</p><span>₹8–14 LPA</span></div>
+  </div>
+</section>
+
+<!-- FIXED CTA -->
 <div class="fixed">
   <div class="fixed-box reveal">
-    <h2>AI Driven Hiring</h2>
-    <p>Smart matching. Faster results.</p>
+    <h2>AI-Driven Hiring Platform</h2>
+    <p>Smarter careers. Better companies.</p>
     <a href="jobs.html" class="btn primary">Apply Now</a>
   </div>
 </div>
+
+<!-- FAQ PREVIEW -->
+<section class="reveal">
+  <h2 class="title">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item"><strong>Is SmartHire free?</strong><p>Yes, job seekers can apply for free.</p></div>
+    <div class="faq-item"><strong>Do I need experience?</strong><p>We support freshers and professionals.</p></div>
+    <div class="faq-item"><strong>How does AI matching work?</strong><p>We match skills with job requirements.</p></div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -388,48 +281,23 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
     </div>
     <div>
       <h4>Follow Us</h4>
-      <div class="social">
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-x-twitter"></i>
-      </div>
+      <i class="fa-brands fa-linkedin"></i>
+      <i class="fa-brands fa-github"></i>
+      <i class="fa-brands fa-x-twitter"></i>
     </div>
   </div>
 </footer>
 
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="login-modal">
-  <div class="login-box">
-    <h3>Login</h3>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button class="btn primary" onclick="closeLogin()">Login</button>
-  </div>
-</div>
-
 <script>
-/* HAMBURGER */
 function toggleMenu(btn){
   const menu=document.getElementById("mobileMenu");
   menu.style.display = menu.style.display==="flex" ? "none" : "flex";
   btn.classList.toggle("active");
 }
 
-/* LOGIN */
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
-function closeLogin(){
-  document.getElementById("loginModal").style.display="none";
-}
-
 /* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
-    }
-  });
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("show"); } });
 },{threshold:0.15});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>

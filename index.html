@@ -13,7 +13,7 @@ html{scroll-behavior:smooth}
 body{background:#000;color:#fff}
 
 /* BACKGROUND SLIDER */
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg{position:fixed;inset:0;z-index:-1}
 .bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.75)}
 .bg img{
   position:absolute;width:100%;height:100%;
@@ -40,7 +40,7 @@ body{background:#000;color:#fff}
 }
 .logo{color:#facc15;font-size:20px;font-weight:700}
 .nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a{color:white;text-decoration:none}
+.nav-links a,.login-btn{color:white;text-decoration:none;background:none;border:none;cursor:pointer}
 .admin{background:#facc15;color:black;padding:6px 12px;border-radius:10px}
 
 /* HAMBURGER */
@@ -54,23 +54,32 @@ body{background:#000;color:#fff}
 .mobile-menu{
   position:fixed;inset:0;background:black;
   display:none;flex-direction:column;
-  padding-top:120px;gap:30px;align-items:center;
+  padding-top:110px;gap:26px;align-items:center;
   z-index:999
 }
 .mobile-menu a{color:white;font-size:22px;text-decoration:none}
 
 /* HERO */
-.hero{min-height:100vh;padding:140px 20px 60px}
+.hero{
+  min-height:100vh;
+  padding:120px 20px 60px;
+}
 .hero h1{font-size:40px}
 .hero span{background:#facc15;color:black;padding:6px 18px;border-radius:30px}
-.hero p{margin-top:16px;max-width:520px;opacity:.9}
-.btns{margin-top:30px}
+.hero p{margin-top:14px;max-width:520px;opacity:.9}
+.btns{margin-top:26px}
 .btn{padding:12px 26px;border-radius:30px;text-decoration:none;margin-right:10px}
 .primary{background:#facc15;color:black}
 .outline{border:1px solid white;color:white}
 
-/* MOBILE IMAGE SLIDER */
-.hero-slider{display:none;margin-top:30px;overflow:hidden;border-radius:18px}
+/* MOBILE SLIDER (SMALLER IMAGE) */
+.hero-slider{
+  display:none;
+  margin-top:20px;
+  max-width:420px;
+  border-radius:16px;
+  overflow:hidden
+}
 .hero-slider img{width:100%;animation:slide 15s infinite}
 @keyframes slide{
   0%{opacity:0}
@@ -84,15 +93,12 @@ section{padding:80px 20px}
 .title{text-align:center;font-size:32px;margin-bottom:40px}
 
 /* FEATURES */
-.features{
-  display:grid;gap:24px;max-width:1100px;margin:auto
-}
+.features{display:grid;gap:24px;max-width:1100px;margin:auto}
 .feature{
   background:rgba(0,0,0,.6);
-  padding:30px;border-radius:20px;
+  padding:30px;border-radius:20px
 }
 .feature img{width:100%;border-radius:14px;margin-bottom:12px}
-.feature i{color:#facc15}
 
 /* JOBS */
 .jobs{display:grid;gap:20px;max-width:1000px;margin:auto}
@@ -118,10 +124,24 @@ footer{background:black;padding:60px 20px}
   display:grid;gap:30px
 }
 footer h4{color:#facc15}
-footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
+
+/* LOGIN MODAL */
+.login-modal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;align-items:center;justify-content:center;
+  z-index:2000
+}
+.login-box{
+  background:#111;padding:30px;border-radius:18px;width:320px
+}
+.login-box input{
+  width:100%;padding:10px;margin:10px 0;
+  border-radius:8px;border:none
+}
 
 /* ANIMATIONS */
-.reveal{opacity:0;transform:translateY(40px);transition:1.2s}
+.reveal{opacity:0;transform:translateY(30px);transition:1s}
 .show{opacity:1;transform:none}
 
 /* RESPONSIVE */
@@ -130,7 +150,8 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
   .hamburger{display:flex}
 }
 @media(max-width:768px){
-  .hero h1{font-size:30px}
+  .hero h1{font-size:28px}
+  .hero{padding-top:110px}
   .hero-slider{display:block}
 }
 </style>
@@ -154,6 +175,7 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu(this)">
@@ -161,87 +183,39 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
   </div>
 </nav>
 
+<!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
   <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
+  <a onclick="openLogin()">Login</a>
   <a href="admin.html">Admin</a>
 </div>
 
 <!-- HERO -->
 <div class="hero reveal">
   <h1>Find Your <span>Dream Job</span></h1>
-  <p>Explore IT, AI, Robotics & Engineering jobs</p>
+  <p>Explore IT, AI, Robotics & Engineering opportunities</p>
   <div class="btns">
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
-
-  <!-- MOBILE SLIDER -->
   <div class="hero-slider">
     <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
   </div>
 </div>
 
-<!-- WHY CHOOSE -->
-<section class="reveal">
-  <h2 class="title">Why Choose SmartHire</h2>
-  <div class="features">
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-      <p>Smart skill-based job recommendations.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-      <p>Trusted employers only.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-      <p>Apply once, get hired faster.</p>
-    </div>
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+  <div class="login-box reveal">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <a class="btn primary" style="display:block;text-align:center">Login</a>
   </div>
-</section>
-
-<!-- FEATURED JOBS -->
-<section class="reveal">
-  <h2 class="title">Featured Jobs</h2>
-  <div class="jobs">
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>Frontend Developer</h3>
-      <p>React • Tailwind • UI</p>
-      <span>₹6–10 LPA</span>
-    </div>
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • NLP</p>
-      <span>₹10–18 LPA</span>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="reveal">
-  <h2 class="title">Frequently Asked Questions</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <strong>Is SmartHire free?</strong>
-      <p>Yes, job seekers can apply for free.</p>
-    </div>
-    <div class="faq-item">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <strong>Do you support freshers?</strong>
-      <p>Yes, we support freshers and professionals.</p>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -252,32 +226,25 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
       <p>Email: support@smarthire.com</p>
       <p>Phone: +91 90000 00000</p>
     </div>
-    <div>
-      <h4>Quick Links</h4>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Follow Us</h4>
-      <i class="fa-brands fa-linkedin"></i>
-      <i class="fa-brands fa-github"></i>
-      <i class="fa-brands fa-x-twitter"></i>
-    </div>
   </div>
 </footer>
 
 <script>
 function toggleMenu(btn){
-  const menu=document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+  const m=document.getElementById("mobileMenu");
+  m.style.display=m.style.display==="flex"?"none":"flex";
   btn.classList.toggle("active");
 }
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("show"); } });
-},{threshold:0.15});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal") e.target.style.display="none";
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})
+},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
 
 </body>

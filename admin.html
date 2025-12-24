@@ -2,208 +2,183 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SmartHire | Admin</title>
+<title>SmartHire | Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config={darkMode:'class'}
+tailwind.config = { darkMode: 'class' }
 </script>
 
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Icons -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+.card{background:rgba(15,23,42,.9);border-radius:18px;padding:18px}
+.light .card{background:#fff}
+.fade{animation:fade .8s ease}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+</style>
 </head>
 
-<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
+<body class="dark bg-black text-white min-h-screen">
 
-<!-- ================= LOGIN SCREEN ================= -->
-<div id="loginPage" class="min-h-screen flex items-center justify-center">
-  <div class="bg-slate-900 p-8 rounded-xl w-80 text-white">
-    <h2 class="text-2xl font-bold text-yellow-400 mb-4">SmartHire Admin</h2>
+<!-- ================= LOGIN ================= -->
+<div id="loginBox" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+  <div class="card w-[90%] max-w-md text-center fade">
+    <h2 class="text-2xl font-bold text-yellow-400">Admin Login</h2>
+    <p class="opacity-70 text-sm mb-4">Demo access</p>
 
-    <input id="username" placeholder="admin / recruiter / viewer"
-      class="w-full p-2 mb-3 rounded text-black">
+    <input id="email" placeholder="admin@smarthire.com"
+      class="w-full p-3 rounded bg-black border border-gray-600 mb-3">
 
-    <input id="password" type="password" placeholder="1234"
-      class="w-full p-2 mb-4 rounded text-black">
+    <select id="role" class="w-full p-3 rounded bg-black border border-gray-600 mb-4">
+      <option value="Admin">Admin</option>
+      <option value="Recruiter">Recruiter</option>
+    </select>
 
     <button onclick="login()"
-      class="w-full bg-yellow-400 text-black py-2 rounded font-semibold">
+      class="w-full bg-yellow-400 text-black py-3 rounded font-bold">
       Login
     </button>
   </div>
 </div>
 
 <!-- ================= DASHBOARD ================= -->
-<div id="app" class="hidden min-h-screen flex flex-col">
+<div id="dashboard" class="hidden">
 
-<!-- TOP BAR -->
-<header class="bg-black dark:bg-slate-900 text-white p-4 flex justify-between items-center">
-  <button onclick="toggleMenu()" class="md:hidden text-xl">☰</button>
-  <span class="text-yellow-400 font-bold">SmartHire Admin</span>
-  <div class="flex gap-4 items-center">
+<!-- HEADER -->
+<header class="flex justify-between items-center p-4 bg-black/80 backdrop-blur">
+  <div class="flex items-center gap-3">
+    <button onclick="toggleMenu()" class="md:hidden text-xl">☰</button>
+    <span class="text-yellow-400 font-bold text-lg">SmartHire Admin</span>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <span class="text-sm opacity-70">Role: <b id="roleText"></b></span>
     <button onclick="toggleTheme()">🌙</button>
     <button onclick="logout()" class="text-yellow-400">Logout</button>
   </div>
 </header>
 
 <!-- MAIN -->
-<div class="flex flex-1">
+<main class="p-5 max-w-7xl mx-auto">
 
-<!-- SIDEBAR -->
-<aside id="sidebar"
-  class="w-64 bg-slate-900 text-white p-4 space-y-3 hidden md:block">
-  <button onclick="setPage('dashboard')" class="menu">Dashboard</button>
-  <button onclick="setPage('jobs')" class="menu">Jobs</button>
-  <button onclick="setPage('users')" class="menu admin-only">Users</button>
-  <button onclick="setPage('reports')" class="menu admin-only">Reports</button>
-  <button onclick="setPage('settings')" class="menu admin-only">Settings</button>
-</aside>
-
-<!-- CONTENT -->
-<main class="flex-1 p-6 space-y-6">
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="page">
-<div class="grid md:grid-cols-4 gap-4">
-  <div class="card">78<br><small>Total Jobs</small></div>
-  <div class="card">214<br><small>Applicants</small></div>
-  <div class="card">93<br><small>Pending Tasks</small></div>
-  <div class="card">12<br><small>Messages</small></div>
+<!-- STATS -->
+<div class="grid md:grid-cols-4 gap-4 fade">
+  <div class="card text-center">
+    <h2 class="text-3xl text-yellow-400">78</h2><p>Total Jobs</p>
+  </div>
+  <div class="card text-center">
+    <h2 class="text-3xl text-yellow-400">214</h2><p>Applicants</p>
+  </div>
+  <div class="card text-center">
+    <h2 class="text-3xl text-yellow-400">93</h2><p>Pending Tasks</p>
+  </div>
+  <div class="card text-center">
+    <h2 class="text-3xl text-yellow-400">12</h2><p>Messages</p>
+  </div>
 </div>
 
 <!-- AI INSIGHTS -->
-<div class="card mt-6">
-  <h3 class="font-bold mb-2">🧠 AI Suggested Hire</h3>
-  <p>✔ Alex Martin – AI Engineer</p>
-  <p>✔ 92% Skill Match</p>
+<div class="card mt-6 fade">
+  <h3 class="font-bold text-yellow-400 mb-2">🧠 AI Hiring Insights</h3>
+  <ul class="text-sm space-y-1 opacity-80">
+    <li>✔ High demand: AI Engineers</li>
+    <li>✔ Best source: LinkedIn</li>
+    <li>✔ Avg hiring time: 12 days</li>
+    <li>✔ Suggested hire: Alex Martin</li>
+  </ul>
+</div>
+
+<!-- TOP LPA JOBS -->
+<h3 class="mt-8 mb-3 font-bold">Top LPA Jobs</h3>
+<div class="grid md:grid-cols-4 gap-4 fade">
+  <div class="card text-center">AI Engineer<br><b class="text-yellow-400">₹18 LPA</b></div>
+  <div class="card text-center">Data Scientist<br><b class="text-yellow-400">₹16 LPA</b></div>
+  <div class="card text-center">DevOps Engineer<br><b class="text-yellow-400">₹15 LPA</b></div>
+  <div class="card text-center">Robotics Engineer<br><b class="text-yellow-400">₹14 LPA</b></div>
+</div>
+
+<!-- USER TABLE -->
+<div class="card mt-8 fade overflow-x-auto">
+  <h3 class="font-bold mb-3">Users</h3>
+  <table class="w-full text-sm">
+    <tr class="border-b border-gray-600">
+      <th>Name</th><th>Title</th><th>Status</th><th>Role</th>
+    </tr>
+    <tr>
+      <td class="py-2">Alex Martin</td>
+      <td>AI Engineer</td>
+      <td class="text-green-400">Active</td>
+      <td>Recruiter</td>
+    </tr>
+  </table>
 </div>
 
 <!-- CHARTS -->
-<div class="grid md:grid-cols-3 gap-6 mt-6">
-  <div class="chart"><canvas id="chart1"></canvas></div>
-  <div class="chart"><canvas id="chart2"></canvas></div>
-  <div class="chart"><canvas id="chart3"></canvas></div>
+<div class="grid md:grid-cols-3 gap-6 mt-8 fade">
+  <div class="card"><canvas id="chart1"></canvas></div>
+  <div class="card"><canvas id="chart2"></canvas></div>
+  <div class="card"><canvas id="chart3"></canvas></div>
 </div>
-</section>
 
-<!-- JOBS -->
-<section id="jobs" class="page hidden">
-<h2 class="text-xl font-bold mb-4">Jobs</h2>
-<ul class="space-y-2">
-  <li class="job">AI Engineer – ₹18 LPA</li>
-  <li class="job">Data Scientist – ₹16 LPA</li>
-  <li class="job">DevOps Engineer – ₹15 LPA</li>
-</ul>
-</section>
-
-<!-- USERS -->
-<section id="users" class="page hidden admin-only">
-<h2 class="text-xl font-bold mb-4">Users</h2>
-<table class="w-full text-sm">
-<tr><th>Name</th><th>Role</th><th>Status</th></tr>
-<tr><td>Alex</td><td>Recruiter</td><td>Active</td></tr>
-</table>
-</section>
-
-<!-- REPORTS -->
-<section id="reports" class="page hidden admin-only">
-<h2 class="text-xl font-bold">Reports</h2>
-<p>System analytics & exports</p>
-</section>
-
-<!-- SETTINGS -->
-<section id="settings" class="page hidden admin-only">
-<h2 class="text-xl font-bold">Settings</h2>
-<p>Admin configuration</p>
-</section>
+<!-- SOCIAL -->
+<div class="card mt-8 text-center fade">
+  <h3 class="font-bold mb-3">Connect</h3>
+  <div class="flex justify-center gap-6 text-xl">
+    <i class="fab fa-linkedin"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-github"></i>
+  </div>
+</div>
 
 </main>
 </div>
-</div>
 
-<!-- ================= STYLES ================= -->
-<style>
-.menu{display:block;width:100%;text-align:left;padding:10px;border-radius:8px}
-.menu:hover{background:#1e293b}
-.card{background:#111;color:#facc15;padding:16px;border-radius:14px;text-align:center}
-.dark .card{background:#0f172a}
-.chart{background:#111;padding:10px;border-radius:14px}
-.job{background:#111;padding:10px;border-radius:10px}
-</style>
-
-<!-- ================= SCRIPT ================= -->
+<!-- ================= JS ================= -->
 <script>
-/* USERS */
-const users={
- admin:{pass:"1234",role:"admin"},
- recruiter:{pass:"1234",role:"recruiter"},
- viewer:{pass:"1234",role:"viewer"}
-};
-
-/* LOGIN */
 function login(){
- let u=username.value,p=password.value;
- if(users[u]&&users[u].pass===p){
-  localStorage.setItem("role",users[u].role);
-  loginPage.classList.add("hidden");
-  app.classList.remove("hidden");
-  applyRole();
-  initCharts();
- }
- else alert("Invalid Login");
+  localStorage.setItem("role",document.getElementById("role").value);
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("dashboard").style.display="block";
+  document.getElementById("roleText").innerText=localStorage.getItem("role");
 }
 
-/* LOGOUT */
-function logout(){localStorage.clear();location.reload()}
-
-/* ROLE CONTROL */
-function applyRole(){
- let r=localStorage.getItem("role");
- document.querySelectorAll(".admin-only").forEach(e=>{
-  if(r!=="admin")e.style.display="none";
- });
+function logout(){
+  localStorage.clear();
+  location.reload();
 }
 
-/* PAGE SWITCH */
-function setPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
- document.getElementById(id).classList.remove("hidden");
-}
-
-/* MENU */
-function toggleMenu(){sidebar.classList.toggle("hidden")}
-
-/* THEME */
 function toggleTheme(){
- document.documentElement.classList.toggle("dark");
+  document.documentElement.classList.toggle("light");
 }
 
-/* CHARTS */
-function initCharts(){
- new Chart(chart1,{type:"bar",
-  data:{labels:["Jun","Jul","Aug","Sep"],
-  datasets:[{data:[4,7,5,8],backgroundColor:"#facc15"}]},
-  options:{plugins:{legend:{display:false}}}});
+new Chart(chart1,{
+  type:'bar',
+  data:{labels:['Jobs','Applicants','Interviews'],
+  datasets:[{data:[78,214,52],backgroundColor:'#facc15'}]},
+  options:{plugins:{legend:{display:false}}}
+});
 
- new Chart(chart2,{type:"line",
-  data:{labels:["Jan","Feb","Mar","Apr"],
-  datasets:[{data:[10,14,12,18],borderColor:"#facc15"}]},
-  options:{plugins:{legend:{display:false}}}});
+new Chart(chart2,{
+  type:'line',
+  data:{labels:['Mon','Tue','Wed','Thu','Fri'],
+  datasets:[{data:[5,9,6,11,8],borderColor:'#facc15'}]},
+  options:{plugins:{legend:{display:false}}}
+});
 
- new Chart(chart3,{type:"doughnut",
-  data:{datasets:[{data:[60,40],backgroundColor:["#facc15","#333"]}]},
-  options:{cutout:"70%"}} );
-}
-
-/* AUTO LOGIN CHECK */
-if(localStorage.getItem("role")){
- loginPage.classList.add("hidden");
- app.classList.remove("hidden");
- applyRole();
- initCharts();
-}
+new Chart(chart3,{
+  type:'doughnut',
+  data:{labels:['LinkedIn','Indeed','Website'],
+  datasets:[{data:[42,27,31],backgroundColor:['#facc15','#64748b','#334155']}]},
+  options:{cutout:'70%'}
+});
 </script>
 
 </body>

@@ -11,185 +11,150 @@ tailwind.config = { darkMode: 'class' }
 </script>
 </head>
 
-<body class="bg-white dark:bg-[#050b18] text-gray-900 dark:text-gray-100 transition">
+<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
+
+<!-- ================= BACKGROUND ================= -->
+<div class="fixed inset-0 -z-10">
+  <img
+    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
+    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
+    alt=""
+  />
+  <div class="absolute inset-0 bg-black/45"></div>
+</div>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed w-full bg-white/90 dark:bg-[#050b18]/90 backdrop-blur z-50 shadow">
+<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
       SmartHire
     </a>
 
-    <!-- LINKS -->
-    <div class="flex gap-6 items-center">
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html" class="text-yellow-400 font-semibold">FAQ</a>
       <a href="contact.html">Contact</a>
 
-      <!-- ADMIN -->
       <a href="admin.html"
-         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
         Admin
       </a>
 
-      <!-- DARK MODE -->
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
+
+    <!-- MOBILE BUTTON -->
+    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
+      <span class="hamburger"></span>
+    </button>
 
   </div>
 </nav>
 
-<!-- ================= HERO SEARCH ================= -->
-<section class="pt-32">
-<div class="relative bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4')] bg-cover bg-center">
-  <div class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-indigo-950/90 to-slate-900/90"></div>
+<!-- ================= MOBILE MENU ================= -->
+<div id="mobileMenu"
+  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
 
-  <div class="relative z-10 max-w-4xl mx-auto text-center py-24 px-6 animate-fadeDown">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
-      How can we help?
-    </h1>
+  <a href="index.html" class="block py-4 text-xl">Home</a>
+  <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
+  <a href="pricing.html" class="block py-4 text-xl">Pricing</a>
+  <a href="faq.html" class="block py-4 text-xl text-yellow-400">FAQ</a>
+  <a href="contact.html" class="block py-4 text-xl">Contact</a>
 
-    <input
-      type="text"
-      placeholder="Search jobs, applications, payments..."
-      class="w-full max-w-2xl mx-auto px-5 py-3 rounded-lg text-black focus:outline-none focus:ring-4 focus:ring-yellow-400"
-    />
+  <a href="admin.html"
+    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+    Admin
+  </a>
 
-    <p class="text-gray-300 text-sm mt-4">
-      Popular topics: job apply, resume upload, payments, account setup
-    </p>
-  </div>
+  <button onclick="toggleDark()" class="mt-6 text-2xl">
+    🌙
+  </button>
 </div>
+
+<!-- ================= HERO ================= -->
+<section class="pt-32 pb-20 text-center relative">
+  <h1 class="text-4xl md:text-5xl font-extrabold">
+    How can we <span class="text-yellow-400">help?</span>
+  </h1>
+  <p class="mt-4 text-gray-200 md:text-gray-600">
+    Answers to common questions about SmartHire
+  </p>
+
+  <input
+    type="text"
+    placeholder="Search help topics..."
+    class="mt-8 w-full max-w-xl mx-auto px-5 py-3 rounded-lg text-black focus:ring-4 focus:ring-yellow-400 outline-none"
+  />
 </section>
 
-<!-- ================= CATEGORIES ================= -->
-<section class="py-20">
-<div class="max-w-7xl mx-auto px-6">
+<!-- ================= FAQ LIST ================= -->
+<section class="pb-24 relative">
+  <div class="max-w-4xl mx-auto px-6 space-y-4">
 
-<h2 class="text-2xl font-bold mb-10 animate-fadeUp">
-Browse by topic
-</h2>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">How do I apply for a job?</button>
+      <div class="faq-answer">
+        Browse jobs, click apply, upload your resume and submit.
+      </div>
+    </div>
 
-<div class="grid md:grid-cols-3 gap-8">
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">Is SmartHire free?</button>
+      <div class="faq-answer">
+        Yes. Applying for jobs is free. Paid plans are optional.
+      </div>
+    </div>
 
-<div class="faq-card">
-  <h3>Account Settings</h3>
-  <p>Manage your profile, password, and security</p>
-</div>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">Can I apply from mobile?</button>
+      <div class="faq-answer">
+        Yes. SmartHire is fully mobile responsive.
+      </div>
+    </div>
 
-<div class="faq-card">
-  <h3>Jobs & Applications</h3>
-  <p>Apply, track, and manage job applications</p>
-</div>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">How do recruiters post jobs?</button>
+      <div class="faq-answer">
+        Recruiters can post jobs via Admin dashboard after choosing a plan.
+      </div>
+    </div>
 
-<div class="faq-card">
-  <h3>Payments & Plans</h3>
-  <p>Subscriptions, pricing, and invoices</p>
-</div>
+    <div class="faq-item">
+      <button onclick="toggleFAQ(this)">How do I contact support?</button>
+      <div class="faq-answer">
+        Visit the Contact page or email support@smarthire.com
+      </div>
+    </div>
 
-<div class="faq-card">
-  <h3>Resume & Profile</h3>
-  <p>Upload resume, update skills & experience</p>
-</div>
-
-<div class="faq-card">
-  <h3>Recruiter Access</h3>
-  <p>Hiring tools and candidate search</p>
-</div>
-
-<div class="faq-card">
-  <h3>Technical Support</h3>
-  <p>Fix issues and contact support</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- ================= FAQ ACCORDION ================= -->
-<section class="pb-24">
-<div class="max-w-4xl mx-auto px-6">
-
-<h2 class="text-2xl font-bold mb-8 animate-fadeUp">
-Frequently Asked Questions
-</h2>
-
-<div class="space-y-4">
-
-<div class="faq-item">
-  <button onclick="toggleFAQ(this)">How do I apply for a job?</button>
-  <div class="faq-answer">
-    Browse jobs, click apply, upload your resume, and submit your application.
   </div>
-</div>
-
-<div class="faq-item">
-  <button onclick="toggleFAQ(this)">Is SmartHire free to use?</button>
-  <div class="faq-answer">
-    Yes, job seekers can apply for jobs for free. Premium plans are optional.
-  </div>
-</div>
-
-<div class="faq-item">
-  <button onclick="toggleFAQ(this)">How can recruiters post jobs?</button>
-  <div class="faq-answer">
-    Recruiters can post jobs using Admin Dashboard after choosing a plan.
-  </div>
-</div>
-
-<div class="faq-item">
-  <button onclick="toggleFAQ(this)">Can I track my applications?</button>
-  <div class="faq-answer">
-    Yes, go to your User Dashboard to track application status in real-time.
-  </div>
-</div>
-
-<div class="faq-item">
-  <button onclick="toggleFAQ(this)">How do I contact support?</button>
-  <div class="faq-answer">
-    Visit the Contact page or email support@smarthire.com.
-  </div>
-</div>
-
-</div>
-</div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-[#050b18] text-gray-400 py-10">
-<div class="max-w-7xl mx-auto text-center">
-<p>© 2025 SmartHire. All rights reserved.</p>
-</div>
+<footer class="bg-black text-gray-400 py-10 text-center">
+  © 2025 SmartHire. All rights reserved.
 </footer>
 
 <!-- ================= STYLES ================= -->
 <style>
-.faq-card{
-  background:white;
-  padding:1.5rem;
-  border-radius:.8rem;
-  box-shadow:0 10px 25px rgba(0,0,0,.1);
-  transition:.3s;
-}
-.dark .faq-card{background:#0b1220}
-.faq-card:hover{
-  transform:translateY(-6px) scale(1.02);
-}
+body { padding-top: 88px; }
 
+/* FAQ */
 .faq-item{
-  background:#f5f7fb;
-  border-radius:.6rem;
+  background:white;
+  border-radius:.7rem;
+  overflow:hidden;
 }
-.dark .faq-item{background:#0b1220}
+.dark .faq-item{background:#0e0e0e}
 
 .faq-item button{
   width:100%;
   padding:1rem;
   font-weight:600;
+  text-align:left;
 }
 
 .faq-answer{
@@ -197,29 +162,53 @@ Frequently Asked Questions
   overflow:hidden;
   padding:0 1rem;
   transition:max-height .4s ease;
-  font-size:.95rem;
   color:#666;
 }
 .dark .faq-answer{color:#aaa}
 
-/* Animations */
-@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
-.animate-fadeDown{animation:fadeDown .8s ease both}
-.animate-fadeUp{animation:fadeUp .8s ease both}
+/* Hamburger */
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  width:26px;
+  height:3px;
+  background:#facc15;
+  border-radius:10px;
+  transition:.35s;
+}
+.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
+.hamburger::before{transform:translateY(-8px)}
+.hamburger::after{transform:translateY(8px)}
+.menu-open .hamburger{background:transparent}
+.menu-open .hamburger::before{transform:rotate(45deg)}
+.menu-open .hamburger::after{transform:rotate(-45deg)}
+
+/* Background animation */
+@keyframes bgMove{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
 </style>
 
 <!-- ================= JS ================= -->
 <script>
 function toggleDark(){
-  document.documentElement.classList.toggle('dark')
+  document.documentElement.classList.toggle("dark");
+}
+
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.body.classList.toggle("menu-open");
 }
 
 function toggleFAQ(btn){
-  const answer = btn.nextElementSibling
-  answer.style.maxHeight
-    ? answer.style.maxHeight = null
-    : answer.style.maxHeight = answer.scrollHeight + "px"
+  const ans = btn.nextElementSibling;
+  ans.style.maxHeight
+    ? ans.style.maxHeight = null
+    : ans.style.maxHeight = ans.scrollHeight + "px";
 }
 </script>
 

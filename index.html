@@ -13,13 +13,7 @@
 <script>
 tailwind.config = { darkMode: 'class' }
 </script>
-</head>     
-<!-- Mobile menu button -->
-<button onclick="toggleMenu()" class="md:hidden text-3xl text-white">
-  ☰
-</button>
-
-<body class="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+</head> 
 
 <!-- ================= NAVBAR ================= -->
           
@@ -52,21 +46,37 @@ tailwind.config = { darkMode: 'class' }
       <button onclick="toggleTheme()" class="text-2xl">🌙</button>
     </div>
   </div>
-  <!-- Mobile Slide Menu -->
-<div id="mobileMenu"
-  class="hidden md:hidden bg-black text-white px-6 pb-6">
+ <!-- MOBILE MENU BUTTON -->
+    <button onclick="toggleMenu()" class="md:hidden text-3xl text-yellow-400">
+      ☰
+    </button>
 
-  <a href="index.html" class="block py-3 border-b">Home</a>
-  <a href="jobs.html" class="block py-3 border-b">Jobs</a>
-  <a href="pricing.html" class="block py-3 border-b">Pricing</a>
-  <a href="contact.html" class="block py-3 border-b">Contact</a>
-  <a href="faq.html" class="block py-3 border-b">FAQ</a>
+  </div>
 
-  <a href="admin.html"
-     class="block mt-4 bg-yellow-400 text-black text-center py-2 rounded">
-     Admin
-  </a>
-</div>
+  <!-- MOBILE SLIDE MENU -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-black text-white px-6 pb-6 space-y-4">
+
+    <a href="index.html" class="block border-b pb-2">Home</a>
+    <a href="jobs.html" class="block border-b pb-2">Jobs</a>
+    <a href="pricing.html" class="block border-b pb-2">Pricing</a>
+    <a href="contact.html" class="block border-b pb-2">Contact</a>
+    <a href="faq.html" class="block border-b pb-2">FAQ</a>
+
+    <button onclick="openLogin()"
+      class="w-full border py-2 rounded mt-3">
+      Login
+    </button>
+
+    <a href="admin.html"
+      class="block text-center bg-yellow-400 text-black py-2 rounded font-semibold">
+      Admin
+    </a>
+
+    <button onclick="toggleTheme()" class="text-2xl mt-2">
+      🌙
+    </button>
+  </div>
 
 </nav>
 
@@ -305,3 +315,4 @@ function toggleMenu() {
 
 </body>
 </html>
+

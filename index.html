@@ -5,10 +5,11 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- FONT AWESOME -->
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
 /* =====================================================
    RESET & BASE
 ===================================================== */
@@ -16,55 +17,51 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
 }
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth}
 body{
-  background:black;
-  color:white;
+  background:#000;
+  color:#fff;
   overflow-x:hidden;
 }
 
 /* =====================================================
-   BACKGROUND IMAGE SLIDER
+   BACKGROUND IMAGE SLIDER (DESKTOP + MOBILE)
 ===================================================== */
 .bg{
   position:fixed;
   inset:0;
   z-index:-1;
+  overflow:hidden;
 }
 .bg::before{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.78));
-  z-index:1;
 }
 .bg img{
   position:absolute;
-  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   opacity:0;
   animation:bgFade 30s infinite;
 }
-.bg img:nth-child(2){animation-delay:10s;}
-.bg img:nth-child(3){animation-delay:20s;}
+.bg img:nth-child(2){animation-delay:10s}
+.bg img:nth-child(3){animation-delay:20s}
 
 @keyframes bgFade{
-  0%{opacity:0;transform:scale(1);}
-  10%{opacity:.6;}
-  30%{opacity:.6;transform:scale(1.05);}
-  40%{opacity:0;}
-  100%{opacity:0;}
+  0%{opacity:0;transform:scale(1)}
+  10%{opacity:.6}
+  30%{opacity:.6;transform:scale(1.05)}
+  40%{opacity:0}
 }
 
-/* ---- DESKTOP IMAGE TUNING (MINOR FIX) ---- */
+/* Desktop image calm */
 @media(min-width:1024px){
-  .bg img{
-    transform:scale(1);
-  }
+  .bg img{transform:scale(1)}
 }
 
 /* =====================================================
@@ -74,7 +71,7 @@ body{
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(0,0,0,.75);
+  background:rgba(0,0,0,.8);
   backdrop-filter:blur(10px);
   padding:14px 24px;
   display:flex;
@@ -88,27 +85,26 @@ body{
   font-weight:700;
 }
 .nav-links{
-  display:flex;
   list-style:none;
+  display:flex;
   gap:18px;
 }
 .nav-links a,
-.login-btn,
-.theme-btn{
+.login-btn{
   color:white;
   text-decoration:none;
   background:none;
   border:none;
   cursor:pointer;
-  font-size:15px;
 }
 .admin{
   background:#facc15;
   color:black;
   padding:6px 12px;
   border-radius:8px;
-  font-weight:600;
 }
+
+/* Hamburger */
 .hamburger{
   display:none;
   font-size:26px;
@@ -135,17 +131,13 @@ body{
   font-size:20px;
   text-decoration:none;
 }
-.mobile-menu .admin{
-  width:200px;
-  text-align:center;
-}
 
 /* =====================================================
    HERO SECTION
 ===================================================== */
 .hero{
   min-height:100vh;
-  padding:140px 20px 60px;
+  padding:160px 20px 60px;
   max-width:1200px;
   margin:auto;
 }
@@ -154,7 +146,7 @@ body{
   font-weight:800;
   animation:slideUp 1.2s ease;
 }
-.hero h1 span{
+.hero span{
   background:#facc15;
   color:black;
   padding:6px 18px;
@@ -162,13 +154,11 @@ body{
 }
 .hero p{
   margin-top:18px;
-  max-width:540px;
-  opacity:.9;
+  max-width:560px;
   font-size:18px;
+  opacity:.9;
 }
-.btns{
-  margin-top:34px;
-}
+.btns{margin-top:36px}
 .btn{
   display:inline-block;
   padding:12px 28px;
@@ -177,22 +167,50 @@ body{
   margin-right:12px;
   font-weight:600;
 }
-.primary{background:#facc15;color:black;}
-.outline{border:1px solid white;color:white;}
+.primary{background:#facc15;color:black}
+.outline{border:1px solid white;color:white}
 
-/* ---- DESKTOP HERO POSITION FIX (MINOR) ---- */
+/* Desktop hero spacing fix */
 @media(min-width:1024px){
   .hero{
-    padding-top:190px;
+    padding-top:200px;
     padding-left:80px;
   }
+}
+
+/* =====================================================
+   MOBILE HERO IMAGE SLIDER (IMAGES INCLUDED)
+===================================================== */
+.mobile-slider{
+  display:none;
+  margin-top:30px;
+  position:relative;
+  height:230px;
+}
+.mobile-slider img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+  opacity:0;
+  animation:mobileSlide 18s infinite;
+}
+.mobile-slider img:nth-child(2){animation-delay:6s}
+.mobile-slider img:nth-child(3){animation-delay:12s}
+
+@keyframes mobileSlide{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
 }
 
 /* =====================================================
    SECTIONS
 ===================================================== */
 section{
-  padding:90px 20px;
+  padding:100px 20px;
 }
 .title{
   text-align:center;
@@ -201,43 +219,65 @@ section{
 }
 
 /* =====================================================
-   FEATURE CARDS
+   WHY CHOOSE (WITH IMAGES)
 ===================================================== */
-.cards{
+.features{
   max-width:1100px;
   margin:auto;
   display:grid;
   gap:24px;
 }
-.card{
+.feature{
   background:rgba(0,0,0,.6);
-  padding:34px;
+  padding:32px;
   border-radius:22px;
-  box-shadow:0 0 45px rgba(255,200,0,.25);
-  transition:.4s;
 }
-.card:hover{transform:translateY(-10px);}
-.card i{
-  font-size:34px;
-  color:#facc15;
+.feature img{
+  width:100%;
+  border-radius:14px;
   margin-bottom:14px;
 }
+.feature h3{margin-bottom:8px}
+.feature i{color:#facc15}
 
 /* =====================================================
-   FIXED IMAGE SECTION
+   FEATURED JOBS (WITH IMAGES)
 ===================================================== */
-.fixed{
-  height:80vh;
-  background:url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d") center/cover fixed;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.jobs{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  gap:24px;
 }
-.fixed-box{
-  background:rgba(0,0,0,.78);
-  padding:50px;
-  border-radius:24px;
-  text-align:center;
+.job{
+  background:rgba(0,0,0,.6);
+  padding:26px;
+  border-radius:20px;
+}
+.job img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+.job span{color:#facc15}
+
+/* =====================================================
+   FAQ (WITH IMAGES)
+===================================================== */
+.faq{
+  max-width:900px;
+  margin:auto;
+}
+.faq-item{
+  background:rgba(0,0,0,.6);
+  padding:22px;
+  border-radius:16px;
+  margin-bottom:16px;
+}
+.faq-item img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
 }
 
 /* =====================================================
@@ -253,21 +293,7 @@ footer{
   display:grid;
   gap:36px;
 }
-footer h4{
-  color:#facc15;
-  margin-bottom:12px;
-}
-footer a{
-  color:#ccc;
-  text-decoration:none;
-  display:block;
-  margin:6px 0;
-}
-.social i{
-  font-size:22px;
-  margin-right:14px;
-  cursor:pointer;
-}
+footer h4{color:#facc15}
 
 /* =====================================================
    LOGIN MODAL
@@ -301,31 +327,35 @@ footer a{
 .reveal{
   opacity:0;
   transform:translateY(40px);
-  transition:1.1s;
+  transition:1s;
 }
 .reveal.show{
   opacity:1;
   transform:none;
 }
 @keyframes slideUp{
-  from{opacity:0;transform:translateY(40px);}
-  to{opacity:1;transform:none;}
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:none}
 }
 
 /* =====================================================
    RESPONSIVE
 ===================================================== */
 @media(max-width:900px){
-  .nav-links{display:none;}
-  .hamburger{display:block;}
-  .hero h1{font-size:34px;}
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .hero h1{font-size:34px}
 }
+@media(max-width:768px){
+  .mobile-slider{display:block}
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- BACKGROUND IMAGES -->
 <div class="bg">
   <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
   <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
@@ -341,8 +371,8 @@ footer a{
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="admin.html" class="admin">Admin</a></li>
     <li><button class="login-btn" onclick="openLogin()">Login</button></li>
+    <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 </nav>
@@ -354,8 +384,8 @@ footer a{
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
-  <a href="admin.html" class="admin">Admin</a>
   <a onclick="openLogin()">Login</a>
+  <a href="admin.html" class="admin">Admin</a>
 </div>
 
 <!-- HERO -->
@@ -366,53 +396,74 @@ footer a{
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
+
+  <!-- MOBILE IMAGE SLIDER -->
+  <div class="mobile-slider">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+  </div>
 </div>
 
-<!-- FEATURES -->
+<!-- WHY CHOOSE -->
 <section class="reveal">
   <h2 class="title">Why Choose SmartHire</h2>
-  <div class="cards">
-    <div class="card"><i class="fa-solid fa-brain"></i><h3>AI Matching</h3></div>
-    <div class="card"><i class="fa-solid fa-bolt"></i><h3>Fast Hiring</h3></div>
-    <div class="card"><i class="fa-solid fa-shield"></i><h3>Trusted Platform</h3></div>
+  <div class="features">
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+      <h3>AI Matching</h3>
+      <p>Skill-based intelligent recommendations.</p>
+    </div>
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
+      <h3>Fast Hiring</h3>
+      <p>Apply once and reach many employers.</p>
+    </div>
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+      <h3>Trusted Companies</h3>
+      <p>Verified organizations only.</p>
+    </div>
   </div>
 </section>
 
-<!-- FIXED -->
-<div class="fixed">
-  <div class="fixed-box reveal">
-    <h2>AI Driven Hiring</h2>
-    <p>Smarter matches. Faster careers.</p>
-    <a href="jobs.html" class="btn primary">Apply Now</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h4>SmartHire</h4>
-      <p>AI-powered job platform</p>
+<!-- FEATURED JOBS -->
+<section class="reveal">
+  <h2 class="title">Featured Jobs</h2>
+  <div class="jobs">
+    <div class="job">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+      <h3>Frontend Developer</h3>
+      <p>React • UI • Tailwind</p>
+      <span>₹6–10 LPA</span>
     </div>
-    <div>
-      <h4>Links</h4>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Follow</h4>
-      <div class="social">
-        <i class="fa-brands fa-github"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-x-twitter"></i>
-      </div>
+    <div class="job">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <h3>AI Engineer</h3>
+      <p>Python • ML • NLP</p>
+      <span>₹10–18 LPA</span>
     </div>
   </div>
-</footer>
+</section>
 
-<!-- LOGIN -->
+<!-- FAQ -->
+<section class="reveal">
+  <h2 class="title">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <strong>Is SmartHire free?</strong>
+      <p>Yes, job seekers can apply for free.</p>
+    </div>
+    <div class="faq-item">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+      <strong>Do you support freshers?</strong>
+      <p>Yes, freshers and professionals are welcome.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN MODAL -->
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h3>Login</h3>
@@ -422,10 +473,22 @@ footer a{
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>SmartHire</h4>
+      <p>AI-powered job platform</p>
+      <p>Email: support@smarthire.com</p>
+      <p>Phone: +91 90000 00000</p>
+    </div>
+  </div>
+</footer>
+
 <script>
 function toggleMenu(){
   const m=document.getElementById("mobileMenu");
-  m.style.display = m.style.display==="flex" ? "none" : "flex";
+  m.style.display=m.style.display==="flex"?"none":"flex";
 }
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";

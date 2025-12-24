@@ -9,24 +9,30 @@
 
 <style>
 
-/* ================= BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-html{scroll-behavior:smooth}
-
-/* ===== THEME VARIABLES ===== */
+/* ======================================================
+   THEME VARIABLES (FIXED & WORKING)
+====================================================== */
 :root{
   --bg:#000;
   --text:#fff;
   --card:rgba(0,0,0,.65);
   --nav:rgba(0,0,0,.85);
+  --overlay:rgba(0,0,0,.75);
 }
+
 body.light{
   --bg:#f4f4f4;
   --text:#111;
   --card:#ffffff;
   --nav:#ffffff;
+  --overlay:rgba(255,255,255,.6);
 }
 
+/* ======================================================
+   BASE
+====================================================== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
@@ -34,25 +40,35 @@ body{
   transition:.3s;
 }
 
-/* ================= BACKGROUND SLIDER ================= */
+/* ======================================================
+   BACKGROUND SLIDER
+====================================================== */
 .bg{position:fixed;inset:0;z-index:-1}
-.bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.7)}
-body.light .bg::before{background:rgba(255,255,255,.6)}
+.bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--overlay);
+}
 .bg img{
-  position:absolute;width:100%;height:100%;
-  object-fit:cover;opacity:0;
-  animation:bgFade 30s infinite
+  position:absolute;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:bgFade 30s infinite;
 }
 .bg img:nth-child(2){animation-delay:10s}
 .bg img:nth-child(3){animation-delay:20s}
 @keyframes bgFade{
   0%{opacity:0}
-  10%{opacity:.6}
-  30%{opacity:.6;transform:scale(1.05)}
+  10%{opacity:.7}
+  30%{opacity:.7;transform:scale(1.05)}
   40%{opacity:0}
 }
 
-/* ================= NAVBAR ================= */
+/* ======================================================
+   NAVBAR
+====================================================== */
 .navbar{
   position:fixed;top:0;width:100%;
   background:var(--nav);
@@ -62,19 +78,21 @@ body.light .bg::before{background:rgba(255,255,255,.6)}
   z-index:1000;
   transition:.3s;
 }
-.navbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.navbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.3)}
 .navbar.hide{transform:translateY(-100%)}
 
 .logo{color:#facc15;font-weight:700}
 .nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a,.login-btn{
+.nav-links a,.login-btn,.theme-btn{
   color:var(--text);
-  background:none;border:none;cursor:pointer;
-  text-decoration:none;
+  background:none;border:none;
+  cursor:pointer;text-decoration:none;
 }
 .admin{background:#facc15;color:black;padding:6px 14px;border-radius:10px}
 
-/* ================= HAMBURGER ================= */
+/* ======================================================
+   HAMBURGER
+====================================================== */
 .hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer}
 .hamburger span{width:26px;height:3px;background:#facc15;transition:.3s}
 .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -82,16 +100,18 @@ body.light .bg::before{background:rgba(255,255,255,.6)}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
 .mobile-menu{
-  position:fixed;inset:0;background:var(--bg);
+  position:fixed;inset:0;
+  background:var(--bg);
   display:none;flex-direction:column;
-  padding-top:110px;gap:28px;
+  padding-top:120px;gap:28px;
   align-items:center;
-  overflow-y:auto;
   z-index:999;
 }
 .mobile-menu a{color:var(--text);font-size:22px;text-decoration:none}
 
-/* ================= HERO ================= */
+/* ======================================================
+   HERO
+====================================================== */
 .hero{min-height:100vh;padding:140px 20px}
 .hero h1{font-size:40px}
 .hero span{background:#facc15;color:black;padding:6px 18px;border-radius:30px}
@@ -101,98 +121,123 @@ body.light .bg::before{background:rgba(255,255,255,.6)}
 .primary{background:#facc15;color:black}
 .outline{border:1px solid var(--text);color:var(--text)}
 
-/* ================= SECTIONS ================= */
+/* ======================================================
+   SECTIONS
+====================================================== */
 section{padding:90px 20px}
 .title{text-align:center;font-size:32px;margin-bottom:40px}
 
-/* ================= FEATURES ================= */
-.features{max-width:1200px;margin:auto;display:grid;gap:24px}
-.feature{background:var(--card);border-radius:20px;padding:24px}
+/* ======================================================
+   FEATURES (MORE INFO ADDED)
+====================================================== */
+.features{
+  max-width:1200px;margin:auto;
+  display:grid;gap:24px;
+}
+.feature{
+  background:var(--card);
+  border-radius:20px;
+  padding:24px;
+}
 .feature img{width:100%;border-radius:14px;margin-bottom:10px}
+.feature p{opacity:.8;font-size:14px}
 
-/* ================= JOBS ================= */
+/* ======================================================
+   JOBS (MORE INFO)
+====================================================== */
 .jobs{max-width:1000px;margin:auto;display:grid;gap:24px}
-.job{background:var(--card);border-radius:20px;padding:24px}
+.job{
+  background:var(--card);
+  border-radius:20px;
+  padding:24px;
+}
 .job img{width:100%;border-radius:14px;margin-bottom:10px}
 .job span{color:#facc15}
+.job p{opacity:.8;font-size:14px}
 
-/* ================= CAREERS SCROLL ================= */
+/* ======================================================
+   CAREERS IN ACTION (MORE IMAGES + INFO)
+====================================================== */
 .scroll-strip{
   overflow:hidden;
-  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  background:linear-gradient(var(--overlay),var(--overlay)),
   url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
 }
 .scroll-track{
-  display:flex;gap:30px;width:max-content;
-  animation:scrollX 40s linear infinite;
-  will-change:transform;
+  display:flex;gap:30px;
+  width:max-content;
+  animation:scrollX 45s linear infinite;
 }
 @keyframes scrollX{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
 .career-card{
-  width:300px;height:220px;
-  border-radius:18px;overflow:hidden;
+  width:300px;height:240px;
+  border-radius:18px;
+  overflow:hidden;
   position:relative;
 }
 .career-card img{
   width:100%;height:100%;
-  object-fit:cover;filter:brightness(.8)
+  object-fit:cover;
+  filter:brightness(.8);
 }
 .career-info{
   position:absolute;bottom:0;width:100%;
   padding:14px;
-  background:linear-gradient(transparent,rgba(0,0,0,.85))
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+}
+.career-info p{font-size:13px;opacity:.85}
+
+/* ======================================================
+   FAQ
+====================================================== */
+.faq{max-width:900px;margin:auto}
+.faq-item{
+  background:var(--card);
+  padding:20px;border-radius:14px;margin-bottom:14px
 }
 
-/* ================= FAQ ================= */
-.faq{max-width:900px;margin:auto}
-.faq-item{background:var(--card);padding:20px;border-radius:14px;margin-bottom:14px}
-.faq-item img{width:100%;border-radius:12px;margin-bottom:10px}
-
-/* ================= FOOTER ================= */
-footer{background:black;padding:70px 20px}
+/* ======================================================
+   FOOTER (MORE INFO)
+====================================================== */
+footer{
+  background:#000;
+  padding:80px 20px;
+}
+.footer-grid{
+  max-width:1200px;margin:auto;
+  display:grid;gap:30px;
+}
 footer h4{color:#facc15}
 
-/* ================= LOGIN ================= */
+/* ======================================================
+   LOGIN
+====================================================== */
 .login-modal{
   position:fixed;inset:0;
   background:rgba(0,0,0,.7);
   backdrop-filter:blur(6px);
-  display:none;align-items:center;justify-content:center;
+  display:none;
+  align-items:center;justify-content:center;
   z-index:2000;
 }
 .login-box{
   background:var(--card);
   width:340px;padding:36px;
-  border-radius:22px;text-align:center;
-  animation:pop .4s ease;
-}
-@keyframes pop{
-  from{opacity:0;transform:scale(.85)}
-  to{opacity:1;transform:scale(1)}
+  border-radius:22px;
+  text-align:center;
 }
 .login-box input{
-  width:100%;padding:12px;margin:10px 0;
-  border-radius:10px;border:none;outline:none
+  width:100%;padding:12px;
+  margin:10px 0;border-radius:10px;border:none;
 }
-.login-error{
-  color:#ff6b6b;font-size:13px;
-  display:none;margin-top:6px
-}
+.login-error{color:#ff6b6b;font-size:13px;display:none}
 
-/* ================= ANIMATIONS ================= */
-.reveal{opacity:0;transform:translateY(30px);transition:1s}
-.show{opacity:1;transform:none}
-.zoom{opacity:0;transform:scale(.9);transition:1s}
-.zoom-in{opacity:1;transform:scale(1)}
-.left{opacity:0;transform:translateX(-40px);transition:1s}
-.left-in{opacity:1}
-.right{opacity:0;transform:translateX(40px);transition:1s}
-.right-in{opacity:1}
-
-/* ================= RESPONSIVE ================= */
+/* ======================================================
+   RESPONSIVE
+====================================================== */
 @media(max-width:900px){
   .nav-links{display:none}
   .hamburger{display:flex}
@@ -223,7 +268,7 @@ footer h4{color:#facc15}
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><button class="login-btn" onclick="openLogin()">Login</button></li>
-    <li><button class="login-btn" id="themeToggle">🌙</button></li>
+    <li><button class="theme-btn" onclick="toggleTheme()">🌙</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu(this)">
@@ -231,6 +276,7 @@ footer h4{color:#facc15}
   </div>
 </nav>
 
+<!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
   <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
@@ -242,7 +288,7 @@ footer h4{color:#facc15}
 </div>
 
 <!-- HERO -->
-<div class="hero reveal">
+<div class="hero">
   <h1>Find Your <span>Dream Job</span></h1>
   <p>Explore IT, AI, Robotics & Engineering opportunities</p>
   <div class="btns">
@@ -251,13 +297,48 @@ footer h4{color:#facc15}
   </div>
 </div>
 
+<!-- WHY CHOOSE -->
+<section>
+  <h2 class="title">Why Choose SmartHire</h2>
+  <div class="features">
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+      <h3>AI Matching</h3>
+      <p>Smart algorithms match candidates with the right jobs.</p>
+    </div>
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
+      <h3>Fast Hiring</h3>
+      <p>Apply once and reach multiple verified employers.</p>
+    </div>
+    <div class="feature">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+      <h3>Verified Companies</h3>
+      <p>Only trusted companies post jobs on SmartHire.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CAREERS -->
-<section class="scroll-strip reveal">
+<section class="scroll-strip">
   <h2 class="title">Careers in Action</h2>
   <div class="scroll-track">
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info"><h4>AI Development</h4><p>Smart systems</p></div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info"><h4>Team Work</h4><p>Modern offices</p></div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><div class="career-info"><h4>Robotics</h4><p>Hands-on labs</p></div></div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+      <div class="career-info"><h4>AI Development</h4><p>Smart systems</p></div>
+    </div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <div class="career-info"><h4>Team Collaboration</h4><p>Modern offices</p></div>
+    </div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+      <div class="career-info"><h4>Robotics</h4><p>Hands-on labs</p></div>
+    </div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <div class="career-info"><h4>Electronics</h4><p>Hardware design</p></div>
+    </div>
   </div>
 </section>
 
@@ -265,18 +346,23 @@ footer h4{color:#facc15}
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h2>Welcome Back</h2>
-    <p>Login to explore your dream career</p>
     <input type="email" placeholder="Email">
     <input type="password" placeholder="Password">
     <p id="loginError" class="login-error">Invalid email or password</p>
-    <a class="btn primary" id="loginSubmit">Login</a>
+    <a class="btn primary" onclick="validateLogin()">Login</a>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <h4>SmartHire</h4>
-  <p>AI-powered hiring platform</p>
+  <div class="footer-grid">
+    <div>
+      <h4>SmartHire</h4>
+      <p>AI-powered hiring platform</p>
+      <p>Email: support@smarthire.com</p>
+      <p>India • 24×7 Support</p>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -296,10 +382,9 @@ function openLogin(){
 document.getElementById("loginModal").onclick=e=>{
   if(e.target.id==="loginModal") e.target.style.display="none";
 }
-document.getElementById("loginSubmit").onclick=()=>{
-  const box=document.querySelector(".login-box");
-  const email=box.querySelector('input[type="email"]').value;
-  const pass=box.querySelector('input[type="password"]').value;
+function validateLogin(){
+  const email=document.querySelector('#loginModal input[type="email"]').value;
+  const pass=document.querySelector('#loginModal input[type="password"]').value;
   const err=document.getElementById("loginError");
   if(!email.includes("@")||pass.length<6){
     err.style.display="block";
@@ -308,9 +393,9 @@ document.getElementById("loginSubmit").onclick=()=>{
     alert("Login successful (demo)");
     document.getElementById("loginModal").style.display="none";
   }
-};
+}
 
-/* THEME */
+/* THEME (FIXED) */
 function toggleTheme(){
   document.body.classList.toggle("light");
   localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
@@ -318,30 +403,6 @@ function toggleTheme(){
 if(localStorage.getItem("theme")==="light"){
   document.body.classList.add("light");
 }
-
-/* STICKY SCROLL */
-let lastY=window.scrollY;
-const nav=document.querySelector(".navbar");
-window.addEventListener("scroll",()=>{
-  const y=window.scrollY;
-  if(y>50) nav.classList.add("scrolled");
-  else nav.classList.remove("scrolled");
-  if(y>lastY && y>120) nav.classList.add("hide");
-  else nav.classList.remove("hide");
-  lastY=y;
-});
-
-/* SCROLL REVEAL */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show","zoom-in","left-in","right-in");
-      observer.unobserve(e.target);
-    }
-  });
-},{threshold:.15});
-document.querySelectorAll(".reveal,.zoom,.left,.right")
-  .forEach(el=>observer.observe(el));
 </script>
 
 </body>

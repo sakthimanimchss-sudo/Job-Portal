@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SmartHire | Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+:root{
+  --dark-blue:#0f172a;
+  --blue:#1e293b;
+  --yellow:#facc15;
+}
+</style>
+</head>
+
+<body class="bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-fixed min-h-screen">
+
+<!-- ================= WRAPPER ================= -->
+<div class="max-w-[1400px] mx-auto my-10 bg-white/95 rounded-2xl shadow-xl flex overflow-hidden">
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="w-64 bg-[var(--dark-blue)] text-white p-6 space-y-6">
+  <h1 class="text-2xl font-bold flex items-center gap-2 text-yellow-400">
+    <i class="fa-solid fa-bolt"></i> SmartHire
+  </h1>
+
+  <button class="w-full bg-yellow-400 text-black py-2 rounded-lg font-semibold">
+    + New Project
+  </button>
+
+  <nav class="space-y-3 text-sm">
+    <a class="menu"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <a class="menu"><i class="fa-solid fa-briefcase"></i> Jobs</a>
+    <a class="menu"><i class="fa-solid fa-chart-line"></i> Charts</a>
+    <a class="menu"><i class="fa-solid fa-users"></i> Users</a>
+    <a class="menu"><i class="fa-solid fa-gear"></i> Settings</a>
+  </nav>
+</aside>
+
+<!-- ================= CONTENT ================= -->
+<div class="flex-1 p-8">
+
+<!-- ================= TOP BAR ================= -->
+<div class="flex justify-between items-center mb-8">
+  <nav class="flex gap-6 font-medium text-slate-700">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="contact.html">Contact</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <div class="flex items-center gap-5">
+    <input placeholder="Search here..."
+           class="border rounded-full px-4 py-1 text-sm"/>
+    <i class="fa-regular fa-bell"></i>
+    <div class="flex items-center gap-2">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg"
+           class="w-8 h-8 rounded-full">
+      <div class="text-sm">
+        <b>John Doe</b><br>
+        <span class="text-gray-400 text-xs">Admin</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= STATS ================= -->
+<div class="grid md:grid-cols-4 gap-6 mb-6">
+  <div class="stat bg-slate-800 text-yellow-400">
+    <h3>78</h3><p>Total Projects</p>
+  </div>
+  <div class="stat bg-slate-800 text-yellow-400">
+    <h3>214</h3><p>Contacts</p>
+  </div>
+  <div class="stat bg-slate-800 text-yellow-400">
+    <h3>93</h3><p>Unfinished Tasks</p>
+  </div>
+  <div class="stat bg-slate-800 text-yellow-400">
+    <h3>12</h3><p>Unread Messages</p>
+  </div>
+</div>
+
+<!-- ================= TOP LPA JOBS (ADDED) ================= -->
+<h2 class="font-bold text-lg mb-3">Top LPA Jobs</h2>
+
+<div class="grid md:grid-cols-4 gap-4 mb-8">
+  <div class="lpa-card">AI Engineer<br><span>₹18 LPA</span></div>
+  <div class="lpa-card">Data Scientist<br><span>₹16 LPA</span></div>
+  <div class="lpa-card">DevOps Engineer<br><span>₹15 LPA</span></div>
+  <div class="lpa-card">Robotics Engineer<br><span>₹14 LPA</span></div>
+</div>
+
+<!-- ================= USER TABLE ================= -->
+<div class="bg-white rounded-xl p-4 mb-8 shadow">
+<table class="w-full text-sm">
+<thead>
+<tr class="border-b">
+  <th class="text-left">Name</th>
+  <th>Title</th>
+  <th>Status</th>
+  <th>Role</th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b">
+  <td class="flex items-center gap-2 py-2">
+    <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-8 h-8 rounded-full">
+    John Doe
+  </td>
+  <td class="text-center align-middle">Software Engineer</td>
+
+<td class="text-center align-middle">
+  <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full inline-block">
+    Active
+  </span>
+</td>
+
+<td class="text-center align-middle">Owner</td>
+
+  <td class="text-yellow-500 font-semibold">Edit</td>
+</tr>
+<tr>
+  <td class="flex items-center gap-2 py-2">
+    <img src="https://randomuser.me/api/portraits/men/46.jpg" class="w-8 h-8 rounded-full">
+    Oscar Rhys
+  </td>
+  <td class="text-center align-middle">Software Engineer</td>
+
+<td class="text-center align-middle">
+  <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full inline-block">
+    Active
+  </span>
+</td>
+
+<td class="text-center align-middle">Owner</td>
+
+  <td class="text-yellow-500 font-semibold">Edit</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================= CHARTS ================= -->
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="card md:col-span-2">
+  <h3>Project Created</h3>
+  <canvas id="barChart"></canvas>
+</div>
+
+<div class="card">
+  <h3>Monthly Target</h3>
+  <canvas id="donutChart"></canvas>
+</div>
+
+</div>
+
+<div class="grid md:grid-cols-3 gap-6 mt-6">
+
+<div class="card md:col-span-2">
+  <h3>New Clients</h3>
+  <canvas id="lineChart"></canvas>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+.menu{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-radius:8px;
+}
+.menu:hover{background:rgba(255,255,255,.15)}
+
+.stat{
+  padding:20px;
+  border-radius:14px;
+  font-weight:bold;
+}
+.stat h3{font-size:26px}
+.stat p{font-size:13px}
+
+.card{
+  background:#fff;
+  padding:16px;
+  border-radius:14px;
+  height:220px;
+}
+
+.lpa-card{
+  background:#0f172a;
+  color:#facc15;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:700;
+}
+.lpa-card span{
+  color:white;
+  font-weight:500;
+}
+</style>
+
+<!-- ================= CHARTS ================= -->
+<script>
+new Chart(barChart,{
+  type:'bar',
+  data:{
+    labels:['06','07','08','09','10','11','12'],
+    datasets:[{
+      data:[4,6,8,5,7,6,9],
+      backgroundColor:'#facc15',
+      barThickness:18,
+      borderRadius:6
+    }]
+  },
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}
+});
+
+new Chart(donutChart,{
+  type:'doughnut',
+  data:{
+    datasets:[{
+      data:[60,40],
+      backgroundColor:['#facc15','#e5e7eb']
+    }]
+  },
+  options:{cutout:'75%',maintainAspectRatio:false}
+});
+
+new Chart(lineChart,{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May'],
+    datasets:[{
+      data:[10,15,12,18,16],
+      borderColor:'#facc15',
+      tension:.4,
+      pointRadius:3
+    }]
+  },
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

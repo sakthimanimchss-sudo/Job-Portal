@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<title>SmartHire | User Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+</head>
+
+<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-white transition">
+
+<!-- ================= TOP BAR ================= -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-black shadow flex justify-between px-6 py-4">
+  <h1 class="text-xl font-bold text-yellow-500">SmartHire User</h1>
+
+  <div class="flex items-center gap-6">
+    <nav class="hidden md:flex gap-6">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <i class="fa-solid fa-bell"></i>
+    <button onclick="toggleDark()">🌙</button>
+
+    <div class="flex items-center gap-2">
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-8 h-8 rounded-full">
+      <span>John</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= LAYOUT ================= -->
+<div class="flex pt-20 min-h-screen">
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="w-64 bg-gray-900 text-gray-300 p-6 space-y-4">
+  <a class="flex items-center gap-3 px-3 py-2 bg-yellow-500 text-black rounded">
+    <i class="fa-solid fa-gauge"></i> Dashboard
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2 hover:bg-gray-800 rounded">
+    <i class="fa-solid fa-briefcase"></i> My Jobs
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2 hover:bg-gray-800 rounded">
+    <i class="fa-solid fa-bookmark"></i> Saved
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2 hover:bg-gray-800 rounded">
+    <i class="fa-solid fa-file"></i> Applications
+  </a>
+  <a class="flex items-center gap-3 px-3 py-2 hover:bg-gray-800 rounded">
+    <i class="fa-solid fa-user"></i> Profile
+  </a>
+</aside>
+
+<!-- ================= MAIN ================= -->
+<main class="flex-1 p-8 space-y-10">
+
+<!-- WELCOME -->
+<div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-xl p-6">
+  <h2 class="text-2xl font-bold">Welcome Back, John 👋</h2>
+  <p>You have 3 active applications</p>
+</div>
+
+<!-- STATS -->
+<div class="grid md:grid-cols-4 gap-6">
+  <div class="card"><i class="fa-paper-plane icon"></i><h2>12</h2><p>Applied</p></div>
+  <div class="card"><i class="fa-heart icon"></i><h2>8</h2><p>Saved</p></div>
+  <div class="card"><i class="fa-briefcase icon"></i><h2>3</h2><p>Interviews</p></div>
+  <div class="card"><i class="fa-star icon"></i><h2>92%</h2><p>Profile</p></div>
+</div>
+
+<!-- CHARTS -->
+<div class="grid md:grid-cols-3 gap-6">
+  <div class="box md:col-span-2">
+    <h3 class="font-bold mb-2">Applications per Month</h3>
+    <canvas id="userLine"></canvas>
+  </div>
+  <div class="box">
+    <h3 class="font-bold mb-2">Application Status</h3>
+    <canvas id="userPie"></canvas>
+  </div>
+</div>
+
+<!-- BAR GRAPH -->
+<div class="box">
+  <h3 class="font-bold mb-2">Applications by Role</h3>
+  <canvas id="userBar"></canvas>
+</div>
+
+<!-- SOCIAL MEDIA -->
+<h3 class="text-xl font-bold">Social Media Activity</h3>
+<div class="grid md:grid-cols-5 gap-4">
+  <div class="social fb"><i class="fab fa-facebook"></i> 12K</div>
+  <div class="social yt"><i class="fab fa-youtube"></i> 9K</div>
+  <div class="social x"><i class="fab fa-x-twitter"></i> 6K</div>
+  <div class="social ln"><i class="fab fa-linkedin"></i> 15K</div>
+  <div class="social gh"><i class="fab fa-github"></i> 4K</div>
+  <div class="social ig"><i class="fab fa-instagram"></i> 11K</div>
+  <div class="social wa"><i class="fab fa-whatsapp"></i> 7K</div>
+  <div class="social tg"><i class="fab fa-telegram"></i> 3K</div>
+  <div class="social rd"><i class="fab fa-reddit"></i> 2K</div>
+  <div class="social dc"><i class="fab fa-discord"></i> 5K</div>
+</div>
+
+</main>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+.card,.box{
+  background:#fff;
+  padding:1.5rem;
+  border-radius:1rem;
+  text-align:center;
+}
+.dark .card,.dark .box{background:#111}
+
+.icon{font-size:1.6rem;color:#facc15;margin-bottom:.3rem}
+
+.social{
+  padding:1rem;
+  border-radius:1rem;
+  color:white;
+  text-align:center;
+  font-weight:bold;
+}
+.fb{background:#1877f2}
+.yt{background:#ff0000}
+.x{background:#000}
+.ln{background:#0a66c2}
+.gh{background:#24292e}
+.ig{background:#e1306c}
+.wa{background:#25d366}
+.tg{background:#0088cc}
+.rd{background:#ff4500}
+.dc{background:#5865f2}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+function toggleDark(){
+  document.documentElement.classList.toggle('dark');
+}
+
+new Chart(userLine,{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets:[{
+      label:'Applications',
+      data:[2,4,6,3,7,5],
+      borderColor:'#facc15',
+      tension:.4
+    }]
+  }
+});
+
+new Chart(userPie,{
+  type:'pie',
+  data:{
+    labels:['Pending','Interview','Rejected'],
+    datasets:[{
+      data:[5,3,4],
+      backgroundColor:['#facc15','#22c55e','#ef4444']
+    }]
+  }
+});
+
+new Chart(userBar,{
+  type:'bar',
+  data:{
+    labels:['Frontend','Backend','AI','Robotics','Design'],
+    datasets:[{
+      label:'Applications',
+      data:[4,3,5,2,3],
+      backgroundColor:'#3b82f6'
+    }]
+  }
+});
+</script>
+
+</body>
+</html>

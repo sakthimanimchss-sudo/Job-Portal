@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<title>SmartHire | Jobs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+
+</head>
+
+<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
+
+<!-- ================= BACKGROUND IMAGE ================= -->
+<div class="fixed inset-0 -z-10">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+       class="w-full h-full object-cover opacity-20 dark:opacity-10">
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
+
+    <div class="flex gap-6 items-center">
+      <a href="index.html">Home</a>
+      <a href="jobs.html" class="text-yellow-400 font-semibold">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+
+      <!-- ADMIN -->
+      <a href="admin.html"
+         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        Admin
+      </a>
+
+      <!-- DARK MODE -->
+      <button onclick="toggleDark()" class="text-xl">🌙</button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================= HEADER ================= -->
+<section class="pt-32 pb-20 text-center">
+<h1 class="text-4xl md:text-5xl font-extrabold">
+Find Your <span class="text-yellow-400">Dream Job</span>
+</h1>
+<p class="mt-4 text-gray-600 dark:text-gray-400">
+Explore top IT, AI, Robotics & Engineering jobs
+</p>
+</section>
+
+<!-- ================= JOB LIST ================= -->
+<section class="pb-20">
+<div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<!-- JOB CARD -->
+<div class="job-card">
+<img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" class="job-img">
+<div class="job-body">
+<h3>Frontend Developer</h3>
+<p>React • Tailwind • UI</p>
+<div class="job-footer">
+<span>₹6–10 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+<div class="job-card">
+<img src="assets/images/pexels-cottonbro-6153354.jpg" class="job-img">
+<div class="job-body">
+<h3>AI Engineer</h3>
+<p>Python • ML • Deep Learning</p>
+<div class="job-footer">
+<span>₹8–15 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+<div class="job-card">
+<img src="assets/images/pexels-pavel-danilyuk-8439082.jpg" class="job-img">
+<div class="job-body">
+<h3>Robotics Engineer</h3>
+<p>ROS • Automation • PLC</p>
+<div class="job-footer">
+<span>₹7–12 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+<div class="job-card">
+<img src="assets/images/pexels-goumbik-574069.jpg" class="job-img">
+<div class="job-body">
+<h3>Backend Developer</h3>
+<p>Node • API • Database</p>
+<div class="job-footer">
+<span>₹6–11 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+<div class="job-card">
+<img src="assets/images/pexels-goumbik-669610.jpg" class="job-img">
+<div class="job-body">
+<h3>Data Scientist</h3>
+<p>Python • Pandas • AI</p>
+<div class="job-footer">
+<span>₹10–18 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+<div class="job-card">
+<img src="assets/images/pexels-jakubzerdzicki-34212988.jpg" class="job-img">
+<div class="job-body">
+<h3>DevOps Engineer</h3>
+<p>AWS • Docker • CI/CD</p>
+<div class="job-footer">
+<span>₹9–14 LPA</span>
+<button class="view-btn">👁 View</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-300 py-10">
+<div class="max-w-7xl mx-auto text-center">
+<p>© 2025 SmartHire. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- ================= STYLES ================= -->
+<style>
+.job-card{
+  background:white;
+  border-radius:1rem;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.4s;
+  animation:fadeUp .8s ease both;
+}
+.dark .job-card{background:#0e0e0e}
+
+.job-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(250,204,21,.25);
+}
+
+.job-img{
+  height:180px;
+  width:100%;
+  object-fit:cover;
+}
+
+.job-body{padding:1.25rem}
+.job-body h3{font-weight:700;font-size:1.1rem}
+.job-body p{font-size:.9rem;opacity:.7;margin:.4rem 0}
+
+.job-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:1rem;
+}
+
+.view-btn{
+  border:1px solid #facc15;
+  padding:.35rem .9rem;
+  border-radius:.5rem;
+  color:#facc15;
+  transition:.3s;
+}
+.view-btn:hover{
+  background:#facc15;
+  color:black;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1}
+}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+function toggleDark(){
+  document.documentElement.classList.toggle('dark')
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<title>SmartHire | Contact Us</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+</head>
+
+<body class="bg-white dark:bg-[#050b18] text-gray-900 dark:text-gray-100 transition">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed w-full bg-white/90 dark:bg-[#050b18]/90 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- LOGO -->
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
+
+    <!-- LINKS -->
+    <div class="flex gap-6 items-center">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html" class="text-yellow-400 font-semibold">Contact</a>
+
+      <!-- ADMIN -->
+      <a href="admin.html"
+         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        Admin
+      </a>
+
+      <!-- DARK MODE -->
+      <button onclick="toggleDark()" class="text-xl">🌙</button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="pt-32">
+<div class="relative h-[420px] bg-[url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980')] bg-cover bg-center">
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-indigo-950/85 to-slate-900/85"></div>
+
+  <div class="relative z-10 h-full flex items-center justify-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white animate-fadeDown">
+      Contact Us
+    </h1>
+  </div>
+</div>
+</section>
+
+<!-- ================= CONTENT ================= -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+
+<!-- LEFT INFO -->
+<div class="animate-slideLeft">
+  <h2 class="text-3xl font-bold mb-6">Let’s Start a Conversation</h2>
+
+  <p class="mb-6 text-gray-600 dark:text-gray-400">
+    Ask how we can help you:
+  </p>
+
+  <ul class="space-y-4 text-sm">
+    <li>✔ See SmartHire in action</li>
+    <li>✔ Request a personalized demo</li>
+    <li>✔ Get career guidance & hiring solutions</li>
+    <li>✔ Learn about AI-powered job matching</li>
+  </ul>
+
+  <div class="mt-10 space-y-4 text-sm">
+    <p><strong>Email:</strong> support@smarthire.com</p>
+    <p><strong>Phone:</strong> +91 98765 43210</p>
+    <p><strong>Location:</strong> Chennai, India</p>
+  </div>
+</div>
+
+<!-- RIGHT FORM -->
+<div class="animate-slideRight">
+  <div class="bg-white dark:bg-[#0b1220] rounded-xl shadow-xl p-8">
+
+    <p class="text-sm mb-6 text-gray-500">
+      Please note: all fields are required.
+    </p>
+
+    <form class="space-y-5">
+
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" placeholder="First Name" class="input">
+        <input type="text" placeholder="Last Name" class="input">
+      </div>
+
+      <input type="email" placeholder="Email Address" class="input">
+      <input type="text" placeholder="Subject" class="input">
+      <textarea rows="4" placeholder="Your Message" class="input"></textarea>
+
+      <button
+        class="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:scale-105 transition">
+        Send Message
+      </button>
+
+    </form>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-[#050b18] text-gray-400 py-10">
+<div class="max-w-7xl mx-auto text-center">
+<p>© 2025 SmartHire. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- ================= STYLES ================= -->
+<style>
+.input{
+  width:100%;
+  padding:.8rem;
+  border-radius:.6rem;
+  border:1px solid #ddd;
+  background:transparent;
+  transition:.3s;
+}
+.dark .input{
+  border-color:#333;
+  color:white;
+}
+.input:focus{
+  outline:none;
+  border-color:#facc15;
+  box-shadow:0 0 0 2px rgba(250,204,21,.3);
+}
+
+/* Animations */
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1}
+}
+@keyframes slideLeft{
+  from{opacity:0;transform:translateX(-50px)}
+  to{opacity:1}
+}
+@keyframes slideRight{
+  from{opacity:0;transform:translateX(50px)}
+  to{opacity:1}
+}
+.animate-fadeDown{animation:fadeDown .9s ease both}
+.animate-slideLeft{animation:slideLeft .9s ease both}
+.animate-slideRight{animation:slideRight .9s ease both}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+function toggleDark(){
+  document.documentElement.classList.toggle('dark')
+}
+</script>
+
+</body>
+</html>

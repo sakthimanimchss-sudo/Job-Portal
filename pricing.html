@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<title>SmartHire | Pricing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+</head>
+
+<body class="bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100 transition">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed w-full bg-white/80 dark:bg-black/80 backdrop-blur z-50 shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- LOGO -->
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
+
+    <!-- LINKS -->
+    <div class="flex gap-6 items-center">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+
+      <!-- ADMIN LINK -->
+      <a href="admin.html"
+         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        Admin
+      </a>
+
+      <!-- DARK MODE -->
+      <button onclick="toggleDark()" class="text-xl">🌙</button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="pt-32 pb-24 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')] bg-cover bg-center">
+<div class="bg-black/75 py-24">
+
+<div class="max-w-4xl mx-auto text-center px-6 animate-fadeUp">
+<h1 class="text-4xl md:text-5xl font-extrabold">
+Choose a plan that’s right for <span class="text-yellow-400">you</span>
+</h1>
+<p class="mt-4 text-gray-300">
+Trusted by professionals and companies worldwide. No hidden fees.
+</p>
+
+<!-- Toggle -->
+<div class="flex justify-center mt-10">
+<div class="bg-gray-800 rounded-full p-1 flex">
+<button onclick="setPlan(false)" class="px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold" id="monthlyBtn">
+Monthly
+</button>
+<button onclick="setPlan(true)" class="px-6 py-2 rounded-full text-white" id="annualBtn">
+Annually <span class="text-xs text-green-400">(Save 20%)</span>
+</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= PRICING CARDS ================= -->
+<section class="pb-24 -mt-24">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+
+<!-- FREE -->
+<div class="price-card">
+<span class="badge">FREE</span>
+<h3>Starter</h3>
+<p class="price">$<span id="p1">0</span>/mo</p>
+<p class="sub">Perfect for beginners</p>
+
+<button class="select-btn">Select</button>
+
+<ul>
+<li>✔ Browse jobs</li>
+<li>✔ Apply to 5 jobs</li>
+<li>✔ Basic support</li>
+</ul>
+</div>
+
+<!-- PRO -->
+<div class="price-card highlight">
+<span class="badge save">SAVE 20%</span>
+<h3>Professional</h3>
+<p class="price">$<span id="p2">12</span>/mo</p>
+<p class="sub">Best for job seekers</p>
+
+<button class="select-btn active">Select</button>
+
+<ul>
+<li>✔ Unlimited job applications</li>
+<li>✔ Resume builder</li>
+<li>✔ Priority listing</li>
+<li>✔ Email alerts</li>
+</ul>
+</div>
+
+<!-- ENTERPRISE -->
+<div class="price-card">
+<span class="badge save">SAVE 20%</span>
+<h3>Enterprise</h3>
+<p class="price">$<span id="p3">24</span>/mo</p>
+<p class="sub">For recruiters & companies</p>
+
+<button class="select-btn">Select</button>
+
+<ul>
+<li>✔ Unlimited job posts</li>
+<li>✔ Candidate analytics</li>
+<li>✔ Admin dashboard</li>
+<li>✔ 24/7 support</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-gray-400 py-10">
+<div class="max-w-7xl mx-auto text-center">
+<p>© 2025 SmartHire. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- ================= STYLES ================= -->
+<style>
+.price-card{
+  background:#ffffff;
+  border-radius:1.2rem;
+  padding:2rem;
+  text-align:center;
+  position:relative;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+  transition:.4s;
+  animation:fadeUp .9s ease both;
+}
+.dark .price-card{background:#0e0e0e}
+
+.price-card:hover{
+  transform:translateY(-12px) scale(1.03);
+  box-shadow:0 30px 60px rgba(250,204,21,.25);
+}
+
+.highlight{border:2px solid #facc15}
+
+.badge{
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  color:white;
+  font-size:.7rem;
+  padding:.3rem .7rem;
+  border-radius:999px;
+}
+.save{background:#16a34a}
+
+.price{font-size:2.5rem;font-weight:800;margin:1rem 0}
+.sub{opacity:.7;margin-bottom:1.2rem}
+
+.select-btn{
+  width:100%;
+  padding:.7rem;
+  border-radius:.6rem;
+  border:1px solid #facc15;
+  color:#facc15;
+  transition:.3s;
+  margin-bottom:1.5rem;
+}
+.select-btn:hover{background:#facc15;color:black}
+.active{background:#facc15;color:black}
+
+.price-card ul{text-align:left;font-size:.9rem;line-height:1.9}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1}
+}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+function toggleDark(){
+  document.documentElement.classList.toggle('dark')
+}
+
+function setPlan(year){
+  document.getElementById("monthlyBtn").classList.toggle("bg-yellow-400", !year)
+  document.getElementById("monthlyBtn").classList.toggle("text-black", !year)
+  document.getElementById("annualBtn").classList.toggle("bg-yellow-400", year)
+  document.getElementById("annualBtn").classList.toggle("text-black", year)
+
+  document.getElementById("p1").innerText = "0"
+  document.getElementById("p2").innerText = year ? "10" : "12"
+  document.getElementById("p3").innerText = year ? "20" : "24"
+}
+</script>
+
+</body>
+</html>

@@ -50,9 +50,9 @@ body{
   opacity:0;
   animation:bgFade 36s infinite;
 
-  /* 🔹 slight background blur */
-  filter: blur(2px);
-  transform: scale(1.05);
+  /* ultra-light blur */
+  filter: blur(0.8px);
+  transform: scale(1.04);
 }
 
 .bg img:nth-child(2){animation-delay:12s}
@@ -216,6 +216,143 @@ section{padding:90px 20px}
   text-align:center;
 }
 .stat h3{color:#facc15;font-size:36px}
+
+  /* ================= ADVANCED LOGIN ================= */
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.login-container{
+  width:800px;
+  max-width:95%;
+  background:var(--card);
+  border-radius:22px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  animation:pop .4s ease;
+}
+
+/* LEFT SIDE */
+.login-image{
+  background:
+    linear-gradient(var(--overlay),var(--overlay)),
+    url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d")
+    center/cover;
+  padding:40px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.login-image h2{
+  font-size:28px;
+  color:#facc15;
+}
+.login-image p{
+  margin-top:10px;
+  opacity:.9;
+  font-size:15px;
+}
+
+/* RIGHT SIDE */
+.login-form{
+  padding:40px;
+}
+.login-form h2{
+  margin-bottom:6px;
+}
+.login-sub{
+  font-size:14px;
+  opacity:.7;
+  margin-bottom:20px;
+}
+
+.login-form input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:var(--bg);
+  color:var(--text);
+  margin-bottom:14px;
+}
+
+/* PASSWORD */
+.password-box{
+  position:relative;
+}
+.password-box i{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  opacity:.7;
+}
+
+/* OPTIONS */
+.login-options{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  opacity:.8;
+  margin-bottom:14px;
+}
+.forgot{cursor:pointer}
+
+/* ERROR */
+.login-error{
+  color:#ff6b6b;
+  font-size:13px;
+  display:none;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+.full{
+  width:100%;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+/* FOOTER */
+.login-footer{
+  text-align:center;
+  font-size:13px;
+  margin-top:16px;
+  opacity:.8;
+}
+.login-footer span{
+  color:#facc15;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .login-container{
+    grid-template-columns:1fr;
+  }
+  .login-image{
+    display:none;
+  }
+}
+
+@keyframes pop{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1;transform:scale(1)}
+}
+
 
 /* ================= FOOTER ================= */
 footer{
@@ -384,6 +521,59 @@ footer h4{color:#facc15}
   </div>
 </section>
 
+<!-- ADVANCED LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+
+  <div class="login-container">
+
+    <!-- LEFT : IMAGE / INFO -->
+    <div class="login-image">
+      <h2>Build Your Career</h2>
+      <p>
+        Discover AI, IT, Robotics & Engineering jobs
+        matched intelligently to your skills.
+      </p>
+    </div>
+
+    <!-- RIGHT : FORM -->
+    <div class="login-form">
+
+      <h2>Welcome Back</h2>
+      <p class="login-sub">Login to continue your journey</p>
+
+      <input type="email" id="loginEmail" placeholder="Email address">
+      
+      <div class="password-box">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
+      </div>
+
+      <div class="login-options">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+        <span class="forgot">Forgot password?</span>
+      </div>
+
+      <p id="loginError" class="login-error">
+        Invalid email or password
+      </p>
+
+      <button class="btn primary full" onclick="validateLogin()">
+        Login
+      </button>
+
+      <p class="login-footer">
+        New user?
+        <span onclick="openSignup()">Create account</span>
+      </p>
+
+    </div>
+  </div>
+
+</div>
+
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -409,9 +599,53 @@ function toggleTheme(){
 if(localStorage.getItem("theme")==="light"){
   document.body.classList.add("light");
 }
+
+  /* OPEN LOGIN */
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+  document.getElementById("loginEmail").focus();
+}
+
+/* CLOSE LOGIN */
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal"){
+    e.target.style.display="none";
+  }
+};
+
+/* PASSWORD TOGGLE */
+function togglePassword(){
+  const p=document.getElementById("loginPassword");
+  p.type = p.type==="password" ? "text" : "password";
+}
+
+/* VALIDATION */
+function validateLogin(){
+  const email=document.getElementById("loginEmail").value;
+  const pass=document.getElementById("loginPassword").value;
+  const err=document.getElementById("loginError");
+
+  if(!email.includes("@") || pass.length<6){
+    err.style.display="block";
+  }else{
+    err.style.display="none";
+    alert("Login successful (demo)");
+    document.getElementById("loginModal").style.display="none";
+  }
+}
+
+/* ENTER KEY SUPPORT */
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && 
+     document.getElementById("loginModal").style.display==="flex"){
+    validateLogin();
+  }
+});
+
 </script>
 
 </body>
 </html>
+
 
 

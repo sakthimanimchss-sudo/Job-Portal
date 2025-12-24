@@ -12,11 +12,32 @@
 /* ================= BASE ================= */
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 html{scroll-behavior:smooth}
-body{background:#000;color:#fff;overflow-x:hidden}
+
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#000;
+  --text:#fff;
+  --card:rgba(0,0,0,.65);
+  --nav:rgba(0,0,0,.85);
+}
+body.light{
+  --bg:#f4f4f4;
+  --text:#111;
+  --card:#ffffff;
+  --nav:#ffffff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  transition:.3s;
+}
 
 /* ================= BACKGROUND SLIDER ================= */
 .bg{position:fixed;inset:0;z-index:-1}
-.bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.75)}
+.bg::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.7)}
+body.light .bg::before{background:rgba(255,255,255,.6)}
 .bg img{
   position:absolute;width:100%;height:100%;
   object-fit:cover;opacity:0;
@@ -34,17 +55,22 @@ body{background:#000;color:#fff;overflow-x:hidden}
 /* ================= NAVBAR ================= */
 .navbar{
   position:fixed;top:0;width:100%;
-  background:rgba(0,0,0,.85);
+  background:var(--nav);
   backdrop-filter:blur(10px);
   padding:14px 20px;
   display:flex;justify-content:space-between;align-items:center;
-  z-index:1000
+  z-index:1000;
+  transition:.3s;
 }
+.navbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.navbar.hide{transform:translateY(-100%)}
+
 .logo{color:#facc15;font-weight:700}
 .nav-links{display:flex;gap:18px;list-style:none}
 .nav-links a,.login-btn{
-  color:white;text-decoration:none;
-  background:none;border:none;cursor:pointer
+  color:var(--text);
+  background:none;border:none;cursor:pointer;
+  text-decoration:none;
 }
 .admin{background:#facc15;color:black;padding:6px 14px;border-radius:10px}
 
@@ -56,16 +82,14 @@ body{background:#000;color:#fff;overflow-x:hidden}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
 .mobile-menu{
-  position:fixed;inset:0;background:black;
+  position:fixed;inset:0;background:var(--bg);
   display:none;flex-direction:column;
   padding-top:110px;gap:28px;
   align-items:center;
   overflow-y:auto;
-  z-index:999
+  z-index:999;
 }
-.mobile-menu a{
-  color:white;font-size:22px;text-decoration:none
-}
+.mobile-menu a{color:var(--text);font-size:22px;text-decoration:none}
 
 /* ================= HERO ================= */
 .hero{min-height:100vh;padding:140px 20px}
@@ -75,46 +99,56 @@ body{background:#000;color:#fff;overflow-x:hidden}
 .btns{margin-top:26px}
 .btn{padding:12px 26px;border-radius:30px;text-decoration:none}
 .primary{background:#facc15;color:black}
-.outline{border:1px solid white;color:white}
+.outline{border:1px solid var(--text);color:var(--text)}
 
-/* ================= SECTION ================= */
+/* ================= SECTIONS ================= */
 section{padding:90px 20px}
 .title{text-align:center;font-size:32px;margin-bottom:40px}
 
 /* ================= FEATURES ================= */
 .features{max-width:1200px;margin:auto;display:grid;gap:24px}
-.feature{background:rgba(0,0,0,.65);border-radius:20px;padding:24px}
+.feature{background:var(--card);border-radius:20px;padding:24px}
 .feature img{width:100%;border-radius:14px;margin-bottom:10px}
 
 /* ================= JOBS ================= */
 .jobs{max-width:1000px;margin:auto;display:grid;gap:24px}
-.job{background:rgba(0,0,0,.65);border-radius:20px;padding:24px}
+.job{background:var(--card);border-radius:20px;padding:24px}
 .job img{width:100%;border-radius:14px;margin-bottom:10px}
 .job span{color:#facc15}
 
-/* ================= IMAGE SCROLL STRIP ================= */
-.scroll-strip{overflow:hidden}
+/* ================= CAREERS SCROLL ================= */
+.scroll-strip{
+  overflow:hidden;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
+}
 .scroll-track{
   display:flex;gap:30px;width:max-content;
   animation:scrollX 40s linear infinite;
   will-change:transform;
 }
-.scroll-track img{
-  width:300px;height:200px;
-  object-fit:cover;border-radius:18px;
-  box-shadow:0 20px 40px rgba(0,0,0,.4)
-}
 @keyframes scrollX{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
+.career-card{
+  width:300px;height:220px;
+  border-radius:18px;overflow:hidden;
+  position:relative;
+}
+.career-card img{
+  width:100%;height:100%;
+  object-fit:cover;filter:brightness(.8)
+}
+.career-info{
+  position:absolute;bottom:0;width:100%;
+  padding:14px;
+  background:linear-gradient(transparent,rgba(0,0,0,.85))
+}
 
 /* ================= FAQ ================= */
 .faq{max-width:900px;margin:auto}
-.faq-item{
-  background:rgba(0,0,0,.65);
-  padding:20px;border-radius:14px;margin-bottom:14px
-}
+.faq-item{background:var(--card);padding:20px;border-radius:14px;margin-bottom:14px}
 .faq-item img{width:100%;border-radius:12px;margin-bottom:10px}
 
 /* ================= FOOTER ================= */
@@ -126,19 +160,26 @@ footer h4{color:#facc15}
   position:fixed;inset:0;
   background:rgba(0,0,0,.7);
   backdrop-filter:blur(6px);
-  display:none;
-  align-items:center;justify-content:center;
-  z-index:2000
+  display:none;align-items:center;justify-content:center;
+  z-index:2000;
 }
 .login-box{
-  background:rgba(15,15,15,.95);
+  background:var(--card);
   width:340px;padding:36px;
-  border-radius:22px;text-align:center
+  border-radius:22px;text-align:center;
+  animation:pop .4s ease;
 }
-.login-sub{opacity:.7;font-size:14px;margin-bottom:20px}
+@keyframes pop{
+  from{opacity:0;transform:scale(.85)}
+  to{opacity:1;transform:scale(1)}
+}
 .login-box input{
   width:100%;padding:12px;margin:10px 0;
   border-radius:10px;border:none;outline:none
+}
+.login-error{
+  color:#ff6b6b;font-size:13px;
+  display:none;margin-top:6px
 }
 
 /* ================= ANIMATIONS ================= */
@@ -167,9 +208,9 @@ footer h4{color:#facc15}
 
 <!-- BACKGROUND -->
 <div class="bg">
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="">
-  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="">
-  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
 </div>
 
 <!-- NAVBAR -->
@@ -182,6 +223,7 @@ footer h4{color:#facc15}
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><button class="login-btn" onclick="openLogin()">Login</button></li>
+    <li><button class="login-btn" id="themeToggle">🌙</button></li>
     <li><a href="admin.html" class="admin">Admin</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu(this)">
@@ -196,20 +238,49 @@ footer h4{color:#facc15}
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a onclick="openLogin()">Login</a>
+  <a onclick="toggleTheme()">Toggle Theme</a>
 </div>
 
-<!-- LOGIN -->
-<div id="loginModal" class="login-modal">
-  <div class="login-box zoom">
-    <h2>Welcome Back</h2>
-    <p class="login-sub">Login to explore your dream career</p>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <a class="btn primary">Login</a>
+<!-- HERO -->
+<div class="hero reveal">
+  <h1>Find Your <span>Dream Job</span></h1>
+  <p>Explore IT, AI, Robotics & Engineering opportunities</p>
+  <div class="btns">
+    <a href="jobs.html" class="btn primary">Browse Jobs</a>
+    <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
 </div>
 
+<!-- CAREERS -->
+<section class="scroll-strip reveal">
+  <h2 class="title">Careers in Action</h2>
+  <div class="scroll-track">
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info"><h4>AI Development</h4><p>Smart systems</p></div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info"><h4>Team Work</h4><p>Modern offices</p></div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><div class="career-info"><h4>Robotics</h4><p>Hands-on labs</p></div></div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<div id="loginModal" class="login-modal">
+  <div class="login-box">
+    <h2>Welcome Back</h2>
+    <p>Login to explore your dream career</p>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <p id="loginError" class="login-error">Invalid email or password</p>
+    <a class="btn primary" id="loginSubmit">Login</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <h4>SmartHire</h4>
+  <p>AI-powered hiring platform</p>
+</footer>
+
 <script>
+/* MENU */
 function toggleMenu(btn){
   const m=document.getElementById("mobileMenu");
   const open=m.style.display==="flex";
@@ -218,15 +289,49 @@ function toggleMenu(btn){
   document.body.style.overflow=open?"auto":"hidden";
 }
 
+/* LOGIN */
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
 }
-
 document.getElementById("loginModal").onclick=e=>{
   if(e.target.id==="loginModal") e.target.style.display="none";
 }
+document.getElementById("loginSubmit").onclick=()=>{
+  const box=document.querySelector(".login-box");
+  const email=box.querySelector('input[type="email"]').value;
+  const pass=box.querySelector('input[type="password"]').value;
+  const err=document.getElementById("loginError");
+  if(!email.includes("@")||pass.length<6){
+    err.style.display="block";
+  }else{
+    err.style.display="none";
+    alert("Login successful (demo)");
+    document.getElementById("loginModal").style.display="none";
+  }
+};
 
-/* SCROLL ANIMATION */
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("theme")==="light"){
+  document.body.classList.add("light");
+}
+
+/* STICKY SCROLL */
+let lastY=window.scrollY;
+const nav=document.querySelector(".navbar");
+window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  if(y>50) nav.classList.add("scrolled");
+  else nav.classList.remove("scrolled");
+  if(y>lastY && y>120) nav.classList.add("hide");
+  else nav.classList.remove("hide");
+  lastY=y;
+});
+
+/* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -235,7 +340,6 @@ const observer=new IntersectionObserver(entries=>{
     }
   });
 },{threshold:.15});
-
 document.querySelectorAll(".reveal,.zoom,.left,.right")
   .forEach(el=>observer.observe(el));
 </script>

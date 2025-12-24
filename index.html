@@ -10,7 +10,7 @@
 <style>
 
 /* ======================================================
-   THEME VARIABLES (FIXED & WORKING)
+   THEME VARIABLES
 ====================================================== */
 :root{
   --bg:#000;
@@ -19,7 +19,6 @@
   --nav:rgba(0,0,0,.85);
   --overlay:rgba(0,0,0,.75);
 }
-
 body.light{
   --bg:#f4f4f4;
   --text:#111;
@@ -44,18 +43,11 @@ body{
    BACKGROUND SLIDER
 ====================================================== */
 .bg{position:fixed;inset:0;z-index:-1}
-.bg::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:var(--overlay);
-}
+.bg::before{content:"";position:absolute;inset:0;background:var(--overlay)}
 .bg img{
-  position:absolute;
-  width:100%;height:100%;
-  object-fit:cover;
-  opacity:0;
-  animation:bgFade 30s infinite;
+  position:absolute;width:100%;height:100%;
+  object-fit:cover;opacity:0;
+  animation:bgFade 30s infinite
 }
 .bg img:nth-child(2){animation-delay:10s}
 .bg img:nth-child(3){animation-delay:20s}
@@ -78,7 +70,7 @@ body{
   z-index:1000;
   transition:.3s;
 }
-.navbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.navbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .navbar.hide{transform:translateY(-100%)}
 
 .logo{color:#facc15;font-weight:700}
@@ -113,7 +105,7 @@ body{
    HERO
 ====================================================== */
 .hero{min-height:100vh;padding:140px 20px}
-.hero h1{font-size:40px}
+.hero h1{font-size:42px}
 .hero span{background:#facc15;color:black;padding:6px 18px;border-radius:30px}
 .hero p{margin-top:14px;max-width:520px;opacity:.9}
 .btns{margin-top:26px}
@@ -128,7 +120,21 @@ section{padding:90px 20px}
 .title{text-align:center;font-size:32px;margin-bottom:40px}
 
 /* ======================================================
-   FEATURES (MORE INFO ADDED)
+   JOB SEARCH
+====================================================== */
+.job-search{
+  max-width:900px;margin:auto;
+  display:grid;gap:14px;
+}
+.job-search input,.job-search select{
+  padding:14px;border-radius:12px;
+  border:none;outline:none;
+  background:var(--card);
+  color:var(--text);
+}
+
+/* ======================================================
+   FEATURES
 ====================================================== */
 .features{
   max-width:1200px;margin:auto;
@@ -140,10 +146,10 @@ section{padding:90px 20px}
   padding:24px;
 }
 .feature img{width:100%;border-radius:14px;margin-bottom:10px}
-.feature p{opacity:.8;font-size:14px}
+.feature p{opacity:.85;font-size:14px}
 
 /* ======================================================
-   JOBS (MORE INFO)
+   JOBS
 ====================================================== */
 .jobs{max-width:1000px;margin:auto;display:grid;gap:24px}
 .job{
@@ -153,10 +159,22 @@ section{padding:90px 20px}
 }
 .job img{width:100%;border-radius:14px;margin-bottom:10px}
 .job span{color:#facc15}
-.job p{opacity:.8;font-size:14px}
 
 /* ======================================================
-   CAREERS IN ACTION (MORE IMAGES + INFO)
+   HOW IT WORKS
+====================================================== */
+.steps{
+  max-width:1000px;margin:auto;
+  display:grid;gap:24px;
+}
+.step{
+  background:var(--card);
+  padding:26px;border-radius:18px;
+}
+.step i{color:#facc15;font-size:28px;margin-bottom:10px}
+
+/* ======================================================
+   CAREERS SCROLL
 ====================================================== */
 .scroll-strip{
   overflow:hidden;
@@ -188,32 +206,28 @@ section{padding:90px 20px}
   padding:14px;
   background:linear-gradient(transparent,rgba(0,0,0,.9));
 }
-.career-info p{font-size:13px;opacity:.85}
+
+/* Mobile swipe */
+@media(max-width:768px){
+  .scroll-track{overflow-x:auto;animation:none;scroll-snap-type:x mandatory}
+  .career-card{scroll-snap-align:center}
+}
 
 /* ======================================================
-   FAQ
+   TESTIMONIALS
 ====================================================== */
-.faq{max-width:900px;margin:auto}
-.faq-item{
+.testimonials{
+  max-width:1000px;margin:auto;
+  display:grid;gap:24px;
+}
+.testimonial{
   background:var(--card);
-  padding:20px;border-radius:14px;margin-bottom:14px
+  padding:26px;border-radius:18px;
+  font-size:14px;opacity:.9;
 }
 
 /* ======================================================
-   FOOTER (MORE INFO)
-====================================================== */
-footer{
-  background:#000;
-  padding:80px 20px;
-}
-.footer-grid{
-  max-width:1200px;margin:auto;
-  display:grid;gap:30px;
-}
-footer h4{color:#facc15}
-
-/* ======================================================
-   LOGIN
+   LOGIN / SIGNUP
 ====================================================== */
 .login-modal{
   position:fixed;inset:0;
@@ -230,10 +244,23 @@ footer h4{color:#facc15}
   text-align:center;
 }
 .login-box input{
-  width:100%;padding:12px;
-  margin:10px 0;border-radius:10px;border:none;
+  width:100%;padding:12px;margin:10px 0;
+  border-radius:10px;border:none;
 }
 .login-error{color:#ff6b6b;font-size:13px;display:none}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+footer{
+  background:#000;
+  padding:80px 20px;
+}
+.footer-grid{
+  max-width:1200px;margin:auto;
+  display:grid;gap:30px;
+}
+footer h4{color:#facc15}
 
 /* ======================================================
    RESPONSIVE
@@ -262,7 +289,7 @@ footer h4{color:#facc15}
 <nav class="navbar">
   <div class="logo">SmartHire</div>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="#">Home</a></li>
     <li><a href="jobs.html">Jobs</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
@@ -278,7 +305,7 @@ footer h4{color:#facc15}
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
-  <a href="index.html">Home</a>
+  <a href="#">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
@@ -297,25 +324,31 @@ footer h4{color:#facc15}
   </div>
 </div>
 
-<!-- WHY CHOOSE -->
+<!-- JOB SEARCH -->
 <section>
-  <h2 class="title">Why Choose SmartHire</h2>
-  <div class="features">
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-      <p>Smart algorithms match candidates with the right jobs.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-      <p>Apply once and reach multiple verified employers.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-      <p>Only trusted companies post jobs on SmartHire.</p>
-    </div>
+  <h2 class="title">Search Jobs</h2>
+  <div class="job-search">
+    <input type="text" id="searchInput" placeholder="Search by role (AI, Frontend)">
+    <select id="locationFilter">
+      <option value="">All Locations</option>
+      <option value="india">India</option>
+      <option value="remote">Remote</option>
+    </select>
+    <select id="typeFilter">
+      <option value="">All Types</option>
+      <option value="fulltime">Full Time</option>
+      <option value="intern">Internship</option>
+    </select>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <h2 class="title">How It Works</h2>
+  <div class="steps">
+    <div class="step"><i class="fa-solid fa-user"></i><h3>Create Profile</h3><p>Sign up and build your profile.</p></div>
+    <div class="step"><i class="fa-solid fa-magnifying-glass"></i><h3>Search Jobs</h3><p>Find jobs that match your skills.</p></div>
+    <div class="step"><i class="fa-solid fa-briefcase"></i><h3>Apply & Get Hired</h3><p>Apply and get hired faster.</p></div>
   </div>
 </section>
 
@@ -323,22 +356,19 @@ footer h4{color:#facc15}
 <section class="scroll-strip">
   <h2 class="title">Careers in Action</h2>
   <div class="scroll-track">
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info"><h4>AI Development</h4><p>Smart systems</p></div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info"><h4>Team Collaboration</h4><p>Modern offices</p></div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <div class="career-info"><h4>Robotics</h4><p>Hands-on labs</p></div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <div class="career-info"><h4>Electronics</h4><p>Hardware design</p></div>
-    </div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info"><h4>AI Development</h4><p>Smart systems</p></div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info"><h4>Team Work</h4><p>Modern offices</p></div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><div class="career-info"><h4>Robotics</h4><p>Hands-on labs</p></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <h2 class="title">What Users Say</h2>
+  <div class="testimonials">
+    <div class="testimonial">“SmartHire helped me land my first AI job!”</div>
+    <div class="testimonial">“Easy to use and very professional.”</div>
+    <div class="testimonial">“Best job portal for engineers.”</div>
   </div>
 </section>
 
@@ -350,6 +380,18 @@ footer h4{color:#facc15}
     <input type="password" placeholder="Password">
     <p id="loginError" class="login-error">Invalid email or password</p>
     <a class="btn primary" onclick="validateLogin()">Login</a>
+    <p class="login-footer">New user? <span onclick="openSignup()">Create account</span></p>
+  </div>
+</div>
+
+<!-- SIGNUP -->
+<div id="signupModal" class="login-modal">
+  <div class="login-box">
+    <h2>Create Account</h2>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <a class="btn primary" onclick="signup()">Sign Up</a>
   </div>
 </div>
 
@@ -366,6 +408,7 @@ footer h4{color:#facc15}
 </footer>
 
 <script>
+
 /* MENU */
 function toggleMenu(btn){
   const m=document.getElementById("mobileMenu");
@@ -375,12 +418,15 @@ function toggleMenu(btn){
   document.body.style.overflow=open?"auto":"hidden";
 }
 
-/* LOGIN */
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
+/* LOGIN / SIGNUP */
+function openLogin(){document.getElementById("loginModal").style.display="flex";}
+function openSignup(){
+  document.getElementById("loginModal").style.display="none";
+  document.getElementById("signupModal").style.display="flex";
 }
-document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal") e.target.style.display="none";
+function signup(){
+  alert("Signup successful (demo)");
+  document.getElementById("signupModal").style.display="none";
 }
 function validateLogin(){
   const email=document.querySelector('#loginModal input[type="email"]').value;
@@ -395,7 +441,7 @@ function validateLogin(){
   }
 }
 
-/* THEME (FIXED) */
+/* THEME */
 function toggleTheme(){
   document.body.classList.toggle("light");
   localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
@@ -403,6 +449,41 @@ function toggleTheme(){
 if(localStorage.getItem("theme")==="light"){
   document.body.classList.add("light");
 }
+
+/* JOB SEARCH */
+const searchInput=document.getElementById("searchInput");
+const locationFilter=document.getElementById("locationFilter");
+const typeFilter=document.getElementById("typeFilter");
+const jobs=document.querySelectorAll(".job");
+
+function filterJobs(){
+  const s=searchInput.value.toLowerCase();
+  const l=locationFilter.value;
+  const t=typeFilter.value;
+  jobs.forEach(job=>{
+    const text=job.innerText.toLowerCase();
+    job.style.display=
+      text.includes(s) &&
+      (l===""||text.includes(l)) &&
+      (t===""||text.includes(t))
+      ? "block":"none";
+  });
+}
+searchInput?.addEventListener("input",filterJobs);
+locationFilter?.addEventListener("change",filterJobs);
+typeFilter?.addEventListener("change",filterJobs);
+
+/* STICKY NAV */
+let lastY=window.scrollY;
+const nav=document.querySelector(".navbar");
+window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  if(y>50) nav.classList.add("scrolled");
+  else nav.classList.remove("scrolled");
+  if(y>lastY && y>120) nav.classList.add("hide");
+  else nav.classList.remove("hide");
+  lastY=y;
+});
 </script>
 
 </body>

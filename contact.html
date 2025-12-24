@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<title>SmartHire | Contact Us</title>
+<title>SmartHire | Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -11,71 +11,100 @@ tailwind.config = { darkMode: 'class' }
 </script>
 </head>
 
-<body class="bg-white dark:bg-[#050b18] text-gray-900 dark:text-gray-100 transition">
+<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
+
+<!-- ================= BACKGROUND ================= -->
+<div class="fixed inset-0 -z-10">
+  <img
+    src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980"
+    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
+    alt=""
+  />
+  <div class="absolute inset-0 bg-black/40"></div>
+</div>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed w-full bg-white/90 dark:bg-[#050b18]/90 backdrop-blur z-50 shadow">
+<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- LOGO -->
     <a href="index.html" class="text-2xl font-bold text-yellow-400">
       SmartHire
     </a>
 
-    <!-- LINKS -->
-    <div class="flex gap-6 items-center">
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html" class="text-yellow-400 font-semibold">Contact</a>
 
-      <!-- ADMIN -->
       <a href="admin.html"
-         class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
         Admin
       </a>
 
-      <!-- DARK MODE -->
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
+
+    <!-- MOBILE BUTTON -->
+    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
+      <span class="hamburger"></span>
+    </button>
 
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
-<section class="pt-32">
-<div class="relative h-[420px] bg-[url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980')] bg-cover bg-center">
-  <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-indigo-950/85 to-slate-900/85"></div>
+<!-- ================= MOBILE MENU ================= -->
+<div id="mobileMenu"
+  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
 
-  <div class="relative z-10 h-full flex items-center justify-center">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white animate-fadeDown">
-      Contact Us
-    </h1>
-  </div>
+  <a href="index.html" class="block py-4 text-xl">Home</a>
+  <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
+  <a href="pricing.html" class="block py-4 text-xl">Pricing</a>
+  <a href="faq.html" class="block py-4 text-xl">FAQ</a>
+  <a href="contact.html" class="block py-4 text-xl text-yellow-400">Contact</a>
+
+  <a href="admin.html"
+    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
+    Admin
+  </a>
+
+  <button onclick="toggleDark()" class="mt-6 text-2xl">
+    🌙
+  </button>
 </div>
+
+<!-- ================= HERO ================= -->
+<section class="pt-32 pb-20 text-center">
+  <h1 class="text-4xl md:text-5xl font-extrabold">
+    Contact <span class="text-yellow-400">Us</span>
+  </h1>
+  <p class="mt-4 text-gray-200 md:text-gray-600">
+    We’d love to hear from you
+  </p>
 </section>
 
 <!-- ================= CONTENT ================= -->
-<section class="py-20">
-<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+<section class="pb-24">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14">
 
-<!-- LEFT INFO -->
-<div class="animate-slideLeft">
-  <h2 class="text-3xl font-bold mb-6">Let’s Start a Conversation</h2>
+<!-- LEFT -->
+<div class="space-y-6">
+  <h2 class="text-3xl font-bold">Let’s Start a Conversation</h2>
 
-  <p class="mb-6 text-gray-600 dark:text-gray-400">
-    Ask how we can help you:
+  <p class="text-gray-300 md:text-gray-600">
+    Reach out to us for support, demos, or hiring solutions.
   </p>
 
-  <ul class="space-y-4 text-sm">
-    <li>✔ See SmartHire in action</li>
-    <li>✔ Request a personalized demo</li>
-    <li>✔ Get career guidance & hiring solutions</li>
-    <li>✔ Learn about AI-powered job matching</li>
+  <ul class="space-y-3 text-sm">
+    <li>✔ Personalized demo</li>
+    <li>✔ Career guidance</li>
+    <li>✔ Recruiter solutions</li>
+    <li>✔ Technical support</li>
   </ul>
 
-  <div class="mt-10 space-y-4 text-sm">
+  <div class="pt-6 text-sm space-y-2">
     <p><strong>Email:</strong> support@smarthire.com</p>
     <p><strong>Phone:</strong> +91 98765 43210</p>
     <p><strong>Location:</strong> Chennai, India</p>
@@ -83,85 +112,89 @@ tailwind.config = { darkMode: 'class' }
 </div>
 
 <!-- RIGHT FORM -->
-<div class="animate-slideRight">
-  <div class="bg-white dark:bg-[#0b1220] rounded-xl shadow-xl p-8">
+<div class="bg-white dark:bg-[#0e0e0e] rounded-xl shadow-xl p-8">
+  <form class="space-y-5">
 
-    <p class="text-sm mb-6 text-gray-500">
-      Please note: all fields are required.
-    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <input type="text" placeholder="First Name" class="input">
+      <input type="text" placeholder="Last Name" class="input">
+    </div>
 
-    <form class="space-y-5">
+    <input type="email" placeholder="Email Address" class="input">
+    <input type="text" placeholder="Subject" class="input">
+    <textarea rows="4" placeholder="Your Message" class="input"></textarea>
 
-      <div class="grid grid-cols-2 gap-4">
-        <input type="text" placeholder="First Name" class="input">
-        <input type="text" placeholder="Last Name" class="input">
-      </div>
+    <button
+      class="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:scale-105 transition">
+      Send Message
+    </button>
 
-      <input type="email" placeholder="Email Address" class="input">
-      <input type="text" placeholder="Subject" class="input">
-      <textarea rows="4" placeholder="Your Message" class="input"></textarea>
-
-      <button
-        class="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:scale-105 transition">
-        Send Message
-      </button>
-
-    </form>
-  </div>
+  </form>
 </div>
 
 </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-[#050b18] text-gray-400 py-10">
-<div class="max-w-7xl mx-auto text-center">
-<p>© 2025 SmartHire. All rights reserved.</p>
-</div>
+<footer class="bg-black text-gray-400 py-10 text-center">
+  © 2025 SmartHire. All rights reserved.
 </footer>
 
 <!-- ================= STYLES ================= -->
 <style>
+body { padding-top: 88px; }
+
+/* Inputs */
 .input{
   width:100%;
   padding:.8rem;
   border-radius:.6rem;
   border:1px solid #ddd;
   background:transparent;
-  transition:.3s;
 }
-.dark .input{
-  border-color:#333;
-  color:white;
-}
+.dark .input{border-color:#333;color:white}
 .input:focus{
   outline:none;
   border-color:#facc15;
   box-shadow:0 0 0 2px rgba(250,204,21,.3);
 }
 
-/* Animations */
-@keyframes fadeDown{
-  from{opacity:0;transform:translateY(-30px)}
-  to{opacity:1}
+/* Hamburger */
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  width:26px;
+  height:3px;
+  background:#facc15;
+  border-radius:10px;
+  transition:.35s;
 }
-@keyframes slideLeft{
-  from{opacity:0;transform:translateX(-50px)}
-  to{opacity:1}
+.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
+.hamburger::before{transform:translateY(-8px)}
+.hamburger::after{transform:translateY(8px)}
+.menu-open .hamburger{background:transparent}
+.menu-open .hamburger::before{transform:rotate(45deg)}
+.menu-open .hamburger::after{transform:rotate(-45deg)}
+
+/* Background animation */
+@keyframes bgMove{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
 }
-@keyframes slideRight{
-  from{opacity:0;transform:translateX(50px)}
-  to{opacity:1}
-}
-.animate-fadeDown{animation:fadeDown .9s ease both}
-.animate-slideLeft{animation:slideLeft .9s ease both}
-.animate-slideRight{animation:slideRight .9s ease both}
+.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
 </style>
 
 <!-- ================= JS ================= -->
 <script>
 function toggleDark(){
-  document.documentElement.classList.toggle('dark')
+  document.documentElement.classList.toggle("dark");
+}
+
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.body.classList.toggle("menu-open");
 }
 </script>
 

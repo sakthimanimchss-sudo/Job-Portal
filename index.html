@@ -1,175 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SmartHire | Job Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>SmartHire | AI Job Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Tailwind (optional utilities) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= BACKGROUND SLIDER ================= -->
-<div class="bg-container">
-  <div class="bg-slide bg1"></div>
-  <div class="bg-slide bg2"></div>
-  <div class="bg-slide bg3"></div>
-</div>
-
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <h1 class="logo">SmartHire</h1>
-
-    <ul class="nav-links">
-      <li><a href="#jobs">Jobs</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">⚡ SmartHire</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
-  <a href="#jobs" onclick="toggleMenu()">Jobs</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
+  <a href="#home">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="#departments">Departments</a>
+  <a href="#trending">Trending</a>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="hero reveal">
-  <h2 class="hero-title">
-    The Best Jobsite <br>
-    For Your <span>Future</span>
-  </h2>
+<!-- HERO -->
+<section id="home" class="hero reveal">
+  <h1>
+    Discover Your <span>Future Career</span>
+  </h1>
+  <p>AI-powered job matching in IT, AI, Robotics & Engineering</p>
 
-  <p class="hero-sub">
-    Build your career in IT, AI, Robotics & Engineering
-  </p>
-
-  <div class="hero-actions">
-    <a href="#jobs" class="primary-btn">Get Started</a>
-    <a href="jobs.html" class="secondary-btn">Explore</a>
+  <div class="hero-btns">
+    <a href="jobs.html" class="btn primary">Browse Jobs</a>
+    <a href="#departments" class="btn outline">Explore</a>
   </div>
 </section>
 
-<!-- ================= JOBS ================= -->
-<section id="jobs" class="section reveal">
-  <h3 class="section-title">Featured Jobs</h3>
+<!-- DEPARTMENTS -->
+<section id="departments" class="section reveal">
+  <h2>Browse Departments</h2>
 
-  <div class="cards">
-    <div class="job-card">Frontend Developer – ₹6–10 LPA</div>
-    <div class="job-card">AI Engineer – ₹10–18 LPA</div>
-    <div class="job-card">Robotics Engineer – ₹8–14 LPA</div>
+  <div class="card-grid">
+    <div class="card glow">
+      <h3>Tech & AI</h3>
+      <p>Software, AI, ML, Data</p>
+      <a href="jobs.html">Discover →</a>
+    </div>
+
+    <div class="card glow">
+      <h3>Robotics</h3>
+      <p>Automation & Embedded</p>
+      <a href="jobs.html">View Jobs →</a>
+    </div>
+
+    <div class="card glow">
+      <h3>Engineering</h3>
+      <p>Core & Industrial Roles</p>
+      <a href="jobs.html">Browse →</a>
+    </div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer reveal">
-  © 2025 SmartHire · AI Driven Job Platform
+<!-- FIXED IMAGE SECTION (LIKE 8TH IMAGE) -->
+<section class="fixed-section">
+  <div class="fixed-content reveal">
+    <h2>AI Driven Hiring</h2>
+    <p>Smart matching. Faster hiring. Better careers.</p>
+    <a href="jobs.html" class="btn primary">Apply Now</a>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section id="trending" class="section reveal">
+  <h2>Trending Jobs</h2>
+
+  <div class="job-list">
+    <div class="job-card">
+      <h4>AI Engineer</h4>
+      <span>₹12–20 LPA</span>
+      <a href="jobs.html">Apply</a>
+    </div>
+
+    <div class="job-card">
+      <h4>Frontend Developer</h4>
+      <span>₹6–10 LPA</span>
+      <a href="jobs.html">Apply</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  © 2025 SmartHire • AI Job Platform
 </footer>
 <style>
-  /* RESET */
-* {
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Inter, system-ui;
+  font-family: system-ui;
 }
 
-/* ================= BACKGROUND SLIDER ================= */
-.bg-container {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
+body {
+  background: radial-gradient(circle at top, #ff9800, #0b0b0b 60%);
+  color: white;
 }
 
-.bg-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  animation: bgFade 18s infinite;
-}
-
-.bg1 {
-  background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d");
-}
-.bg2 {
-  background-image: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4");
-  animation-delay: 6s;
-}
-.bg3 {
-  background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
-  animation-delay: 12s;
-}
-
-@keyframes bgFade {
-  0% { opacity: 0; }
-  15% { opacity: 0.35; }
-  35% { opacity: 0.35; transform: scale(1.05); }
-  50% { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar {
   position: fixed;
-  width: 100%;
   top: 0;
-  background: rgba(0,0,0,.6);
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(0,0,0,0.7);
   backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
   z-index: 100;
 }
 
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .logo {
-  color: #facc15;
-  font-size: 22px;
+  color: #ffcc00;
   font-weight: 700;
 }
 
-.nav-links {
-  display: flex;
-  gap: 24px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-}
-
-/* HAMBURGER */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background: #facc15;
+.menu-btn {
+  font-size: 22px;
+  cursor: pointer;
 }
 
 /* MOBILE MENU */
@@ -182,7 +140,6 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  z-index: 90;
 }
 
 .mobile-menu a {
@@ -190,136 +147,141 @@
   font-size: 22px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
+  padding: 120px 20px 40px;
   text-align: center;
-  padding: 20px;
 }
 
-.hero-title {
-  font-size: 42px;
-  animation: textUp 1.4s ease;
+.hero h1 {
+  font-size: 38px;
+  animation: pop 1.2s ease;
 }
 
-.hero-title span {
-  background: #facc15;
-  color: black;
+.hero span {
+  background: linear-gradient(90deg,#ff9800,#ffd54f);
   padding: 6px 18px;
   border-radius: 30px;
-}
-
-.hero-sub {
-  margin-top: 16px;
-  opacity: 0.85;
-}
-
-/* BUTTONS */
-.primary-btn,
-.secondary-btn {
-  margin-top: 30px;
-  padding: 12px 26px;
-  border-radius: 30px;
-}
-
-.primary-btn {
-  background: #facc15;
   color: black;
 }
 
-.secondary-btn {
-  border: 1px solid white;
-  color: white;
+.hero p {
+  margin-top: 16px;
+  opacity: 0.9;
 }
 
-/* ================= SECTIONS ================= */
+.hero-btns {
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 12px 26px;
+  border-radius: 30px;
+  margin: 6px;
+  display: inline-block;
+}
+
+.primary {
+  background: linear-gradient(90deg,#ff5722,#ff9800);
+  color: black;
+}
+
+.outline {
+  border: 1px solid white;
+}
+
+/* SECTIONS */
 .section {
-  background: rgba(255,255,255,.9);
   padding: 80px 20px;
   text-align: center;
 }
 
-.section-title {
-  font-size: 30px;
-  margin-bottom: 30px;
-}
-
-.cards {
+/* CARDS */
+.card-grid {
   display: grid;
   gap: 20px;
-  max-width: 900px;
-  margin: auto;
+  margin-top: 40px;
 }
 
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 18px;
+}
+
+.glow {
+  box-shadow: 0 0 30px rgba(255,153,0,0.25);
+}
+
+/* FIXED SECTION */
+.fixed-section {
+  height: 80vh;
+  background: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d") center/cover fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fixed-content {
+  background: rgba(0,0,0,0.7);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+/* JOB LIST */
 .job-card {
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
-  transition: .4s;
-}
-
-.job-card:hover {
-  transform: translateY(-8px);
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 14px;
+  margin: 14px auto;
+  max-width: 420px;
 }
 
 /* FOOTER */
 .footer {
-  background: black;
-  color: #aaa;
-  text-align: center;
   padding: 40px;
+  text-align: center;
+  opacity: 0.6;
 }
 
-/* SCROLL REVEAL */
+/* ANIMATIONS */
+@keyframes pop {
+  from {opacity:0; transform:translateY(40px)}
+  to {opacity:1}
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: 1.2s;
+  transition: 1.1s;
 }
 .reveal.show {
   opacity: 1;
   transform: none;
 }
 
-/* ANIMATIONS */
-@keyframes textUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero-title { font-size: 30px; }
-}
-
 </style>
-
-<!-- JS -->
 <script>
-      function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  function toggleMenu() {
+  const m = document.getElementById("mobileMenu");
+  m.style.display = m.style.display === "flex" ? "none" : "flex";
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL REVEAL */
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("show");
     }
   });
 }, { threshold: 0.2 });
 
 document.querySelectorAll(".reveal")
   .forEach(el => observer.observe(el));
+
 </script>
 </body>
 </html>
+
+

@@ -24,13 +24,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </style>
 </head>
 
-<body class="bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-fixed min-h-screen">
+<body class="bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-fixed min-h-screen overflow-x-hidden">
+
+<!-- ================= MOBILE OVERLAY ================= -->
+<div id="overlay" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden" onclick="toggleSidebar()"></div>
 
 <!-- ================= WRAPPER ================= -->
-<div class="max-w-[1400px] mx-auto my-10 bg-white/95 rounded-2xl shadow-xl flex overflow-hidden">
+<div class="max-w-[1400px] mx-auto my-10 bg-white/95 rounded-2xl shadow-xl flex overflow-hidden relative">
 
 <!-- ================= SIDEBAR ================= -->
-<aside class="w-64 bg-[var(--dark-blue)] text-white p-6 space-y-6">
+<aside id="sidebar"
+class="w-64 bg-[var(--dark-blue)] text-white p-6 space-y-6
+fixed md:static top-0 left-0 h-full z-50
+-translate-x-full md:translate-x-0 transition-transform duration-300">
+
   <h1 class="text-2xl font-bold flex items-center gap-2 text-yellow-400">
     <i class="fa-solid fa-bolt"></i> SmartHire
   </h1>
@@ -49,11 +56,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </aside>
 
 <!-- ================= CONTENT ================= -->
-<div class="flex-1 p-8">
+<div class="flex-1 p-8 ml-0 md:ml-0">
 
 <!-- ================= TOP BAR ================= -->
 <div class="flex justify-between items-center mb-8">
-  <nav class="flex gap-6 font-medium text-slate-700">
+
+  <!-- MOBILE ☰ -->
+  <button onclick="toggleSidebar()" class="md:hidden text-2xl">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <nav class="hidden md:flex gap-6 font-medium text-slate-700">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
     <a href="contact.html">Contact</a>
@@ -63,12 +76,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
   <div class="flex items-center gap-5">
     <input placeholder="Search here..."
-           class="border rounded-full px-4 py-1 text-sm"/>
+           class="border rounded-full px-4 py-1 text-sm hidden md:block"/>
     <i class="fa-regular fa-bell"></i>
     <div class="flex items-center gap-2">
       <img src="https://randomuser.me/api/portraits/men/32.jpg"
            class="w-8 h-8 rounded-full">
-      <div class="text-sm">
+      <div class="text-sm hidden md:block">
         <b>John Doe</b><br>
         <span class="text-gray-400 text-xs">Admin</span>
       </div>
@@ -92,7 +105,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   </div>
 </div>
 
-<!-- ================= TOP LPA JOBS (ADDED) ================= -->
+<!-- ================= TOP LPA JOBS ================= -->
 <h2 class="font-bold text-lg mb-3">Top LPA Jobs</h2>
 
 <div class="grid md:grid-cols-4 gap-4 mb-8">
@@ -103,8 +116,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </div>
 
 <!-- ================= USER TABLE ================= -->
-<div class="bg-white rounded-xl p-4 mb-8 shadow">
-<table class="w-full text-sm">
+<div class="bg-white rounded-xl p-4 mb-8 shadow overflow-x-auto">
+<table class="w-full text-sm min-w-[600px]">
 <thead>
 <tr class="border-b">
   <th class="text-left">Name</th>
@@ -120,33 +133,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-8 h-8 rounded-full">
     John Doe
   </td>
-  <td class="text-center align-middle">Software Engineer</td>
-
-<td class="text-center align-middle">
-  <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full inline-block">
-    Active
-  </span>
-</td>
-
-<td class="text-center align-middle">Owner</td>
-
-  <td class="text-yellow-500 font-semibold">Edit</td>
-</tr>
-<tr>
-  <td class="flex items-center gap-2 py-2">
-    <img src="https://randomuser.me/api/portraits/men/46.jpg" class="w-8 h-8 rounded-full">
-    Oscar Rhys
+  <td class="text-center">Software Engineer</td>
+  <td class="text-center">
+    <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">Active</span>
   </td>
-  <td class="text-center align-middle">Software Engineer</td>
-
-<td class="text-center align-middle">
-  <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full inline-block">
-    Active
-  </span>
-</td>
-
-<td class="text-center align-middle">Owner</td>
-
+  <td class="text-center">Owner</td>
   <td class="text-yellow-500 font-semibold">Edit</td>
 </tr>
 </tbody>
@@ -155,26 +146,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <!-- ================= CHARTS ================= -->
 <div class="grid md:grid-cols-3 gap-6">
-
 <div class="card md:col-span-2">
   <h3>Project Created</h3>
   <canvas id="barChart"></canvas>
 </div>
-
 <div class="card">
   <h3>Monthly Target</h3>
   <canvas id="donutChart"></canvas>
 </div>
-
 </div>
 
 <div class="grid md:grid-cols-3 gap-6 mt-6">
-
 <div class="card md:col-span-2">
   <h3>New Clients</h3>
   <canvas id="lineChart"></canvas>
 </div>
-
 </div>
 
 </div>
@@ -190,22 +176,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   border-radius:8px;
 }
 .menu:hover{background:rgba(255,255,255,.15)}
-
-.stat{
-  padding:20px;
-  border-radius:14px;
-  font-weight:bold;
-}
+.stat{padding:20px;border-radius:14px;font-weight:bold}
 .stat h3{font-size:26px}
 .stat p{font-size:13px}
-
-.card{
-  background:#fff;
-  padding:16px;
-  border-radius:14px;
-  height:220px;
-}
-
+.card{background:#fff;padding:16px;border-radius:14px;height:220px}
 .lpa-card{
   background:#0f172a;
   color:#facc15;
@@ -214,52 +188,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   text-align:center;
   font-weight:700;
 }
-.lpa-card span{
-  color:white;
-  font-weight:500;
-}
+.lpa-card span{color:white;font-weight:500}
 </style>
 
-<!-- ================= CHARTS ================= -->
+<!-- ================= JS ================= -->
 <script>
-new Chart(barChart,{
-  type:'bar',
-  data:{
-    labels:['06','07','08','09','10','11','12'],
-    datasets:[{
-      data:[4,6,8,5,7,6,9],
-      backgroundColor:'#facc15',
-      barThickness:18,
-      borderRadius:6
-    }]
-  },
-  options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}
-});
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("-translate-x-full");
+  document.getElementById("overlay").classList.toggle("hidden");
+}
+</script>
 
-new Chart(donutChart,{
-  type:'doughnut',
-  data:{
-    datasets:[{
-      data:[60,40],
-      backgroundColor:['#facc15','#e5e7eb']
-    }]
-  },
-  options:{cutout:'75%',maintainAspectRatio:false}
-});
-
-new Chart(lineChart,{
-  type:'line',
-  data:{
-    labels:['Jan','Feb','Mar','Apr','May'],
-    datasets:[{
-      data:[10,15,12,18,16],
-      borderColor:'#facc15',
-      tension:.4,
-      pointRadius:3
-    }]
-  },
-  options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}
-});
+<script>
+new Chart(barChart,{type:'bar',data:{labels:['06','07','08','09','10','11','12'],datasets:[{data:[4,6,8,5,7,6,9],backgroundColor:'#facc15',barThickness:18,borderRadius:6}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+new Chart(donutChart,{type:'doughnut',data:{datasets:[{data:[60,40],backgroundColor:['#facc15','#e5e7eb']}]},options:{cutout:'75%',maintainAspectRatio:false}});
+new Chart(lineChart,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May'],datasets:[{data:[10,15,12,18,16],borderColor:'#facc15',tension:.4,pointRadius:3}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}}}});
 </script>
 
 </body>

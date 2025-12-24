@@ -293,7 +293,7 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
   <a href="faq.html">FAQ</a>
   <a href="admin.html">Admin</a>
   <a onclick="openLogin()">Login</a>
-  <a onclick="toggleTheme()">🌗 Theme</a>
+  <a onclick="toggleTheme()"> Theme</a>
 </div>
 
 
@@ -316,6 +316,23 @@ footer a{color:#ccc;text-decoration:none;display:block;margin:6px 0}
     <div class="card"><i class="fa-solid fa-industry"></i><h3>Engineering</h3></div>
   </div>
 </section>
+
+  <section class="reveal">
+  <h2>More Content</h2>
+  <p>Add long descriptions, lists, cards here.</p>
+</section>
+
+  
+  <!--login-->
+  <div id="loginModal" class="login-modal">
+  <div class="login-box">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="closeLogin()">Login</button>
+  </div>
+</div>
+
 
 <!-- FIXED -->
 <div class="fixed">
@@ -373,6 +390,7 @@ function toggleTheme(){
 
 </body>
 </html>
+
 
 
 

@@ -22,26 +22,53 @@ tailwind.config = { darkMode: 'class' }
       SmartHire
     </a>
 
-    <!-- LINKS -->
-    <div class="flex gap-6 items-center">
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex gap-6 items-center">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
 
-      <!-- ADMIN LINK -->
       <a href="admin.html"
          class="px-3 py-1 rounded-md border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
         Admin
       </a>
 
-      <!-- DARK MODE -->
       <button onclick="toggleDark()" class="text-xl">🌙</button>
     </div>
 
+    <!-- MOBILE ☰ -->
+    <button onclick="toggleMenu()" class="md:hidden text-3xl text-yellow-400">
+      ☰
+    </button>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white dark:bg-black px-6 pb-6 pt-4 space-y-4 border-t">
+
+    <div class="flex justify-end">
+      <button onclick="toggleMenu()" class="text-2xl">✕</button>
+    </div>
+
+    <a href="index.html" class="block">Home</a>
+    <a href="jobs.html" class="block">Jobs</a>
+    <a href="pricing.html" class="block text-yellow-400 font-semibold">Pricing</a>
+    <a href="faq.html" class="block">FAQ</a>
+    <a href="contact.html" class="block">Contact</a>
+
+    <a href="admin.html"
+       class="block text-center bg-yellow-400 text-black py-2 rounded font-semibold">
+      Admin
+    </a>
+
+    <button onclick="toggleDark()" class="text-xl w-full text-left">
+      🌙 Dark Mode
+    </button>
   </div>
 </nav>
+
 
 <!-- ================= HERO ================= -->
 <section class="pt-32 pb-24 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c')] bg-cover bg-center">
@@ -208,7 +235,11 @@ function setPlan(year){
   document.getElementById("p2").innerText = year ? "10" : "12"
   document.getElementById("p3").innerText = year ? "20" : "24"
 }
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+}
 </script>
 
 </body>
 </html>
+

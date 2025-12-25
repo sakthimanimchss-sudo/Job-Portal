@@ -230,25 +230,61 @@ body.light section {
   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
 </div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="logo">SmartHire</div>
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-  <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="jobs.html">Jobs</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><button class="login-btn" onclick="openLogin()">Login</button></li>
-    <li><button class="theme-btn" onclick="toggleTheme()">🌙</button></li>
-    <li><a href="admin.html" class="admin">Admin</a></li>
-  </ul>
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
 
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex gap-6 items-center text-white">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+
+      <a href="admin.html"
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded">
+        Admin
+      </a>
+
+      <button onclick="toggleTheme()">🌙</button>
+    </div>
+
+    <!-- HAMBURGER -->
+    <button onclick="toggleMenu()" class="md:hidden text-2xl text-yellow-400">
+      ☰
+    </button>
   </div>
 </nav>
+
+<!-- ================= MOBILE MENU ================= -->
+<div id="mobileMenu"
+class="fixed top-0 right-0 h-full w-72 bg-black text-white z-50
+transform translate-x-full transition-transform duration-300 p-6">
+
+  <div class="flex justify-between items-center mb-8">
+    <span class="text-xl font-bold text-yellow-400">Menu</span>
+    <button onclick="toggleMenu()" class="text-2xl">✕</button>
+  </div>
+
+  <nav class="flex flex-col gap-5 text-lg">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html" class="text-yellow-400">Admin</a>
+
+    <button onclick="toggleTheme()" class="text-left mt-6">
+      🌙 Toggle Theme
+    </button>
+  </nav>
+</div>
+
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="mobile-menu">
@@ -373,38 +409,77 @@ body.light section {
 </footer>
 
 <script>
+/* ================= MOBILE MENU ================= */
 function toggleMenu(){
-  const m=document.getElementById("mobileMenu");
-  m.style.display=m.style.display==="flex"?"none":"flex";
-}
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme",
-    document.body.classList.contains("light")?"light":"dark");
-}
-if(localStorage.getItem("theme")==="light"){
-  document.body.classList.add("light");
-}
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
-function validateLogin(){
-  const e=document.getElementById("loginEmail").value;
-  const p=document.getElementById("loginPassword").value;
-  const err=document.getElementById("loginError");
-  if(!e.includes("@")||p.length<6){
-    err.style.display="block";
-  }else{
-    err.style.display="none";
-    alert("Login successful (demo)");
-    document.getElementById("loginModal").style.display="none";
+  const menu = document.getElementById("mobileMenu");
+  if(menu){
+    menu.classList.toggle("translate-x-full");
   }
 }
-document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal") e.target.style.display="none";
-};
+
+/* ================= THEME TOGGLE ================= */
+function toggleTheme(){
+  document.documentElement.classList.toggle("dark");
+
+  localStorage.setItem(
+    "theme",
+    document.documentElement.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+/* LOAD SAVED THEME */
+(function(){
+  const savedTheme = localStorage.getItem("theme");
+  if(savedTheme === "dark"){
+    document.documentElement.classList.add("dark");
+  }
+})();
+
+/* ================= LOGIN MODAL ================= */
+function openLogin(){
+  const modal = document.getElementById("loginModal");
+  if(modal){
+    modal.style.display = "flex";
+    document.getElementById("loginEmail")?.focus();
+  }
+}
+
+/* CLOSE LOGIN WHEN CLICK OUTSIDE */
+document.addEventListener("click", function(e){
+  const modal = document.getElementById("loginModal");
+  if(modal && e.target === modal){
+    modal.style.display = "none";
+  }
+});
+
+/* ================= LOGIN VALIDATION ================= */
+function validateLogin(){
+  const email = document.getElementById("loginEmail")?.value || "";
+  const pass  = document.getElementById("loginPassword")?.value || "";
+  const error = document.getElementById("loginError");
+
+  if(!email.includes("@") || pass.length < 6){
+    if(error) error.style.display = "block";
+    return;
+  }
+
+  if(error) error.style.display = "none";
+
+  alert("Login successful (demo)");
+  document.getElementById("loginModal").style.display = "none";
+}
+
+/* ENTER KEY SUPPORT */
+document.addEventListener("keydown", function(e){
+  const modal = document.getElementById("loginModal");
+  if(e.key === "Enter" && modal && modal.style.display === "flex"){
+    validateLogin();
+  }
+});
 </script>
+
 
 </body>
 </html>
+
 

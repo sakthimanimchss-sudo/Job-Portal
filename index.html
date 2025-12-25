@@ -5,116 +5,278 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<stlye>
-  :root{
-  --bg:#000;
-  --text:#fff;
+<!-- ================= PART 2 : FULL CSS ================= -->
+<style>
+
+/* =====================================================
+   THEME VARIABLES
+===================================================== */
+:root{
+  --bg:#0a0f1f;
+  --bg2:#0f2a5a;
+  --text:#ffffff;
   --accent:#2f7bff;
-  --card:rgba(0,0,0,.6);
-  --nav:rgba(0,0,0,.85);
+  --accent2:#6ec1ff;
+  --card:rgba(255,255,255,.08);
+  --nav:rgba(10,15,31,.9);
 }
 
 body.light{
-  --bg:#f4f6fb;
+  --bg:#f4f7ff;
+  --bg2:#dfe9ff;
   --text:#111;
-  --card:#fff;
-  --nav:#fff;
+  --card:#ffffff;
+  --nav:#ffffff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:var(--bg);color:var(--text);overflow-x:hidden}
-
-/* BACKGROUND */
-.bg{position:fixed;inset:0;z-index:-1}
-.bg img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  animation:bgFade 30s infinite;
-}
-.bg img:nth-child(2){animation-delay:10s}
-.bg img:nth-child(3){animation-delay:20s}
-
-@keyframes bgFade{
-  0%{opacity:0}
-  10%{opacity:.6}
-  30%{opacity:.6}
-  40%{opacity:0}
+/* =====================================================
+   RESET
+===================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
 }
 
-/* NAVBAR */
-.navbar{
-  position:fixed;top:0;width:100%;
-  background:var(--nav);
-  display:flex;justify-content:space-between;
-  padding:14px 20px;z-index:1000
-}
-.logo{color:var(--accent);font-weight:700}
-
-.desktop-nav a,.desktop-nav button{
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(120deg,var(--bg),var(--bg2));
   color:var(--text);
-  margin-left:16px;
-  background:none;border:none;cursor:pointer
+  overflow-x:hidden;
+  transition:.4s;
 }
 
-.hamburger{display:none}
-@media(max-width:900px){
-  .desktop-nav{display:none}
-  .hamburger{display:flex;flex-direction:column}
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 24px;
+  background:var(--nav);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
 }
 
-/* HERO */
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.desktop-nav a,
+.desktop-nav button{
+  color:var(--text);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.desktop-nav a:hover{color:var(--accent)}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;height:3px;
+  background:var(--accent);
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+#mobileMenu{
+  position:fixed;
+  top:0;right:0;
+  width:260px;height:100%;
+  background:#000;
+  padding:90px 24px;
+  transform:translateX(100%);
+  transition:.35s;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+}
+#mobileMenu.show{transform:translateX(0)}
+#mobileMenu a{color:#fff;text-decoration:none;margin:14px 0}
+
+.mobile-actions{
+  margin-top:auto;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+}
+
+.mobile-login-btn{
+  background:var(--accent);
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+}
+.mobile-theme-btn{
+  width:44px;height:44px;
+  border-radius:50%;
+  border:1px solid var(--accent);
+  background:#000;color:var(--accent);
+}
+
+/* =====================================================
+   HERO (IMAGE STYLE LIKE SAMPLE)
+===================================================== */
 .hero{
   min-height:100vh;
   padding:160px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:40px;
 }
-.hero span{
+
+.hero-text h1{
+  font-size:48px;
+  margin-bottom:14px;
+  animation:jump 1.2s ease;
+}
+.hero-text span{
   background:var(--accent);
   color:#000;
   padding:6px 18px;
   border-radius:30px;
 }
 
-/* SECTIONS */
+.hero-text p{
+  max-width:520px;
+  opacity:.9;
+}
+
+.hero-img img{
+  width:100%;
+  animation:float 6s ease-in-out infinite;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+.btns{margin-top:26px}
+.btn{
+  padding:12px 30px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+}
+.primary{background:var(--accent);color:#000}
+.outline{border:1px solid var(--text);color:var(--text)}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 section{padding:90px 20px}
+.title{text-align:center;font-size:34px;margin-bottom:8px}
+.subtitle{text-align:center;opacity:.8;margin-bottom:40px}
+
 .features,.jobs,.stats{
   max-width:1100px;
   margin:auto;
   display:grid;
   gap:26px;
-}
-.feature,.job,.stat{
-  background:var(--card);
-  padding:26px;
-  border-radius:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
 
-/* CAREER */
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:26px;
+  transition:.35s;
+}
+.card:hover{transform:translateY(-8px)}
+
+/* =====================================================
+   CAREER ACTION SLIDER
+===================================================== */
 .scroll-strip{overflow:hidden}
 .scroll-track{
   display:flex;
   gap:30px;
-  animation:scrollX 25s linear infinite;
+  animation:scrollX 22s linear infinite;
 }
-@keyframes scrollX{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
+.career-card{
+  width:320px;height:220px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+}
+.career-card img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.career-info{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:14px;
+  background:rgba(0,0,0,.75);
 }
 
-/* FAQ */
+/* =====================================================
+   FAQ
+===================================================== */
 .faq{max-width:900px;margin:auto}
-.faq-item{background:var(--card);margin-bottom:14px;border-radius:14px}
-.faq-question{padding:18px;cursor:pointer}
-.faq-answer{max-height:0;overflow:hidden;padding:0 18px;transition:.3s}
-.faq-item.active .faq-answer{max-height:120px;padding:18px}
+.faq-item{
+  background:var(--card);
+  border-radius:18px;
+  margin-bottom:16px;
+}
+.faq-question{
+  padding:18px 22px;
+  cursor:pointer;
+  font-weight:600;
+}
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  padding:0 22px;
+  transition:.35s;
+}
+.faq-item.active .faq-answer{
+  max-height:200px;
+  padding:12px 22px 22px;
+}
 
-/* FOOTER */
-.footer{background:var(--nav);padding:60px 20px}
+/* =====================================================
+   ADMIN DEMO
+===================================================== */
+.admin{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer{
+  background:rgba(0,0,0,.9);
+  padding:70px 20px 30px;
+}
 .footer-container{
   max-width:1200px;
   margin:auto;
@@ -122,27 +284,48 @@ section{padding:90px 20px}
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:40px;
 }
-.footer-bottom{text-align:center;margin-top:30px;font-size:13px}
+.footer-logo{color:var(--accent);font-size:22px}
+.footer-text{opacity:.85;font-size:14px}
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:13px;
+  opacity:.7;
+}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:.5s}
-.reveal.show{opacity:1;transform:none}
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+@keyframes jump{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:none;opacity:1}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+@keyframes scrollX{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
 
-</stlye>
-  
+/* =====================================================
+   MOBILE FIX
+===================================================== */
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+  .hero{grid-template-columns:1fr;text-align:center}
+}
+
+</style>
+</head>
+
 <body>
 
-<!-- BACKGROUND IMAGE -->
-<div class="bg">
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
-</div>
-
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-
   <div class="desktop-nav">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
@@ -151,15 +334,13 @@ section{padding:90px 20px}
     <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
-    <button onclick="openLogin()">Login</button>
   </div>
-
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
+<!-- ================= MOBILE MENU ================= -->
 <div id="mobileMenu">
   <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
@@ -167,159 +348,103 @@ section{padding:90px 20px}
   <a href="#faq">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html">Admin</a>
-
   <div class="mobile-actions">
-    <button class="mobile-login-btn" onclick="openLogin()">Login</button>
+    <button class="mobile-login-btn">Login</button>
     <button class="mobile-theme-btn" onclick="toggleTheme()">🌙</button>
   </div>
 </div>
 
-<!-- HERO -->
-<section class="hero reveal">
-  <h1>Find Your <span>Dream Job</span></h1>
-  <p>AI-powered hiring platform connecting talent with top companies.</p>
-
-  <div class="btns">
-    <a href="jobs.html" class="btn primary">Browse Jobs</a>
-    <a href="jobs.html" class="btn outline">Explore</a>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Find Your <span>Dream Job</span></h1>
+    <p>AI-powered hiring platform connecting talent with top companies.</p>
+    <div class="btns">
+      <a class="btn primary" href="jobs.html">Browse Jobs</a>
+      <a class="btn outline" href="jobs.html">Explore</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   </div>
 </section>
 
-<!-- WHY -->
+<!-- ================= WHY ================= -->
 <section>
-  <h2 class="title reveal">Why Choose SmartHire</h2>
-  <p class="subtitle reveal">Smarter hiring with AI</p>
-
-  <div class="features reveal-group">
-    <div class="feature reveal">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-    </div>
-    <div class="feature reveal">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-    </div>
-    <div class="feature reveal">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-    </div>
+  <h2 class="title">Why Choose SmartHire</h2>
+  <p class="subtitle">Smarter hiring with AI</p>
+  <div class="features">
+    <div class="card">🤖 AI Matching</div>
+    <div class="card">⚡ Fast Hiring</div>
+    <div class="card">✅ Verified Companies</div>
   </div>
 </section>
 
-<!-- JOBS -->
+<!-- ================= JOBS ================= -->
 <section>
-  <h2 class="title reveal">Featured Jobs</h2>
-
-  <div class="jobs reveal-group">
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>Frontend Developer</h3>
-      <span>₹6–10 LPA</span>
-    </div>
-
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <span>₹10–18 LPA</span>
-    </div>
-
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Robotics Engineer</h3>
-      <span>₹8–14 LPA</span>
-    </div>
+  <h2 class="title">Featured Jobs</h2>
+  <div class="jobs">
+    <div class="card">Frontend Developer<br><b>₹6–10 LPA</b></div>
+    <div class="card">AI Engineer<br><b>₹10–18 LPA</b></div>
+    <div class="card">Robotics Engineer<br><b>₹8–14 LPA</b></div>
   </div>
 </section>
 
-<!-- CAREER ACTION -->
+<!-- ================= CAREER ACTION ================= -->
 <section class="scroll-strip">
-  <h2 class="title reveal">Careers in Action</h2>
-
+  <h2 class="title">Careers in Action</h2>
   <div class="scroll-track">
     <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info">AI Development</div></div>
     <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info">Team Collaboration</div></div>
     <div class="career-card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><div class="career-info">Robotics</div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><div class="career-info">Innovation</div></div>
   </div>
 </section>
 
-<!-- STATS -->
-<section>
-  <h2 class="title reveal">Platform Impact</h2>
-
-  <div class="stats reveal-group">
-    <div class="stat reveal"><h3>50K+</h3><p>Job Seekers</p></div>
-    <div class="stat reveal"><h3>8K+</h3><p>Companies</p></div>
-    <div class="stat reveal"><h3>120K+</h3><p>Applications</p></div>
-  </div>
-</section>
-
-<!-- FAQ -->
+<!-- ================= FAQ ================= -->
 <section id="faq">
-  <h2 class="title reveal">Frequently Asked Questions</h2>
-
+  <h2 class="title">FAQ</h2>
   <div class="faq">
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">How does SmartHire work?</div><div class="faq-answer">We use AI to match jobs and candidates.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Is SmartHire free?</div><div class="faq-answer">Yes, for job seekers it is free.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Can companies post jobs?</div><div class="faq-answer">Yes, via Admin dashboard.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Is my data safe?</div><div class="faq-answer">We follow strict security standards.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Which industries are supported?</div><div class="faq-answer">IT, AI, Robotics, Engineering.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">How does SmartHire work?</div><div class="faq-answer">AI-based matching.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Is it free?</div><div class="faq-answer">Yes for job seekers.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Verified companies?</div><div class="faq-answer">100% verified.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Remote jobs?</div><div class="faq-answer">Yes available.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Support?</div><div class="faq-answer">24×7 support.</div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-col">
-      <h3 class="footer-logo">SmartHire</h3>
-      <p class="footer-text">AI-powered job portal for modern careers.</p>
+    <div>
+      <div class="footer-logo">SmartHire</div>
+      <p class="footer-text">AI-powered hiring platform.</p>
     </div>
-
-    <div class="footer-col">
-      <h4>Quick Links</h4>
+    <div>
+      <b>Quick Links</b>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html">Pricing</a>
       <a href="contact.html">Contact</a>
-      <a href="admin.html">Admin</a>
     </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>support@smarthire.com<br>Chennai, India</p>
+    <div>
+      <b>Contact</b>
+      <p>support@smarthire.com</p>
     </div>
   </div>
-
   <div class="footer-bottom">© 2025 SmartHire</div>
 </footer>
-  <script>
-    const $=s=>document.querySelector(s);
-const $$=s=>document.querySelectorAll(s);
 
+<!-- ================= PART 3 : JS ================= -->
+<script>
 function toggleMenu(){
-  $("#mobileMenu").classList.toggle("show");
+  document.getElementById("mobileMenu").classList.toggle("show");
 }
-
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
-
 function toggleFAQ(el){
   el.parentElement.classList.toggle("active");
 }
-
-/* REVEAL */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("show");
-      obs.unobserve(e.target);
-    }
-  });
-},{threshold:.15});
-
-$$(".reveal").forEach(el=>obs.observe(el));
-
-  </script>
+</script>
 
 </body>
 </html>

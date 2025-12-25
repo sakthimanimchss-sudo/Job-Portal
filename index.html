@@ -324,11 +324,22 @@ body.light section {
 class="fixed top-0 right-0 h-full w-72 bg-black text-white z-50
 transform translate-x-full transition-transform duration-300 p-6">
 
-  <div class="flex justify-between items-center mb-8">
-    <span class="text-xl font-bold text-yellow-400">Menu</span>
-    <button onclick="toggleMenu()" class="text-2xl">✕</button>
-  </div>
+  <button
+  onclick="toggleMenu()"
+  style="
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    color:#facc15;
+    background:none;
+    border:none;
+    cursor:pointer;
+  ">
+  ✕
+</button>
 
+ 
   <nav class="flex flex-col gap-5 text-lg">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
@@ -538,6 +549,7 @@ document.addEventListener("keydown", function(e){
 
 </body>
 </html>
+
 
 
 

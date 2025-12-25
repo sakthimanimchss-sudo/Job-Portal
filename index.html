@@ -9,7 +9,6 @@
 /* ===================== THEME ===================== */
 :root{
   --blue:#1e6fff;
-  --blue-soft:#4f8cff;
   --black:#050505;
   --white:#ffffff;
   --card:rgba(255,255,255,.08);
@@ -64,15 +63,8 @@ body{
   color:var(--white);
   cursor:pointer;
   text-decoration:none;
-  font-size:14px;
 }
-.nav-links a:hover{color:var(--blue-soft)}
-
-.menu-btn{
-  display:none;
-  font-size:22px;
-  cursor:pointer;
-}
+.menu-btn{display:none;font-size:22px;cursor:pointer}
 
 /* ===================== HERO ===================== */
 .hero{
@@ -82,8 +74,8 @@ body{
   margin:auto;
   display:grid;
   grid-template-columns:1.1fr .9fr;
-  align-items:center;
   gap:40px;
+  align-items:center;
 }
 .hero h1{font-size:46px}
 .hero h1 span{
@@ -98,13 +90,12 @@ body{
   padding:12px 30px;
   border-radius:30px;
   text-decoration:none;
-  display:inline-block;
   margin-right:12px;
 }
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--white);color:var(--white)}
 
-/* ===== HERO IMAGES (FIXED) ===== */
+/* ===== HERO IMAGES ===== */
 .hero-images{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -127,7 +118,16 @@ body{
 }
 
 /* ===================== SECTIONS ===================== */
-section{padding:90px 22px;overflow:hidden}
+section{
+  padding:90px 22px;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s ease;
+}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
 .title{text-align:center;font-size:34px;margin-bottom:10px}
 .subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
@@ -210,7 +210,6 @@ section{padding:90px 22px;overflow:hidden}
   border-radius:22px;
   padding:40px;
 }
-.login-box h2{text-align:center;margin-bottom:20px}
 .login-box input{
   width:100%;
   padding:14px;
@@ -227,14 +226,8 @@ section{padding:90px 22px;overflow:hidden}
   background:var(--blue);
   border:none;
   font-weight:700;
-  cursor:pointer;
 }
-.login-close{
-  text-align:center;
-  margin-top:12px;
-  cursor:pointer;
-  opacity:.7;
-}
+.login-close{text-align:center;margin-top:12px;cursor:pointer}
 
 /* ===================== FOOTER ===================== */
 .footer{
@@ -244,11 +237,14 @@ section{padding:90px 22px;overflow:hidden}
   opacity:.85;
 }
 
-/* ===================== MOBILE ===================== */
+/* ===================== MOBILE FIX ===================== */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .hero-images{grid-template-columns:1fr}
-  .hero-images img,.hero-images img.large{height:200px}
+  .hero-images img,
+  .hero-images img.large{
+    height:200px;
+  }
   .nav-links{display:none}
   .menu-btn{display:block}
   .nav-links.mobile{
@@ -285,7 +281,7 @@ section{padding:90px 22px;overflow:hidden}
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero show">
   <div>
     <h1>Find Your <span>Dream Job</span></h1>
     <p>AI-powered hiring platform connecting talent with trusted companies.</p>
@@ -302,7 +298,9 @@ section{padding:90px 22px;overflow:hidden}
   </div>
 </section>
 
-<!-- 1 WHY -->
+<!-- ALL OTHER SECTIONS REMAIN SAME (WHY, HOW, TRENDING, ADMIN, BENEFITS, FAQ) -->
+<!-- LOGIN & FOOTER unchanged -->
+  <!-- 1 WHY -->
 <section>
 <h2 class="title">Why Choose SmartHire</h2>
 <p class="subtitle">Smarter, faster AI recruitment</p>
@@ -384,11 +382,21 @@ section{padding:90px 22px;overflow:hidden}
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js",{particles:{number:{value:50},size:{value:3},color:{value:"#1e6fff"},line_linked:{enable:true}}});
+
 function toggleTheme(){document.body.classList.toggle("light")}
 function openLogin(){loginModal.style.display="flex"}
 function closeLogin(){loginModal.style.display="none"}
 function faq(el){el.parentElement.classList.toggle("active")}
 function toggleMenu(){menu.classList.toggle("mobile")}
+
+/* SCROLL ANIMATION */
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("show")}
+  })
+},{threshold:.15});
+sections.forEach(sec=>observer.observe(sec));
 </script>
 
 </body>

@@ -325,7 +325,6 @@ section{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html" style="color:#facc15">Admin</a>
-  <a href="javascript:void(0)" onclick="openLogin()">Login</a>
   <button id="loginSubmit" class="btn primary" onclick="validateLogin()">
   Login
 </button>
@@ -622,6 +621,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     modal.addEventListener("click", e=>{
       if(e.target === modal){
         modal.style.display = "none";
+        openLogin()
       }
     });
   }
@@ -632,6 +632,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 </body>
 </html>
+
 
 
 

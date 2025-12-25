@@ -6,23 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =========================
-   PART 2 CSS WILL BE PASTED HERE
+   CSS (PASTE FULLY)
 ========================= -->
 <style>
 :root{
   --blue:#1e6fff;
-  --dark:#020712;
+  --bg:#020712;
+  --text:#ffffff;
   --card:rgba(255,255,255,.08);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-html{scroll-behavior:smooth}
-body{
-  background:linear-gradient(100deg,#0b1e46,#020712,#000);
-  color:#fff;
+body.light{
+  --bg:#f5f7fb;
+  --text:#111111;
+  --card:#ffffff;
 }
 
-/* Scroll progress */
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:linear-gradient(100deg,#0b1e46,var(--bg),#000);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* SCROLL PROGRESS */
 #scrollProgress{
   position:fixed;
   top:0;left:0;
@@ -32,48 +48,123 @@ body{
   z-index:9999;
 }
 
-/* Particles */
+/* PARTICLES */
 #particles-js{
   position:fixed;
   inset:0;
   z-index:-1;
 }
 
-/* Floating icons */
-.floating-icons span{
+/* FLOATING ICONS */
+.float-icons i{
   position:fixed;
-  font-size:40px;
+  font-size:38px;
   opacity:.15;
-  animation:float 12s infinite linear;
+  animation:float 12s infinite ease-in-out;
 }
-.floating-icons span:nth-child(1){top:20%;left:10%}
-.floating-icons span:nth-child(2){top:60%;right:12%}
-.floating-icons span:nth-child(3){bottom:20%;left:30%}
-.floating-icons span:nth-child(4){bottom:30%;right:30%}
+.float-icons i:nth-child(1){top:20%;left:8%}
+.float-icons i:nth-child(2){top:60%;right:10%}
+.float-icons i:nth-child(3){bottom:20%;left:30%}
+.float-icons i:nth-child(4){bottom:30%;right:30%}
 
-/* Navbar */
+/* NAVBAR */
 .navbar{
   position:fixed;
-  top:0;width:100%;
+  top:0;
+  width:100%;
   padding:16px 30px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(12px);
   z-index:1000;
 }
-.desktop-nav a, .desktop-nav button{
-  color:#fff;
-  background:none;
-  border:none;
-  margin-left:18px;
-  text-decoration:none;
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
 }
 
-/* Hero */
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.desktop-nav a,
+.desktop-nav button{
+  background:none;
+  border:none;
+  color:var(--text);
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.desktop-nav a:hover,
+.desktop-nav button:hover{
+  color:var(--blue);
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--text);
+  border-radius:3px;
+}
+
+/* MOBILE MENU */
+#mobileMenu{
+  position:fixed;
+  top:0;
+  right:0;
+  width:260px;
+  height:100%;
+  background:#000;
+  transform:translateX(100%);
+  transition:.35s;
+  z-index:1500;
+  padding:90px 24px;
+  display:flex;
+  flex-direction:column;
+}
+#mobileMenu.show{transform:translateX(0)}
+#mobileMenu a{
+  color:#fff;
+  text-decoration:none;
+  margin:14px 0;
+}
+.mobile-actions{
+  margin-top:auto;
+  display:flex;
+  gap:14px;
+}
+.mobile-actions button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  background:var(--blue);
+  color:#000;
+}
+
+/* HERO */
 .hero{
   min-height:100vh;
   padding:160px 80px;
+}
+.hero h1{
+  font-size:48px;
+  line-height:1.2;
 }
 .hero span{
   background:var(--blue);
@@ -81,15 +172,28 @@ body{
   padding:6px 18px;
   border-radius:30px;
 }
-.jump{animation:jump 2s infinite}
+.hero p{
+  margin-top:16px;
+  max-width:600px;
+  opacity:.9;
+}
+.btns{margin-top:28px}
+.btn{
+  padding:12px 30px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  margin-right:12px;
+}
+.primary{background:var(--blue);color:#000}
+.outline{border:1px solid var(--text);color:var(--text)}
 
-/* Sections */
+/* SECTIONS */
 section{padding:100px 60px}
 .dark{background:rgba(0,0,0,.35)}
-.title{text-align:center;font-size:34px}
-.subtitle{text-align:center;opacity:.7;margin-bottom:40px}
+.title{text-align:center;font-size:34px;margin-bottom:40px}
 
-/* Cards */
+/* CARDS */
 .cards{
   max-width:1200px;
   margin:auto;
@@ -102,6 +206,7 @@ section{padding:100px 60px}
   padding:30px;
   border-radius:24px;
   text-align:center;
+  transition:.3s;
   transform-style:preserve-3d;
 }
 .card img{
@@ -109,9 +214,34 @@ section{padding:100px 60px}
   height:180px;
   object-fit:cover;
   border-radius:16px;
+  margin-bottom:12px;
 }
 
-/* Footer */
+/* LOGIN */
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.login-box{
+  background:var(--bg);
+  padding:40px;
+  border-radius:22px;
+  width:320px;
+}
+.login-box input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border-radius:12px;
+  border:none;
+}
+
+/* FOOTER */
 .footer{
   padding:40px;
   text-align:center;
@@ -119,53 +249,30 @@ section{padding:100px 60px}
   opacity:.7;
 }
 
-/* Login */
-.login-modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  background:rgba(0,0,0,.7);
-  align-items:center;
-  justify-content:center;
-}
-.login-box{
-  background:#000;
-  padding:40px;
-  border-radius:20px;
+/* MOBILE */
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+  .hero{padding:140px 24px}
+  section{padding:80px 24px}
 }
 
-/* Animations */
+/* ANIMATIONS */
 @keyframes float{
   50%{transform:translateY(-40px)}
 }
-@keyframes jump{
-  50%{transform:translateY(-12px)}
-}
-
 </style>
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
 </head>
+
 <body>
 
-<!-- SCROLL PROGRESS -->
 <div id="scrollProgress"></div>
-
-<!-- PARTICLES -->
 <div id="particles-js"></div>
 
-<!-- FLOATING ICONS -->
-<div class="floating-icons">
-  <span>💼</span>
-  <span>🤖</span>
-  <span>📊</span>
-  <span>☁️</span>
+<div class="float-icons">
+  <i>💼</i><i>🤖</i><i>📊</i><i>☁️</i>
 </div>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
 
@@ -175,15 +282,31 @@ section{padding:100px 60px}
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
-    <a href="admin.html" class="admin-link">Admin</a>
+    <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
     <button onclick="openLogin()">Login</button>
   </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
-<!-- HERO -->
+<div id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html">Admin</a>
+  <div class="mobile-actions">
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="openLogin()">Login</button>
+  </div>
+</div>
+
 <section class="hero">
-  <h1 class="jump">Find Your <span>Dream Job</span></h1>
+  <h1 class="float-text">Find Your <span>Dream Job</span></h1>
   <p>AI-powered hiring platform connecting talent with top companies.</p>
   <div class="btns">
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
@@ -191,90 +314,62 @@ section{padding:100px 60px}
   </div>
 </section>
 
-<!-- WHY -->
 <section>
   <h2 class="title">Why Choose SmartHire</h2>
-  <p class="subtitle">Smarter, faster, AI-driven recruitment</p>
   <div class="cards">
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a">
-      <h3>AI Matching</h3>
-      <p>Advanced algorithms match candidates with perfect roles.</p>
-    </div>
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <h3>Fast Hiring</h3>
-      <p>Reduce hiring time by up to 70% using automation.</p>
-    </div>
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Verified Companies</h3>
-      <p>Only trusted and verified organizations.</p>
-    </div>
+    <div class="card tilt"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a"><h3>AI Matching</h3></div>
+    <div class="card tilt"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><h3>Fast Hiring</h3></div>
+    <div class="card tilt"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Verified Companies</h3></div>
   </div>
 </section>
 
-<!-- JOBS -->
-<section class="dark">
-  <h2 class="title">Popular Jobs</h2>
-  <div class="cards">
-    <div class="card tilt">Frontend Developer</div>
-    <div class="card tilt">AI Engineer</div>
-    <div class="card tilt">Robotics Engineer</div>
-  </div>
-</section>
+<footer class="footer">© 2025 SmartHire</footer>
 
-<!-- PRICING -->
-<section>
-  <h2 class="title">Pricing</h2>
-  <div class="cards">
-    <div class="card tilt"><h3>Free</h3><p>₹0</p></div>
-    <div class="card tilt highlight"><h3>Pro</h3><p>₹999</p></div>
-    <div class="card tilt"><h3>Enterprise</h3><p>Custom</p></div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="dark">
-  <h2 class="title">FAQ</h2>
-  <div class="cards">
-    <div class="card">✔ Is SmartHire free? Yes</div>
-    <div class="card">✔ Remote jobs available? Yes</div>
-    <div class="card">✔ Companies verified? 100%</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  © 2025 SmartHire — AI Job Portal
-</footer>
-
-<!-- LOGIN MODAL -->
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h3>Login</h3>
     <input placeholder="Email">
-    <input placeholder="Password" type="password">
+    <input type="password" placeholder="Password">
     <button class="btn primary">Login</button>
   </div>
 </div>
 
-<!-- PART 3 JS -->
+<!-- =========================
+   JS (PASTE FULLY)
+========================= -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="script.js">
-  /* Scroll progress */
+<script>
+/* Scroll progress */
 window.addEventListener("scroll",()=>{
   const s=document.documentElement.scrollTop;
   const h=document.documentElement.scrollHeight-window.innerHeight;
   document.getElementById("scrollProgress").style.width=(s/h)*100+"%";
 });
 
+/* Mobile menu */
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+
+/* Theme */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* Login */
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal") e.target.style.display="none";
+}
+
 /* Particles */
 particlesJS("particles-js",{
   particles:{
     number:{value:80},
-    color:{value:"#1e6fff"},
     size:{value:3},
+    color:{value:"#1e6fff"},
     move:{speed:1},
     line_linked:{enable:true,color:"#1e6fff"}
   }
@@ -285,38 +380,13 @@ document.querySelectorAll(".tilt").forEach(card=>{
   card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
     card.style.transform=
-      `rotateY(${(e.clientX-r.left-r.width/2)/15}deg)
-       rotateX(${-(e.clientY-r.top-r.height/2)/15}deg)`;
+      `rotateY(${(e.clientX-r.left-r.width/2)/12}deg)
+       rotateX(${-(e.clientY-r.top-r.height/2)/12}deg)`;
   });
   card.addEventListener("mouseleave",()=>{
     card.style.transform="rotateX(0) rotateY(0)";
   });
 });
-
-/* GSAP scroll animation */
-gsap.utils.toArray("section").forEach(sec=>{
-  gsap.from(sec,{
-    opacity:0,
-    y:80,
-    duration:1,
-    scrollTrigger:{
-      trigger:sec,
-      start:"top 80%"
-    }
-  });
-});
-
-/* Login */
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
-document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal") e.target.style.display="none";
-}
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
-
 </script>
 
 </body>

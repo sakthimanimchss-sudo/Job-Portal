@@ -7,7 +7,7 @@
 
 <style>
 /* =====================================================
-   THEME VARIABLES (UNCHANGED)
+   THEME (UNCHANGED)
 ===================================================== */
 :root{
   --blue:#1e6fff;
@@ -86,7 +86,7 @@ body{
 }
 
 /* =====================================================
-   HERO (UNCHANGED)
+   HERO (UNCHANGED CONTENT)
 ===================================================== */
 .hero{
   min-height:100vh;
@@ -94,7 +94,14 @@ body{
   max-width:1200px;
   margin:auto;
   position:relative;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
 }
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+}
+
 .hero h1{
   font-size:46px;
   line-height:1.2;
@@ -122,121 +129,85 @@ body{
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--white);color:var(--white)}
 
-/* HERO PNG (ONLY ADDITION) */
-.hero-png{
-  position:absolute;
-  right:40px;
-  top:50%;
-  transform:translateY(-50%);
-  width:360px;
-  max-width:40%;
-  opacity:.95;
-  pointer-events:none;
+/* ✅ HERO RIGHT PNG (ONLY ADDITION) */
+.hero-image{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero-image img{
+  width:100%;
+  max-width:420px;
+  filter:drop-shadow(0 0 30px rgba(30,111,255,.25));
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
 }
 @media(max-width:900px){
-  .hero-png{display:none}
+  .hero-image{display:none}
 }
 
 /* =====================================================
-   COMMON SECTIONS
+   COMMON
 ===================================================== */
 section{padding:90px 22px}
 .title{text-align:center;font-size:32px;margin-bottom:10px}
 .subtitle{text-align:center;opacity:.8;margin-bottom:40px}
 
-/* Reveal (unchanged) */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:.5s ease;
-}
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-
 /* =====================================================
-   CARD GRID (SAME STYLE)
+   LOGIN MODAL (ADVANCED – NEW)
 ===================================================== */
-.grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
 }
-.card{
-  background:var(--card);
+.login-box{
+  width:420px;
+  max-width:90%;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
   border-radius:22px;
-  padding:26px;
-  backdrop-filter:blur(8px);
-  transition:.3s;
+  padding:40px;
+  box-shadow:0 0 40px rgba(0,0,0,.6);
 }
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:var(--glow);
-}
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:14px;
-  margin-bottom:14px;
-}
-
-/* =====================================================
-   ADMIN DASHBOARD (UNCHANGED)
-===================================================== */
-.admin-grid{
-  max-width:1000px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:26px;
-}
-.admin-card{
-  background:var(--card);
-  border-radius:20px;
-  padding:30px;
+.login-box h2{
   text-align:center;
+  margin-bottom:24px;
 }
-.admin-card h3{
-  font-size:34px;
-  color:var(--blue);
+.login-box input{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  background:#000;
+  color:#fff;
+  margin-bottom:16px;
 }
-
-/* =====================================================
-   FAQ (UNCHANGED)
-===================================================== */
-.faq{
-  max-width:900px;
-  margin:auto;
-}
-.faq-item{
-  background:var(--card);
-  border-radius:18px;
-  margin-bottom:14px;
-}
-.faq-q{
-  padding:18px 22px;
+.login-box button{
+  width:100%;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  background:var(--blue);
+  font-weight:700;
   cursor:pointer;
-  font-weight:600;
 }
-.faq-a{
-  max-height:0;
-  overflow:hidden;
-  padding:0 22px;
-  transition:.35s;
-  opacity:.85;
-}
-.faq-item.active .faq-a{
-  max-height:260px;
-  padding:12px 22px 22px;
+.login-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  cursor:pointer;
+  font-size:20px;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 .footer{
   padding:60px 22px;
   background:#000;
@@ -262,95 +233,37 @@ section{padding:90px 22px}
     <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
-    <button>Login</button>
+    <button onclick="openLogin()">Login</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero reveal">
-  <h1>Find Your <span>Dream Job</span></h1>
-  <p>AI-powered hiring platform connecting skilled professionals with trusted companies worldwide.</p>
-  <div class="btns">
-    <a href="jobs.html" class="btn primary">Browse Jobs</a>
-    <a href="pricing.html" class="btn outline">Explore</a>
+<section class="hero">
+  <div>
+    <h1>Find Your <span>Dream Job</span></h1>
+    <p>AI-powered hiring platform connecting skilled professionals with trusted companies worldwide.</p>
+    <div class="btns">
+      <a href="jobs.html" class="btn primary">Browse Jobs</a>
+      <a href="pricing.html" class="btn outline">Explore</a>
+    </div>
   </div>
 
-  <!-- ✅ PNG NOW VISIBLE -->
-  <img src="./job-illustration.png" class="hero-png" alt="">
-</section>
-
-<!-- WHY CHOOSE -->
-<section>
-  <h2 class="title reveal">Why Choose SmartHire</h2>
-  <p class="subtitle reveal">Smarter, faster AI recruitment</p>
-  <div class="grid reveal">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a">
-      <h3>AI Matching</h3>
-      <p>Skill-based intelligent job matching.</p>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <h3>Fast Hiring</h3>
-      <p>Automated screening saves time.</p>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Verified Companies</h3>
-      <p>Trusted recruiters only.</p>
-    </div>
+  <!-- ✅ RIGHT SIDE IMAGE -->
+  <div class="hero-image">
+    <img src="./hero-job.png" alt="">
   </div>
 </section>
 
-<!-- ✅ TRENDING JOBS (ONLY ADDITION) -->
-<section>
-  <h2 class="title reveal">Trending Jobs</h2>
-  <p class="subtitle reveal">High-demand roles this week</p>
-
-  <div class="grid reveal">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <p>Machine learning, deep learning, Python</p>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
-      <h3>Frontend Developer</h3>
-      <p>React, UI/UX, modern web</p>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0">
-      <h3>Robotics Engineer</h3>
-      <p>Embedded systems, automation</p>
-    </div>
+<!-- LOGIN MODAL -->
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <div class="login-close" onclick="closeLogin()">✖</div>
+    <h2>Welcome Back</h2>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
   </div>
-</section>
-
-<!-- ADMIN -->
-<section>
-  <h2 class="title reveal">Admin Dashboard Preview</h2>
-  <div class="admin-grid reveal">
-    <div class="admin-card"><h3>1240</h3><p>Jobs</p></div>
-    <div class="admin-card"><h3>8320</h3><p>Companies</p></div>
-    <div class="admin-card"><h3>120K+</h3><p>Applications</p></div>
-    <div class="admin-card"><h3>1M+</h3><p>Users</p></div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section>
-  <h2 class="title reveal">Frequently Asked Questions</h2>
-  <div class="faq reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div>
-      <div class="faq-a">Yes, free for job seekers.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div>
-      <div class="faq-a">All companies are manually verified.</div>
-    </div>
-  </div>
-</section>
+</div>
 
 <footer class="footer">
   © 2025 SmartHire — All Rights Reserved
@@ -367,16 +280,16 @@ particlesJS("particles-js",{
     line_linked:{enable:true,color:"#1e6fff"}
   }
 });
+
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
-function toggleFAQ(el){
-  el.parentElement.classList.toggle("active");
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
 }
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
-});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+function closeLogin(){
+  document.getElementById("loginModal").style.display="none";
+}
 </script>
 
 </body>

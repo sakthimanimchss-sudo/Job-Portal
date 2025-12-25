@@ -272,7 +272,9 @@ section{
 .footer-col a:hover::after{
   width:100%;
 }
-  /* ================= LOGIN MODAL FIX ================= */
+  
+ /* ================= LOGIN MODAL (FULL FIXED CSS) ================= */
+
 .login-modal{
   position:fixed;
   inset:0;
@@ -284,16 +286,19 @@ section{
   z-index:2000;
 }
 
+/* MAIN CONTAINER */
 .login-container{
-  width:800px;
+  width:820px;
   max-width:95%;
   background:var(--card);
   border-radius:22px;
   display:grid;
   grid-template-columns:1fr 1fr;
   overflow:hidden;
+  max-height:90vh;
 }
 
+/* LEFT IMAGE PANEL */
 .login-image{
   background:
     linear-gradient(var(--overlay),var(--overlay)),
@@ -301,19 +306,76 @@ section{
     center/cover;
   padding:40px;
   color:#facc15;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
 }
 
+.login-image h2{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.login-image p{
+  font-size:14px;
+  opacity:.9;
+}
+
+/* RIGHT FORM PANEL */
 .login-form{
   padding:40px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
+/* INPUTS */
+.login-form input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border-radius:12px;
+  border:none;
+  background:var(--bg);
+  color:var(--text);
+  font-size:15px;
+}
+
+.login-form input:focus{
+  outline:2px solid #facc15;
+}
+
+/* ERROR MESSAGE */
 .login-error{
+  display:none;
   color:#ff6b6b;
   font-size:13px;
-  margin-top:8px;
+  margin-bottom:10px;
 }
 
+/* LOGIN BUTTON */
+.login-form .btn{
+  width:100%;
+  margin-top:10px;
+}
 
+/* ================= MOBILE FIX (VERY IMPORTANT) ================= */
+@media (max-width: 768px){
+
+  .login-container{
+    grid-template-columns:1fr;   /* stack */
+    max-height:92vh;
+    overflow-y:auto;
+  }
+
+  .login-image{
+    display:none;               /* hide image on mobile */
+  }
+
+  .login-form{
+    padding:28px;
+  }
+}
 
 /* ================= REVEAL ================= */
 .reveal{
@@ -678,6 +740,7 @@ if(e.target === modal){
 
 </body>
 </html>
+
 
 
 

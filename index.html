@@ -6,14 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* =========================
-   THEME (UNCHANGED)
-========================= */
+/* =========================================================
+   THEME (NO CHANGE)
+========================================================= */
 :root{
   --blue:#1e6fff;
+  --blue-soft:#4f8cff;
   --bg:#020712;
   --text:#ffffff;
   --card:rgba(255,255,255,.08);
+  --glow:0 0 25px rgba(30,111,255,.45);
 }
 
 body.light{
@@ -22,18 +24,25 @@ body.light{
   --card:#ffffff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
+}
 html{scroll-behavior:smooth}
 
 body{
   background:linear-gradient(100deg,#0b1e46,var(--bg),#000);
   color:var(--text);
   overflow-x:hidden;
+  transition:.3s;
 }
 
-/* =========================
-   SCROLL BAR
-========================= */
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
 #scrollProgress{
   position:fixed;
   top:0;left:0;
@@ -43,53 +52,90 @@ body{
   z-index:9999;
 }
 
-/* =========================
-   FLOATING JOB ICONS (NEW)
-========================= */
+/* =========================================================
+   PARTICLES BACKGROUND
+========================================================= */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* =========================================================
+   FLOATING JOB ICONS (SMALL & CLEAN)
+========================================================= */
 .job-float img{
   position:fixed;
   width:42px;
   opacity:.15;
-  animation:jobFloat 14s infinite ease-in-out;
+  animation:jobFloat 16s infinite ease-in-out;
   pointer-events:none;
 }
-.job-float img:nth-child(1){top:20%;left:6%}
-.job-float img:nth-child(2){top:55%;right:8%;animation-duration:18s}
-.job-float img:nth-child(3){bottom:25%;left:30%;animation-duration:20s}
-.job-float img:nth-child(4){bottom:30%;right:25%;animation-duration:22s}
+.job-float img:nth-child(1){top:22%;left:6%}
+.job-float img:nth-child(2){top:55%;right:8%;animation-duration:20s}
+.job-float img:nth-child(3){bottom:25%;left:30%;animation-duration:22s}
+.job-float img:nth-child(4){bottom:30%;right:26%;animation-duration:24s}
 
 @keyframes jobFloat{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-30px)}
+  50%{transform:translateY(-34px)}
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* =========================================================
+   NAVBAR (UNCHANGED STRUCTURE)
+========================================================= */
 .navbar{
   position:fixed;
   top:0;width:100%;
   padding:16px 30px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(12px);
   z-index:1000;
 }
-.logo{color:var(--blue);font-size:22px;font-weight:700}
-.desktop-nav a,.desktop-nav button{
-  background:none;border:none;
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.desktop-nav a,
+.desktop-nav button{
+  background:none;
+  border:none;
   color:var(--text);
-  margin-left:18px;
+  font-size:14px;
   cursor:pointer;
   text-decoration:none;
 }
+.desktop-nav a:hover,
+.desktop-nav button:hover{
+  color:var(--blue-soft);
+}
 
 /* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer}
-.hamburger span{width:26px;height:3px;background:var(--text)}
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--text);
+}
 
-/* MOBILE MENU */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 #mobileMenu{
   position:fixed;
   top:0;right:0;
@@ -103,47 +149,65 @@ body{
   flex-direction:column;
 }
 #mobileMenu.show{transform:translateX(0)}
-#mobileMenu a{color:#fff;text-decoration:none;margin:14px 0}
-.mobile-actions{margin-top:auto;display:flex;gap:12px}
+#mobileMenu a{
+  color:#fff;
+  text-decoration:none;
+  margin:14px 0;
+}
+.mobile-actions{
+  margin-top:auto;
+  display:flex;
+  gap:12px;
+}
 .mobile-actions button{
-  flex:1;padding:12px;
-  border:none;border-radius:30px;
-  background:var(--blue);color:#000;
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  background:var(--blue);
+  color:#000;
 }
 
-/* =========================
-   HERO
-========================= */
+/* =========================================================
+   HERO (NO DESIGN CHANGE)
+========================================================= */
 .hero{
   min-height:100vh;
   padding:160px 80px;
 }
-.hero h1{font-size:48px}
-.hero span{
+.hero h1{
+  font-size:48px;
+  line-height:1.2;
+}
+.hero h1 span{
   background:var(--blue);
   color:#000;
   padding:6px 18px;
   border-radius:30px;
 }
-.hero p{margin-top:16px;max-width:600px;opacity:.9}
+.hero p{
+  margin-top:16px;
+  max-width:600px;
+  opacity:.9;
+}
 .btns{margin-top:28px}
 .btn{
   padding:12px 30px;
   border-radius:30px;
   text-decoration:none;
+  display:inline-block;
 }
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--text);color:var(--text)}
 
-/* =========================
-   SECTIONS
-========================= */
+/* =========================================================
+   SECTIONS & SCROLL ANIMATION
+========================================================= */
 section{padding:100px 60px}
 .dark{background:rgba(0,0,0,.35)}
 .title{text-align:center;font-size:34px;margin-bottom:12px}
 .subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
-/* SCROLL ANIMATION */
 .reveal{
   opacity:0;
   transform:translateY(40px);
@@ -154,9 +218,12 @@ section{padding:100px 60px}
   transform:none;
 }
 
-/* CARDS */
+/* =========================================================
+   CARD GRID
+========================================================= */
 .cards{
-  max-width:1200px;margin:auto;
+  max-width:1200px;
+  margin:auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:30px;
@@ -176,9 +243,56 @@ section{padding:100px 60px}
 }
 .card:hover{transform:translateY(-10px)}
 
-/* =========================
-   LOGIN (IMPROVED)
-========================= */
+/* =========================================================
+   ADMIN PREVIEW
+========================================================= */
+.admin-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+  text-align:center;
+}
+.admin-card{
+  background:var(--card);
+  padding:30px;
+  border-radius:22px;
+}
+.admin-card h3{
+  font-size:36px;
+  color:var(--blue);
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+.faq{max-width:900px;margin:auto}
+.faq-item{
+  background:var(--card);
+  border-radius:20px;
+  margin-bottom:14px;
+}
+.faq-q{
+  padding:18px;
+  cursor:pointer;
+  font-weight:600;
+}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  padding:0 18px;
+  transition:.35s;
+  opacity:.85;
+}
+.faq-item.active .faq-a{
+  max-height:200px;
+  padding:12px 18px 18px;
+}
+
+/* =========================================================
+   LOGIN (MERGED + IMPROVED)
+========================================================= */
 .login-modal{
   position:fixed;
   inset:0;
@@ -213,7 +327,9 @@ section{padding:100px 60px}
   border:none;
 }
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+========================================================= */
 .footer{
   padding:40px;
   text-align:center;
@@ -221,7 +337,9 @@ section{padding:100px 60px}
   opacity:.7;
 }
 
-/* MOBILE */
+/* =========================================================
+   MOBILE
+========================================================= */
 @media(max-width:900px){
   .desktop-nav{display:none}
   .hamburger{display:flex}
@@ -234,8 +352,8 @@ section{padding:100px 60px}
 <body>
 
 <div id="scrollProgress"></div>
+<div id="particles-js"></div>
 
-<!-- FLOATING JOB ICONS -->
 <div class="job-float">
   <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png">
@@ -245,6 +363,7 @@ section{padding:100px 60px}
 
 <nav class="navbar">
   <div class="logo">SmartHire</div>
+
   <div class="desktop-nav">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
@@ -255,6 +374,7 @@ section{padding:100px 60px}
     <button onclick="toggleTheme()">🌙</button>
     <button onclick="openLogin()">Login</button>
   </div>
+
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -292,6 +412,34 @@ section{padding:100px 60px}
   </div>
 </section>
 
+<section class="dark reveal">
+  <h2 class="title">Trending Jobs</h2>
+  <div class="cards">
+    <div class="card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><h3>Frontend Developer</h3><p>Remote • React</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee"><h3>AI Engineer</h3><p>Python • ML</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1581092919535-7146c6a6e6a8"><h3>Robotics Engineer</h3><p>ROS • Embedded</p></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2 class="title">Admin Dashboard Preview</h2>
+  <div class="admin-grid">
+    <div class="admin-card"><h3>1240</h3><p>Total Jobs</p></div>
+    <div class="admin-card"><h3>8320</h3><p>Companies</p></div>
+    <div class="admin-card"><h3>120K+</h3><p>Applications</p></div>
+    <div class="admin-card"><h3>1M+</h3><p>Users</p></div>
+  </div>
+</section>
+
+<section class="dark reveal">
+  <h2 class="title">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div><div class="faq-a">Yes, job seekers can use SmartHire completely free.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div><div class="faq-a">All recruiters are manually verified.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Remote jobs available?</div><div class="faq-a">Yes, remote and hybrid jobs are available.</div></div>
+  </div>
+</section>
+
 <footer class="footer">© 2025 SmartHire — All Rights Reserved</footer>
 
 <div id="loginModal" class="login-modal">
@@ -304,15 +452,16 @@ section{padding:100px 60px}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-/* Scroll bar */
+/* Scroll progress */
 window.addEventListener("scroll",()=>{
   const s=document.documentElement.scrollTop;
   const h=document.documentElement.scrollHeight-window.innerHeight;
   scrollProgress.style.width=(s/h)*100+"%";
 });
 
-/* Reveal */
+/* Reveal animation */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
 });
@@ -339,6 +488,22 @@ loginModal.onclick=e=>{
     setTimeout(()=>loginModal.style.display="none",300);
   }
 }
+
+/* FAQ */
+function toggleFAQ(el){
+  el.parentElement.classList.toggle("active");
+}
+
+/* Particles */
+particlesJS("particles-js",{
+  particles:{
+    number:{value:70},
+    size:{value:3},
+    color:{value:"#1e6fff"},
+    move:{speed:1},
+    line_linked:{enable:true,color:"#1e6fff"}
+  }
+});
 </script>
 
 </body>

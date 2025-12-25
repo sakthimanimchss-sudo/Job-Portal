@@ -362,20 +362,66 @@ section{
 /* ================= MOBILE FIX (VERY IMPORTANT) ================= */
 @media (max-width: 768px){
 
+  .login-modal{
+    padding:12px;
+    align-items:center;
+    justify-content:center;
+  }
+
   .login-container{
-    grid-template-columns:1fr;   /* stack */
-    max-height:92vh;
+    width:100%;
+    max-width:100%;
+    border-radius:18px;
+    grid-template-columns:1fr;      /* stack layout */
+    max-height:95vh;
     overflow-y:auto;
   }
 
+  /* Hide image panel only on mobile */
   .login-image{
-    display:none;               /* hide image on mobile */
+    display:none;
   }
 
   .login-form{
-    padding:28px;
+    padding:24px 20px;
+  }
+
+  .login-form h2{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:22px;
+  }
+
+  .login-form input{
+    width:100%;
+    font-size:16px;               /* prevents zoom on mobile */
+    padding:14px;
+    margin-bottom:14px;
+  }
+
+  .login-form label{
+    font-size:14px;
+  }
+
+  .login-form .btn{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    border-radius:30px;
+  }
+
+  .login-error{
+    text-align:center;
+    margin-bottom:12px;
+  }
+
+  /* Password eye icon fix */
+  .login-form span{
+    top:50% !important;
+    transform:translateY(-50%);
   }
 }
+
 
 /* ================= REVEAL ================= */
 .reveal{
@@ -740,6 +786,7 @@ if(e.target === modal){
 
 </body>
 </html>
+
 
 
 

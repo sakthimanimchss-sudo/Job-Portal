@@ -455,28 +455,35 @@ transform translate-x-full transition-transform duration-300 p-6">
 /* ================= MOBILE MENU ================= */
 function toggleMenu(){
   const menu = document.getElementById("mobileMenu");
-  if(menu){
-    menu.classList.toggle("translate-x-full");
+  const ham = document.querySelector(".hamburger");
+
+  if(menu.classList.contains("translate-x-full")){
+    menu.classList.remove("translate-x-full");
+    ham.classList.add("active");
+  }else{
+    menu.classList.add("translate-x-full");
+    ham.classList.remove("active");
   }
 }
 
 /* ================= THEME TOGGLE ================= */
 function toggleTheme(){
-  document.documentElement.classList.toggle("dark");
+  document.body.classList.toggle("light");
 
   localStorage.setItem(
     "theme",
-    document.documentElement.classList.contains("dark") ? "dark" : "light"
+    document.body.classList.contains("light") ? "light" : "dark"
   );
 }
 
 /* LOAD SAVED THEME */
 (function(){
   const savedTheme = localStorage.getItem("theme");
-  if(savedTheme === "dark"){
-    document.documentElement.classList.add("dark");
+  if(savedTheme === "light"){
+    document.body.classList.add("light");
   }
 })();
+
 
 /* ================= LOGIN MODAL ================= */
 function openLogin(){
@@ -519,23 +526,13 @@ document.addEventListener("keydown", function(e){
     validateLogin();
   }
 });
-function toggleMenu(){
-  const menu = document.getElementById("mobileMenu");
-  const ham = document.querySelector(".hamburger");
 
-  if(menu.classList.contains("translate-x-full")){
-    menu.classList.remove("translate-x-full");
-    ham.classList.add("active");
-  }else{
-    menu.classList.add("translate-x-full");
-    ham.classList.remove("active");
-  }
-}
 </script>
 
 
 </body>
 </html>
+
 
 
 

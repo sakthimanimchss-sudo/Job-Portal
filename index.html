@@ -267,6 +267,12 @@ body.light section {
     rgba(255,255,255,0.75)
   );
 }
+  @media (max-width: 900px) {
+  .desktop-menu {
+    display: none !important;
+  }
+}
+
 
 </style>
 </head>
@@ -289,7 +295,7 @@ body.light section {
     </a>
 
     <!-- DESKTOP MENU -->
-    <div class="hidden md:flex gap-6 items-center text-white">
+    <div class="desktop-menu gap-6 items-center text-white">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html">Pricing</a>
@@ -532,6 +538,7 @@ document.addEventListener("keydown", function(e){
 
 </body>
 </html>
+
 
 
 

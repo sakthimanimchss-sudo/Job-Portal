@@ -254,6 +254,25 @@ section{
   font-size:13px;
   opacity:.75;
 }
+  .footer-col a{
+  position:relative;
+}
+
+.footer-col a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0;
+  height:1px;
+  background:#facc15;
+  transition:.3s;
+}
+
+.footer-col a:hover::after{
+  width:100%;
+}
+
 
 /* ================= REVEAL ================= */
 .reveal{
@@ -399,27 +418,76 @@ section{
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
-    <div>
+
+    <!-- BRAND / ABOUT -->
+    <div class="footer-col">
       <h3 class="footer-logo">SmartHire</h3>
-      <p class="footer-text">AI-powered hiring platform.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Links</h4>
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="admin.html">Admin</a>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
+      <p class="footer-text">
+        SmartHire is an AI-powered job portal helping professionals
+        discover opportunities in IT, AI, Robotics & Engineering.
+        We connect talent with trusted companies using intelligent
+        matching technology.
+      </p>
+
       <div class="socials">
-        <a><i class="fa-brands fa-linkedin"></i></a>
-        <a><i class="fa-brands fa-github"></i></a>
-        <a><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Browse Jobs</a>
+      <a href="pricing.html">Pricing Plans</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- JOB CATEGORIES -->
+    <div class="footer-col">
+      <h4>Job Categories</h4>
+      <a href="#">Frontend Development</a>
+      <a href="#">AI / Machine Learning</a>
+      <a href="#">Robotics & Automation</a>
+      <a href="#">Embedded Systems</a>
+      <a href="#">Data Science</a>
+    </div>
+
+    <!-- FOR EMPLOYERS -->
+    <div class="footer-col">
+      <h4>For Employers</h4>
+      <a href="admin.html">Admin Dashboard</a>
+      <a href="#">Post a Job</a>
+      <a href="#">AI Resume Screening</a>
+      <a href="#">Hiring Analytics</a>
+      <a href="#">Enterprise Solutions</a>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-text">
+        📧 support@smarthire.com<br>
+        📍 Chennai, India<br>
+        🕒 24×7 Support
+      </p>
+    </div>
+
   </div>
-  <div class="footer-bottom">© 2025 SmartHire</div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    © 2025 SmartHire. All rights reserved |
+    <a href="#" style="color:inherit">Privacy Policy</a> |
+    <a href="#" style="color:inherit">Terms of Service</a>
+  </div>
 </footer>
+
 
 <script>
 function toggleMenu(){
@@ -444,4 +512,5 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 </body>
 </html>
+
 

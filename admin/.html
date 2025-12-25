@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<title>SmartHire | Admin Panel</title>
+<title>SmartHire | Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Tailwind -->
@@ -20,216 +20,206 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 body{
-  background:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085") center/cover fixed;
+  background:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085') center/cover fixed;
 }
 .glass{
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(14px);
 }
 .card{
-  background:white;
+  background:#fff;
   border-radius:16px;
+  padding:20px;
 }
-.dark .card{background:#0e0e0e;color:white}
+.dark .card{background:#0e0e0e;color:#fff}
+.stat{
+  background:#111827;
+  color:#facc15;
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+}
+.fade{animation:fade .7s ease}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1}}
 </style>
 </head>
 
-<body class="text-gray-900 dark:text-white">
+<body class="min-h-screen dark text-white">
 
 <!-- ================= LOGIN ================= -->
-<div id="loginBox" class="min-h-screen flex items-center justify-center glass">
-  <div class="bg-white dark:bg-[#0e0e0e] p-8 rounded-xl w-96 shadow-xl">
-    <h2 class="text-2xl font-bold text-center mb-6 text-yellow-400">
-      SmartHire Admin Login
-    </h2>
+<div id="loginBox" class="fixed inset-0 flex items-center justify-center bg-black z-50">
+  <div class="card w-[90%] max-w-md fade">
+    <h2 class="text-2xl font-bold mb-6 text-center">Admin Login</h2>
 
-    <input id="email" placeholder="Admin Email"
+    <input id="email" placeholder="admin@smarthire.com"
       class="w-full mb-4 px-4 py-2 rounded border">
 
-    <input id="password" type="password" placeholder="Password"
+    <input id="pass" type="password" placeholder="password"
       class="w-full mb-4 px-4 py-2 rounded border">
 
     <select id="role" class="w-full mb-4 px-4 py-2 rounded border">
-      <option value="Admin">Admin</option>
-      <option value="Recruiter">Recruiter</option>
+      <option>Admin</option>
+      <option>Recruiter</option>
     </select>
 
     <button onclick="login()"
-      class="w-full bg-yellow-400 text-black py-2 rounded font-bold">
+      class="w-full bg-yellow-400 text-black py-2 rounded font-semibold">
       Login
     </button>
+
+    <p id="err" class="text-red-500 text-sm mt-3 hidden">
+      Invalid login (Demo only)
+    </p>
   </div>
 </div>
 
 <!-- ================= DASHBOARD ================= -->
-<div id="dashboard" class="hidden">
+<div id="dashboard" class="hidden glass min-h-screen p-4 md:p-8 fade">
 
-<!-- NAVBAR -->
-<nav class="glass px-6 py-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold text-yellow-400">SmartHire Admin</h1>
+<!-- TOP BAR -->
+<div class="flex justify-between items-center mb-8">
+  <h1 class="text-xl md:text-2xl font-bold text-yellow-400">
+    SmartHire Admin
+  </h1>
 
   <div class="flex items-center gap-4">
-    <span class="text-sm">Role:
-      <b class="text-yellow-400" id="roleText"></b>
-    </span>
+    <span id="roleText" class="text-sm"></span>
 
     <button onclick="toggleTheme()" class="text-xl">🌙</button>
 
-    <button onclick="logout()"
-      class="bg-yellow-400 text-black px-4 py-1 rounded">
-      Logout
-    </button>
+    <button onclick="logout()" class="text-sm text-red-400">Logout</button>
   </div>
+</div>
+
+<!-- NAV -->
+<nav class="flex gap-4 text-sm mb-6 flex-wrap">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
-<!-- CONTENT -->
-<div class="max-w-7xl mx-auto p-6 space-y-8">
-
 <!-- STATS -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-  <div class="card p-6 text-center">
-    <h2 class="text-2xl font-bold text-yellow-400">78</h2>
-    <p>Total Jobs</p>
-  </div>
-  <div class="card p-6 text-center">
-    <h2 class="text-2xl font-bold text-yellow-400">214</h2>
-    <p>Applicants</p>
-  </div>
-  <div class="card p-6 text-center">
-    <h2 class="text-2xl font-bold text-yellow-400">93</h2>
-    <p>Pending</p>
-  </div>
-  <div class="card p-6 text-center">
-    <h2 class="text-2xl font-bold text-yellow-400">12</h2>
-    <p>Messages</p>
-  </div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+  <div class="stat">78<br><span class="text-sm">Jobs</span></div>
+  <div class="stat">214<br><span class="text-sm">Applicants</span></div>
+  <div class="stat">93<br><span class="text-sm">Pending</span></div>
+  <div class="stat">12<br><span class="text-sm">Messages</span></div>
 </div>
 
 <!-- AI INSIGHTS -->
-<div class="card p-6">
-  <h3 class="font-bold mb-3 text-yellow-400">
-    🧠 AI Hiring Insights
-  </h3>
-  <ul class="list-disc pl-5 text-sm space-y-1">
-    <li>AI Engineers demand increased by 32%</li>
-    <li>React skills shortlisted faster</li>
-    <li>Remote jobs have higher acceptance</li>
+<div class="card mb-8">
+  <h3 class="font-bold mb-3">🧠 AI Hiring Insights</h3>
+  <ul class="space-y-2 text-sm">
+    <li>✔ AI Engineers in high demand</li>
+    <li>✔ Robotics roles growing 23%</li>
+    <li>✔ React + AI combo recommended</li>
+    <li>✔ Shortlist candidates within 48 hrs</li>
   </ul>
 </div>
 
-<!-- SOCIAL MEDIA -->
-<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-  <div class="card p-4 text-center">
-    <i class="fab fa-linkedin text-blue-500 text-2xl"></i>
-    <p>LinkedIn</p>
+<!-- TOP LPA JOBS -->
+<h3 class="font-bold mb-3">Top LPA Jobs</h3>
+<div class="grid md:grid-cols-4 gap-4 mb-8">
+  <div class="card text-center">
+    <img class="rounded mb-2"
+      src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg">
+    AI Engineer<br><b>₹18 LPA</b>
   </div>
-  <div class="card p-4 text-center">
-    <i class="fab fa-twitter text-sky-400 text-2xl"></i>
-    <p>Twitter</p>
+  <div class="card text-center">
+    <img class="rounded mb-2"
+      src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg">
+    Data Scientist<br><b>₹16 LPA</b>
   </div>
-  <div class="card p-4 text-center">
-    <i class="fab fa-instagram text-pink-500 text-2xl"></i>
-    <p>Instagram</p>
+  <div class="card text-center">
+    <img class="rounded mb-2"
+      src="https://images.pexels.com/photos/7988082/pexels-photo-7988082.jpeg">
+    DevOps Engineer<br><b>₹15 LPA</b>
   </div>
-  <div class="card p-4 text-center">
-    <i class="fab fa-github text-gray-700 text-2xl"></i>
-    <p>GitHub</p>
-  </div>
-  <div class="card p-4 text-center">
-    <i class="fab fa-youtube text-red-500 text-2xl"></i>
-    <p>YouTube</p>
-  </div>
-</div>
-
-<!-- TOP LPA -->
-<div>
-  <h3 class="font-bold mb-3">Top LPA Jobs</h3>
-  <div class="grid md:grid-cols-4 gap-6">
-    <div class="card p-4">
-      <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg" class="rounded mb-2">
-      <b>AI Engineer</b><br>₹18 LPA
-    </div>
-    <div class="card p-4">
-      <img src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg" class="rounded mb-2">
-      <b>Data Scientist</b><br>₹16 LPA
-    </div>
-    <div class="card p-4">
-      <img src="https://images.pexels.com/photos/7988082/pexels-photo-7988082.jpeg" class="rounded mb-2">
-      <b>DevOps</b><br>₹15 LPA
-    </div>
-    <div class="card p-4">
-      <img src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg" class="rounded mb-2">
-      <b>Robotics</b><br>₹14 LPA
-    </div>
+  <div class="card text-center">
+    <img class="rounded mb-2"
+      src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg">
+    Robotics Engineer<br><b>₹14 LPA</b>
   </div>
 </div>
 
-<!-- MEMBERS -->
-<div class="card p-6">
-  <h3 class="font-bold mb-3">Team Members</h3>
-  <div class="flex gap-6 flex-wrap">
-    <div class="text-center">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg"
-        class="w-16 h-16 rounded-full mx-auto">
-      <p>Alex</p>
-    </div>
-    <div class="text-center">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg"
-        class="w-16 h-16 rounded-full mx-auto">
-      <p>Sophia</p>
-    </div>
-    <div class="text-center">
-      <img src="https://randomuser.me/api/portraits/men/55.jpg"
-        class="w-16 h-16 rounded-full mx-auto">
-      <p>John</p>
-    </div>
+<!-- TEAM -->
+<h3 class="font-bold mb-3">Team Members</h3>
+<div class="grid md:grid-cols-3 gap-4 mb-8">
+  <div class="card flex gap-3 items-center">
+    <img class="w-12 h-12 rounded-full"
+      src="https://randomuser.me/api/portraits/men/32.jpg">
+    Alex – Recruiter
+  </div>
+  <div class="card flex gap-3 items-center">
+    <img class="w-12 h-12 rounded-full"
+      src="https://randomuser.me/api/portraits/women/44.jpg">
+    Sara – HR
+  </div>
+  <div class="card flex gap-3 items-center">
+    <img class="w-12 h-12 rounded-full"
+      src="https://randomuser.me/api/portraits/men/55.jpg">
+    John – Admin
   </div>
 </div>
 
 <!-- CHARTS -->
-<div class="grid md:grid-cols-3 gap-6">
-  <div class="card p-4"><canvas id="chart1"></canvas></div>
-  <div class="card p-4"><canvas id="chart2"></canvas></div>
-  <div class="card p-4"><canvas id="chart3"></canvas></div>
+<div class="grid lg:grid-cols-3 gap-6">
+  <div class="card h-64"><canvas id="jobsChart"></canvas></div>
+  <div class="card h-64"><canvas id="appChart"></canvas></div>
+  <div class="card h-64"><canvas id="socialChart"></canvas></div>
 </div>
 
+<!-- SOCIAL -->
+<div class="flex justify-center gap-6 text-2xl mt-10 text-yellow-400">
+  <i class="fab fa-linkedin"></i>
+  <i class="fab fa-github"></i>
+  <i class="fab fa-twitter"></i>
+  <i class="fab fa-facebook"></i>
+  <i class="fab fa-instagram"></i>
 </div>
+
 </div>
 
 <!-- ================= JS ================= -->
 <script>
 function login(){
-  localStorage.setItem("admin","true");
-  localStorage.setItem("role",document.getElementById("role").value);
-  showDashboard();
+  if(email.value && pass.value){
+    loginBox.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+    roleText.innerText="Role: "+role.value;
+    drawCharts();
+  } else err.classList.remove("hidden");
 }
-function logout(){
-  localStorage.clear();
-  location.reload();
-}
-function showDashboard(){
-  document.getElementById("loginBox").style.display="none";
-  document.getElementById("dashboard").style.display="block";
-  document.getElementById("roleText").innerText=localStorage.getItem("role");
-}
-if(localStorage.getItem("admin")) showDashboard();
-
+function logout(){location.reload()}
 function toggleTheme(){
   document.documentElement.classList.toggle("dark");
 }
 
-/* Charts */
-new Chart(chart1,{type:'bar',data:{labels:['Jobs','Users','Views'],
-datasets:[{data:[78,214,320],backgroundColor:'#facc15'}]},
-options:{plugins:{legend:{display:false}}}});
+function drawCharts(){
+new Chart(jobsChart,{
+type:"bar",
+data:{labels:["Jul","Aug","Sep","Oct","Nov","Dec"],
+datasets:[{data:[5,7,6,9,8,10],backgroundColor:"#facc15"}]},
+options:{plugins:{legend:{display:false}}}
+});
 
-new Chart(chart2,{type:'line',data:{labels:['Jan','Feb','Mar','Apr'],
-datasets:[{data:[5,9,6,12],borderColor:'#facc15'}]},
-options:{plugins:{legend:{display:false}}}});
+new Chart(appChart,{
+type:"line",
+data:{labels:["Jan","Feb","Mar","Apr","May","Jun"],
+datasets:[{data:[20,35,30,50,55,70],
+borderColor:"#facc15",tension:.4}]},
+options:{plugins:{legend:{display:false}}}
+});
 
-new Chart(chart3,{type:'doughnut',data:{labels:['LinkedIn','Website','Indeed'],
-datasets:[{data:[45,30,25],backgroundColor:['#facc15','#1e293b','#6b7280']}]},
-options:{cutout:'70%'}});
+new Chart(socialChart,{
+type:"doughnut",
+data:{labels:["LinkedIn","Indeed","Website"],
+datasets:[{data:[60,25,15],
+backgroundColor:["#facc15","#64748b","#1e293b"]}]}
+});
+}
 </script>
 
 </body>

@@ -22,7 +22,6 @@ body.light{
   --card:#ffffff;
 }
 
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 html{scroll-behavior:smooth}
 
@@ -32,11 +31,10 @@ body{
   overflow-x:hidden;
 }
 
-/* SCROLL PROGRESS */
+/* SCROLL BAR */
 #scrollProgress{
-  position:fixed;top:0;left:0;
-  height:4px;background:var(--blue);
-  width:0%;z-index:9999;
+  position:fixed;top:0;left:0;height:4px;
+  background:var(--blue);width:0%;z-index:9999;
 }
 
 /* PARTICLES */
@@ -76,7 +74,7 @@ body{
   background:var(--blue);color:#000;
 }
 
-/* HERO (UNCHANGED DESIGN) */
+/* HERO */
 .hero{min-height:100vh;padding:160px 80px}
 .hero h1{font-size:48px}
 .hero span{background:var(--blue);color:#000;padding:6px 18px;border-radius:30px}
@@ -89,34 +87,56 @@ body{
 /* SECTIONS */
 section{padding:100px 60px}
 .dark{background:rgba(0,0,0,.35)}
-.title{text-align:center;font-size:34px;margin-bottom:14px}
+.title{text-align:center;font-size:34px;margin-bottom:12px}
 .subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
-/* CARDS */
+/* CARD GRID */
 .cards{
   max-width:1200px;margin:auto;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:30px;
 }
 .card{
-  background:var(--card);padding:30px;border-radius:24px;
-  text-align:center;transition:.4s;
+  background:var(--card);
+  padding:30px;border-radius:24px;
+  transition:.4s;
 }
 .card img{
-  width:100%;height:180px;object-fit:cover;
-  border-radius:16px;margin-bottom:14px;
+  width:100%;height:180px;
+  object-fit:cover;border-radius:16px;
+  margin-bottom:14px;
 }
 .card:hover{transform:translateY(-10px)}
 
-/* STATS */
-.stats{
-  max-width:900px;margin:auto;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+/* ADMIN PREVIEW */
+.admin-grid{
+  max-width:1100px;margin:auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:30px;text-align:center;
 }
-.stat h3{font-size:42px;color:var(--blue)}
+.admin-card{
+  background:var(--card);
+  padding:30px;border-radius:22px;
+}
+.admin-card h3{color:var(--blue);font-size:36px}
 
-/* LOGIN (IMPROVED ANIMATION) */
+/* FAQ */
+.faq{max-width:900px;margin:auto}
+.faq-item{
+  background:var(--card);
+  border-radius:20px;margin-bottom:14px;
+}
+.faq-q{padding:18px;cursor:pointer;font-weight:600}
+.faq-a{
+  max-height:0;overflow:hidden;
+  padding:0 18px;opacity:.85;
+  transition:.35s;
+}
+.faq-item.active .faq-a{
+  max-height:200px;padding:12px 18px 18px;
+}
+
+/* LOGIN */
 .login-modal{
   position:fixed;inset:0;
   background:rgba(0,0,0,.6);
@@ -127,12 +147,10 @@ section{padding:100px 60px}
 .login-box{
   background:var(--bg);
   padding:40px;border-radius:22px;width:320px;
-  transform:translateY(40px) scale(.9);
-  opacity:0;transition:.4s;
+  transform:scale(.9);opacity:0;transition:.4s;
 }
 .login-modal.show .login-box{
-  transform:translateY(0) scale(1);
-  opacity:1;
+  transform:scale(1);opacity:1;
 }
 .login-box input{
   width:100%;padding:14px;margin-bottom:14px;
@@ -187,6 +205,7 @@ section{padding:100px 60px}
   </div>
 </div>
 
+<!-- HERO -->
 <section class="hero">
   <h1>Find Your <span>Dream Job</span></h1>
   <p>AI-powered hiring platform connecting talent with top companies.</p>
@@ -196,27 +215,51 @@ section{padding:100px 60px}
   </div>
 </section>
 
+<!-- WHY -->
 <section>
   <h2 class="title">Why Choose SmartHire</h2>
   <p class="subtitle">Smarter, faster, AI-driven recruitment</p>
   <div class="cards">
-    <div class="card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a"><h3>AI Matching</h3></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><h3>Fast Hiring</h3></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Verified Companies</h3></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a"><h3>AI Matching</h3><p>Smart algorithms match skills with job requirements.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><h3>Fast Hiring</h3><p>Automated screening saves recruiter time.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Verified Companies</h3><p>Only trusted organizations can post jobs.</p></div>
   </div>
 </section>
 
+<!-- JOB PREVIEW -->
 <section class="dark">
-  <h2 class="title">Platform Stats</h2>
-  <div class="stats">
-    <div class="stat"><h3>120K+</h3><p>Jobs</p></div>
-    <div class="stat"><h3>85K+</h3><p>Companies</p></div>
-    <div class="stat"><h3>1M+</h3><p>Users</p></div>
+  <h2 class="title">Trending Jobs</h2>
+  <div class="cards">
+    <div class="card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><h3>Frontend Developer</h3><p>Remote • React • UI</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee"><h3>AI Engineer</h3><p>Python • ML • NLP</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1581092919535-7146c6a6e6a8"><h3>Robotics Engineer</h3><p>ROS • Embedded Systems</p></div>
+  </div>
+</section>
+
+<!-- ADMIN PREVIEW -->
+<section>
+  <h2 class="title">Admin Dashboard Preview</h2>
+  <div class="admin-grid">
+    <div class="admin-card"><h3>1240</h3><p>Total Jobs</p></div>
+    <div class="admin-card"><h3>8,320</h3><p>Companies</p></div>
+    <div class="admin-card"><h3>120K+</h3><p>Applications</p></div>
+    <div class="admin-card"><h3>1M+</h3><p>Users</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="dark">
+  <h2 class="title">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div><div class="faq-a">Yes, job seekers can use SmartHire completely free.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div><div class="faq-a">All recruiters are manually verified.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Do you support remote jobs?</div><div class="faq-a">Yes, remote and hybrid jobs are available.</div></div>
   </div>
 </section>
 
 <footer class="footer">© 2025 SmartHire — All Rights Reserved</footer>
 
+<!-- LOGIN -->
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h3>Login</h3>
@@ -228,16 +271,16 @@ section{padding:100px 60px}
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-/* Scroll progress */
+/* Scroll bar */
 window.addEventListener("scroll",()=>{
   const s=document.documentElement.scrollTop;
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById("scrollProgress").style.width=(s/h)*100+"%";
+  scrollProgress.style.width=(s/h)*100+"%";
 });
 
 /* Mobile menu */
 function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("show");
+  mobileMenu.classList.toggle("show");
 }
 
 /* Theme */
@@ -245,17 +288,21 @@ function toggleTheme(){
   document.body.classList.toggle("light");
 }
 
-/* Login animation */
+/* Login */
 function openLogin(){
-  const m=document.getElementById("loginModal");
-  m.style.display="flex";
-  setTimeout(()=>m.classList.add("show"),10);
+  loginModal.style.display="flex";
+  setTimeout(()=>loginModal.classList.add("show"),10);
 }
-document.getElementById("loginModal").onclick=e=>{
+loginModal.onclick=e=>{
   if(e.target.id==="loginModal"){
-    e.target.classList.remove("show");
-    setTimeout(()=>e.target.style.display="none",300);
+    loginModal.classList.remove("show");
+    setTimeout(()=>loginModal.style.display="none",300);
   }
+}
+
+/* FAQ */
+function toggleFAQ(el){
+  el.parentElement.classList.toggle("active");
 }
 
 /* Particles */

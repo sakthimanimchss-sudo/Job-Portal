@@ -199,6 +199,66 @@ section{padding:90px 20px}
 body.light .footer-bottom{
   border-color:rgba(0,0,0,.1);
 }
+  /* ================= ADVANCED SCROLL REVEAL ================= */
+
+/* Base hidden state */
+.reveal{
+  opacity:0;
+  transform:
+    translateY(40px)
+    scale(0.96);
+  filter:blur(4px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.22,1,.36,1),
+    filter .9s ease;
+  will-change:transform,opacity;
+}
+
+/* Visible state */
+.reveal.show{
+  opacity:1;
+  transform:
+    translateY(0)
+    scale(1);
+  filter:blur(0);
+}
+
+/* Group stagger effect */
+.reveal-group .reveal:nth-child(1){transition-delay:.05s}
+.reveal-group .reveal:nth-child(2){transition-delay:.15s}
+.reveal-group .reveal:nth-child(3){transition-delay:.25s}
+.reveal-group .reveal:nth-child(4){transition-delay:.35s}
+.reveal-group .reveal:nth-child(5){transition-delay:.45s}
+
+/* Horizontal reveal (careers strip) */
+.career-card.reveal{
+  transform:
+    translateX(60px)
+    scale(0.95);
+}
+.career-card.reveal.show{
+  transform:
+    translateX(0)
+    scale(1);
+}
+
+/* Stats pop effect */
+.stat.reveal{
+  transform:translateY(30px) scale(0.9);
+}
+.stat.reveal.show{
+  transform:translateY(0) scale(1);
+}
+
+/* Mobile optimization */
+@media(max-width:768px){
+  .reveal{
+    transform:translateY(30px);
+    filter:none;
+  }
+}
+
 
 </style>
 </head>
@@ -253,6 +313,12 @@ body.light .footer-bottom{
     <div class="feature"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf"><h3>Fast Hiring</h3></div>
     <div class="feature"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786"><h3>Verified Companies</h3></div>
   </div>
+  <div class="features reveal-group">
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+</div>
+
 </section>
 
 <section>
@@ -262,6 +328,12 @@ body.light .footer-bottom{
     <div class="job"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><h3>AI Engineer</h3><span>₹10–18 LPA</span></div>
     <div class="job"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Robotics Engineer</h3><span>₹8–14 LPA</span></div>
   </div>
+  <div class="features reveal-group">
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+</div>
+
 </section>
 
 <section class="scroll-strip">
@@ -280,6 +352,12 @@ body.light .footer-bottom{
     <div class="stat"><h3>8K+</h3><p>Companies</p></div>
     <div class="stat"><h3>120K+</h3><p>Applications</p></div>
   </div>
+  <div class="features reveal-group">
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+  <div class="feature reveal">...</div>
+</div>
+
 </section>
 
 <footer class="footer">
@@ -350,8 +428,32 @@ function toggleTheme(){
   localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
 }
 if(localStorage.getItem("theme")==="light"){document.body.classList.add("light")}
+
+  /* existing JS ABOVE */
+
+  /* ================= SCROLL OBSERVER ================= */
+  const revealObserver = new IntersectionObserver(
+    entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    {
+      threshold:0.15,
+      rootMargin:"0px 0px -60px 0px"
+    }
+  );
+
+  document.querySelectorAll(".reveal").forEach(el=>{
+    revealObserver.observe(el);
+  });
+
+
 </script>
 
 </body>
 </html>
+
 

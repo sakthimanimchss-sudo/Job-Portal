@@ -272,7 +272,6 @@ section{
 .footer-col a:hover::after{
   width:100%;
 }
-  
  /* ================= LOGIN MODAL (FULL FIXED CSS) ================= */
 
 .login-modal{
@@ -286,7 +285,7 @@ section{
   z-index:2000;
 }
 
-/* MAIN CONTAINER */
+/* ================= CONTAINER ================= */
 .login-container{
   width:820px;
   max-width:95%;
@@ -298,7 +297,7 @@ section{
   max-height:90vh;
 }
 
-/* LEFT IMAGE PANEL */
+/* ================= LEFT IMAGE PANEL ================= */
 .login-image{
   background:
     linear-gradient(var(--overlay),var(--overlay)),
@@ -321,7 +320,7 @@ section{
   opacity:.9;
 }
 
-/* RIGHT FORM PANEL */
+/* ================= RIGHT FORM PANEL ================= */
 .login-form{
   padding:40px;
   display:flex;
@@ -329,7 +328,7 @@ section{
   justify-content:center;
 }
 
-/* INPUTS */
+/* ================= INPUTS ================= */
 .login-form input{
   width:100%;
   padding:14px;
@@ -341,11 +340,29 @@ section{
   font-size:15px;
 }
 
+.login-form input::placeholder{
+  color:rgba(255,255,255,.55);
+}
+
+body.light .login-form input::placeholder{
+  color:rgba(0,0,0,.45);
+}
+
 .login-form input:focus{
   outline:2px solid #facc15;
 }
 
-/* ERROR MESSAGE */
+/* ================= PASSWORD EYE ICON ================= */
+.login-form span{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  user-select:none;
+}
+
+/* ================= ERROR MESSAGE ================= */
 .login-error{
   display:none;
   color:#ff6b6b;
@@ -353,10 +370,15 @@ section{
   margin-bottom:10px;
 }
 
-/* LOGIN BUTTON */
+/* ================= BUTTON ================= */
 .login-form .btn{
   width:100%;
   margin-top:10px;
+}
+
+/* ================= EXTRA TEXT ================= */
+.login-form p{
+  font-size:14px;
 }
 
 /* ================= MOBILE FIX (VERY IMPORTANT) ================= */
@@ -364,20 +386,18 @@ section{
 
   .login-modal{
     padding:12px;
-    align-items:center;
-    justify-content:center;
   }
 
   .login-container{
     width:100%;
     max-width:100%;
     border-radius:18px;
-    grid-template-columns:1fr;      /* stack layout */
+    grid-template-columns:1fr;
     max-height:95vh;
     overflow-y:auto;
   }
 
-  /* Hide image panel only on mobile */
+  /* Hide image panel on mobile */
   .login-image{
     display:none;
   }
@@ -393,10 +413,8 @@ section{
   }
 
   .login-form input{
-    width:100%;
-    font-size:16px;               /* prevents zoom on mobile */
+    font-size:16px; /* prevents iOS zoom */
     padding:14px;
-    margin-bottom:14px;
   }
 
   .login-form label{
@@ -412,15 +430,10 @@ section{
 
   .login-error{
     text-align:center;
-    margin-bottom:12px;
-  }
-
-  /* Password eye icon fix */
-  .login-form span{
-    top:50% !important;
-    transform:translateY(-50%);
   }
 }
+ 
+ 
 
 
 /* ================= REVEAL ================= */
@@ -786,6 +799,7 @@ if(e.target === modal){
 
 </body>
 </html>
+
 
 
 

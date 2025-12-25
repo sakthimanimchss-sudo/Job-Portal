@@ -5,147 +5,473 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<style> 
-   :root{
-  --bg:#000;
-  --text:#fff;
-  --card:rgba(0,0,0,.7);
-  --nav:rgba(0,0,0,.9);
-  --accent:#facc15;
+<!-- =========================
+   GLOBAL STYLES
+========================= -->
+<style>
+/* ---------- THEME COLORS ---------- */
+:root{
+  --blue:#1e6fff;
+  --blue-soft:#4f8cff;
+  --black:#050505;
+  --white:#ffffff;
+  --card:rgba(255,255,255,.08);
+  --glow:0 0 25px rgba(30,111,255,.45);
 }
 
 body.light{
-  --bg:#f4f4f4;
-  --text:#111;
-  --card:#fff;
-  --nav:#fff;
+  --black:#f5f7fb;
+  --white:#111;
+  --card:#ffffff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
+}
+
+html{scroll-behavior:smooth}
 
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
   transition:.3s;
 }
 
-/* BACKGROUND */
+/* =========================
+   ILLUSTRATION BACKGROUND
+========================= */
 .bg{
   position:fixed;
   inset:0;
   z-index:-1;
+  overflow:hidden;
 }
-.bg img{
+
+.bg::before{
+  content:"";
   position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  animation:bgFade 36s infinite;
-}
-.bg img:nth-child(2){animation-delay:12s}
-.bg img:nth-child(3){animation-delay:24s}
-
-@keyframes bgFade{
-  0%{opacity:0}
-  10%{opacity:.7}
-  30%{opacity:.7}
-  40%{opacity:0}
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(30,111,255,.35),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(79,140,255,.25),transparent 45%);
 }
 
-@media(max-width:768px){
-  .bg img{animation:none;opacity:1}
+/* Floating shapes */
+.bg span{
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--blue-soft));
+  opacity:.18;
+  animation:float 18s linear infinite;
 }
 
-/* NAV */
+.bg span:nth-child(1){top:10%;left:5%}
+.bg span:nth-child(2){bottom:15%;right:10%;animation-duration:24s}
+.bg span:nth-child(3){top:55%;left:45%;animation-duration:30s}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-60px)}
+  100%{transform:translateY(0)}
+}
+
+/* =========================
+   NAVBAR
+========================= */
 .navbar{
   position:fixed;
   top:0;
   width:100%;
-  padding:14px 20px;
-  background:var(--nav);
+  padding:14px 22px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
   z-index:1000;
 }
 
-.desktop-nav a,.desktop-nav button{
-  color:var(--text);
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.desktop-nav a,
+.desktop-nav button{
+  color:var(--white);
   background:none;
   border:none;
-  margin-left:14px;
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
 }
 
-.hamburger{display:none}
-
-@media(max-width:900px){
-  .desktop-nav{display:none}
-  .hamburger{display:flex;flex-direction:column}
+.desktop-nav a:hover,
+.desktop-nav button:hover{
+  color:var(--blue-soft);
 }
 
-/* HERO */
+/* Hamburger */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--blue);
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+#mobileMenu{
+  position:fixed;
+  top:0;
+  right:0;
+  width:260px;
+  height:100%;
+  background:#000;
+  transform:translateX(100%);
+  transition:.35s;
+  z-index:999;
+  padding:90px 24px;
+  display:flex;
+  flex-direction:column;
+}
+
+#mobileMenu.show{transform:translateX(0)}
+
+#mobileMenu a{
+  color:#fff;
+  text-decoration:none;
+  margin:14px 0;
+}
+
+.mobile-actions{
+  margin-top:auto;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+}
+
+.mobile-login-btn{
+  background:var(--blue);
+  border:none;
+  padding:12px 28px;
+  border-radius:30px;
+  font-weight:600;
+}
+
+.mobile-theme-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#000;
+  border:1px solid var(--blue);
+  color:var(--blue);
+}
+
+/* =========================
+   HERO
+========================= */
 .hero{
   min-height:100vh;
-  padding:140px 20px;
+  padding:140px 22px;
+  max-width:1200px;
+  margin:auto;
 }
-.hero span{background:var(--accent);color:#000;padding:6px 18px}
 
-/* SECTIONS */
-section{padding:90px 20px}
-.features,.jobs,.admin{display:grid;gap:26px;max-width:1100px;margin:auto}
+.hero h1{
+  font-size:46px;
+  line-height:1.2;
+}
 
-/* CAREER */
+.hero h1 span{
+  color:var(--black);
+  background:var(--blue);
+  padding:6px 18px;
+  border-radius:30px;
+  box-shadow:var(--glow);
+}
+
+/* typing animation */
+.typing{
+  overflow:hidden;
+  white-space:nowrap;
+  border-right:3px solid var(--blue);
+  animation:typing 3.5s steps(28,end),blink .8s infinite;
+}
+
+@keyframes typing{
+  from{width:0}
+  to{width:100%}
+}
+@keyframes blink{
+  50%{border-color:transparent}
+}
+
+.hero p{
+  margin-top:16px;
+  max-width:620px;
+  opacity:.9;
+}
+
+.btns{margin-top:28px}
+
+.btn{
+  padding:12px 30px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  margin-right:12px;
+}
+
+.primary{
+  background:var(--blue);
+  color:#000;
+  box-shadow:var(--glow);
+}
+.outline{
+  border:1px solid var(--white);
+  color:var(--white);
+}
+
+/* =========================
+   COMMON SECTIONS
+========================= */
+section{
+  padding:90px 22px;
+}
+
+.title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:10px;
+}
+.subtitle{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:40px;
+}
+
+/* Reveal animation */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:.5s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* =========================
+   FEATURES / JOBS
+========================= */
+.features,.jobs,.admin{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:26px;
+}
+
+.feature,.job,.admin-card{
+  background:var(--card);
+  border-radius:22px;
+  padding:26px;
+  backdrop-filter:blur(8px);
+  transition:.3s;
+}
+
+.feature:hover,.job:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--glow);
+}
+
+.feature img,.job img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+/* =========================
+   CAREER ACTION SCROLL
+========================= */
+.scroll-strip{
+  overflow:hidden;
+}
+
 .scroll-track{
   display:flex;
   gap:30px;
-  animation:scrollX 22s linear infinite;
+  animation:careerScroll 20s linear infinite;
 }
-@keyframes scrollX{
+
+@keyframes careerScroll{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
-.career-card{width:320px;flex-shrink:0}
 
-/* LOGIN */
+.career-card{
+  width:320px;
+  height:220px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  flex-shrink:0;
+}
+
+.career-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.career-info{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:14px;
+  background:rgba(0,0,0,.75);
+}
+
+/* =========================
+   FAQ
+========================= */
+.faq{
+  max-width:900px;
+  margin:auto;
+}
+
+.faq-item{
+  background:var(--card);
+  border-radius:18px;
+  margin-bottom:14px;
+}
+
+.faq-question{
+  padding:18px 22px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  padding:0 22px;
+  transition:.35s;
+  opacity:.85;
+}
+
+.faq-item.active .faq-answer{
+  max-height:200px;
+  padding:12px 22px 22px;
+}
+
+/* =========================
+   ADMIN
+========================= */
+.admin-card h3{
+  color:var(--blue);
+}
+
+/* =========================
+   LOGIN MODAL
+========================= */
 .login-modal{
   position:fixed;
   inset:0;
-  display:none;
   background:rgba(0,0,0,.6);
-  justify-content:center;
+  display:none;
   align-items:center;
+  justify-content:center;
+  z-index:2000;
 }
+
 .login-container{
-  background:#111;
+  width:820px;
+  max-width:95%;
+  background:#0b0b0b;
+  border-radius:22px;
   display:grid;
   grid-template-columns:1fr 1fr;
 }
+
+.login-image{
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d")
+  center/cover;
+  padding:40px;
+  color:var(--blue);
+}
+
+.login-form{
+  padding:40px;
+}
+
+.login-form input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  background:#000;
+  color:#fff;
+  margin-bottom:14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer{
+  padding:60px 22px;
+  background:#000;
+  text-align:center;
+  margin-top:40px;
+  opacity:.85;
+}
+
+/* =========================
+   MOBILE FIX
+========================= */
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+}
 @media(max-width:768px){
   .login-container{grid-template-columns:1fr}
+  .login-image{display:none}
+  .scroll-track{animation-duration:30s}
 }
-
-/* FOOTER */
-.footer{
-  padding:40px;
-  text-align:center;
-  background:var(--nav);
-}
-
 </style>
+</head>
 
 <body>
 
 <!-- BACKGROUND -->
 <div class="bg">
-  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
-  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+  <span></span><span></span><span></span>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
 
@@ -157,7 +483,7 @@ section{padding:90px 20px}
     <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
-    <button onclick="openLogin()" class="login-btn">Login</button>
+    <button onclick="openLogin()">Login</button>
   </div>
 
   <div class="hamburger" onclick="toggleMenu()">
@@ -167,14 +493,12 @@ section{padding:90px 20px}
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu">
-  <button class="close-btn" onclick="toggleMenu()">✕</button>
-
   <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
-  <a href="admin.html" class="accent">Admin</a>
+  <a href="admin.html">Admin</a>
 
   <div class="mobile-actions">
     <button class="mobile-login-btn" onclick="openLogin()">Login</button>
@@ -185,11 +509,10 @@ section{padding:90px 20px}
 <!-- HERO -->
 <section class="hero reveal">
   <h1 class="typing">Find Your <span>Dream Job</span></h1>
-  <p>SmartHire connects talent with top IT, AI, Robotics and Engineering companies.</p>
-
+  <p>AI-powered hiring platform connecting talent with top companies.</p>
   <div class="btns">
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
-    <a href="jobs.html" class="btn outline">Explore →</a>
+    <a href="jobs.html" class="btn outline">Explore</a>
   </div>
 </section>
 
@@ -197,158 +520,91 @@ section{padding:90px 20px}
 <section>
   <h2 class="title reveal">Why Choose SmartHire</h2>
   <p class="subtitle reveal">Smarter hiring with AI</p>
-
-  <div class="features reveal-group">
-    <div class="feature reveal float">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-    </div>
-    <div class="feature reveal float">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-    </div>
-    <div class="feature reveal float">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-    </div>
+  <div class="features reveal">
+    <div class="feature"><h3>AI Matching</h3></div>
+    <div class="feature"><h3>Fast Hiring</h3></div>
+    <div class="feature"><h3>Verified Companies</h3></div>
   </div>
 </section>
 
-<!-- JOBS -->
-<section>
-  <h2 class="title reveal">Featured Jobs</h2>
-
-  <div class="jobs reveal-group">
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>Frontend Developer</h3>
-      <span>₹6–10 LPA</span>
-    </div>
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <span>₹10–18 LPA</span>
-    </div>
-    <div class="job reveal">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Robotics Engineer</h3>
-      <span>₹8–14 LPA</span>
-    </div>
-  </div>
-</section>
-
-<!-- CAREERS -->
+<!-- CAREER -->
 <section class="scroll-strip">
   <h2 class="title reveal">Careers in Action</h2>
-
   <div class="scroll-track" id="careerTrack">
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <div class="career-info">Robotics</div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info">AI Development</div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info">Team Collaboration</div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e">
-      <div class="career-info">Embedded Systems</div>
-    </div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><div class="career-info">Robotics</div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info">AI Development</div></div>
+    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info">Team Work</div></div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section>
   <h2 class="title reveal">FAQ</h2>
-
   <div class="faq">
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">What is SmartHire?</div>
-      <div class="faq-answer">AI powered hiring platform.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">Is it free?</div>
-      <div class="faq-answer">Yes for job seekers.</div>
-    </div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">What is SmartHire?</div><div class="faq-answer">AI hiring platform.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Is it free?</div><div class="faq-answer">Yes for job seekers.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Companies verified?</div><div class="faq-answer">100% verified.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Remote jobs?</div><div class="faq-answer">Yes available.</div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Support?</div><div class="faq-answer">24/7 support.</div></div>
   </div>
 </section>
 
 <!-- ADMIN -->
-<section id="admin">
+<section>
   <h2 class="title reveal">Admin Dashboard</h2>
-
   <div class="admin">
     <div class="admin-card"><h3>Jobs</h3><p>1240</p></div>
-    <div class="admin-card"><h3>Companies</h3><p>8230</p></div>
+    <div class="admin-card"><h3>Companies</h3><p>8320</p></div>
     <div class="admin-card"><h3>Applications</h3><p>120K+</p></div>
   </div>
 </section>
 
-<!-- LOGIN MODAL -->
+<!-- LOGIN -->
 <div id="loginModal" class="login-modal">
   <div class="login-container">
-    <div class="login-image">
-      <h2>Welcome to SmartHire</h2>
-      <p>AI-powered hiring</p>
-    </div>
-
+    <div class="login-image"><h2>Welcome</h2></div>
     <div class="login-form">
-      <h2>Login</h2>
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
+      <input placeholder="Email">
+      <input placeholder="Password" type="password">
       <button class="btn primary">Login</button>
     </div>
   </div>
 </div>
 
 <footer class="footer">
-  <p>© 2025 SmartHire. All rights reserved.</p>
+  © 2025 SmartHire — All Rights Reserved
 </footer>
 
+<!-- =========================
+   JAVASCRIPT
+========================= -->
 <script>
-   function toggleMenu(){
+function toggleMenu(){
   document.getElementById("mobileMenu").classList.toggle("show");
 }
-
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem("theme",
-    document.body.classList.contains("light")?"light":"dark");
 }
-if(localStorage.getItem("theme")==="light"){
-  document.body.classList.add("light");
-}
-
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
 }
-
 document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal"){
-    e.target.style.display="none";
-  }
+  if(e.target.id==="loginModal") e.target.style.display="none";
 }
-
 function toggleFAQ(el){
   el.parentElement.classList.toggle("active");
 }
 
-/* REVEAL */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("show");
-  });
+/* reveal */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
 });
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
-/* DUPLICATE CAREER FOR LOOP */
+/* duplicate career */
 const track=document.getElementById("careerTrack");
-if(track) track.innerHTML+=track.innerHTML;
-
+track.innerHTML+=track.innerHTML;
 </script>
+
 </body>
 </html>

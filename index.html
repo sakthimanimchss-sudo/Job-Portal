@@ -272,6 +272,47 @@ section{
 .footer-col a:hover::after{
   width:100%;
 }
+  /* ================= LOGIN MODAL FIX ================= */
+.login-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.login-container{
+  width:800px;
+  max-width:95%;
+  background:var(--card);
+  border-radius:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+}
+
+.login-image{
+  background:
+    linear-gradient(var(--overlay),var(--overlay)),
+    url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d")
+    center/cover;
+  padding:40px;
+  color:#facc15;
+}
+
+.login-form{
+  padding:40px;
+}
+
+.login-error{
+  color:#ff6b6b;
+  font-size:13px;
+  margin-top:8px;
+}
+
 
 
 /* ================= REVEAL ================= */
@@ -325,9 +366,11 @@ section{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html" style="color:#facc15">Admin</a>
-  <button id="loginSubmit" class="btn primary" onclick="validateLogin()">
+  <button class="btn primary" onclick="openLogin()">
   Login
 </button>
+
+
 
 
   <button onclick="toggleTheme()">🌙 </button>
@@ -626,11 +669,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
   }
 });
+if(e.target === modal){
+  modal.style.display = "none";
+}
+
 </script>
 
 
 </body>
 </html>
+
 
 
 

@@ -7,7 +7,7 @@
 
 <style>
 /* =====================================================
-   THEME (LOCKED)
+   THEME (LOCKED – NO CHANGE)
 ===================================================== */
 :root{
   --blue:#1e6fff;
@@ -36,7 +36,7 @@ body{
 }
 
 /* =====================================================
-   PARTICLES
+   PARTICLES BACKGROUND
 ===================================================== */
 #particles-js{
   position:fixed;
@@ -77,12 +77,13 @@ body{
   color:var(--white);
   cursor:pointer;
   text-decoration:none;
+  font-size:14px;
 }
 .desktop-nav a:hover,
 .desktop-nav button:hover{color:var(--blue-soft)}
 
 /* =====================================================
-   HERO
+   HERO SECTION (PNG ADDED – NO LAYOUT CHANGE)
 ===================================================== */
 .hero{
   min-height:100vh;
@@ -107,7 +108,11 @@ body{
   border-radius:30px;
   box-shadow:var(--glow);
 }
-.hero p{margin-top:16px;max-width:620px;opacity:.9}
+.hero p{
+  margin-top:16px;
+  max-width:620px;
+  opacity:.9;
+}
 .btns{margin-top:28px}
 .btn{
   padding:12px 30px;
@@ -119,6 +124,7 @@ body{
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--white);color:var(--white)}
 
+/* RIGHT SIDE PNG */
 .hero-image img{
   width:100%;
   max-width:420px;
@@ -128,10 +134,12 @@ body{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-16px)}
 }
-@media(max-width:900px){.hero-image{display:none}}
+@media(max-width:900px){
+  .hero-image{display:none}
+}
 
 /* =====================================================
-   COMMON SECTION STYLE
+   COMMON SECTIONS
 ===================================================== */
 section{padding:90px 22px}
 .title{text-align:center;font-size:34px;margin-bottom:10px}
@@ -152,7 +160,7 @@ section{padding:90px 22px}
   transition:.4s;
 }
 .card:hover{
-  transform:translateY(-10px);
+  transform:translateY(-12px);
   box-shadow:var(--glow);
 }
 .card img{
@@ -177,7 +185,10 @@ section{padding:90px 22px}
   padding:30px;
   text-align:center;
 }
-.stat h3{color:var(--blue);font-size:34px}
+.stat h3{
+  color:var(--blue);
+  font-size:34px;
+}
 
 /* =====================================================
    FAQ
@@ -206,7 +217,7 @@ section{padding:90px 22px}
 }
 
 /* =====================================================
-   LOGIN MODAL
+   LOGIN MODAL (ADVANCED)
 ===================================================== */
 .login-modal{
   position:fixed;
@@ -281,32 +292,42 @@ section{padding:90px 22px}
     </div>
   </div>
   <div class="hero-image">
-    <img src="hero-job.png" alt="">
+    <img src="hero-job.png" alt="Job Illustration">
   </div>
 </section>
 
-<!-- WHY -->
+<!-- 1. WHY -->
 <section>
 <h2 class="title">Why Choose SmartHire</h2>
-<p class="subtitle">Smarter, faster AI recruitment</p>
+<p class="subtitle">Smarter, faster AI-driven recruitment</p>
 <div class="grid">
   <div class="card"><img src="why-ai.png"><h3>AI Matching</h3><p>Skill-based intelligent job matching.</p></div>
   <div class="card"><img src="why-fast.png"><h3>Fast Hiring</h3><p>Automated screening saves time.</p></div>
-  <div class="card"><img src="why-verified.png"><h3>Verified Companies</h3><p>Trusted recruiters only.</p></div>
+  <div class="card"><img src="why-verified.png"><h3>Verified Companies</h3><p>Only trusted recruiters.</p></div>
 </div>
 </section>
 
-<!-- TRENDING JOBS -->
+<!-- 2. HOW IT WORKS -->
+<section>
+<h2 class="title">How SmartHire Works</h2>
+<div class="grid">
+  <div class="card"><img src="work-1.png"><h3>Create Profile</h3><p>Build your professional profile.</p></div>
+  <div class="card"><img src="work-2.png"><h3>AI Match</h3><p>Get matched with best jobs.</p></div>
+  <div class="card"><img src="work-3.png"><h3>Get Hired</h3><p>Apply & get hired faster.</p></div>
+</div>
+</section>
+
+<!-- 3. TRENDING JOBS -->
 <section>
 <h2 class="title">Trending Jobs</h2>
 <div class="grid">
-  <div class="card"><img src="job1.jpg"><h3>AI Engineer</h3><p>High demand role</p></div>
-  <div class="card"><img src="job2.jpg"><h3>Frontend Developer</h3><p>React, UI/UX</p></div>
-  <div class="card"><img src="job3.jpg"><h3>Robotics Engineer</h3><p>Automation & AI</p></div>
+  <div class="card"><img src="job-1.jpg"><h3>AI Engineer</h3><p>High demand role.</p></div>
+  <div class="card"><img src="job-2.jpg"><h3>Frontend Developer</h3><p>React & UI/UX.</p></div>
+  <div class="card"><img src="job-3.jpg"><h3>Robotics Engineer</h3><p>Automation & AI.</p></div>
 </div>
 </section>
 
-<!-- ADMIN -->
+<!-- 4. ADMIN -->
 <section>
 <h2 class="title">Admin Dashboard Preview</h2>
 <div class="stats">
@@ -317,14 +338,14 @@ section{padding:90px 22px}
 </div>
 </section>
 
-<!-- FAQ -->
+<!-- 5. FAQ -->
 <section>
 <h2 class="title">Frequently Asked Questions</h2>
 <div class="faq">
   <div class="faq-item"><div class="faq-q" onclick="faq(this)">What is SmartHire?</div><div class="faq-a">AI hiring platform.</div></div>
   <div class="faq-item"><div class="faq-q" onclick="faq(this)">Is it free?</div><div class="faq-a">Yes for job seekers.</div></div>
-  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Remote jobs?</div><div class="faq-a">Yes available.</div></div>
-  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Support?</div><div class="faq-a">24/7 support.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Remote jobs?</div><div class="faq-a">Available.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Verified companies?</div><div class="faq-a">100% verified.</div></div>
 </div>
 </section>
 
@@ -343,7 +364,14 @@ section{padding:90px 22px}
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-particlesJS("particles-js",{particles:{number:{value:60},size:{value:3},color:{value:"#1e6fff"},line_linked:{enable:true}}});
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    size:{value:3},
+    color:{value:"#1e6fff"},
+    line_linked:{enable:true}
+  }
+});
 function toggleTheme(){document.body.classList.toggle("light")}
 function openLogin(){loginModal.style.display="flex"}
 function faq(el){el.parentElement.classList.toggle("active")}

@@ -1,241 +1,277 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>SmartHire | FAQ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = { darkMode: 'class' }
-</script>
+<!-- ================= THEME (SAME AS INDEX) ================= -->
+<style>
+:root{
+  --blue:#1e6fff;
+  --blue-soft:#4f8cff;
+  --black:#050505;
+  --white:#ffffff;
+  --card:rgba(255,255,255,.08);
+  --glow:0 0 25px rgba(30,111,255,.45);
+}
+body.light{
+  --black:#f5f7fb;
+  --white:#111;
+  --card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(110deg,#0b1e46,var(--black),#000);
+  color:var(--white);
+  overflow-x:hidden;
+  padding-top:90px;
+}
+
+/* ================= PARTICLES ================= */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:14px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.desktop-nav a,
+.desktop-nav button{
+  background:none;
+  border:none;
+  color:var(--white);
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+.desktop-nav a:hover{color:var(--blue-soft)}
+
+/* ================= HAMBURGER ================= */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--white);
+  border-radius:10px;
+}
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:90px;
+  right:20px;
+  width:220px;
+  background:#000;
+  border-radius:18px;
+  padding:18px;
+  display:none;
+  z-index:2000;
+}
+.mobile-menu a,
+.mobile-menu button{
+  display:block;
+  padding:10px 0;
+  color:var(--white);
+  text-decoration:none;
+  text-align:left;
+}
+.mobile-menu a:hover{color:var(--blue)}
+.mobile-menu.show{display:block}
+.mobile-theme-btn{
+  width:100%;
+  background:#0b0b0b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  padding:12px;
+  border-radius:14px;
+  margin-top:14px;
+}
+.mobile-theme-btn:hover{
+  background:var(--blue);
+  color:#000;
+}
+
+/* ================= HERO ================= */
+header{
+  padding:60px 22px;
+  text-align:center;
+}
+header h1{
+  font-size:42px;
+}
+header h1 span{
+  background:var(--blue);
+  color:#000;
+  padding:6px 18px;
+  border-radius:30px;
+  box-shadow:var(--glow);
+}
+header p{margin-top:14px;opacity:.8}
+
+/* ================= FAQ ================= */
+section{padding:60px 22px}
+.faq-wrap{
+  max-width:900px;
+  margin:auto;
+}
+.faq-item{
+  background:var(--card);
+  border-radius:16px;
+  margin-bottom:14px;
+  overflow:hidden;
+}
+.faq-q{
+  padding:18px;
+  cursor:pointer;
+  font-weight:600;
+}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:.4s ease;
+  padding:0 18px;
+  opacity:.85;
+}
+.faq-item.active .faq-a{
+  max-height:200px;
+  padding:12px 18px 18px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:40px 22px;
+  text-align:center;
+  background:#000;
+  opacity:.85;
+}
+</style>
 </head>
 
-<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
+<body>
 
-<!-- ================= BACKGROUND ================= -->
-<div class="fixed inset-0 -z-10">
-  <img
-    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
-    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
-    alt=""
-  />
-  <div class="absolute inset-0 bg-black/45"></div>
-</div>
+<div id="particles-js"></div>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">SmartHire</div>
 
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">
-      SmartHire
-    </a>
+  <div class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html" style="color:var(--blue)">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+  </div>
 
-    <div class="hidden md:flex gap-6 items-center">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html" class="text-yellow-400 font-semibold">FAQ</a>
-      <a href="contact.html">Contact</a>
-
-      <a href="admin.html"
-        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
-        Admin
-      </a>
-
-      <button onclick="toggleDark()" class="text-xl">🌙</button>
-    </div>
-
-    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
-      <span class="hamburger"></span>
-    </button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ================= MOBILE MENU ================= -->
-<div id="mobileMenu"
-  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
-
-  <a href="index.html" class="block py-4 text-xl">Home</a>
-  <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
-  <a href="pricing.html" class="block py-4 text-xl">Pricing</a>
-  <a href="faq.html" class="block py-4 text-xl text-yellow-400">FAQ</a>
-  <a href="contact.html" class="block py-4 text-xl">Contact</a>
-
-  <a href="admin.html"
-    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
-    Admin
-  </a>
-
-  <button onclick="toggleDark()" class="mt-6 text-2xl">🌙</button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html" style="color:var(--blue)">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html">Admin</a>
+  <button onclick="toggleTheme()" class="mobile-theme-btn">🌙 Theme</button>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="pt-32 pb-20 text-center">
-  <h1 class="text-4xl md:text-5xl font-extrabold">
-    How can we <span class="text-yellow-400">help?</span>
-  </h1>
-  <p class="mt-4 text-gray-200 md:text-gray-600">
-    Answers to common questions about SmartHire
-  </p>
+<!-- HERO -->
+<header>
+  <h1>Frequently <span>Asked Questions</span></h1>
+  <p>Everything you need to know about SmartHire</p>
+</header>
 
-  <input
-    type="text"
-    placeholder="Search help topics..."
-    class="mt-8 w-full max-w-xl mx-auto px-5 py-3 rounded-lg text-black focus:ring-4 focus:ring-yellow-400 outline-none"
-  />
-</section>
-
-<!-- ================= FAQ IMAGE ================= -->
-<section class="pb-12">
-  <div class="max-w-4xl mx-auto px-6">
-    <img
-      src="https://images.unsplash.com/photo-1551836022-d5d88e9218df"
-      class="rounded-xl shadow-lg w-full object-cover"
-      alt="Support"
-    />
+<!-- FAQ -->
+<section>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">How do I apply for a job?</div>
+      <div class="faq-a">Browse jobs, click apply, upload your resume and submit.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Is SmartHire free?</div>
+      <div class="faq-a">Yes, job applications are completely free.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Can I use SmartHire on mobile?</div>
+      <div class="faq-a">Yes, SmartHire works perfectly on all devices.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Do you support freshers?</div>
+      <div class="faq-a">Yes, freshers and experienced professionals are welcome.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">How does AI matching work?</div>
+      <div class="faq-a">AI matches your skills and preferences with suitable jobs.</div>
+    </div>
   </div>
 </section>
 
-<!-- ================= FAQ LIST ================= -->
-<section class="pb-24">
-  <div class="max-w-4xl mx-auto px-6 space-y-4">
-
-    <!-- FAQ ITEM -->
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">How do I apply for a job?</button>
-      <div class="faq-answer">
-        Browse jobs, click apply, upload your resume and submit.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">Is SmartHire free?</button>
-      <div class="faq-answer">
-        Yes. Applying for jobs is completely free.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">Can I apply from mobile?</button>
-      <div class="faq-answer">
-        Yes. SmartHire works smoothly on all mobile devices.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">Do you support freshers?</button>
-      <div class="faq-answer">
-        Yes. Freshers and experienced professionals are welcome.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">How does AI job matching work?</button>
-      <div class="faq-answer">
-        Our AI matches your skills, experience and preferences with suitable jobs.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">How do recruiters post jobs?</button>
-      <div class="faq-answer">
-        Recruiters can post jobs via the Admin dashboard after selecting a plan.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">Is my data secure?</button>
-      <div class="faq-answer">
-        Yes. We use secure systems to protect your personal information.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button onclick="toggleFAQ(this)">How do I contact support?</button>
-      <div class="faq-answer">
-        Visit the Contact page or email support@smarthire.com
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-black text-gray-400 py-10 text-center">
-  © 2025 SmartHire. All rights reserved.
+<footer>
+© 2025 SmartHire — All Rights Reserved
 </footer>
 
-<!-- ================= STYLES ================= -->
-<style>
-body { padding-top: 88px; }
-
-/* FAQ */
-.faq-item{
-  background:white;
-  border-radius:.7rem;
-  overflow:hidden;
-}
-.dark .faq-item{background:#0e0e0e}
-
-.faq-item button{
-  width:100%;
-  padding:1rem;
-  font-weight:600;
-  text-align:left;
-}
-
-.faq-answer{
-  max-height:0;
-  overflow:hidden;
-  padding:0 1rem;
-  transition:max-height .4s ease;
-  color:#666;
-}
-.dark .faq-answer{color:#aaa}
-
-/* Hamburger */
-.hamburger,
-.hamburger::before,
-.hamburger::after{
-  content:"";
-  position:absolute;
-  width:26px;
-  height:3px;
-  background:#facc15;
-  border-radius:10px;
-  transition:.35s;
-}
-.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
-.hamburger::before{transform:translateY(-8px)}
-.hamburger::after{transform:translateY(8px)}
-.menu-open .hamburger{background:transparent}
-.menu-open .hamburger::before{transform:rotate(45deg)}
-.menu-open .hamburger::after{transform:rotate(-45deg)}
-
-@keyframes bgMove{
-  from{transform:scale(1)}
-  to{transform:scale(1.08)}
-}
-.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
-</style>
-
-<!-- ================= JS ================= -->
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-function toggleDark(){
-  document.documentElement.classList.toggle("dark");
-}
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    color:{value:"#1e6fff"},
+    size:{value:3},
+    line_linked:{enable:true,color:"#1e6fff",opacity:.35}
+  }
+});
 
 function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-  document.body.classList.toggle("menu-open");
+  document.getElementById("mobileMenu").classList.toggle("show");
 }
-
-function toggleFAQ(btn){
-  const ans = btn.nextElementSibling;
-  ans.style.maxHeight
-    ? ans.style.maxHeight = null
-    : ans.style.maxHeight = ans.scrollHeight + "px";
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+function faq(el){
+  el.parentElement.classList.toggle("active");
 }
 </script>
 

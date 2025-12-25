@@ -258,6 +258,12 @@ body.light .footer-bottom{
     filter:none;
   }
 }
+  /* ================= FAST SCROLL IMAGE ANIMATION ================= */
+.fast-img{
+  will-change: transform;
+  transform: translateY(0) scale(1.08);
+  transition: transform .15s linear;
+}
 
 
 </style>
@@ -306,57 +312,124 @@ body.light .footer-bottom{
 </div>
 
 <section>
-  <h2 class="title">Why Choose SmartHire</h2>
-  <p class="subtitle">Smarter hiring with AI</p>
-  <div class="features">
-    <div class="feature"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789"><h3>AI Matching</h3></div>
-    <div class="feature"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf"><h3>Fast Hiring</h3></div>
-    <div class="feature"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786"><h3>Verified Companies</h3></div>
+<h2 class="title">Why Choose SmartHire</h2>
+<p class="subtitle">Smarter hiring with AI</p>
+
+<div class="features reveal-group">
+
+  <div class="feature reveal">
+    <img class="fast-img"
+      src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
+    <h3>AI Matching</h3>
   </div>
-  <div class="features reveal-group">
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
+
+  <div class="feature reveal">
+    <img class="fast-img"
+      src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
+    <h3>Fast Hiring</h3>
+  </div>
+
+  <div class="feature reveal">
+    <img class="fast-img"
+      src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+    <h3>Verified Companies</h3>
+  </div>
+
 </div>
+
 
 </section>
 
 <section>
-  <h2 class="title">Featured Jobs</h2>
-  <div class="jobs">
-    <div class="job"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"><h3>Frontend Dev</h3><span>₹6–10 LPA</span></div>
-    <div class="job"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><h3>AI Engineer</h3><span>₹10–18 LPA</span></div>
-    <div class="job"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Robotics Engineer</h3><span>₹8–14 LPA</span></div>
+<h2 class="title">Featured Jobs</h2>
+
+<div class="jobs reveal-group">
+
+  <div class="job reveal">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+    <h3>Frontend Dev</h3>
+    <span>₹6–10 LPA</span>
   </div>
-  <div class="features reveal-group">
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
+
+  <div class="job reveal">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+    <h3>AI Engineer</h3>
+    <span>₹10–18 LPA</span>
+  </div>
+
+  <div class="job reveal">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <h3>Robotics Engineer</h3>
+    <span>₹8–14 LPA</span>
+  </div>
+
 </div>
+
 
 </section>
 
 <section class="scroll-strip">
   <h2 class="title">Careers in Action</h2>
+
+<div class="scroll-strip">
   <div class="scroll-track">
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info">AI</div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info">Teams</div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><div class="career-info">Robotics</div></div>
+
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+      <div class="career-info">AI</div>
+    </div>
+
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <div class="career-info">Teams</div>
+    </div>
+
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <div class="career-info">Robotics</div>
+    </div>
+
+    <!-- ✅ DUPLICATE FOR SMOOTH LOOP (IMPORTANT) -->
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+      <div class="career-info">AI</div>
+    </div>
+
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <div class="career-info">Teams</div>
+    </div>
+
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <div class="career-info">Robotics</div>
+    </div>
+
   </div>
+</div>
+
 </section>
 
 <section>
-  <h2 class="title">Platform Impact</h2>
-  <div class="stats">
-    <div class="stat"><h3>50K+</h3><p>Job Seekers</p></div>
-    <div class="stat"><h3>8K+</h3><p>Companies</p></div>
-    <div class="stat"><h3>120K+</h3><p>Applications</p></div>
+<h2 class="title reveal">Platform Impact</h2>
+
+<div class="stats reveal-group">
+  <div class="stat reveal">
+    <h3>50K+</h3>
+    <p>Job Seekers</p>
   </div>
-  <div class="features reveal-group">
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
-  <div class="feature reveal">...</div>
+
+  <div class="stat reveal">
+    <h3>8K+</h3>
+    <p>Companies</p>
+  </div>
+
+  <div class="stat reveal">
+    <h3>120K+</h3>
+    <p>Applications</p>
+  </div>
 </div>
+
 
 </section>
 
@@ -455,5 +528,6 @@ if(localStorage.getItem("theme")==="light"){document.body.classList.add("light")
 
 </body>
 </html>
+
 
 

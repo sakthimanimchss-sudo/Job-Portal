@@ -5,506 +5,147 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ICONS -->
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!--============== css ========-->
-<style>
-/* =====================================================
-   THEME VARIABLES (ILLUSTRATION STYLE)
-===================================================== */
-:root{
-  --bg:#f3f7ff;
-  --text:#0f172a;
-  --card:#ffffff;
-  --nav:rgba(255,255,255,.85);
-  --overlay:rgba(255,255,255,.6);
-  --accent:#2563eb;
-  --accent-soft:#93c5fd;
-  --shadow:0 20px 40px rgba(0,0,0,.08);
+</head>
+<style> 
+   :root{
+  --bg:#000;
+  --text:#fff;
+  --card:rgba(0,0,0,.7);
+  --nav:rgba(0,0,0,.9);
+  --accent:#facc15;
 }
 
 body.light{
-  --bg:#f3f7ff;
-  --text:#0f172a;
-  --card:#ffffff;
-  --nav:rgba(255,255,255,.9);
-  --overlay:rgba(255,255,255,.65);
+  --bg:#f4f4f4;
+  --text:#111;
+  --card:#fff;
+  --nav:#fff;
 }
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 
 body{
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
   transition:.3s;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont;
 }
 
-/* =====================================================
-   BACKGROUND (DESKTOP & MOBILE FIXED)
-===================================================== */
+/* BACKGROUND */
 .bg{
   position:fixed;
   inset:0;
   z-index:-1;
 }
-
 .bg img{
+  position:absolute;
   width:100%;
   height:100%;
   object-fit:cover;
-  position:absolute;
   opacity:0;
   animation:bgFade 36s infinite;
 }
-
-.bg-desktop img:nth-child(2){animation-delay:12s}
-.bg-desktop img:nth-child(3){animation-delay:24s}
-
-.bg::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:var(--overlay);
-}
-
-/* Desktop background */
-.bg-desktop{display:block}
-.bg-mobile{display:none}
-
-/* Mobile background fix */
-@media(max-width:768px){
-  .bg-desktop{display:none}
-  .bg-mobile{display:block}
-  .bg-mobile img{
-    opacity:1;
-    animation:none;
-    object-fit:cover;
-  }
-}
+.bg img:nth-child(2){animation-delay:12s}
+.bg img:nth-child(3){animation-delay:24s}
 
 @keyframes bgFade{
   0%{opacity:0}
-  10%{opacity:1}
-  30%{opacity:1}
+  10%{opacity:.7}
+  30%{opacity:.7}
   40%{opacity:0}
 }
 
-/* =====================================================
-   NAVBAR
-===================================================== */
+@media(max-width:768px){
+  .bg img{animation:none;opacity:1}
+}
+
+/* NAV */
 .navbar{
   position:fixed;
   top:0;
   width:100%;
-  padding:14px 24px;
+  padding:14px 20px;
   background:var(--nav);
-  backdrop-filter:blur(14px);
   display:flex;
   justify-content:space-between;
-  align-items:center;
   z-index:1000;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:700;
-  color:var(--accent);
-}
-
-.desktop-nav{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.desktop-nav a,
-.desktop-nav button{
+.desktop-nav a,.desktop-nav button{
+  color:var(--text);
   background:none;
   border:none;
-  color:var(--text);
-  cursor:pointer;
-  font-size:14px;
-  text-decoration:none;
+  margin-left:14px;
 }
 
-.desktop-nav a:hover,
-.desktop-nav button:hover{
-  color:var(--accent);
-}
-
-.login-btn{
-  background:var(--accent);
-  color:white;
-  padding:8px 18px;
-  border-radius:999px;
-}
-
-/* =====================================================
-   HAMBURGER
-===================================================== */
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  cursor:pointer;
-}
-
-.hamburger span{
-  width:26px;
-  height:3px;
-  background:var(--accent);
-  transition:.3s;
-}
+.hamburger{display:none}
 
 @media(max-width:900px){
   .desktop-nav{display:none}
-  .hamburger{display:flex}
+  .hamburger{display:flex;flex-direction:column}
 }
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-#mobileMenu{
-  position:fixed;
-  inset:0;
-  background:#0f172a;
-  transform:translateX(100%);
-  transition:.4s ease;
-  padding:90px 24px;
-  z-index:999;
-  display:flex;
-  flex-direction:column;
-}
-
-#mobileMenu.show{
-  transform:translateX(0);
-}
-
-#mobileMenu a{
-  color:white;
-  text-decoration:none;
-  font-size:18px;
-  margin:14px 0;
-}
-
-.close-menu{
-  position:absolute;
-  top:18px;
-  right:20px;
-  background:none;
-  border:none;
-  font-size:28px;
-  color:var(--accent);
-}
-
-.mobile-actions{
-  margin-top:auto;
-  display:flex;
-  justify-content:center;
-  gap:16px;
-}
-
-.mobile-login-btn{
-  background:var(--accent);
-  color:white;
-  border:none;
-  padding:12px 28px;
-  border-radius:999px;
-}
-
-.mobile-theme-btn{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:2px solid var(--accent);
-  background:none;
-  color:var(--accent);
-}
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 .hero{
   min-height:100vh;
-  padding:160px 20px 120px;
-  text-align:center;
+  padding:140px 20px;
 }
+.hero span{background:var(--accent);color:#000;padding:6px 18px}
 
-.hero-title{
-  font-size:46px;
-  font-weight:800;
-}
+/* SECTIONS */
+section{padding:90px 20px}
+.features,.jobs,.admin{display:grid;gap:26px;max-width:1100px;margin:auto}
 
-.hero span{
-  background:var(--accent);
-  color:white;
-  padding:6px 20px;
-  border-radius:999px;
-  display:inline-block;
-}
-
-/* Jump animation */
-.jump-text{
-  animation:jump 1.4s infinite;
-}
-
-@keyframes jump{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-  100%{transform:translateY(0)}
-}
-
-.hero-sub{
-  max-width:640px;
-  margin:18px auto 0;
-  opacity:.85;
-}
-
-.btns{
-  margin-top:30px;
-}
-
-.btn{
-  padding:12px 30px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.primary{
-  background:var(--accent);
-  color:white;
-}
-
-.outline{
-  border:2px solid var(--accent);
-  color:var(--accent);
-}
-
-/* =====================================================
-   SECTIONS
-===================================================== */
-section{
-  padding:90px 20px;
-}
-
-.title{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:10px;
-}
-
-.subtitle{
-  text-align:center;
-  opacity:.75;
-  margin-bottom:40px;
-}
-
-.features,
-.jobs,
-.stats,
-.admin{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  gap:26px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-
-.feature,
-.job,
-.stat,
-.admin-card{
-  background:var(--card);
-  border-radius:22px;
-  padding:26px;
-  box-shadow:var(--shadow);
-  transition:.35s;
-}
-
-.feature:hover,
-.job:hover{
-  transform:translateY(-8px);
-}
-
-.feature img,
-.job img{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:14px;
-}
-
-.job span{
-  color:var(--accent);
-  font-weight:600;
-}
-
-/* =====================================================
-   CAREER SCROLL (SMOOTH & SAFE)
-===================================================== */
-.scroll-strip{
-  overflow:hidden;
-}
-
+/* CAREER */
 .scroll-track{
   display:flex;
   gap:30px;
-  width:max-content;
   animation:scrollX 22s linear infinite;
-  will-change:transform;
 }
-
 @keyframes scrollX{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
+.career-card{width:320px;flex-shrink:0}
 
-.career-card{
-  width:320px;
-  height:240px;
-  border-radius:22px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:var(--shadow);
+/* LOGIN */
+.login-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
 }
-
-.career-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.career-info{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:16px;
-  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-  color:white;
-}
-
-/* =====================================================
-   FAQ
-===================================================== */
-.faq{
-  max-width:900px;
-  margin:auto;
-}
-
-.faq-item{
-  background:var(--card);
-  border-radius:18px;
-  margin-bottom:16px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-
-.faq-question{
-  padding:18px 22px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.faq-answer{
-  max-height:0;
-  overflow:hidden;
-  padding:0 22px;
-  transition:.35s;
-}
-
-.faq-item.active .faq-answer{
-  max-height:200px;
-  padding:14px 22px 22px;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-.footer{
-  background:var(--nav);
-  padding:80px 20px 30px;
-}
-
-.footer-container{
-  max-width:1200px;
-  margin:auto;
+.login-container{
+  background:#111;
   display:grid;
-  gap:40px;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:1fr 1fr;
 }
-
-.footer-logo{
-  color:var(--accent);
-  font-size:22px;
-  margin-bottom:12px;
-}
-
-.footer-text{
-  opacity:.85;
-  line-height:1.6;
-}
-
-.footer-col a{
-  display:block;
-  color:var(--text);
-  text-decoration:none;
-  margin-bottom:8px;
-  opacity:.8;
-}
-
-.footer-col a:hover{
-  color:var(--accent);
-  opacity:1;
-}
-
-.footer-bottom{
-  margin-top:40px;
-  text-align:center;
-  opacity:.7;
-  font-size:13px;
-}
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-.reveal{
-  opacity:0;
-  transform:translateY(26px);
-  transition:.45s ease;
-}
-
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-
-/* =====================================================
-   MOBILE OPTIMIZATION
-===================================================== */
 @media(max-width:768px){
-  .hero-title{font-size:36px}
-  section{padding:70px 16px}
-  .scroll-track{animation-duration:30s}
+  .login-container{grid-template-columns:1fr}
+}
+
+/* FOOTER */
+.footer{
+  padding:40px;
+  text-align:center;
+  background:var(--nav);
 }
 
 </style>
-</head>
 
 <body>
 
-<!-- ================= BACKGROUND LAYERS ================= -->
-<div class="bg bg-desktop">
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+<!-- BACKGROUND -->
+<div class="bg">
   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
 </div>
 
-<div class="bg bg-mobile">
-  <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-</div>
-
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
 
@@ -514,344 +155,200 @@ section{
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
-    <a href="admin.html" class="admin-link">Admin</a>
-    <button class="theme-btn">🌙</button>
-    <button class="login-btn">Login</button>
+    <a href="admin.html">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="openLogin()" class="login-btn">Login</button>
   </div>
 
-  <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ================= MOBILE MENU ================= -->
+<!-- MOBILE MENU -->
 <div id="mobileMenu">
-  <button class="close-menu">✕</button>
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
 
   <a href="index.html">Home</a>
   <a href="jobs.html">Jobs</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
-  <a href="admin.html" class="admin-link">Admin</a>
+  <a href="admin.html" class="accent">Admin</a>
 
   <div class="mobile-actions">
-    <button class="mobile-login-btn">Login</button>
-    <button class="mobile-theme-btn">🌙</button>
+    <button class="mobile-login-btn" onclick="openLogin()">Login</button>
+    <button class="mobile-theme-btn" onclick="toggleTheme()">🌙</button>
   </div>
 </div>
 
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <h1 class="hero-title">
-    Find Your <span class="jump-text">Dream Job</span>
-  </h1>
-
-  <p class="hero-sub">
-    SmartHire connects talent with top IT, AI, Robotics & Engineering companies.
-  </p>
+<!-- HERO -->
+<section class="hero reveal">
+  <h1 class="typing">Find Your <span>Dream Job</span></h1>
+  <p>SmartHire connects talent with top IT, AI, Robotics and Engineering companies.</p>
 
   <div class="btns">
     <a href="jobs.html" class="btn primary">Browse Jobs</a>
     <a href="jobs.html" class="btn outline">Explore →</a>
   </div>
-</header>
+</section>
 
-<!-- ================= WHY CHOOSE ================= -->
+<!-- WHY -->
 <section>
   <h2 class="title reveal">Why Choose SmartHire</h2>
   <p class="subtitle reveal">Smarter hiring with AI</p>
 
   <div class="features reveal-group">
-    <div class="feature reveal">
+    <div class="feature reveal float">
       <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
       <h3>AI Matching</h3>
-      <p>Advanced algorithms connect the right talent with the right role.</p>
     </div>
-
-    <div class="feature reveal">
+    <div class="feature reveal float">
       <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
       <h3>Fast Hiring</h3>
-      <p>Reduce hiring time with automation and smart filtering.</p>
     </div>
-
-    <div class="feature reveal">
+    <div class="feature reveal float">
       <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
       <h3>Verified Companies</h3>
-      <p>Only trusted and verified employers.</p>
     </div>
   </div>
 </section>
 
-<!-- ================= JOBS ================= -->
+<!-- JOBS -->
 <section>
   <h2 class="title reveal">Featured Jobs</h2>
 
   <div class="jobs reveal-group">
-    <div class=" job reveal>
+    <div class="job reveal">
       <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
       <h3>Frontend Developer</h3>
-      <p>React · UI · Performance</p>
       <span>₹6–10 LPA</span>
     </div>
-
     <div class="job reveal">
       <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
       <h3>AI Engineer</h3>
-      <p>Python · ML · NLP</p>
       <span>₹10–18 LPA</span>
     </div>
-
     <div class="job reveal">
       <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
       <h3>Robotics Engineer</h3>
-      <p>ROS · Embedded · Automation</p>
       <span>₹8–14 LPA</span>
     </div>
   </div>
 </section>
 
-<!-- ================= CAREERS ACTION ================= -->
+<!-- CAREERS -->
 <section class="scroll-strip">
   <h2 class="title reveal">Careers in Action</h2>
 
-  <div class="scroll-track">
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info">AI Development</div>
-    </div>
-
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info">Team Collaboration</div>
-    </div>
-
+  <div class="scroll-track" id="careerTrack">
     <div class="career-card">
       <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
       <div class="career-info">Robotics</div>
     </div>
-
-    <!-- DUPLICATE FOR SMOOTH LOOP -->
     <div class="career-card">
       <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
       <div class="career-info">AI Development</div>
     </div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
+      <div class="career-info">Team Collaboration</div>
+    </div>
+    <div class="career-card">
+      <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e">
+      <div class="career-info">Embedded Systems</div>
+    </div>
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
+<!-- FAQ -->
 <section>
-  <h2 class="title reveal">Frequently Asked Questions</h2>
+  <h2 class="title reveal">FAQ</h2>
 
   <div class="faq">
     <div class="faq-item">
-      <div class="faq-question">How does SmartHire work?</div>
-      <div class="faq-answer">AI matches candidates with jobs automatically.</div>
+      <div class="faq-question" onclick="toggleFAQ(this)">What is SmartHire?</div>
+      <div class="faq-answer">AI powered hiring platform.</div>
     </div>
-
     <div class="faq-item">
-      <div class="faq-question">Is SmartHire free?</div>
+      <div class="faq-question" onclick="toggleFAQ(this)">Is it free?</div>
       <div class="faq-answer">Yes for job seekers.</div>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Can employers post jobs?</div>
-      <div class="faq-answer">Yes via Admin Dashboard.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Is my data secure?</div>
-      <div class="faq-answer">We use enterprise-grade security.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Where are you located?</div>
-      <div class="faq-answer">Chennai, India.</div>
-    </div>
   </div>
 </section>
 
-<!-- ================= ADMIN DEMO ================= -->
-<section>
-  <h2 class="title reveal">Admin Overview</h2>
+<!-- ADMIN -->
+<section id="admin">
+  <h2 class="title reveal">Admin Dashboard</h2>
 
   <div class="admin">
-    <div class="admin-card">
-      <h3>Total Jobs</h3>
-      <p>1,250+</p>
-    </div>
-    <div class="admin-card">
-      <h3>Active Users</h3>
-      <p>50,000+</p>
-    </div>
-    <div class="admin-card">
-      <h3>AI Matches</h3>
-      <p>120,000+</p>
-    </div>
+    <div class="admin-card"><h3>Jobs</h3><p>1240</p></div>
+    <div class="admin-card"><h3>Companies</h3><p>8230</p></div>
+    <div class="admin-card"><h3>Applications</h3><p>120K+</p></div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+  <div class="login-container">
+    <div class="login-image">
+      <h2>Welcome to SmartHire</h2>
+      <p>AI-powered hiring</p>
+    </div>
+
+    <div class="login-form">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button class="btn primary">Login</button>
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
-  <div class="footer-container">
-
-    <div class="footer-col">
-      <h3 class="footer-logo">SmartHire</h3>
-      <p class="footer-text">
-        AI-powered job platform connecting talent with opportunity.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>support@smarthire.com</p>
-      <p>Chennai, India</p>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2025 SmartHire. All rights reserved.
-  </div>
+  <p>© 2025 SmartHire. All rights reserved.</p>
 </footer>
 
-<!-- ================js================ -->
-
 <script>
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-function toggleMenu(){
-  const menu = document.getElementById("mobileMenu");
-  const ham  = document.querySelector(".hamburger");
-  menu.classList.toggle("show");
-  if(ham) ham.classList.toggle("active");
+   function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("show");
 }
 
-/* =====================================================
-   THEME TOGGLE (SAVE MODE)
-===================================================== */
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("light") ? "light" : "dark"
-  );
+  localStorage.setItem("theme",
+    document.body.classList.contains("light")?"light":"dark");
 }
 if(localStorage.getItem("theme")==="light"){
   document.body.classList.add("light");
 }
 
-/* =====================================================
-   LOGIN MODAL
-===================================================== */
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
 }
-function closeLogin(){
-  document.getElementById("loginModal").style.display="none";
-}
-document.getElementById("loginModal")?.addEventListener("click",e=>{
-  if(e.target.id==="loginModal") closeLogin();
-});
 
-/* =====================================================
-   PASSWORD TOGGLE
-===================================================== */
-function togglePassword(){
-  const p=document.getElementById("loginPassword");
-  if(p) p.type = p.type==="password" ? "text" : "password";
-}
-
-/* =====================================================
-   LOGIN / REGISTER SWITCH
-===================================================== */
-let isRegister=false;
-function switchMode(){
-  isRegister=!isRegister;
-  document.getElementById("loginTitle").innerText =
-    isRegister ? "Create Account" : "Login";
-  document.getElementById("loginSubmit").innerText =
-    isRegister ? "Register" : "Login";
-}
-
-/* =====================================================
-   LOGIN VALIDATION (DEMO)
-===================================================== */
-function validateLogin(){
-  const email=document.getElementById("loginEmail").value;
-  const pass=document.getElementById("loginPassword").value;
-  const err=document.getElementById("loginError");
-
-  if(!email.includes("@") || pass.length<6){
-    err.style.display="block";
-    return;
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal"){
+    e.target.style.display="none";
   }
-  err.style.display="none";
-  alert(isRegister?"Account Created (Demo)":"Login Successful (Demo)");
-  closeLogin();
 }
 
-/* =====================================================
-   FAQ TOGGLE
-===================================================== */
 function toggleFAQ(el){
   el.parentElement.classList.toggle("active");
 }
 
-/* =====================================================
-   SCROLL REVEAL (FAST + SAFE)
-===================================================== */
-const revealObserver = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
+/* REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("show");
   });
-},{threshold:.12});
-
-document.querySelectorAll(".reveal").forEach(el=>{
-  revealObserver.observe(el);
 });
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
-/* =====================================================
-   BACKGROUND IMAGE SAFETY (MOBILE)
-===================================================== */
-if(window.innerWidth < 768){
-  document.querySelectorAll(".bg img").forEach(img=>{
-    img.style.animation="none";
-    img.style.opacity="1";
-  });
-}
+/* DUPLICATE CAREER FOR LOOP */
+const track=document.getElementById("careerTrack");
+if(track) track.innerHTML+=track.innerHTML;
 
-/* =====================================================
-   CAREER SCROLL DUPLICATE (SMOOTH LOOP)
-===================================================== */
-const track=document.querySelector(".scroll-track");
-if(track){
-  track.innerHTML += track.innerHTML;
-}
-
-/* =====================================================
-   LETTER JUMP EFFECT (HERO)
-===================================================== */
-document.querySelectorAll(".jump-text").forEach(el=>{
-  el.innerHTML = el.textContent.split("")
-    .map(ch=>`<span style="display:inline-block">${ch}</span>`)
-    .join("");
-});
 </script>
-
-
 </body>
 </html>

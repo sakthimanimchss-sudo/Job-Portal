@@ -520,13 +520,13 @@ section{
    NAVBAR
 ===================================================== -->
 <nav class="navbar">
-  <div class="logo">SmartHire</div>
   <div class="desktop-nav">
-    <a href="#home">Home</a>
-    <a href="#jobs">Jobs</a>
-    <a href="#careers">Careers</a>
-    <a href="#faq">FAQ</a>
-    <a href="#admin">Admin</a>
+  <a href="index.html">Home</a>
+  <a href="job.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
     <button onclick="openLogin()">Login</button>
   </div>
@@ -539,16 +539,19 @@ section{
    MOBILE MENU
 ===================================================== -->
 <div id="mobileMenu">
-  <a href="#home">Home</a>
-  <a href="#jobs">Jobs</a>
-  <a href="#careers">Careers</a>
-  <a href="#faq">FAQ</a>
-  <a href="#admin">Admin</a>
+  <a href="index.html">Home</a>
+  <a href="job.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html" style="color:#facc15">Admin</a>
+
   <div class="mobile-actions">
     <button class="mobile-login-btn" onclick="openLogin()">Login</button>
     <button class="mobile-theme-btn" onclick="toggleTheme()">🌙</button>
   </div>
 </div>
+
 
 <!-- =====================================================
    HERO
@@ -704,25 +707,69 @@ section{
 </footer>
 
 <script>
+/* ================= MOBILE MENU ================= */
 function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("show");
+  const menu = document.getElementById("mobileMenu");
+  if(menu){
+    menu.classList.toggle("show");
+  }
 }
+
+/* ================= THEME TOGGLE ================= */
 function toggleTheme(){
   document.body.classList.toggle("light");
+
+  // save theme
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
 }
+
+/* load saved theme */
+(function(){
+  if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+  }
+})();
+
+/* ================= LOGIN MODAL ================= */
 function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
+  const modal = document.getElementById("loginModal");
+  if(modal){
+    modal.style.display = "flex";
+  }
 }
+
 function closeLogin(){
-  document.getElementById("loginModal").style.display="none";
+  const modal = document.getElementById("loginModal");
+  if(modal){
+    modal.style.display = "none";
+  }
 }
-document.getElementById("loginModal").onclick=e=>{
-  if(e.target.id==="loginModal") closeLogin();
-}
+
+/* click outside to close (SAFE) */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const modal = document.getElementById("loginModal");
+  if(modal){
+    modal.addEventListener("click", e=>{
+      if(e.target.id === "loginModal"){
+        closeLogin();
+      }
+    });
+  }
+});
+
+/* ================= FAQ TOGGLE ================= */
 function toggleFAQ(el){
-  el.parentElement.classList.toggle("active");
+  const item = el.parentElement;
+  if(item){
+    item.classList.toggle("active");
+  }
 }
 </script>
 
+
 </body>
 </html>
+

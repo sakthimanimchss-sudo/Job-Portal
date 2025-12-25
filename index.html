@@ -5,10 +5,14 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =========================
-   STYLES
-========================= -->
+<!-- ======================================================
+     GLOBAL STYLES – ORIGINAL DESIGN PRESERVED
+====================================================== -->
 <style>
+
+/* =====================
+   THEME VARIABLES
+===================== */
 :root{
   --blue:#1e6fff;
   --blue-soft:#4f8cff;
@@ -24,6 +28,9 @@ body.light{
   --card:#ffffff;
 }
 
+/* =====================
+   RESET
+===================== */
 *{
   margin:0;
   padding:0;
@@ -40,18 +47,18 @@ body{
   transition:.3s;
 }
 
-/* =========================
-   PARTICLES
-========================= */
+/* =====================
+   PARTICLES BACKGROUND
+===================== */
 #particles-js{
   position:fixed;
   inset:0;
   z-index:-1;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* =====================
+   NAVBAR (UNCHANGED)
+===================== */
 .navbar{
   position:fixed;
   top:0;
@@ -93,9 +100,9 @@ body{
   color:var(--blue-soft);
 }
 
-/* =========================
-   HERO
-========================= */
+/* =====================
+   HERO SECTION
+===================== */
 .hero{
   min-height:100vh;
   padding:140px 22px;
@@ -143,7 +150,9 @@ body{
   color:var(--white);
 }
 
-/* HERO PNG (SAFE) */
+/* =====================
+   HERO PNG (SAFE FIX)
+===================== */
 .hero-png{
   position:absolute;
   right:40px;
@@ -159,10 +168,12 @@ body{
   .hero-png{display:none}
 }
 
-/* =========================
-   COMMON
-========================= */
-section{padding:90px 22px}
+/* =====================
+   COMMON SECTION STYLES
+===================== */
+section{
+  padding:90px 22px;
+}
 
 .title{
   text-align:center;
@@ -176,7 +187,9 @@ section{padding:90px 22px}
   margin-bottom:40px;
 }
 
-/* Reveal */
+/* =====================
+   REVEAL ANIMATION
+===================== */
 .reveal{
   opacity:0;
   transform:translateY(30px);
@@ -187,9 +200,9 @@ section{padding:90px 22px}
   transform:none;
 }
 
-/* =========================
-   GRID CARDS
-========================= */
+/* =====================
+   CARD GRID
+===================== */
 .grid{
   max-width:1100px;
   margin:auto;
@@ -219,9 +232,9 @@ section{padding:90px 22px}
   margin-bottom:14px;
 }
 
-/* =========================
+/* =====================
    ADMIN DASHBOARD
-========================= */
+===================== */
 .admin-grid{
   max-width:1000px;
   margin:auto;
@@ -242,9 +255,9 @@ section{padding:90px 22px}
   color:var(--blue);
 }
 
-/* =========================
+/* =====================
    FAQ
-========================= */
+===================== */
 .faq{
   max-width:900px;
   margin:auto;
@@ -275,9 +288,9 @@ section{padding:90px 22px}
   padding:12px 22px 22px;
 }
 
-/* =========================
-   LOGIN MODAL (IMPROVED)
-========================= */
+/* =====================
+   LOGIN MODAL
+===================== */
 .login-modal{
   position:fixed;
   inset:0;
@@ -321,9 +334,9 @@ section{padding:90px 22px}
   font-weight:600;
 }
 
-/* =========================
+/* =====================
    FOOTER
-========================= */
+===================== */
 .footer{
   padding:60px 22px;
   background:#000;
@@ -331,13 +344,16 @@ section{padding:90px 22px}
   margin-top:40px;
   opacity:.85;
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- PARTICLES -->
 <div id="particles-js"></div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
   <div class="desktop-nav">
@@ -362,11 +378,11 @@ section{padding:90px 22px}
     <a href="pricing.html" class="btn outline">Explore</a>
   </div>
 
-  <!-- PNG IMAGE -->
-  <img src="your-job-illustration.png" class="hero-png" alt="Job Illustration">
+  <!-- PNG IMAGE (FIXED PATH) -->
+  <img src="./job-illustration.png" class="hero-png" alt="">
 </section>
 
-<!-- WHY -->
+<!-- WHY CHOOSE -->
 <section>
   <h2 class="title reveal">Why Choose SmartHire</h2>
   <p class="subtitle reveal">Smarter, faster AI recruitment</p>
@@ -390,7 +406,7 @@ section{padding:90px 22px}
   </div>
 </section>
 
-<!-- ADMIN -->
+<!-- ADMIN DASHBOARD -->
 <section>
   <h2 class="title reveal">Admin Dashboard Preview</h2>
 
@@ -409,15 +425,15 @@ section{padding:90px 22px}
   <div class="faq reveal">
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div>
-      <div class="faq-a">Yes, for job seekers.</div>
+      <div class="faq-a">Yes, it is free for job seekers.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div>
-      <div class="faq-a">Yes, all are manually verified.</div>
+      <div class="faq-a">All companies are manually verified.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Remote jobs?</div>
-      <div class="faq-a">Remote and hybrid supported.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">Remote jobs available?</div>
+      <div class="faq-a">Yes, remote and hybrid jobs are supported.</div>
     </div>
   </div>
 </section>
@@ -426,7 +442,7 @@ section{padding:90px 22px}
   © 2025 SmartHire — All Rights Reserved
 </footer>
 
-<!-- LOGIN -->
+<!-- LOGIN MODAL -->
 <div class="login-modal" id="loginModal">
   <div class="login-box">
     <h2>Login</h2>
@@ -436,6 +452,7 @@ section{padding:90px 22px}
   </div>
 </div>
 
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js",{
@@ -468,5 +485,3 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 </body>
 </html>
-
-

@@ -325,9 +325,11 @@ section{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html" style="color:#facc15">Admin</a>
-  <button onclick="openLoginFromMenu()" class="login-btn">
+  <a href="javascript:void(0)" onclick="openLogin()">Login</a>
+  <button id="loginSubmit" class="btn primary" onclick="validateLogin()">
   Login
 </button>
+
 
   <button onclick="toggleTheme()">🌙 </button>
 </div>
@@ -422,7 +424,7 @@ section{
   </div>
 </section>
   <!-- ================= ADVANCED LOGIN MODAL ================= -->
-<div id="loginModal" class="login-modal">
+<div id="loginModal" class="login-modal" style="display:none">
 
   <div class="login-container">
 
@@ -565,7 +567,7 @@ let isRegister = false;
 
 /* OPEN LOGIN MODAL */
 function openLogin(){
-  const modal = document.getElementById("loginModal");
+  const modal = document.getElementById("loginsubmit");
   if(modal){
     modal.style.display = "flex";
   }
@@ -630,6 +632,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 </body>
 </html>
+
 
 
 

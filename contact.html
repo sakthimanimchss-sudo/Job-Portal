@@ -1,205 +1,326 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>SmartHire | Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = { darkMode: 'class' }
-</script>
+<style>
+/* ================= THEME ================= */
+:root{
+  --blue:#1e6fff;
+  --blue-soft:#4f8cff;
+  --black:#050505;
+  --white:#ffffff;
+  --card:rgba(255,255,255,.08);
+  --glow:0 0 25px rgba(30,111,255,.45);
+}
+body.light{
+  --black:#f5f7fb;
+  --white:#111;
+  --card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(110deg,#0b1e46,var(--black),#000);
+  color:var(--white);
+  overflow-x:hidden;
+  padding-top:90px;
+}
+
+/* ================= PARTICLES ================= */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:14px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.desktop-nav a,
+.desktop-nav button{
+  background:none;
+  border:none;
+  color:var(--white);
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+.desktop-nav a:hover{color:var(--blue-soft)}
+
+/* ================= HAMBURGER ================= */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--white);
+  border-radius:10px;
+}
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:90px;
+  right:20px;
+  width:220px;
+  background:#000;
+  border-radius:18px;
+  padding:18px;
+  display:none;
+  z-index:2000;
+}
+.mobile-menu a,
+.mobile-menu button{
+  display:block;
+  padding:10px 0;
+  color:var(--white);
+  text-decoration:none;
+  text-align:left;
+}
+.mobile-menu a:hover{color:var(--blue)}
+.mobile-menu.show{display:block}
+.mobile-theme-btn{
+  width:100%;
+  background:#0b0b0b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  padding:12px;
+  border-radius:14px;
+  margin-top:14px;
+}
+.mobile-theme-btn:hover{
+  background:var(--blue);
+  color:#000;
+}
+
+/* ================= HERO ================= */
+header{
+  padding:60px 22px;
+  text-align:center;
+}
+header h1{
+  font-size:42px;
+}
+header h1 span{
+  background:var(--blue);
+  color:#000;
+  padding:6px 18px;
+  border-radius:30px;
+  box-shadow:var(--glow);
+}
+header p{margin-top:14px;opacity:.8}
+
+/* ================= CONTENT ================= */
+section{padding:60px 22px}
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+}
+@media(max-width:900px){
+  .container{grid-template-columns:1fr}
+}
+
+/* LEFT */
+.info img{
+  max-width:360px;
+  border-radius:18px;
+  margin-bottom:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+.info ul{
+  margin-top:16px;
+  line-height:1.9;
+  opacity:.85;
+}
+
+/* RIGHT FORM */
+.form-box{
+  background:var(--card);
+  border-radius:22px;
+  padding:30px;
+  backdrop-filter:blur(8px);
+}
+.input{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.15);
+  background:transparent;
+  color:var(--white);
+}
+.input:focus{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px rgba(30,111,255,.35);
+}
+.form-box button{
+  width:100%;
+  margin-top:10px;
+  padding:14px;
+  border-radius:30px;
+  background:var(--blue);
+  color:#000;
+  border:none;
+  font-weight:700;
+  box-shadow:var(--glow);
+  cursor:pointer;
+}
+.form-box button:hover{
+  transform:scale(1.05);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:40px 22px;
+  text-align:center;
+  background:#000;
+  opacity:.85;
+}
+</style>
 </head>
 
-<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
+<body>
 
-<!-- ================= BACKGROUND ================= -->
-<div class="fixed inset-0 -z-10">
-  <img
-    src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980"
-    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
-    alt=""
-  />
-  <div class="absolute inset-0 bg-black/40"></div>
-</div>
+<div id="particles-js"></div>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">SmartHire</div>
 
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">
-      SmartHire
-    </a>
+  <div class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html" style="color:var(--blue)">Contact</a>
+    <a href="admin.html">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+  </div>
 
-    <!-- DESKTOP MENU -->
-    <div class="hidden md:flex gap-6 items-center">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html" class="text-yellow-400 font-semibold">Contact</a>
-
-      <a href="admin.html"
-        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
-        Admin
-      </a>
-
-      <button onclick="toggleDark()" class="text-xl">🌙</button>
-    </div>
-
-    <!-- MOBILE -->
-    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
-      <span class="hamburger"></span>
-    </button>
-
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ================= MOBILE MENU ================= -->
-<div id="mobileMenu"
-  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
-
-  <a href="index.html" class="block py-4 text-xl">Home</a>
-  <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
-  <a href="pricing.html" class="block py-4 text-xl">Pricing</a>
-  <a href="faq.html" class="block py-4 text-xl">FAQ</a>
-  <a href="contact.html" class="block py-4 text-xl text-yellow-400">Contact</a>
-
-  <a href="admin.html"
-    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
-    Admin
-  </a>
-
-  <button onclick="toggleDark()" class="mt-6 text-2xl">🌙</button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html" style="color:var(--blue)">Contact</a>
+  <a href="admin.html">Admin</a>
+  <button onclick="toggleTheme()" class="mobile-theme-btn">🌙 Theme</button>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="pt-32 pb-20 text-center">
-  <h1 class="text-4xl md:text-5xl font-extrabold">
-    Contact <span class="text-yellow-400">Us</span>
-  </h1>
-  <p class="mt-4 text-gray-200 md:text-gray-600">
-    We’d love to hear from you
-  </p>
-</section>
+<!-- HERO -->
+<header>
+  <h1>Contact <span>Us</span></h1>
+  <p>We’d love to hear from you</p>
+</header>
 
-<!-- ================= CONTENT ================= -->
-<section class="pb-24">
-<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14">
+<!-- CONTENT -->
+<section>
+  <div class="container">
 
-<!-- LEFT -->
-<div class="space-y-6">
-
-  <h2 class="text-3xl font-bold">Let’s Start a Conversation</h2>
-
-  <!-- ✅ SMALL IMAGE ADDED -->
-  <img
-    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-    alt="Contact support"
-    class="w-full max-w-sm rounded-xl shadow-lg opacity-90"
-  />
-
-  <p class="text-gray-300 md:text-gray-600">
-    Reach out to us for support, demos, or hiring solutions.
-  </p>
-
-  <ul class="space-y-3 text-sm">
-    <li>✔ Personalized demo</li>
-    <li>✔ Career guidance</li>
-    <li>✔ Recruiter solutions</li>
-    <li>✔ Technical support</li>
-  </ul>
-
-  <div class="pt-6 text-sm space-y-2">
-    <p><strong>Email:</strong> support@smarthire.com</p>
-    <p><strong>Phone:</strong> +91 98765 43210</p>
-    <p><strong>Location:</strong> Chennai, India</p>
-  </div>
-</div>
-
-<!-- RIGHT FORM -->
-<div class="bg-white dark:bg-[#0e0e0e] rounded-xl shadow-xl p-8">
-  <form class="space-y-5">
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <input type="text" placeholder="First Name" class="input">
-      <input type="text" placeholder="Last Name" class="input">
+    <!-- LEFT -->
+    <div class="info">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Support">
+      <h2>Let’s Start a Conversation</h2>
+      <p style="opacity:.8;margin-top:10px">
+        Reach out for demos, support, or hiring solutions.
+      </p>
+      <ul>
+        <li>✔ Personalized demo</li>
+        <li>✔ Career guidance</li>
+        <li>✔ Recruiter solutions</li>
+        <li>✔ Technical support</li>
+      </ul>
+      <p style="margin-top:16px">
+        📧 support@smarthire.com<br>
+        📞 +91 98765 43210<br>
+        📍 Chennai, India
+      </p>
     </div>
 
-    <input type="email" placeholder="Email Address" class="input">
-    <input type="text" placeholder="Subject" class="input">
-    <textarea rows="4" placeholder="Your Message" class="input"></textarea>
+    <!-- RIGHT -->
+    <div class="form-box">
+      <form>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <input class="input" placeholder="First Name">
+          <input class="input" placeholder="Last Name">
+        </div>
+        <input class="input" placeholder="Email" style="margin-top:14px">
+        <input class="input" placeholder="Subject" style="margin-top:14px">
+        <textarea class="input" rows="4" placeholder="Message" style="margin-top:14px"></textarea>
+        <button>Send Message</button>
+      </form>
+    </div>
 
-    <button
-      class="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:scale-105 transition">
-      Send Message
-    </button>
-
-  </form>
-</div>
-
-</div>
+  </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-black text-gray-400 py-10 text-center">
-  © 2025 SmartHire. All rights reserved.
+<footer>
+© 2025 SmartHire — All Rights Reserved
 </footer>
 
-<!-- ================= STYLES ================= -->
-<style>
-body { padding-top: 88px; }
-
-/* Inputs */
-.input{
-  width:100%;
-  padding:.8rem;
-  border-radius:.6rem;
-  border:1px solid #ddd;
-  background:transparent;
-}
-.dark .input{border-color:#333;color:white}
-.input:focus{
-  outline:none;
-  border-color:#facc15;
-  box-shadow:0 0 0 2px rgba(250,204,21,.3);
-}
-
-/* Hamburger */
-.hamburger,
-.hamburger::before,
-.hamburger::after{
-  content:"";
-  position:absolute;
-  width:26px;
-  height:3px;
-  background:#facc15;
-  border-radius:10px;
-  transition:.35s;
-}
-.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
-.hamburger::before{transform:translateY(-8px)}
-.hamburger::after{transform:translateY(8px)}
-.menu-open .hamburger{background:transparent}
-.menu-open .hamburger::before{transform:rotate(45deg)}
-.menu-open .hamburger::after{transform:rotate(-45deg)}
-
-@keyframes bgMove{
-  from{transform:scale(1)}
-  to{transform:scale(1.08)}
-}
-.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
-</style>
-
-<!-- ================= JS ================= -->
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-function toggleDark(){
-  document.documentElement.classList.toggle("dark");
-}
-
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    color:{value:"#1e6fff"},
+    size:{value:3},
+    line_linked:{enable:true,color:"#1e6fff",opacity:.35}
+  }
+});
 function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-  document.body.classList.toggle("menu-open");
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+function toggleTheme(){
+  document.body.classList.toggle("light");
 }
 </script>
 

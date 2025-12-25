@@ -1,261 +1,292 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>SmartHire | Pricing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = { darkMode: 'class' }
-</script>
+<style>
+/* ================= THEME (SAME AS INDEX) ================= */
+:root{
+  --blue:#1e6fff;
+  --blue-soft:#4f8cff;
+  --black:#050505;
+  --white:#ffffff;
+  --card:rgba(255,255,255,.08);
+  --glow:0 0 25px rgba(30,111,255,.45);
+}
+body.light{
+  --black:#f5f7fb;
+  --white:#111;
+  --card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html{scroll-behavior:smooth}
+body{
+  background:linear-gradient(110deg,#0b1e46,var(--black),#000);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* ================= PARTICLES ================= */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:14px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.desktop-nav a,
+.desktop-nav button{
+  background:none;
+  border:none;
+  color:var(--white);
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+.desktop-nav a:hover{color:var(--blue-soft)}
+
+/* ================= HAMBURGER ================= */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:var(--white);
+  border-radius:10px;
+}
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:90px;
+  right:20px;
+  width:200px;
+  background:#000;
+  border-radius:18px;
+  padding:18px;
+  display:none;
+  z-index:2000;
+}
+.mobile-menu a,
+.mobile-menu button{
+  display:block;
+  padding:10px 0;
+  color:var(--white);
+  text-decoration:none;
+  text-align:left;
+}
+.mobile-menu a:hover{color:var(--blue)}
+.mobile-menu.show{display:block}
+
+.mobile-theme-btn{
+  width:100%;
+  background:#0b0b0b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  padding:12px;
+  border-radius:14px;
+  margin-top:14px;
+}
+
+/* ================= HEADER ================= */
+header{
+  padding:140px 22px 60px;
+  text-align:center;
+}
+header h1{
+  font-size:44px;
+}
+header h1 span{
+  background:var(--blue);
+  color:#000;
+  padding:6px 18px;
+  border-radius:30px;
+  box-shadow:var(--glow);
+}
+header p{margin-top:14px;opacity:.8}
+
+/* ================= PRICING ================= */
+section{padding:60px 22px}
+.pricing-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+.price-card{
+  background:var(--card);
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  transition:.4s;
+}
+.price-card:hover{
+  transform:translateY(-12px);
+  box-shadow:var(--glow);
+}
+.price-card h3{font-size:22px;margin-bottom:10px}
+.price{font-size:36px;color:var(--blue);margin:12px 0}
+.price-card ul{list-style:none;line-height:1.9;opacity:.85;margin-top:16px}
+.select-btn{
+  margin-top:18px;
+  padding:10px 26px;
+  border-radius:30px;
+  border:1px solid var(--blue);
+  background:none;
+  color:var(--blue);
+  cursor:pointer;
+}
+.select-btn:hover{
+  background:var(--blue);
+  color:#000;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:40px 22px;
+  text-align:center;
+  background:#000;
+  opacity:.85;
+}
+</style>
 </head>
 
-<body class="relative min-h-screen overflow-x-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-gray-100">
+<body>
 
-<!-- ================= BACKGROUND ================= -->
-<div class="fixed inset-0 -z-10">
-  <img
-    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
-    class="w-full h-full object-cover opacity-25 dark:opacity-15 animate-bg"
-    alt=""
-  />
-  <div class="absolute inset-0 bg-black/45"></div>
-</div>
+<div id="particles-js"></div>
 
 <!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/80 backdrop-blur shadow">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<nav class="navbar">
+  <div class="logo">SmartHire</div>
 
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">
-      SmartHire
-    </a>
+  <div class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html" style="color:var(--blue)">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+  </div>
 
-    <!-- DESKTOP -->
-    <div class="hidden md:flex gap-6 items-center">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html" class="text-yellow-400 font-semibold">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-
-      <button onclick="toggleTheme()" class="text-xl">🌙</button>
-
-      <a href="admin.html"
-        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
-        Admin
-      </a>
-    </div>
-
-    <!-- MOBILE -->
-    <button onclick="toggleMenu()" class="md:hidden relative w-10 h-10">
-      <span class="hamburger"></span>
-    </button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
 <!-- ================= MOBILE MENU ================= -->
-<div id="mobileMenu"
-  class="fixed inset-0 bg-black text-white z-40 pt-28 px-6 hidden">
-
-  <a href="index.html" class="block py-4 text-xl">Home</a>
-  <a href="jobs.html" class="block py-4 text-xl">Jobs</a>
-  <a href="pricing.html" class="block py-4 text-xl text-yellow-400">Pricing</a>
-  <a href="faq.html" class="block py-4 text-xl">FAQ</a>
-  <a href="contact.html" class="block py-4 text-xl">Contact</a>
-
-  <!-- ADMIN (MOBILE) -->
-  <a href="admin.html"
-    class="block mt-6 bg-yellow-400 text-black py-3 rounded-lg text-center font-semibold">
-    Admin
-  </a>
-
-  <button onclick="toggleTheme()" class="mt-6 text-2xl">
-    🌙 Toggle Theme
-  </button>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html" style="color:var(--blue)">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html">Admin</a>
+  <button onclick="toggleTheme()" class="mobile-theme-btn">🌙 Theme</button>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="pt-32 pb-24 text-center">
-  <h1 class="text-4xl md:text-5xl font-extrabold">
-    Simple <span class="text-yellow-400">Pricing</span> Plans
-  </h1>
-  <p class="mt-4 text-gray-200 md:text-gray-600">
-    No hidden fees. Choose what suits you best.
-  </p>
-
-  <!-- TOGGLE -->
-  <div class="flex justify-center mt-10">
-    <div class="bg-gray-800 rounded-full p-1 flex">
-      <button id="monthlyBtn"
-        onclick="setPlan(false)"
-        class="px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold">
-        Monthly
-      </button>
-      <button id="annualBtn"
-        onclick="setPlan(true)"
-        class="px-6 py-2 rounded-full text-white">
-        Annually <span class="text-green-400 text-xs">(Save 20%)</span>
-      </button>
-    </div>
-  </div>
-</section>
+<!-- ================= HEADER ================= -->
+<header>
+  <h1>Simple <span>Pricing</span> Plans</h1>
+  <p>No hidden fees. Choose what suits you best.</p>
+</header>
 
 <!-- ================= PRICING ================= -->
-<section class="pb-20">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+<section>
+  <div class="pricing-grid">
 
-    <!-- FREE -->
     <div class="price-card">
-      <span class="badge">FREE</span>
       <h3>Starter</h3>
-      <p class="price">₹<span id="p1">0</span>/mo</p>
-      <p class="sub">For beginners</p>
-      <button class="select-btn">Select</button>
+      <div class="price">₹0</div>
       <ul>
         <li>✔ Browse jobs</li>
         <li>✔ Apply to 5 jobs</li>
         <li>✔ Basic support</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
 
-    <!-- PRO -->
-    <div class="price-card highlight">
-      <span class="badge save">POPULAR</span>
+    <div class="price-card">
       <h3>Professional</h3>
-      <p class="price">₹<span id="p2">499</span>/mo</p>
-      <p class="sub">Best for job seekers</p>
-      <button class="select-btn active">Select</button>
+      <div class="price">₹499</div>
       <ul>
         <li>✔ Unlimited applications</li>
         <li>✔ Resume builder</li>
         <li>✔ Email alerts</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
 
-    <!-- ENTERPRISE -->
     <div class="price-card">
-      <span class="badge save">PRO</span>
       <h3>Enterprise</h3>
-      <p class="price">₹<span id="p3">999</span>/mo</p>
-      <p class="sub">For companies</p>
-      <button class="select-btn">Select</button>
+      <div class="price">₹999</div>
       <ul>
         <li>✔ Unlimited job posts</li>
         <li>✔ Admin dashboard</li>
         <li>✔ 24/7 support</li>
       </ul>
+      <button class="select-btn">Select</button>
     </div>
 
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-black text-gray-400 py-10 text-center">
-  © 2025 SmartHire. All rights reserved.
+<footer>
+© 2025 SmartHire — All Rights Reserved
 </footer>
 
-<!-- ================= STYLES ================= -->
-<style>
-body { padding-top: 88px; }
-
-/* Pricing Cards */
-.price-card{
-  background:white;
-  border-radius:1.2rem;
-  padding:2rem;
-  text-align:center;
-  position:relative;
-  box-shadow:0 20px 40px rgba(0,0,0,.1);
-  transition:.4s;
-}
-.dark .price-card{background:#0e0e0e}
-.price-card:hover{transform:translateY(-8px)}
-
-.highlight{border:2px solid #facc15}
-
-.badge{
-  position:absolute;
-  top:-12px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#111;
-  color:white;
-  font-size:.7rem;
-  padding:.3rem .8rem;
-  border-radius:999px;
-}
-.save{background:#16a34a}
-
-.price{font-size:2.2rem;font-weight:800;margin:1rem 0}
-.sub{opacity:.7;margin-bottom:1.2rem}
-
-.select-btn{
-  width:100%;
-  padding:.7rem;
-  border-radius:.6rem;
-  border:1px solid #facc15;
-  color:#facc15;
-  margin-bottom:1.4rem;
-}
-.select-btn:hover{background:#facc15;color:black}
-.active{background:#facc15;color:black}
-
-.price-card ul{text-align:left;font-size:.9rem;line-height:1.9}
-
-/* Hamburger */
-.hamburger,
-.hamburger::before,
-.hamburger::after{
-  content:"";
-  position:absolute;
-  width:26px;
-  height:3px;
-  background:#facc15;
-  border-radius:10px;
-  transition:.35s;
-}
-.hamburger{top:50%;left:50%;transform:translate(-50%,-50%)}
-.hamburger::before{transform:translateY(-8px)}
-.hamburger::after{transform:translateY(8px)}
-.menu-open .hamburger{background:transparent}
-.menu-open .hamburger::before{transform:rotate(45deg)}
-.menu-open .hamburger::after{transform:rotate(-45deg)}
-
-@keyframes bgMove{
-  from{transform:scale(1)}
-  to{transform:scale(1.08)}
-}
-.animate-bg{animation:bgMove 30s ease-in-out infinite alternate}
-</style>
-
-<!-- ================= JS ================= -->
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-function toggleTheme(){
-  document.documentElement.classList.toggle("dark");
-  localStorage.setItem("theme",
-    document.documentElement.classList.contains("dark") ? "dark" : "light"
-  );
-}
-if(localStorage.getItem("theme")==="dark"){
-  document.documentElement.classList.add("dark");
-}
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    size:{value:3},
+    color:{value:"#1e6fff"},
+    line_linked:{enable:true}
+  }
+});
 
 function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("hidden");
-  document.body.classList.toggle("menu-open");
+  document.getElementById("mobileMenu").classList.toggle("show");
 }
-
-function setPlan(year){
-  document.getElementById("monthlyBtn").classList.toggle("bg-yellow-400", !year);
-  document.getElementById("monthlyBtn").classList.toggle("text-black", !year);
-  document.getElementById("annualBtn").classList.toggle("bg-yellow-400", year);
-  document.getElementById("annualBtn").classList.toggle("text-black", year);
-
-  document.getElementById("p1").innerText = "0";
-  document.getElementById("p2").innerText = year ? "399" : "499";
-  document.getElementById("p3").innerText = year ? "799" : "999";
+function toggleTheme(){
+  document.body.classList.toggle("light");
 }
 </script>
 

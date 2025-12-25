@@ -63,17 +63,23 @@ body{
   z-index:1000;
 }
 .logo{color:#facc15;font-weight:700;font-size:20px}
-.nav-links{display:flex;gap:18px;list-style:none}
-.nav-links a,.login-btn,.theme-btn{
+
+/* Desktop nav */
+.desktop-nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.desktop-nav a,
+.desktop-nav button{
   color:var(--text);
-  background:none;border:none;
-  cursor:pointer;text-decoration:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
 }
-.login-btn:hover,.theme-btn:hover{color:#facc15}
-.admin{
-  background:#facc15;color:black;
-  padding:6px 14px;border-radius:10px
-}
+.desktop-nav a:hover,
+.desktop-nav button:hover{color:#facc15}
 
 /* Hamburger Icon */
 .hamburger{
@@ -88,8 +94,6 @@ body{
   background:#facc15;
   transition:.3s;
 }
-
-/* Animation */
 .hamburger.active span:nth-child(1){
   transform:rotate(45deg) translate(5px,5px);
 }
@@ -100,8 +104,8 @@ body{
   transform:rotate(-45deg) translate(6px,-6px);
 }
 
-/* Mobile Menu */
-.mobile-menu{
+/* Mobile Menu (SLIDE-IN — SINGLE SOURCE OF TRUTH ✅) */
+#mobileMenu{
   position:fixed;
   top:0;
   right:0;
@@ -113,38 +117,19 @@ body{
   transition:transform .3s ease;
   z-index:999;
 }
-.mobile-menu a{
+#mobileMenu a{
   display:block;
   padding:14px 0;
   color:white;
   text-decoration:none;
   font-size:18px;
 }
-.admin-link{
-  color:#facc15;
-}
 
-/* Show on mobile */
+/* Responsive */
 @media(max-width:900px){
-  .hamburger{display:flex;}
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
 }
-  /* 🔧 FIX: Hide desktop nav links on mobile */
-@media (max-width: 900px){
-  .desktop-nav{
-    display: none !important;
-  }
-}
-
-
-/* ================= MOBILE MENU ================= */
-.mobile-menu{
-  position:fixed;inset:0;
-  background:var(--bg);
-  display:none;flex-direction:column;
-  padding-top:120px;gap:26px;
-  align-items:center;z-index:999;
-}
-.mobile-menu a{color:var(--text);font-size:22px;text-decoration:none}
 
 /* ================= HERO ================= */
 .hero{min-height:85vh;padding:140px 20px}
@@ -183,104 +168,9 @@ section{padding:90px 20px}
 .stat{text-align:center}
 .stat h3{font-size:36px;color:#facc15}
 
-/* ================= CAREERS STRIP ================= */
-.scroll-strip{
-  overflow:hidden;
-  background:linear-gradient(var(--overlay),var(--overlay)),
-  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
-}
-.scroll-track{
-  display:flex;gap:30px;width:max-content;
-  animation:scrollX 45s linear infinite
-}
-@keyframes scrollX{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-.career-card{
-  width:320px;height:240px;
-  border-radius:20px;overflow:hidden;
-  position:relative;flex-shrink:0
-}
-.career-card img{
-  width:100%;height:100%;
-  object-fit:cover;filter:brightness(.8)
-}
-.career-info{
-  position:absolute;bottom:0;width:100%;
-  padding:16px;
-  background:linear-gradient(transparent,rgba(0,0,0,.9))
-}
-
-/* ================= LOGIN MODAL ================= */
-.login-modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  display:none;align-items:center;
-  justify-content:center;z-index:2000
-}
-.login-container{
-  width:800px;max-width:95%;
-  background:var(--card);
-  border-radius:22px;
-  display:grid;grid-template-columns:1fr 1fr;
-  overflow:hidden
-}
-.login-image{
-  background:
-  linear-gradient(var(--overlay),var(--overlay)),
-  url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") center/cover;
-  padding:40px;color:#facc15
-}
-.login-form{padding:40px}
-.login-form input{
-  width:100%;padding:14px;
-  border-radius:12px;border:none;
-  background:var(--bg);color:var(--text);
-  margin-bottom:14px
-}
-.login-error{display:none;color:#ff6b6b;font-size:13px}
-
 /* ================= FOOTER ================= */
 footer{background:#000;padding:80px 20px}
 footer h4{color:#facc15}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-}
-@media(max-width:768px){
-  .hero h1{font-size:28px}
-  .login-container{grid-template-columns:1fr}
-  .login-image{display:none}
-  .scroll-track{animation:none;overflow-x:auto}
-}
-/* ================= SECTION VISIBILITY FIX ================= */
-section {
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.55)
-  );
-}
-
-/* Light mode section background */
-body.light section {
-  background: linear-gradient(
-    rgba(255,255,255,0.75),
-    rgba(255,255,255,0.75)
-  );
-}
-  @media (max-width: 900px) {
-  .desktop-menu {
-    display: none !important;
-  }
-}
-
-
 </style>
 </head>
 
@@ -293,76 +183,36 @@ body.light section {
   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
 </div>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">SmartHire</a>
 
-    <a href="index.html" class="text-2xl font-bold text-yellow-400">
-      SmartHire
-    </a>
-
-    <!-- DESKTOP MENU -->
-    <div class="desktop-nav gap-6 items-center text-white">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-
-      <a href="admin.html"
-        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded">
-        Admin
-      </a>
-
-      <button onclick="toggleTheme()">🌙</button>
-    </div>
-
-    <!-- HAMBURGER -->
-    <div class="hamburger md:hidden" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
-</nav>
-
-<!-- ================= MOBILE MENU ================= -->
-<div id="mobileMenu"
-class="fixed top-0 right-0 h-full w-72 bg-black text-white z-50
-transform translate-x-full transition-transform duration-300 p-6">
-
-  <button
-  onclick="toggleMenu()"
-  style="
-    position:absolute;
-    top:20px;
-    right:20px;
-    font-size:28px;
-    color:#facc15;
-    background:none;
-    border:none;
-    cursor:pointer;
-  ">
-  ✕
-</button>
-
- 
-  <nav class="flex flex-col gap-5 text-lg">
+  <div class="desktop-nav">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
-    <a onclick="openLogin()">Login</a>
-    <a href="admin.html" class="text-yellow-400">Admin</a>
+    <a href="admin.html">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+  </div>
 
-    <button onclick="toggleTheme()" class="text-left mt-6">
-      🌙 Toggle Theme
-    </button>
-  </nav>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu">
+  <button onclick="toggleMenu()" style="position:absolute;top:20px;right:20px;font-size:28px;color:#facc15;background:none;border:none">✕</button>
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Jobs</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="admin.html" style="color:#facc15">Admin</a>
+  <button onclick="toggleTheme()" style="margin-top:20px">🌙 Toggle Theme</button>
 </div>
-
-
 
 <!-- HERO -->
 <div class="hero">
@@ -374,101 +224,6 @@ transform translate-x-full transition-transform duration-300 p-6">
   </div>
 </div>
 
-<!-- WHY CHOOSE -->
-<section>
-  <h2 class="title">Why Choose SmartHire</h2>
-  <p class="subtitle">A smarter, faster and more transparent hiring platform</p>
-  <div class="features">
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789">
-      <h3>AI Matching</h3>
-      <p>Advanced algorithms match candidates with the right roles.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf">
-      <h3>Fast Hiring</h3>
-      <p>Reduce hiring time with smart filtering and automation.</p>
-    </div>
-    <div class="feature">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
-      <h3>Verified Companies</h3>
-      <p>Only trusted recruiters and verified employers.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED JOBS -->
-<section>
-  <h2 class="title">Featured Jobs</h2>
-  <p class="subtitle">Top opportunities hand-picked for you</p>
-  <div class="jobs">
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <h3>Frontend Developer</h3>
-      <p>React • Tailwind • UI</p>
-      <span>₹6–10 LPA</span>
-    </div>
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • NLP</p>
-      <span>₹10–18 LPA</span>
-    </div>
-    <div class="job">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
-      <h3>Robotics Engineer</h3>
-      <p>ROS • Embedded Systems</p>
-      <span>₹8–14 LPA</span>
-    </div>
-  </div>
-</section>
-
-<!-- CAREERS -->
-<section class="scroll-strip">
-  <h2 class="title">Careers in Action</h2>
-  <div class="scroll-track">
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <div class="career-info"><h4>AI Development</h4></div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div class="career-info"><h4>Team Collaboration</h4></div>
-    </div>
-    <div class="career-card">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <div class="career-info"><h4>Electronics</h4></div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section>
-  <h2 class="title">Platform Impact</h2>
-  <div class="stats">
-    <div class="stat"><h3>50K+</h3><p>Job Seekers</p></div>
-    <div class="stat"><h3>8K+</h3><p>Companies</p></div>
-    <div class="stat"><h3>120K+</h3><p>Applications</p></div>
-  </div>
-</section>
-
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="login-modal">
-  <div class="login-container">
-    <div class="login-image">
-      <h2>Careers in Action</h2>
-      <p>Discover opportunities that match your skills.</p>
-    </div>
-    <div class="login-form">
-      <h2>Welcome Back</h2>
-      <input id="loginEmail" type="email" placeholder="Email">
-      <input id="loginPassword" type="password" placeholder="Password">
-      <p id="loginError" class="login-error">Invalid email or password</p>
-      <button class="btn primary" onclick="validateLogin()">Login</button>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <h4>SmartHire</h4>
@@ -476,91 +231,31 @@ transform translate-x-full transition-transform duration-300 p-6">
 </footer>
 
 <script>
-/* ================= MOBILE MENU ================= */
 function toggleMenu(){
   const menu = document.getElementById("mobileMenu");
   const ham = document.querySelector(".hamburger");
 
-  if(menu.classList.contains("translate-x-full")){
-    menu.classList.remove("translate-x-full");
-    ham.classList.add("active");
-  }else{
-    menu.classList.add("translate-x-full");
+  if(menu.style.transform === "translateX(0%)"){
+    menu.style.transform = "translateX(100%)";
     ham.classList.remove("active");
+  }else{
+    menu.style.transform = "translateX(0%)";
+    ham.classList.add("active");
   }
 }
 
-/* ================= THEME TOGGLE ================= */
 function toggleTheme(){
   document.body.classList.toggle("light");
-
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("light") ? "light" : "dark"
-  );
+  localStorage.setItem("theme",
+    document.body.classList.contains("light") ? "light" : "dark");
 }
 
-/* LOAD SAVED THEME */
 (function(){
-  const savedTheme = localStorage.getItem("theme");
-  if(savedTheme === "light"){
+  if(localStorage.getItem("theme")==="light"){
     document.body.classList.add("light");
   }
 })();
-
-
-/* ================= LOGIN MODAL ================= */
-function openLogin(){
-  const modal = document.getElementById("loginModal");
-  if(modal){
-    modal.style.display = "flex";
-    document.getElementById("loginEmail")?.focus();
-  }
-}
-
-/* CLOSE LOGIN WHEN CLICK OUTSIDE */
-document.addEventListener("click", function(e){
-  const modal = document.getElementById("loginModal");
-  if(modal && e.target === modal){
-    modal.style.display = "none";
-  }
-});
-
-/* ================= LOGIN VALIDATION ================= */
-function validateLogin(){
-  const email = document.getElementById("loginEmail")?.value || "";
-  const pass  = document.getElementById("loginPassword")?.value || "";
-  const error = document.getElementById("loginError");
-
-  if(!email.includes("@") || pass.length < 6){
-    if(error) error.style.display = "block";
-    return;
-  }
-
-  if(error) error.style.display = "none";
-
-  alert("Login successful (demo)");
-  document.getElementById("loginModal").style.display = "none";
-}
-
-/* ENTER KEY SUPPORT */
-document.addEventListener("keydown", function(e){
-  const modal = document.getElementById("loginModal");
-  if(e.key === "Enter" && modal && modal.style.display === "flex"){
-    validateLogin();
-  }
-});
-
 </script>
-
 
 </body>
 </html>
-
-
-
-
-
-
-
-

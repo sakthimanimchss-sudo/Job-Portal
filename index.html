@@ -7,7 +7,7 @@
 
 <style>
 /* =========================
-   THEME (UNCHANGED)
+   THEME (ORIGINAL)
 ========================= */
 :root{
   --blue:#1e6fff;
@@ -23,6 +23,7 @@ body.light{
   --card:#ffffff;
 }
 
+/* RESET */
 *{
   margin:0;
   padding:0;
@@ -30,11 +31,21 @@ body.light{
   font-family:system-ui,-apple-system,BlinkMacSystemFont;
 }
 html{scroll-behavior:smooth}
+
 body{
   background:linear-gradient(100deg,#0b1e46,var(--black),#000);
   color:var(--white);
   overflow-x:hidden;
   transition:.3s;
+}
+
+/* =========================
+   BACKGROUND PARTICLES
+========================= */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
 }
 
 /* =========================
@@ -61,18 +72,20 @@ body{
 .desktop-nav{
   display:flex;
   gap:18px;
+  align-items:center;
 }
 .desktop-nav a,
 .desktop-nav button{
+  color:var(--white);
   background:none;
   border:none;
-  color:var(--white);
   cursor:pointer;
   text-decoration:none;
+  font-size:14px;
 }
 
 /* =========================
-   HERO (UNCHANGED)
+   HERO (MATCHES SCREENSHOT)
 ========================= */
 .hero{
   min-height:100vh;
@@ -80,31 +93,57 @@ body{
   max-width:1200px;
   margin:auto;
 }
-.hero h1{font-size:46px}
+.hero h1{
+  font-size:46px;
+  line-height:1.2;
+}
 .hero h1 span{
   background:var(--blue);
   color:#000;
   padding:6px 18px;
   border-radius:30px;
+  box-shadow:var(--glow);
 }
-.hero p{margin-top:16px;max-width:620px;opacity:.9}
+.hero p{
+  margin-top:16px;
+  max-width:620px;
+  opacity:.9;
+}
 .btns{margin-top:28px}
 .btn{
   padding:12px 30px;
   border-radius:30px;
   text-decoration:none;
+  display:inline-block;
+  margin-right:12px;
 }
-.primary{background:var(--blue);color:#000}
-.outline{border:1px solid var(--white);color:var(--white)}
+.primary{
+  background:var(--blue);
+  color:#000;
+}
+.outline{
+  border:1px solid var(--white);
+  color:var(--white);
+}
 
 /* =========================
-   COMMON SECTIONS
+   SECTION COMMON
 ========================= */
-section{padding:90px 22px}
-.title{text-align:center;font-size:32px;margin-bottom:10px}
-.subtitle{text-align:center;opacity:.8;margin-bottom:40px}
+section{
+  padding:90px 22px;
+}
+.title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:10px;
+}
+.subtitle{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:40px;
+}
 
-/* reveal animation (UNCHANGED) */
+/* Reveal animation (ORIGINAL STYLE) */
 .reveal{
   opacity:0;
   transform:translateY(30px);
@@ -116,7 +155,7 @@ section{padding:90px 22px}
 }
 
 /* =========================
-   CARDS GRID
+   GRID CARDS
 ========================= */
 .grid{
   max-width:1100px;
@@ -145,9 +184,43 @@ section{padding:90px 22px}
 }
 
 /* =========================
+   WHY CHOOSE
+========================= */
+.why-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  opacity:.9;
+}
+
+/* =========================
+   ADMIN DASHBOARD PREVIEW
+========================= */
+.admin-grid{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:26px;
+}
+.admin-card{
+  background:var(--card);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+}
+.admin-card h3{
+  font-size:34px;
+  color:var(--blue);
+}
+
+/* =========================
    FAQ
 ========================= */
-.faq{max-width:900px;margin:auto}
+.faq{
+  max-width:900px;
+  margin:auto;
+}
 .faq-item{
   background:var(--card);
   border-radius:18px;
@@ -171,31 +244,6 @@ section{padding:90px 22px}
 }
 
 /* =========================
-   ADMIN PREVIEW
-========================= */
-.admin-grid{
-  max-width:1000px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:26px;
-}
-.admin-card{
-  background:var(--card);
-  border-radius:20px;
-  padding:30px;
-  text-align:center;
-}
-.admin-card img{
-  width:48px;
-  margin-bottom:12px;
-}
-.admin-card h3{
-  color:var(--blue);
-  font-size:34px;
-}
-
-/* =========================
    FOOTER
 ========================= */
 .footer{
@@ -206,7 +254,9 @@ section{padding:90px 22px}
   opacity:.85;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 @media(max-width:900px){
   .desktop-nav{display:none}
 }
@@ -214,6 +264,8 @@ section{padding:90px 22px}
 </head>
 
 <body>
+
+<div id="particles-js"></div>
 
 <nav class="navbar">
   <div class="logo">SmartHire</div>
@@ -242,53 +294,51 @@ section{padding:90px 22px}
 <!-- WHY CHOOSE -->
 <section>
   <h2 class="title reveal">Why Choose SmartHire</h2>
-  <p class="subtitle reveal">A smarter way to hire and get hired</p>
+  <p class="subtitle reveal">Smarter hiring with AI intelligence</p>
 
   <div class="grid reveal">
     <div class="card">
       <img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a">
-      <h3>AI-Powered Matching</h3>
-      <p>Our AI analyzes skills, experience, and preferences to connect the right candidates with the right jobs.</p>
+      <h3>AI Matching</h3>
+      <div class="why-list">
+        <p>✔ Skill-based matching</p>
+        <p>✔ Experience-aware suggestions</p>
+        <p>✔ Faster shortlisting</p>
+      </div>
     </div>
+
     <div class="card">
       <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-      <h3>Faster Hiring</h3>
-      <p>Automated screening and shortlisting help recruiters hire faster without compromising quality.</p>
+      <h3>Fast Hiring</h3>
+      <div class="why-list">
+        <p>✔ Automated screening</p>
+        <p>✔ Reduced hiring time</p>
+        <p>✔ Smart recommendations</p>
+      </div>
     </div>
+
     <div class="card">
       <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
       <h3>Verified Companies</h3>
-      <p>All employers are manually verified to ensure safe and genuine job opportunities.</p>
+      <div class="why-list">
+        <p>✔ Manual verification</p>
+        <p>✔ Trusted employers</p>
+        <p>✔ Safe job applications</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ADMIN DASHBOARD -->
+<!-- ADMIN PREVIEW -->
 <section>
   <h2 class="title reveal">Admin Dashboard Preview</h2>
-  <p class="subtitle reveal">Real-time insights & platform control</p>
+  <p class="subtitle reveal">Complete platform insights</p>
 
   <div class="admin-grid reveal">
-    <div class="admin-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-      <h3>1240</h3>
-      <p>Active Jobs Posted</p>
-    </div>
-    <div class="admin-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png">
-      <h3>8,320</h3>
-      <p>Verified Companies</p>
-    </div>
-    <div class="admin-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png">
-      <h3>120K+</h3>
-      <p>Applications Received</p>
-    </div>
-    <div class="admin-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png">
-      <h3>1M+</h3>
-      <p>Registered Users</p>
-    </div>
+    <div class="admin-card"><h3>1240</h3><p>Active Jobs</p></div>
+    <div class="admin-card"><h3>8320</h3><p>Companies</p></div>
+    <div class="admin-card"><h3>120K+</h3><p>Applications</p></div>
+    <div class="admin-card"><h3>1M+</h3><p>Users</p></div>
   </div>
 </section>
 
@@ -298,24 +348,20 @@ section{padding:90px 22px}
 
   <div class="faq reveal">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free for job seekers?</div>
-      <div class="faq-a">Yes. Job seekers can browse, apply, and get matched with jobs completely free.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div>
+      <div class="faq-a">Yes, SmartHire is completely free for job seekers.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">How does AI job matching work?</div>
-      <div class="faq-a">Our AI analyzes your skills, experience, and preferences to suggest the best-fit jobs.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">How does AI matching work?</div>
+      <div class="faq-a">Our AI analyzes skills, experience, and job requirements.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div>
-      <div class="faq-a">Yes. Every company is manually verified before posting jobs.</div>
+      <div class="faq-a">All employers are manually verified.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Can I find remote jobs?</div>
-      <div class="faq-a">Absolutely. SmartHire supports on-site, hybrid, and remote jobs.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFAQ(this)">Is my data secure?</div>
-      <div class="faq-a">We use modern security standards to protect your personal data.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">Do you support remote jobs?</div>
+      <div class="faq-a">Yes, remote and hybrid jobs are supported.</div>
     </div>
   </div>
 </section>
@@ -324,7 +370,18 @@ section{padding:90px 22px}
   © 2025 SmartHire — All Rights Reserved
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    size:{value:3},
+    color:{value:"#1e6fff"},
+    move:{speed:1},
+    line_linked:{enable:true,color:"#1e6fff"}
+  }
+});
+
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
@@ -339,4 +396,3 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 </body>
 </html>
-

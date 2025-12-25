@@ -1,148 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <title>SmartHire | Jobs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+
 <style>
-/* ===================== THEME ===================== */
-:root{
-  --blue:#1e6fff;
-  --blue-soft:#4f8cff;
-  --black:#050505;
-  --white:#ffffff;
-  --card:rgba(255,255,255,.08);
-  --glow:0 0 25px rgba(30,111,255,.45);
-}
-body.light{
-  --black:#f5f7fb;
-  --white:#111;
-  --card:#ffffff;
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-html{scroll-behavior:smooth}
+/* ================= BASE ================= */
 body{
   padding-top:90px;
-  background:linear-gradient(110deg,#0b1e46,var(--black),#000);
-  color:var(--white);
-  overflow-x:hidden;
-}
-
-/* ===================== NAVBAR ===================== */
-.navbar{
-  position:fixed;top:0;width:100%;
-  padding:14px 22px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(12px);
-  z-index:1000;
-}
-.logo{font-size:22px;font-weight:700;color:var(--blue)}
-.nav-links{
-  display:flex;gap:18px;align-items:center
-}
-.nav-links a,.nav-links button{
-  background:none;border:none;color:var(--white);
-  text-decoration:none;font-size:14px;cursor:pointer
-}
-.nav-links a:hover,.nav-links button:hover{color:var(--blue-soft)}
-.hamburger{display:none;font-size:26px;cursor:pointer}
-@media(max-width:900px){
-  .nav-links{display:none}
-  .hamburger{display:block}
-}
-
-/* ===================== MOBILE MENU ===================== */
-.mobile-menu{
-  position:fixed;top:0;right:-100%;
-  width:70%;height:100%;
   background:#000;
-  padding:80px 22px;
-  transition:.4s;
-  z-index:1200;
+  color:#fff;
+  transition:.3s;
 }
-.mobile-menu.active{right:0}
-.mobile-menu a{
-  display:block;margin-bottom:18px;
-  color:#fff;text-decoration:none;font-size:18px
+html.light body{
+  background:#f4f4f4;
+  color:#111;
 }
 
-/* ===================== HEADER ===================== */
-.header{
-  padding:80px 22px 60px;
-  text-align:center;
-}
-.header h1{
-  font-size:42px;
-}
-.header span{
-  background:var(--blue);
-  color:#000;
-  padding:6px 18px;
-  border-radius:30px;
-}
-.header p{
-  margin-top:14px;
-  opacity:.75;
-}
-
-/* ===================== JOB GRID ===================== */
-.jobs{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 22px 90px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-/* ===================== JOB CARD ===================== */
+/* ================= JOB CARD ================= */
 .job-card{
-  background:var(--card);
-  border-radius:22px;
+  background:#111;
+  border-radius:18px;
   overflow:hidden;
-  backdrop-filter:blur(10px);
-  transition:.45s;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  transition:.5s;
 }
+html.light .job-card{background:#fff}
 .job-card:hover{
-  transform:translateY(-12px);
-  box-shadow:var(--glow);
+  transform:translateY(-10px) scale(1.02);
 }
-.job-card img{
-  width:100%;
+.job-img{
   height:190px;
+  width:100%;
   object-fit:cover;
 }
-.job-body{
-  padding:22px;
-}
-.job-body h3{
-  margin-bottom:6px;
-}
-.job-body p{
-  opacity:.7;
-}
+.job-body{padding:1.2rem}
+.job-body p{opacity:.7}
 .job-footer{
-  margin-top:14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  margin-top:1rem;
 }
 .view-btn{
-  padding:6px 16px;
-  border-radius:20px;
-  border:1px solid var(--blue);
-  color:var(--blue);
-  background:none;
-  cursor:pointer;
+  border:1px solid #facc15;
+  padding:.35rem .9rem;
+  border-radius:.5rem;
+  color:#facc15;
 }
-.view-btn:hover{
-  background:var(--blue);
-  color:#000;
-}
+.view-btn:hover{background:#facc15;color:black}
 
-/* ===================== SCROLL REVEAL ===================== */
+/* ================= SCROLL REVEAL ================= */
 .reveal{
   opacity:0;
   transform:translateY(40px);
@@ -153,138 +68,186 @@ body{
   transform:none;
 }
 
-/* ===================== MOBILE SWIPE ===================== */
+/* ================= MOBILE SWIPE ================= */
 @media(max-width:768px){
-  .jobs{
-    display:flex;
-    gap:18px;
+  .jobs-swipe{
+    display:flex !important;
+    gap:16px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
   }
-  .jobs::-webkit-scrollbar{display:none}
-  .job-card{
+  .jobs-swipe::-webkit-scrollbar{display:none}
+  .jobs-swipe .job-card{
     min-width:85%;
     scroll-snap-align:center;
     flex-shrink:0;
   }
 }
 
-/* ===================== FOOTER ===================== */
-.footer{
-  padding:50px 22px;
-  text-align:center;
-  background:#000;
-  opacity:.85;
-}
+/* ================= MOBILE MENU ================= */
+.menu-open{overflow:hidden}
 </style>
 </head>
 
-<body>
+<body class="relative min-h-screen overflow-x-hidden">
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="logo">SmartHire</div>
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="jobs.html" style="color:var(--blue)">Jobs</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a>
-    <button onclick="toggleTheme()">🌙</button>
+    <a href="index.html" class="text-2xl font-bold text-yellow-400">
+      SmartHire
+    </a>
+
+    <!-- DESKTOP -->
+    <div class="hidden md:flex gap-6 items-center">
+      <a href="index.html">Home</a>
+      <a href="jobs.html" class="text-yellow-400 font-semibold">Jobs</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+
+      <button onclick="toggleTheme()" class="text-xl">🌙</button>
+
+      <a href="admin.html"
+        class="px-4 py-1 border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition">
+        Admin
+      </a>
+    </div>
+
+    <!-- MOBILE BUTTON -->
+    <button onclick="toggleMenu()" class="md:hidden text-3xl z-[60]">
+      ☰
+    </button>
   </div>
-
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="menu">
-  <a href="index.html">Home</a>
-  <a href="jobs.html">Jobs</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a href="admin.html">Admin</a>
+<!-- ================= MOBILE MENU (POPUP) ================= -->
+<div id="mobileMenu"
+  class="fixed inset-0 bg-black/70 backdrop-blur hidden
+         flex items-center justify-center z-50">
+
+  <div id="mobileMenuBox"
+       class="bg-black rounded-2xl px-10 py-8 space-y-6 text-center
+              scale-90 opacity-0 transition-all duration-300">
+
+    <a href="index.html" class="block text-xl">Home</a>
+    <a href="jobs.html" class="block text-xl text-yellow-400">Jobs</a>
+    <a href="pricing.html" class="block text-xl">Pricing</a>
+    <a href="faq.html" class="block text-xl">FAQ</a>
+    <a href="contact.html" class="block text-xl">Contact</a>
+
+    <a href="admin.html"
+       class="block mt-4 bg-yellow-400 text-black py-2 rounded-lg font-semibold">
+      Admin
+    </a>
+
+    <button onclick="toggleTheme()" class="text-2xl mt-2">🌙</button>
+
+    <button onclick="toggleMenu()" class="block text-sm opacity-60 mt-2">
+      ✕ Close
+    </button>
+  </div>
 </div>
 
-<!-- HEADER -->
-<section class="header reveal">
-  <h1>Find Your <span>Dream Job</span></h1>
-  <p>Explore IT, AI, Robotics & Engineering opportunities</p>
+<!-- ================= HEADER ================= -->
+<section class="pt-32 pb-20 text-center reveal">
+  <h1 class="text-4xl md:text-5xl font-extrabold">
+    Find Your <span class="text-yellow-400">Dream Job</span>
+  </h1>
+  <p class="mt-4 opacity-70">
+    Explore IT, AI, Robotics & Engineering opportunities
+  </p>
 </section>
 
-<!-- JOB LIST -->
-<section class="jobs">
-  <!-- JOB -->
-  <div class="job-card reveal">
-    <img src="https://github.com/sakthimanimchss-sudo/Job-Portal/blob/main/job.img/pexels-goumbik-574069.jpg?raw=true">
-    <div class="job-body">
-      <h3>Frontend Developer</h3>
-      <p>React • UI • Tailwind</p>
-      <div class="job-footer">
-        <span>₹6–10 LPA</span>
-        <button class="view-btn">View</button>
-      </div>
-    </div>
-  </div>
+<!-- ================= JOB LIST ================= -->
+<section class="pb-24">
+  <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 jobs-swipe">
 
-  <div class="job-card reveal">
-    <img src="https://github.com/sakthimanimchss-sudo/Job-Portal/blob/main/job.img/pexels-goumbik-652352.jpg?raw=true">
-    <div class="job-body">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • DL</p>
-      <div class="job-footer">
-        <span>₹8–15 LPA</span>
-        <button class="view-btn">View</button>
+    <!-- JOB CARDS -->
+    <div class="job-card reveal">
+      <img class="job-img" src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg">
+      <div class="job-body">
+        <h3>Frontend Developer</h3>
+        <p>React • Tailwind • UI</p>
+        <div class="job-footer">
+          <span>₹6–10 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="job-card reveal">
-    <img src="https://github.com/sakthimanimchss-sudo/Job-Portal/blob/main/job.img/pexels-jakubzerdzicki-34212988.jpg?raw=true">
-    <div class="job-body">
-      <h3>Robotics Engineer</h3>
-      <p>ROS • PLC • Automation</p>
-      <div class="job-footer">
-        <span>₹7–12 LPA</span>
-        <button class="view-btn">View</button>
+    <div class="job-card reveal">
+      <img class="job-img" src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg">
+      <div class="job-body">
+        <h3>AI Engineer</h3>
+        <p>Python • ML • DL</p>
+        <div class="job-footer">
+          <span>₹8–15 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="job-card reveal">
-    <img src="https://github.com/sakthimanimchss-sudo/Job-Portal/blob/main/job.img/pexels-kevin-ku-92347-577585.jpg?raw=true">
-    <div class="job-body">
-      <h3>Backend Developer</h3>
-      <p>Node • MongoDB • APIs</p>
-      <div class="job-footer">
-        <span>₹7–13 LPA</span>
-        <button class="view-btn">View</button>
+    <div class="job-card reveal">
+      <img class="job-img" src="https://images.pexels.com/photos/35280311/pexels-photo-35280311.jpeg">
+      <div class="job-body">
+        <h3>Robotics Engineer</h3>
+        <p>ROS • PLC • Automation</p>
+        <div class="job-footer">
+          <span>₹7–12 LPA</span>
+          <button class="view-btn">👁 View</button>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<footer class="footer">
-  © 2025 SmartHire — All Rights Reserved
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-gray-400 py-10 text-center">
+  © 2025 SmartHire. All rights reserved.
 </footer>
 
+<!-- ================= JS ================= -->
 <script>
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
 function toggleMenu(){
-  menu.classList.toggle("active");
+  const menu=document.getElementById("mobileMenu");
+  const box=document.getElementById("mobileMenuBox");
+
+  if(menu.classList.contains("hidden")){
+    menu.classList.remove("hidden");
+    document.body.classList.add("menu-open");
+    setTimeout(()=>{
+      box.classList.remove("scale-90","opacity-0");
+      box.classList.add("scale-100","opacity-100");
+    },10);
+  }else{
+    box.classList.add("scale-90","opacity-0");
+    setTimeout(()=>{
+      menu.classList.add("hidden");
+      document.body.classList.remove("menu-open");
+    },300);
+  }
+}
+
+function toggleTheme(){
+  document.documentElement.classList.toggle("light");
+  localStorage.setItem("theme",
+    document.documentElement.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("theme")==="light"){
+  document.documentElement.classList.add("light");
 }
 
 /* Scroll reveal */
-const obs=new IntersectionObserver(entries=>{
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("show");
+    if(e.isIntersecting) e.target.classList.add("show");
   });
 },{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
 
 </body>

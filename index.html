@@ -7,7 +7,7 @@
 
 <style>
 /* =====================================================
-   THEME (UNCHANGED)
+   THEME (LOCKED)
 ===================================================== */
 :root{
   --blue:#1e6fff;
@@ -22,8 +22,6 @@ body.light{
   --white:#111;
   --card:#ffffff;
 }
-
-/* RESET */
 *{
   margin:0;
   padding:0;
@@ -32,13 +30,14 @@ body.light{
 }
 html{scroll-behavior:smooth}
 body{
-  background:linear-gradient(100deg,#0b1e46,var(--black),#000);
+  background:linear-gradient(110deg,#0b1e46,var(--black),#000);
   color:var(--white);
   overflow-x:hidden;
-  transition:.3s;
 }
 
-/* PARTICLES */
+/* =====================================================
+   PARTICLES
+===================================================== */
 #particles-js{
   position:fixed;
   inset:0;
@@ -78,22 +77,18 @@ body{
   color:var(--white);
   cursor:pointer;
   text-decoration:none;
-  font-size:14px;
 }
 .desktop-nav a:hover,
-.desktop-nav button:hover{
-  color:var(--blue-soft);
-}
+.desktop-nav button:hover{color:var(--blue-soft)}
 
 /* =====================================================
-   HERO (UNCHANGED CONTENT)
+   HERO
 ===================================================== */
 .hero{
   min-height:100vh;
   padding:140px 22px;
   max-width:1200px;
   margin:auto;
-  position:relative;
   display:grid;
   grid-template-columns:1.1fr .9fr;
   align-items:center;
@@ -101,7 +96,6 @@ body{
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
 }
-
 .hero h1{
   font-size:46px;
   line-height:1.2;
@@ -113,11 +107,7 @@ body{
   border-radius:30px;
   box-shadow:var(--glow);
 }
-.hero p{
-  margin-top:16px;
-  max-width:620px;
-  opacity:.9;
-}
+.hero p{margin-top:16px;max-width:620px;opacity:.9}
 .btns{margin-top:28px}
 .btn{
   padding:12px 30px;
@@ -129,35 +119,94 @@ body{
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--white);color:var(--white)}
 
-/* ✅ HERO RIGHT PNG (ONLY ADDITION) */
-.hero-image{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
 .hero-image img{
   width:100%;
   max-width:420px;
-  filter:drop-shadow(0 0 30px rgba(30,111,255,.25));
   animation:float 6s ease-in-out infinite;
 }
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-14px)}
+  50%{transform:translateY(-16px)}
 }
-@media(max-width:900px){
-  .hero-image{display:none}
-}
+@media(max-width:900px){.hero-image{display:none}}
 
 /* =====================================================
-   COMMON
+   COMMON SECTION STYLE
 ===================================================== */
 section{padding:90px 22px}
-.title{text-align:center;font-size:32px;margin-bottom:10px}
-.subtitle{text-align:center;opacity:.8;margin-bottom:40px}
+.title{text-align:center;font-size:34px;margin-bottom:10px}
+.subtitle{text-align:center;opacity:.75;margin-bottom:40px}
+
+.grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:26px;
+  backdrop-filter:blur(8px);
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--glow);
+}
+.card img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:14px;
+}
 
 /* =====================================================
-   LOGIN MODAL (ADVANCED – NEW)
+   ADMIN STATS
+===================================================== */
+.stats{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:22px;
+}
+.stat{
+  background:var(--card);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+}
+.stat h3{color:var(--blue);font-size:34px}
+
+/* =====================================================
+   FAQ
+===================================================== */
+.faq{max-width:900px;margin:auto}
+.faq-item{
+  background:var(--card);
+  border-radius:16px;
+  margin-bottom:14px;
+}
+.faq-q{
+  padding:18px;
+  cursor:pointer;
+  font-weight:600;
+}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:.4s;
+  padding:0 18px;
+  opacity:.85;
+}
+.faq-item.active .faq-a{
+  max-height:200px;
+  padding:12px 18px 18px;
+}
+
+/* =====================================================
+   LOGIN MODAL
 ===================================================== */
 .login-modal{
   position:fixed;
@@ -170,41 +219,27 @@ section{padding:90px 22px}
 }
 .login-box{
   width:420px;
-  max-width:90%;
   background:rgba(255,255,255,.06);
   backdrop-filter:blur(18px);
   border-radius:22px;
   padding:40px;
-  box-shadow:0 0 40px rgba(0,0,0,.6);
-}
-.login-box h2{
-  text-align:center;
-  margin-bottom:24px;
 }
 .login-box input{
   width:100%;
   padding:14px;
-  border-radius:14px;
+  border-radius:12px;
   border:none;
   background:#000;
   color:#fff;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 .login-box button{
   width:100%;
   padding:14px;
   border-radius:30px;
-  border:none;
   background:var(--blue);
+  border:none;
   font-weight:700;
-  cursor:pointer;
-}
-.login-close{
-  position:absolute;
-  top:18px;
-  right:18px;
-  cursor:pointer;
-  font-size:20px;
 }
 
 /* FOOTER */
@@ -212,7 +247,6 @@ section{padding:90px 22px}
   padding:60px 22px;
   background:#000;
   text-align:center;
-  margin-top:40px;
   opacity:.85;
 }
 </style>
@@ -222,7 +256,6 @@ section{padding:90px 22px}
 
 <div id="particles-js"></div>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
   <div class="desktop-nav">
@@ -247,49 +280,73 @@ section{padding:90px 22px}
       <a href="pricing.html" class="btn outline">Explore</a>
     </div>
   </div>
-
-  <!-- ✅ RIGHT SIDE IMAGE -->
   <div class="hero-image">
-    <img src="./hero-job.png" alt="">
+    <img src="hero-job.png" alt="">
   </div>
 </section>
 
-<!-- LOGIN MODAL -->
+<!-- WHY -->
+<section>
+<h2 class="title">Why Choose SmartHire</h2>
+<p class="subtitle">Smarter, faster AI recruitment</p>
+<div class="grid">
+  <div class="card"><img src="why-ai.png"><h3>AI Matching</h3><p>Skill-based intelligent job matching.</p></div>
+  <div class="card"><img src="why-fast.png"><h3>Fast Hiring</h3><p>Automated screening saves time.</p></div>
+  <div class="card"><img src="why-verified.png"><h3>Verified Companies</h3><p>Trusted recruiters only.</p></div>
+</div>
+</section>
+
+<!-- TRENDING JOBS -->
+<section>
+<h2 class="title">Trending Jobs</h2>
+<div class="grid">
+  <div class="card"><img src="job1.jpg"><h3>AI Engineer</h3><p>High demand role</p></div>
+  <div class="card"><img src="job2.jpg"><h3>Frontend Developer</h3><p>React, UI/UX</p></div>
+  <div class="card"><img src="job3.jpg"><h3>Robotics Engineer</h3><p>Automation & AI</p></div>
+</div>
+</section>
+
+<!-- ADMIN -->
+<section>
+<h2 class="title">Admin Dashboard Preview</h2>
+<div class="stats">
+  <div class="stat"><h3>1240</h3><p>Jobs</p></div>
+  <div class="stat"><h3>8320</h3><p>Companies</p></div>
+  <div class="stat"><h3>120K+</h3><p>Applications</p></div>
+  <div class="stat"><h3>1M+</h3><p>Users</p></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section>
+<h2 class="title">Frequently Asked Questions</h2>
+<div class="faq">
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">What is SmartHire?</div><div class="faq-a">AI hiring platform.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Is it free?</div><div class="faq-a">Yes for job seekers.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Remote jobs?</div><div class="faq-a">Yes available.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="faq(this)">Support?</div><div class="faq-a">24/7 support.</div></div>
+</div>
+</section>
+
+<!-- LOGIN -->
 <div class="login-modal" id="loginModal">
   <div class="login-box">
-    <div class="login-close" onclick="closeLogin()">✖</div>
-    <h2>Welcome Back</h2>
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+    <input placeholder="Email">
+    <input placeholder="Password">
     <button>Login</button>
   </div>
 </div>
 
 <footer class="footer">
-  © 2025 SmartHire — All Rights Reserved
+© 2025 SmartHire — All Rights Reserved
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-particlesJS("particles-js",{
-  particles:{
-    number:{value:60},
-    size:{value:3},
-    color:{value:"#1e6fff"},
-    move:{speed:1},
-    line_linked:{enable:true,color:"#1e6fff"}
-  }
-});
-
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
-function closeLogin(){
-  document.getElementById("loginModal").style.display="none";
-}
+particlesJS("particles-js",{particles:{number:{value:60},size:{value:3},color:{value:"#1e6fff"},line_linked:{enable:true}}});
+function toggleTheme(){document.body.classList.toggle("light")}
+function openLogin(){loginModal.style.display="flex"}
+function faq(el){el.parentElement.classList.toggle("active")}
 </script>
 
 </body>

@@ -736,7 +736,7 @@ let isRegister = false;
 
 /* OPEN LOGIN MODAL */
 function openLogin(){
-  const modal = document.getElementById("loginModal"); // ✅ FIXED
+  const modal = document.getElementById("loginModal");
   if(modal){
     modal.style.display = "flex";
   }
@@ -785,20 +785,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
   if(modal){
     modal.addEventListener("click", e=>{
       if(e.target === modal){
-        modal.style.display = "none"; // ✅ FIXED
+        modal.style.display = "none";
       }
     });
   }
 });
-if(e.target === modal){
-  modal.style.display = "none";
-}
-
 </script>
+
 
 
 </body>
 </html>
+
 
 
 

@@ -88,7 +88,7 @@ body{
   .hamburger{display:flex}
 }
 
-/* ================= MOBILE MENU (SAME AS INDEX) ================= */
+/* ================= MOBILE MENU ================= */
 .mobile-menu{
   position:fixed;
   top:90px;
@@ -110,8 +110,8 @@ body{
 }
 .mobile-menu a:hover{color:var(--blue)}
 .mobile-menu.show{display:block}
-  
-  /* FIX MOBILE THEME BUTTON */
+
+/* ✅ FIXED MOBILE THEME BUTTON */
 .mobile-theme-btn{
   width:100%;
   background:#0b0b0b;
@@ -121,12 +121,12 @@ body{
   border-radius:14px;
   margin-top:14px;
   font-size:15px;
+  cursor:pointer;
 }
 .mobile-theme-btn:hover{
   background:#1e6fff;
   color:#000;
 }
-
 
 /* ================= HEADER ================= */
 header{
@@ -235,7 +235,7 @@ footer{
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
+<!-- ================= MOBILE MENU ================= -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
   <a href="jobs.html" style="color:var(--blue)">Jobs</a>
@@ -243,10 +243,11 @@ footer{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html">Admin</a>
-  <button onclick="toggleTheme()" class="theme-btn">
-  🌙
-</button>
 
+  <!-- ✅ FIXED -->
+  <button onclick="toggleTheme()" class="mobile-theme-btn">
+    🌙 Theme
+  </button>
 </div>
 
 <!-- ================= HEADER ================= -->
@@ -330,4 +331,3 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 </body>
 </html>
-

@@ -308,6 +308,9 @@ section{
     <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <button onclick="toggleTheme()">🌙</button>
+    <button onclick="openLogin()" class="login-btn">
+  Login
+</button>
   </div>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -322,6 +325,8 @@ section{
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
   <a href="admin.html" style="color:#facc15">Admin</a>
+  <a onclick="openLogin()">Login</a>
+
   <button onclick="toggleTheme()">🌙 </button>
 </div>
 
@@ -414,6 +419,54 @@ section{
     <div class="stat reveal"><h3>120K+</h3><p>Applications</p></div>
   </div>
 </section>
+  <!-- ================= ADVANCED LOGIN MODAL ================= -->
+<div id="loginModal" class="login-modal">
+
+  <div class="login-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="login-image">
+      <h2>Welcome to SmartHire</h2>
+      <p>AI-powered hiring made simple.</p>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="login-form">
+      <h2 id="loginTitle">Login</h2>
+
+      <input id="loginEmail" type="email" placeholder="Email">
+
+      <div style="position:relative">
+        <input id="loginPassword" type="password" placeholder="Password">
+        <span onclick="togglePassword()"
+          style="position:absolute;right:14px;top:16px;cursor:pointer">
+          👁️
+        </span>
+      </div>
+
+      <label style="font-size:14px;display:flex;gap:8px;margin:10px 0">
+        <input type="checkbox"> Remember me
+      </label>
+
+      <p id="loginError" class="login-error">
+        Invalid email or password
+      </p>
+
+      <button class="btn primary" onclick="validateLogin()">
+        Login
+      </button>
+
+      <p style="margin-top:14px;font-size:14px">
+        New user?
+        <span onclick="switchMode()" style="color:#facc15;cursor:pointer">
+          Create account
+        </span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -508,10 +561,52 @@ const observer=new IntersectionObserver(entries=>{
   });
 },{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+  
+let isRegister = false;
+
+function openLogin(){
+  document.getElementById("loginModal").style.display = "flex";
+}
+
+function togglePassword(){
+  const p = document.getElementById("loginPassword");
+  p.type = p.type === "password" ? "text" : "password";
+}
+
+function switchMode(){
+  isRegister = !isRegister;
+  document.getElementById("loginTitle").innerText =
+    isRegister ? "Create Account" : "Login";
+}
+
+function validateLogin(){
+  const email = document.getElementById("loginEmail").value;
+  const pass  = document.getElementById("loginPassword").value;
+  const err   = document.getElementById("loginError");
+
+  if(!email.includes("@") || pass.length < 6){
+    err.style.display = "block";
+    return;
+  }
+
+  err.style.display = "none";
+
+  alert(isRegister ? "Account created (demo)" : "Login successful (demo)");
+  document.getElementById("loginModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+document.getElementById("loginModal").addEventListener("click", e=>{
+  if(e.target.id === "loginModal"){
+    e.target.style.display = "none";
+  }
+});
+
 </script>
 
 </body>
 </html>
+
 
 
 

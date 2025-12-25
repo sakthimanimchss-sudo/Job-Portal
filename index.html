@@ -272,8 +272,7 @@ section{
 .footer-col a:hover::after{
   width:100%;
 }
- /* ================= LOGIN MODAL (FULL FIXED CSS) ================= */
-
+/* ================= LOGIN MODAL ================= */
 .login-modal{
   position:fixed;
   inset:0;
@@ -285,22 +284,21 @@ section{
   z-index:2000;
 }
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 .login-container{
   width:820px;
   max-width:95%;
-  background:var(--card);
+  background:#111;
   border-radius:22px;
   display:grid;
   grid-template-columns:1fr 1fr;
   overflow:hidden;
-  max-height:90vh;
 }
 
-/* ================= LEFT IMAGE PANEL ================= */
+/* IMAGE SIDE */
 .login-image{
   background:
-    linear-gradient(var(--overlay),var(--overlay)),
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
     url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d")
     center/cover;
   padding:40px;
@@ -310,59 +308,39 @@ section{
   justify-content:flex-end;
 }
 
-.login-image h2{
-  font-size:26px;
-  margin-bottom:10px;
-}
-
-.login-image p{
-  font-size:14px;
-  opacity:.9;
-}
-
-/* ================= RIGHT FORM PANEL ================= */
+/* FORM */
 .login-form{
   padding:40px;
   display:flex;
   flex-direction:column;
-  justify-content:center;
 }
 
-/* ================= INPUTS ================= */
+.login-form h2{
+  margin-bottom:20px;
+}
+
 .login-form input{
   width:100%;
   padding:14px;
-  margin-bottom:14px;
   border-radius:12px;
   border:none;
-  background:var(--bg);
-  color:var(--text);
+  background:#000;
+  color:#fff;
+  margin-bottom:14px;
   font-size:15px;
 }
 
-.login-form input::placeholder{
-  color:rgba(255,255,255,.55);
+.password-wrap{
+  position:relative;
 }
-
-body.light .login-form input::placeholder{
-  color:rgba(0,0,0,.45);
-}
-
-.login-form input:focus{
-  outline:2px solid #facc15;
-}
-
-/* ================= PASSWORD EYE ICON ================= */
-.login-form span{
+.password-wrap span{
   position:absolute;
   right:14px;
   top:50%;
   transform:translateY(-50%);
   cursor:pointer;
-  user-select:none;
 }
 
-/* ================= ERROR MESSAGE ================= */
 .login-error{
   display:none;
   color:#ff6b6b;
@@ -370,66 +348,37 @@ body.light .login-form input::placeholder{
   margin-bottom:10px;
 }
 
-/* ================= BUTTON ================= */
-.login-form .btn{
-  width:100%;
-  margin-top:10px;
+.btn{
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+}
+.primary{
+  background:#facc15;
+  color:#000;
+  font-weight:600;
 }
 
-/* ================= EXTRA TEXT ================= */
-.login-form p{
+.switch-text{
+  margin-top:14px;
   font-size:14px;
 }
+.switch-text span{
+  color:#facc15;
+  cursor:pointer;
+}
 
-/* ================= MOBILE FIX (VERY IMPORTANT) ================= */
-@media (max-width: 768px){
-
-  .login-modal{
-    padding:12px;
-  }
-
+/* ================= MOBILE FIX ================= */
+@media(max-width:768px){
   .login-container{
-    width:100%;
-    max-width:100%;
-    border-radius:18px;
     grid-template-columns:1fr;
-    max-height:95vh;
-    overflow-y:auto;
   }
-
-  /* Hide image panel on mobile */
   .login-image{
     display:none;
   }
-
   .login-form{
-    padding:24px 20px;
-  }
-
-  .login-form h2{
-    text-align:center;
-    margin-bottom:20px;
-    font-size:22px;
-  }
-
-  .login-form input{
-    font-size:16px; /* prevents iOS zoom */
-    padding:14px;
-  }
-
-  .login-form label{
-    font-size:14px;
-  }
-
-  .login-form .btn{
-    width:100%;
-    padding:14px;
-    font-size:16px;
-    border-radius:30px;
-  }
-
-  .login-error{
-    text-align:center;
+    padding:26px 22px;
   }
 }
  
@@ -586,50 +535,46 @@ body.light .login-form input::placeholder{
     <div class="stat reveal"><h3>120K+</h3><p>Applications</p></div>
   </div>
 </section>
-  <!-- ================= ADVANCED LOGIN MODAL ================= -->
-<div id="loginModal" class="login-modal" style="display:none">
+
+<!-- ================= LOGIN MODAL ================= -->
+<div id="loginModal" class="login-modal">
 
   <div class="login-container">
 
-    <!-- LEFT IMAGE -->
+    <!-- LEFT IMAGE (DESKTOP ONLY) -->
     <div class="login-image">
       <h2>Welcome to SmartHire</h2>
       <p>AI-powered hiring made simple.</p>
     </div>
 
-    <!-- LOGIN FORM -->
-   <div class="login-form">
-  <h2 id="loginTitle">Login</h2>
+    <!-- FORM -->
+    <div class="login-form">
+      <h2 id="loginTitle">Login</h2>
 
-  <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginEmail" type="email" placeholder="Email">
 
-  <div style="position:relative">
-    <input id="loginPassword" type="password" placeholder="Password">
-    <span onclick="togglePassword()"
-      style="position:absolute;right:14px;top:16px;cursor:pointer">
-      👁️
-    </span>
+      <div class="password-wrap">
+        <input id="loginPassword" type="password" placeholder="Password">
+        <span onclick="togglePassword()">👁️</span>
+      </div>
+
+      <p id="loginError" class="login-error">
+        Invalid email or password
+      </p>
+
+      <button id="loginSubmit" class="btn primary" onclick="validateLogin()">
+        Login
+      </button>
+
+      <p class="switch-text">
+        New user?
+        <span onclick="switchMode()">Create account</span>
+      </p>
+    </div>
+
   </div>
-
-  <label style="font-size:14px;display:flex;gap:8px;margin:10px 0">
-    <input type="checkbox"> Remember me
-  </label>
-
-  <p id="loginError" class="login-error" style="display:none">
-    Invalid email or password
-  </p>
-
-  <button id="loginSubmit" class="btn primary" onclick="validateLogin()">
-    Login
-  </button>
-
-  <p style="margin-top:14px;font-size:14px">
-    New user?
-    <span onclick="switchMode()" style="color:#facc15;cursor:pointer">
-      Create account
-    </span>
-  </p>
 </div>
+
 
 
 <!-- FOOTER -->
@@ -734,68 +679,56 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 let isRegister = false;
 
-/* OPEN LOGIN MODAL */
+/* OPEN MODAL */
 function openLogin(){
-  const modal = document.getElementById("loginModal");
-  if(modal){
-    modal.style.display = "flex";
-  }
+  document.getElementById("loginModal").style.display = "flex";
 }
+
+/* CLOSE ON OUTSIDE CLICK */
+document.getElementById("loginModal").addEventListener("click", e=>{
+  if(e.target.id === "loginModal"){
+    e.target.style.display = "none";
+  }
+});
 
 /* TOGGLE PASSWORD */
 function togglePassword(){
   const p = document.getElementById("loginPassword");
-  if(p){
-    p.type = p.type === "password" ? "text" : "password";
-  }
+  p.type = p.type === "password" ? "text" : "password";
 }
 
 /* SWITCH LOGIN / REGISTER */
 function switchMode(){
   isRegister = !isRegister;
-
-  const title = document.getElementById("loginTitle");
-  const btn   = document.getElementById("loginSubmit");
-
-  if(title) title.innerText = isRegister ? "Create Account" : "Login";
-  if(btn) btn.innerText = isRegister ? "Register" : "Login";
+  document.getElementById("loginTitle").innerText =
+    isRegister ? "Create Account" : "Login";
+  document.getElementById("loginSubmit").innerText =
+    isRegister ? "Register" : "Login";
 }
 
 /* VALIDATE LOGIN */
 function validateLogin(){
-  const email = document.getElementById("loginEmail")?.value || "";
-  const pass  = document.getElementById("loginPassword")?.value || "";
+  const email = document.getElementById("loginEmail").value;
+  const pass  = document.getElementById("loginPassword").value;
   const err   = document.getElementById("loginError");
 
   if(!email.includes("@") || pass.length < 6){
-    if(err) err.style.display = "block";
+    err.style.display = "block";
     return;
   }
 
-  if(err) err.style.display = "none";
+  err.style.display = "none";
   alert(isRegister ? "Account created (demo)" : "Login successful (demo)");
-
-  const modal = document.getElementById("loginModal");
-  if(modal) modal.style.display = "none";
+  document.getElementById("loginModal").style.display = "none";
 }
 
-/* CLOSE MODAL ON OUTSIDE CLICK */
-document.addEventListener("DOMContentLoaded", ()=>{
-  const modal = document.getElementById("loginModal");
-  if(modal){
-    modal.addEventListener("click", e=>{
-      if(e.target === modal){
-        modal.style.display = "none";
-      }
-    });
-  }
-});
 </script>
 
 
 
 </body>
 </html>
+
 
 
 

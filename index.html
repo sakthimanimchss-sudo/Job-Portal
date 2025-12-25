@@ -5,445 +5,342 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ================= PART 2 : FULL CSS ================= -->
+<!-- ===== PART 2 CSS WILL BE PASTED HERE ===== -->
 <style>
-
-/* =====================================================
-   THEME VARIABLES
-===================================================== */
 :root{
-  --bg:#0a0f1f;
-  --bg2:#0f2a5a;
-  --text:#ffffff;
-  --accent:#2f7bff;
-  --accent2:#6ec1ff;
+  --blue:#1e6fff;
+  --dark:#050505;
   --card:rgba(255,255,255,.08);
-  --nav:rgba(10,15,31,.9);
 }
 
-body.light{
-  --bg:#f4f7ff;
-  --bg2:#dfe9ff;
-  --text:#111;
-  --card:#ffffff;
-  --nav:#ffffff;
-}
-
-/* =====================================================
-   RESET
-===================================================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 html{scroll-behavior:smooth}
-body{
-  background:linear-gradient(120deg,var(--bg),var(--bg2));
-  color:var(--text);
-  overflow-x:hidden;
-  transition:.4s;
+body{background:var(--dark);color:#fff}
+
+/* Scroll progress */
+#scrollProgress{
+  position:fixed;
+  top:0;left:0;
+  height:4px;
+  background:var(--blue);
+  width:0%;
+  z-index:9999;
 }
 
-/* =====================================================
-   NAVBAR
-===================================================== */
+/* Particles */
+#particles-js{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* Navbar */
 .navbar{
   position:fixed;
-  top:0;
   width:100%;
-  padding:16px 24px;
-  background:var(--nav);
-  backdrop-filter:blur(12px);
+  top:0;
+  padding:16px 30px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(12px);
   z-index:1000;
 }
+.nav-links a{color:#fff;margin-left:20px;text-decoration:none}
 
-.logo{
-  font-size:22px;
-  font-weight:700;
-  color:var(--accent);
-}
-
-.desktop-nav{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.desktop-nav a,
-.desktop-nav button{
-  color:var(--text);
-  background:none;
-  border:none;
-  cursor:pointer;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.desktop-nav a:hover{color:var(--accent)}
-
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  cursor:pointer;
-}
-.hamburger span{
-  width:26px;height:3px;
-  background:var(--accent);
-}
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-#mobileMenu{
-  position:fixed;
-  top:0;right:0;
-  width:260px;height:100%;
-  background:#000;
-  padding:90px 24px;
-  transform:translateX(100%);
-  transition:.35s;
-  z-index:999;
-  display:flex;
-  flex-direction:column;
-}
-#mobileMenu.show{transform:translateX(0)}
-#mobileMenu a{color:#fff;text-decoration:none;margin:14px 0}
-
-.mobile-actions{
-  margin-top:auto;
-  display:flex;
-  justify-content:center;
-  gap:14px;
-}
-
-.mobile-login-btn{
-  background:var(--accent);
-  padding:12px 28px;
-  border:none;
-  border-radius:30px;
-  font-weight:600;
-}
-.mobile-theme-btn{
-  width:44px;height:44px;
-  border-radius:50%;
-  border:1px solid var(--accent);
-  background:#000;color:var(--accent);
-}
-
-/* =====================================================
-   HERO (IMAGE STYLE LIKE SAMPLE)
-===================================================== */
+/* Hero */
 .hero{
   min-height:100vh;
-  padding:160px 20px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
   align-items:center;
-  gap:40px;
+  justify-content:center;
+  text-align:center;
 }
-
-.hero-text h1{
-  font-size:48px;
-  margin-bottom:14px;
-  animation:jump 1.2s ease;
-}
-.hero-text span{
-  background:var(--accent);
+.hero span{
+  background:var(--blue);
   color:#000;
   padding:6px 18px;
   border-radius:30px;
 }
-
-.hero-text p{
-  max-width:520px;
-  opacity:.9;
+.float-text{
+  animation:floating 3s ease-in-out infinite;
+}
+@keyframes floating{
+  50%{transform:translateY(-14px)}
 }
 
-.hero-img img{
-  width:100%;
-  animation:float 6s ease-in-out infinite;
-}
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-.btns{margin-top:26px}
+/* Buttons */
 .btn{
-  padding:12px 30px;
+  padding:12px 28px;
   border-radius:30px;
   text-decoration:none;
+  margin:10px;
   display:inline-block;
 }
-.primary{background:var(--accent);color:#000}
-.outline{border:1px solid var(--text);color:var(--text)}
+.primary{background:var(--blue);color:#000}
+.outline{border:1px solid #fff;color:#fff}
 
-/* =====================================================
-   SECTIONS
-===================================================== */
-section{padding:90px 20px}
-.title{text-align:center;font-size:34px;margin-bottom:8px}
-.subtitle{text-align:center;opacity:.8;margin-bottom:40px}
+/* Sections */
+section{padding:120px 30px}
+.title{text-align:center;font-size:34px;margin-bottom:12px}
+.subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
-.features,.jobs,.stats{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  gap:26px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-
-.card{
-  background:var(--card);
-  border-radius:22px;
-  padding:26px;
-  transition:.35s;
-}
-.card:hover{transform:translateY(-8px)}
-
-/* =====================================================
-   CAREER ACTION SLIDER
-===================================================== */
-.scroll-strip{overflow:hidden}
-.scroll-track{
-  display:flex;
-  gap:30px;
-  animation:scrollX 22s linear infinite;
-}
-.career-card{
-  width:320px;height:220px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-}
-.career-card img{
-  width:100%;height:100%;
-  object-fit:cover;
-}
-.career-info{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:14px;
-  background:rgba(0,0,0,.75);
-}
-
-/* =====================================================
-   FAQ
-===================================================== */
-.faq{max-width:900px;margin:auto}
-.faq-item{
-  background:var(--card);
-  border-radius:18px;
-  margin-bottom:16px;
-}
-.faq-question{
-  padding:18px 22px;
-  cursor:pointer;
-  font-weight:600;
-}
-.faq-answer{
-  max-height:0;
-  overflow:hidden;
-  padding:0 22px;
-  transition:.35s;
-}
-.faq-item.active .faq-answer{
-  max-height:200px;
-  padding:12px 22px 22px;
-}
-
-/* =====================================================
-   ADMIN DEMO
-===================================================== */
-.admin{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-.footer{
-  background:rgba(0,0,0,.9);
-  padding:70px 20px 30px;
-}
-.footer-container{
+/* Cards */
+.cards{
   max-width:1200px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:40px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
-.footer-logo{color:var(--accent);font-size:22px}
-.footer-text{opacity:.85;font-size:14px}
-.footer-bottom{
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:24px;
   text-align:center;
-  margin-top:30px;
-  font-size:13px;
-  opacity:.7;
+  transition:.4s;
+  transform-style:preserve-3d;
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:14px;
+}
+.card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 0 25px rgba(30,111,255,.4);
 }
 
-/* =====================================================
-   ANIMATIONS
-===================================================== */
-@keyframes jump{
-  from{transform:translateY(20px);opacity:0}
-  to{transform:none;opacity:1}
+/* Stats */
+.stats{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:30px;
+  text-align:center;
 }
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-18px)}
-}
-@keyframes scrollX{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
+.stat h3{font-size:42px;color:var(--blue)}
 
-/* =====================================================
-   MOBILE FIX
-===================================================== */
-@media(max-width:900px){
-  .desktop-nav{display:none}
-  .hamburger{display:flex}
-  .hero{grid-template-columns:1fr;text-align:center}
+/* Footer */
+.footer{
+  background:#000;
+  padding:60px 30px;
 }
+.footer-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+.footer a{color:#aaa;text-decoration:none;display:block;margin:6px 0}
+.footer-bottom{text-align:center;margin-top:30px;opacity:.6}
 
 </style>
-</head>
 
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+</head>
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress"></div>
+
+<!-- PARTICLES -->
+<div id="particles-js"></div>
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-  <div class="desktop-nav">
-    <a href="index.html">Home</a>
-    <a href="jobs.html">Jobs</a>
-    <a href="pricing.html">Pricing</a>
+  <div class="nav-links">
+    <a href="#why">Why</a>
+    <a href="#jobs">Jobs</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#stats">Stats</a>
     <a href="#faq">FAQ</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a>
-    <button onclick="toggleTheme()">🌙</button>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ================= MOBILE MENU ================= -->
-<div id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="jobs.html">Jobs</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="#faq">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a href="admin.html">Admin</a>
-  <div class="mobile-actions">
-    <button class="mobile-login-btn">Login</button>
-    <button class="mobile-theme-btn" onclick="toggleTheme()">🌙</button>
-  </div>
-</div>
-
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <h1>Find Your <span>Dream Job</span></h1>
-    <p>AI-powered hiring platform connecting talent with top companies.</p>
-    <div class="btns">
-      <a class="btn primary" href="jobs.html">Browse Jobs</a>
-      <a class="btn outline" href="jobs.html">Explore</a>
+  <div class="hero-content">
+    <h1 class="float-text">Find Your <span>Dream Job</span></h1>
+    <p>AI-powered hiring platform connecting talent with top companies worldwide.</p>
+    <div class="hero-btns">
+      <a href="#jobs" class="btn primary">Browse Jobs</a>
+      <a href="#pricing" class="btn outline">Pricing</a>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-  </div>
 </section>
 
-<!-- ================= WHY ================= -->
-<section>
+<!-- WHY -->
+<section id="why">
   <h2 class="title">Why Choose SmartHire</h2>
-  <p class="subtitle">Smarter hiring with AI</p>
-  <div class="features">
-    <div class="card">🤖 AI Matching</div>
-    <div class="card">⚡ Fast Hiring</div>
-    <div class="card">✅ Verified Companies</div>
+  <p class="subtitle">Smarter, faster, AI-driven recruitment</p>
+  <div class="cards">
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a">
+      <h3>AI Matching</h3>
+      <p>Advanced algorithms match candidates with perfect roles.</p>
+    </div>
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+      <h3>Fast Hiring</h3>
+      <p>Reduce hiring time by up to 70% using automation.</p>
+    </div>
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+      <h3>Verified Companies</h3>
+      <p>Only trusted, verified recruiters and organizations.</p>
+    </div>
   </div>
 </section>
 
-<!-- ================= JOBS ================= -->
-<section>
-  <h2 class="title">Featured Jobs</h2>
-  <div class="jobs">
-    <div class="card">Frontend Developer<br><b>₹6–10 LPA</b></div>
-    <div class="card">AI Engineer<br><b>₹10–18 LPA</b></div>
-    <div class="card">Robotics Engineer<br><b>₹8–14 LPA</b></div>
+<!-- JOBS -->
+<section id="jobs">
+  <h2 class="title">Latest Jobs</h2>
+  <div class="cards">
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+      <h3>Frontend Developer</h3>
+      <p>Remote • React • UI/UX</p>
+    </div>
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee">
+      <h3>AI Engineer</h3>
+      <p>Python • ML • NLP</p>
+    </div>
+    <div class="card tilt">
+      <img src="https://images.unsplash.com/photo-1581092919535-7146c6a6e6a8">
+      <h3>Robotics Engineer</h3>
+      <p>ROS • Embedded Systems</p>
+    </div>
   </div>
 </section>
 
-<!-- ================= CAREER ACTION ================= -->
-<section class="scroll-strip">
-  <h2 class="title">Careers in Action</h2>
-  <div class="scroll-track">
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><div class="career-info">AI Development</div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"><div class="career-info">Team Collaboration</div></div>
-    <div class="career-card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"><div class="career-info">Robotics</div></div>
+<!-- STATS -->
+<section id="stats">
+  <h2 class="title">Platform Statistics</h2>
+  <div class="stats">
+    <div class="stat"><h3>120K+</h3><p>Jobs Posted</p></div>
+    <div class="stat"><h3>85K+</h3><p>Companies</p></div>
+    <div class="stat"><h3>1M+</h3><p>Users</p></div>
+    <div class="stat"><h3>40+</h3><p>Countries</p></div>
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
+<!-- PRICING -->
+<section id="pricing">
+  <h2 class="title">Pricing Plans</h2>
+  <div class="cards">
+    <div class="card tilt">
+      <h3>Free</h3>
+      <p class="price">₹0</p>
+      <p>Job Seekers</p>
+    </div>
+    <div class="card tilt highlight">
+      <h3>Pro</h3>
+      <p class="price">₹999</p>
+      <p>Recruiters & Startups</p>
+    </div>
+    <div class="card tilt">
+      <h3>Enterprise</h3>
+      <p class="price">Custom</p>
+      <p>Large Organizations</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
 <section id="faq">
   <h2 class="title">FAQ</h2>
-  <div class="faq">
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">How does SmartHire work?</div><div class="faq-answer">AI-based matching.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Is it free?</div><div class="faq-answer">Yes for job seekers.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Verified companies?</div><div class="faq-answer">100% verified.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Remote jobs?</div><div class="faq-answer">Yes available.</div></div>
-    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Support?</div><div class="faq-answer">24×7 support.</div></div>
+  <div class="cards">
+    <div class="card">✔ Is SmartHire free? – Yes for job seekers</div>
+    <div class="card">✔ Are companies verified? – 100% verified</div>
+    <div class="card">✔ Remote jobs available? – Yes</div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-container">
+  <div class="footer-grid">
     <div>
-      <div class="footer-logo">SmartHire</div>
-      <p class="footer-text">AI-powered hiring platform.</p>
+      <h4>SmartHire</h4>
+      <p>AI-powered job portal for the future workforce.</p>
     </div>
     <div>
-      <b>Quick Links</b>
-      <a href="jobs.html">Jobs</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
+      <h4>Quick Links</h4>
+      <a href="#jobs">Jobs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div>
-      <b>Contact</b>
-      <p>support@smarthire.com</p>
+      <h4>Contact</h4>
+      <p>Email: support@smarthire.ai</p>
+      <p>24/7 Support</p>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 SmartHire</div>
+  <div class="footer-bottom">
+    © 2025 SmartHire — All Rights Reserved
+  </div>
 </footer>
 
-<!-- ================= PART 3 : JS ================= -->
-<script>
-function toggleMenu(){
-  document.getElementById("mobileMenu").classList.toggle("show");
-}
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
-function toggleFAQ(el){
-  el.parentElement.classList.toggle("active");
-}
+<!-- PART 3 JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="script.js"> 
+   /* Scroll progress */
+window.addEventListener("scroll",()=>{
+  const st=document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById("scrollProgress").style.width=
+    (st/h)*100+"%";
+});
+
+/* Particles */
+particlesJS("particles-js",{
+  particles:{
+    number:{value:80},
+    color:{value:"#1e6fff"},
+    size:{value:3},
+    move:{speed:1},
+    line_linked:{enable:true,color:"#1e6fff"}
+  }
+});
+
+/* 3D Tilt */
+document.querySelectorAll(".tilt").forEach(card=>{
+  card.addEventListener("mousemove",e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    const y=e.clientY-r.top;
+    card.style.transform=
+      `rotateY(${(x-r.width/2)/15}deg)
+       rotateX(${-(y-r.height/2)/15}deg)
+       scale(1.05)`;
+  });
+  card.addEventListener("mouseleave",()=>{
+    card.style.transform="rotateX(0) rotateY(0) scale(1)";
+  });
+});
+
+/* GSAP */
+gsap.utils.toArray("section").forEach(sec=>{
+  gsap.from(sec,{
+    opacity:0,
+    y:80,
+    duration:1,
+    scrollTrigger:{
+      trigger:sec,
+      start:"top 80%"
+    }
+  });
+});
+
 </script>
 
 </body>

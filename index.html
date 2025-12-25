@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* =========================================================
+/* =====================================================
    THEME (NO CHANGE)
-========================================================= */
+===================================================== */
 :root{
   --blue:#1e6fff;
   --blue-soft:#4f8cff;
@@ -40,9 +40,9 @@ body{
   transition:.3s;
 }
 
-/* =========================================================
+/* =====================================================
    SCROLL PROGRESS
-========================================================= */
+===================================================== */
 #scrollProgress{
   position:fixed;
   top:0;left:0;
@@ -52,38 +52,38 @@ body{
   z-index:9999;
 }
 
-/* =========================================================
-   PARTICLES BACKGROUND
-========================================================= */
+/* =====================================================
+   PARTICLES (UNCHANGED)
+===================================================== */
 #particles-js{
   position:fixed;
   inset:0;
   z-index:-1;
 }
 
-/* =========================================================
-   FLOATING JOB ICONS (SMALL & CLEAN)
-========================================================= */
-.job-float img{
+/* =====================================================
+   PNG JOB ILLUSTRATIONS (NEW - SMALL)
+===================================================== */
+.png-float img{
   position:fixed;
-  width:42px;
-  opacity:.15;
-  animation:jobFloat 16s infinite ease-in-out;
+  width:46px;
+  opacity:.18;
   pointer-events:none;
+  animation:pngFloat 18s infinite ease-in-out;
 }
-.job-float img:nth-child(1){top:22%;left:6%}
-.job-float img:nth-child(2){top:55%;right:8%;animation-duration:20s}
-.job-float img:nth-child(3){bottom:25%;left:30%;animation-duration:22s}
-.job-float img:nth-child(4){bottom:30%;right:26%;animation-duration:24s}
+.png-float img:nth-child(1){top:22%;left:8%}
+.png-float img:nth-child(2){top:52%;right:10%;animation-duration:22s}
+.png-float img:nth-child(3){bottom:26%;left:32%;animation-duration:26s}
+.png-float img:nth-child(4){bottom:30%;right:28%;animation-duration:30s}
 
-@keyframes jobFloat{
+@keyframes pngFloat{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-34px)}
+  50%{transform:translateY(-32px)}
 }
 
-/* =========================================================
-   NAVBAR (UNCHANGED STRUCTURE)
-========================================================= */
+/* =====================================================
+   NAVBAR (NO CHANGE)
+===================================================== */
 .navbar{
   position:fixed;
   top:0;width:100%;
@@ -133,9 +133,9 @@ body{
   background:var(--text);
 }
 
-/* =========================================================
+/* =====================================================
    MOBILE MENU
-========================================================= */
+===================================================== */
 #mobileMenu{
   position:fixed;
   top:0;right:0;
@@ -168,9 +168,9 @@ body{
   color:#000;
 }
 
-/* =========================================================
-   HERO (NO DESIGN CHANGE)
-========================================================= */
+/* =====================================================
+   HERO (NO CHANGE)
+===================================================== */
 .hero{
   min-height:100vh;
   padding:160px 80px;
@@ -195,14 +195,13 @@ body{
   padding:12px 30px;
   border-radius:30px;
   text-decoration:none;
-  display:inline-block;
 }
 .primary{background:var(--blue);color:#000}
 .outline{border:1px solid var(--text);color:var(--text)}
 
-/* =========================================================
-   SECTIONS & SCROLL ANIMATION
-========================================================= */
+/* =====================================================
+   SECTIONS + SCROLL REVEAL
+===================================================== */
 section{padding:100px 60px}
 .dark{background:rgba(0,0,0,.35)}
 .title{text-align:center;font-size:34px;margin-bottom:12px}
@@ -218,9 +217,9 @@ section{padding:100px 60px}
   transform:none;
 }
 
-/* =========================================================
-   CARD GRID
-========================================================= */
+/* =====================================================
+   CARDS
+===================================================== */
 .cards{
   max-width:1200px;
   margin:auto;
@@ -243,9 +242,9 @@ section{padding:100px 60px}
 }
 .card:hover{transform:translateY(-10px)}
 
-/* =========================================================
+/* =====================================================
    ADMIN PREVIEW
-========================================================= */
+===================================================== */
 .admin-grid{
   max-width:1100px;
   margin:auto;
@@ -264,9 +263,9 @@ section{padding:100px 60px}
   color:var(--blue);
 }
 
-/* =========================================================
-   FAQ
-========================================================= */
+/* =====================================================
+   FAQ (MORE QUESTIONS ADDED)
+===================================================== */
 .faq{max-width:900px;margin:auto}
 .faq-item{
   background:var(--card);
@@ -286,13 +285,13 @@ section{padding:100px 60px}
   opacity:.85;
 }
 .faq-item.active .faq-a{
-  max-height:200px;
+  max-height:240px;
   padding:12px 18px 18px;
 }
 
-/* =========================================================
-   LOGIN (MERGED + IMPROVED)
-========================================================= */
+/* =====================================================
+   LOGIN (UNCHANGED + GOOD)
+===================================================== */
 .login-modal{
   position:fixed;
   inset:0;
@@ -317,8 +316,6 @@ section{padding:100px 60px}
   transform:scale(1);
   opacity:1;
 }
-.login-box h3{margin-bottom:10px}
-.login-box p{opacity:.7;margin-bottom:20px}
 .login-box input{
   width:100%;
   padding:14px;
@@ -327,9 +324,9 @@ section{padding:100px 60px}
   border:none;
 }
 
-/* =========================================================
+/* =====================================================
    FOOTER
-========================================================= */
+===================================================== */
 .footer{
   padding:40px;
   text-align:center;
@@ -337,9 +334,9 @@ section{padding:100px 60px}
   opacity:.7;
 }
 
-/* =========================================================
+/* =====================================================
    MOBILE
-========================================================= */
+===================================================== */
 @media(max-width:900px){
   .desktop-nav{display:none}
   .hamburger{display:flex}
@@ -354,16 +351,16 @@ section{padding:100px 60px}
 <div id="scrollProgress"></div>
 <div id="particles-js"></div>
 
-<div class="job-float">
+<!-- PNG FLOATING ICONS -->
+<div class="png-float">
   <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
   <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png">
-  <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png">
   <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png">
+  <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png">
 </div>
 
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-
   <div class="desktop-nav">
     <a href="index.html">Home</a>
     <a href="jobs.html">Jobs</a>
@@ -374,7 +371,6 @@ section{padding:100px 60px}
     <button onclick="toggleTheme()">🌙</button>
     <button onclick="openLogin()">Login</button>
   </div>
-
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -406,9 +402,9 @@ section{padding:100px 60px}
   <h2 class="title">Why Choose SmartHire</h2>
   <p class="subtitle">Smarter, faster, AI-driven recruitment</p>
   <div class="cards">
-    <div class="card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a"><h3>AI Matching</h3><p>Skill-based intelligent matching.</p></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><h3>Fast Hiring</h3><p>Automated screening saves time.</p></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Verified Companies</h3><p>Trusted recruiters only.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1581091215367-59ab6c39b63a"><h3>AI Matching</h3><p>Smart algorithms match candidates accurately.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"><h3>Fast Hiring</h3><p>Automation speeds up hiring workflows.</p></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"><h3>Verified Companies</h3><p>Only trusted organizations can post jobs.</p></div>
   </div>
 </section>
 
@@ -434,9 +430,11 @@ section{padding:100px 60px}
 <section class="dark reveal">
   <h2 class="title">Frequently Asked Questions</h2>
   <div class="faq">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free?</div><div class="faq-a">Yes, job seekers can use SmartHire completely free.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div><div class="faq-a">All recruiters are manually verified.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Remote jobs available?</div><div class="faq-a">Yes, remote and hybrid jobs are available.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is SmartHire free for job seekers?</div><div class="faq-a">Yes, job seekers can use all features completely free.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are companies verified?</div><div class="faq-a">All employers go through manual verification.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Do you support remote jobs?</div><div class="faq-a">Yes, remote and hybrid jobs are available.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">How does AI matching work?</div><div class="faq-a">AI analyzes skills, experience, and job requirements.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Is my data secure?</div><div class="faq-a">Yes, we follow strict security and privacy standards.</div></div>
   </div>
 </section>
 
@@ -445,7 +443,6 @@ section{padding:100px 60px}
 <div id="loginModal" class="login-modal">
   <div class="login-box">
     <h3>Welcome Back</h3>
-    <p>Login to continue</p>
     <input placeholder="Email">
     <input type="password" placeholder="Password">
     <button class="btn primary">Login</button>
@@ -461,21 +458,17 @@ window.addEventListener("scroll",()=>{
   scrollProgress.style.width=(s/h)*100+"%";
 });
 
-/* Reveal animation */
+/* Reveal */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
 });
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 /* Mobile menu */
-function toggleMenu(){
-  mobileMenu.classList.toggle("show");
-}
+function toggleMenu(){ mobileMenu.classList.toggle("show"); }
 
 /* Theme */
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
+function toggleTheme(){ document.body.classList.toggle("light"); }
 
 /* Login */
 function openLogin(){

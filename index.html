@@ -128,6 +128,13 @@ body{
 @media(max-width:900px){
   .hamburger{display:flex;}
 }
+  /* 🔧 FIX: Hide desktop nav links on mobile */
+@media (max-width: 900px){
+  .desktop-nav{
+    display: none !important;
+  }
+}
+
 
 /* ================= MOBILE MENU ================= */
 .mobile-menu{
@@ -295,7 +302,7 @@ body.light section {
     </a>
 
     <!-- DESKTOP MENU -->
-    <div class="desktop-menu gap-6 items-center text-white">
+    <div class="desktop-nav gap-6 items-center text-white">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="pricing.html">Pricing</a>
@@ -549,6 +556,7 @@ document.addEventListener("keydown", function(e){
 
 </body>
 </html>
+
 
 
 

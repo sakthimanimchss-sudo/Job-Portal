@@ -539,9 +539,8 @@ section{
     <a href="#" style="color:inherit">Privacy Policy</a> |
     <a href="#" style="color:inherit">Terms of Service</a>
   </div>
+  
 </footer>
-
-
 <script>
 function toggleMenu(){
   const menu=document.getElementById("mobileMenu");
@@ -549,30 +548,37 @@ function toggleMenu(){
   menu.classList.toggle("show");
   ham.classList.toggle("active");
 }
+
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
 }
-if(localStorage.getItem("theme")==="light"){document.body.classList.add("light")}
+if(localStorage.getItem("theme")==="light"){
+  document.body.classList.add("light");
+}
 
+/* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("show");
+    if(e.isIntersecting) e.target.classList.add("show");
   });
 },{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-  
+
 let isRegister = false;
 
 /* OPEN LOGIN MODAL */
 function openLogin(){
-  const modal = document.getElementById("loginsubmit");
+  const modal = document.getElementById("loginModal"); // ✅ FIXED
   if(modal){
     modal.style.display = "flex";
   }
 }
 
-/* TOGGLE PASSWORD VISIBILITY */
+/* TOGGLE PASSWORD */
 function togglePassword(){
   const p = document.getElementById("loginPassword");
   if(p){
@@ -587,12 +593,8 @@ function switchMode(){
   const title = document.getElementById("loginTitle");
   const btn   = document.getElementById("loginSubmit");
 
-  if(title){
-    title.innerText = isRegister ? "Create Account" : "Login";
-  }
-  if(btn){
-    btn.innerText = isRegister ? "Register" : "Login";
-  }
+  if(title) title.innerText = isRegister ? "Create Account" : "Login";
+  if(btn) btn.innerText = isRegister ? "Register" : "Login";
 }
 
 /* VALIDATE LOGIN */
@@ -607,31 +609,29 @@ function validateLogin(){
   }
 
   if(err) err.style.display = "none";
-
   alert(isRegister ? "Account created (demo)" : "Login successful (demo)");
 
   const modal = document.getElementById("loginModal");
   if(modal) modal.style.display = "none";
 }
 
-/* CLOSE MODAL WHEN CLICK OUTSIDE */
+/* CLOSE MODAL ON OUTSIDE CLICK */
 document.addEventListener("DOMContentLoaded", ()=>{
   const modal = document.getElementById("loginModal");
   if(modal){
     modal.addEventListener("click", e=>{
       if(e.target === modal){
-        modal.style.display = "none";
-        openLogin()
+        modal.style.display = "none"; // ✅ FIXED
       }
     });
   }
 });
-
-
 </script>
+
 
 </body>
 </html>
+
 
 
 

@@ -613,6 +613,139 @@ html{
     animation-duration: .8s !important;
   }
 }
+  /* =====================================================
+   GLOBAL ANIMATION STABILITY FIX
+   ===================================================== */
+
+/* Prevent jitter & repaint issues */
+*{
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Smooth scrolling everywhere */
+html{
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   BACKGROUND ANIMATION – SMOOTH & STABLE
+   ===================================================== */
+
+/* Desktop – keep quality, no flicker */
+@media (min-width: 769px){
+  .bg img{
+    animation-timing-function: ease-in-out;
+    transform: scale(1.04);
+    filter: none;
+  }
+}
+
+/* Mobile – reduce GPU load */
+@media (max-width: 768px){
+  .bg img{
+    transform: scale(1.08);
+    filter: brightness(0.8);
+  }
+}
+
+/* =====================================================
+   REVEAL ANIMATION – PERFECT BALANCE
+   ===================================================== */
+
+.reveal{
+  opacity:0;
+  transform: translateY(28px);
+  transition:
+    opacity .45s ease-out,
+    transform .45s cubic-bezier(.22,1,.36,1);
+  will-change: transform, opacity;
+}
+
+.reveal.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* Clean stagger – no delay stacking bug */
+.reveal-group .reveal{
+  transition-delay: 0s;
+}
+.reveal-group .reveal:nth-child(1){transition-delay:.04s}
+.reveal-group .reveal:nth-child(2){transition-delay:.08s}
+.reveal-group .reveal:nth-child(3){transition-delay:.12s}
+.reveal-group .reveal:nth-child(4){transition-delay:.16s}
+.reveal-group .reveal:nth-child(5){transition-delay:.20s}
+
+/* Mobile – faster reveal to avoid lag */
+@media (max-width:768px){
+  .reveal{
+    transition-duration: .35s;
+  }
+}
+
+/* =====================================================
+   CAREER SCROLL – ULTRA SMOOTH LOOP
+   ===================================================== */
+
+.scroll-track{
+  display:flex;
+  gap:30px;
+  animation: scrollX 20s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover (desktop only) */
+@media (hover:hover){
+  .scroll-track:hover{
+    animation-play-state: paused;
+  }
+}
+
+/* Mobile – slower & smoother */
+@media (max-width:768px){
+  .scroll-track{
+    animation-duration: 28s;
+  }
+}
+
+/* =====================================================
+   IMAGE HOVER – MICRO ANIMATION (NO SHAKE)
+   ===================================================== */
+
+.feature img,
+.job img,
+.career-card img{
+  transition: transform .3s ease;
+  will-change: transform;
+}
+
+.feature:hover img,
+.job:hover img,
+.career-card:hover img{
+  transform: scale(1.025);
+}
+
+/* =====================================================
+   REMOVE BLUR FLICKER ISSUE
+   ===================================================== */
+
+/* Disable blur animation stacking */
+.reveal{
+  filter:none !important;
+}
+
+/* =====================================================
+   PERFORMANCE SAFE MODE (LOW END DEVICES)
+   ===================================================== */
+
+@media (max-width:768px){
+  *{
+    animation-duration: .6s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 
   
 </style>
@@ -885,5 +1018,6 @@ function toggleFAQ(el){
 
 </body>
 </html>
+
 
 

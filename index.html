@@ -491,6 +491,44 @@ section{padding:90px 20px}
 @media(max-width:768px){
   .reveal{transition-duration:.35s}
 }
+  /* =====================================================
+   MOBILE BACKGROUND – PERFECT FIT FIX (IMPORTANT)
+===================================================== */
+@media (max-width: 768px){
+
+  /* Disable slideshow animation on mobile */
+  .bg img{
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Show only first image */
+  .bg img:first-child{
+    opacity: 1 !important;
+  }
+
+  /* Stable background behavior */
+  .bg{
+    position: fixed;
+    inset: 0;
+  }
+
+  .bg img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* fills screen properly */
+    object-position: center;  /* no top cut */
+    transform: none !important;
+    filter: brightness(0.75);
+  }
+
+  /* Slight darker overlay for readability */
+  .bg::before{
+    background: rgba(0,0,0,0.6);
+  }
+}
+
   
 </style>
 </head>
@@ -762,6 +800,7 @@ function toggleFAQ(el){
 
 </body>
 </html>
+
 
 
 

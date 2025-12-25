@@ -5,17 +5,22 @@
 <title>SmartHire | AI Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ===== PART 2 CSS WILL BE PASTED HERE ===== -->
+<!-- =========================
+   PART 2 CSS WILL BE PASTED HERE
+========================= -->
 <style>
 :root{
   --blue:#1e6fff;
-  --dark:#050505;
+  --dark:#020712;
   --card:rgba(255,255,255,.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 html{scroll-behavior:smooth}
-body{background:var(--dark);color:#fff}
+body{
+  background:linear-gradient(100deg,#0b1e46,#020712,#000);
+  color:#fff;
+}
 
 /* Scroll progress */
 #scrollProgress{
@@ -34,11 +39,22 @@ body{background:var(--dark);color:#fff}
   z-index:-1;
 }
 
+/* Floating icons */
+.floating-icons span{
+  position:fixed;
+  font-size:40px;
+  opacity:.15;
+  animation:float 12s infinite linear;
+}
+.floating-icons span:nth-child(1){top:20%;left:10%}
+.floating-icons span:nth-child(2){top:60%;right:12%}
+.floating-icons span:nth-child(3){bottom:20%;left:30%}
+.floating-icons span:nth-child(4){bottom:30%;right:30%}
+
 /* Navbar */
 .navbar{
   position:fixed;
-  width:100%;
-  top:0;
+  top:0;width:100%;
   padding:16px 30px;
   display:flex;
   justify-content:space-between;
@@ -46,15 +62,18 @@ body{background:var(--dark);color:#fff}
   backdrop-filter:blur(12px);
   z-index:1000;
 }
-.nav-links a{color:#fff;margin-left:20px;text-decoration:none}
+.desktop-nav a, .desktop-nav button{
+  color:#fff;
+  background:none;
+  border:none;
+  margin-left:18px;
+  text-decoration:none;
+}
 
 /* Hero */
 .hero{
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  padding:160px 80px;
 }
 .hero span{
   background:var(--blue);
@@ -62,27 +81,12 @@ body{background:var(--dark);color:#fff}
   padding:6px 18px;
   border-radius:30px;
 }
-.float-text{
-  animation:floating 3s ease-in-out infinite;
-}
-@keyframes floating{
-  50%{transform:translateY(-14px)}
-}
-
-/* Buttons */
-.btn{
-  padding:12px 28px;
-  border-radius:30px;
-  text-decoration:none;
-  margin:10px;
-  display:inline-block;
-}
-.primary{background:var(--blue);color:#000}
-.outline{border:1px solid #fff;color:#fff}
+.jump{animation:jump 2s infinite}
 
 /* Sections */
-section{padding:120px 30px}
-.title{text-align:center;font-size:34px;margin-bottom:12px}
+section{padding:100px 60px}
+.dark{background:rgba(0,0,0,.35)}
+.title{text-align:center;font-size:34px}
 .subtitle{text-align:center;opacity:.7;margin-bottom:40px}
 
 /* Cards */
@@ -98,46 +102,45 @@ section{padding:120px 30px}
   padding:30px;
   border-radius:24px;
   text-align:center;
-  transition:.4s;
   transform-style:preserve-3d;
 }
 .card img{
   width:100%;
   height:180px;
   object-fit:cover;
-  border-radius:18px;
-  margin-bottom:14px;
+  border-radius:16px;
 }
-.card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 0 25px rgba(30,111,255,.4);
-}
-
-/* Stats */
-.stats{
-  max-width:1000px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
-  text-align:center;
-}
-.stat h3{font-size:42px;color:var(--blue)}
 
 /* Footer */
 .footer{
+  padding:40px;
+  text-align:center;
   background:#000;
-  padding:60px 30px;
+  opacity:.7;
 }
-.footer-grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:30px;
+
+/* Login */
+.login-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.7);
+  align-items:center;
+  justify-content:center;
 }
-.footer a{color:#aaa;text-decoration:none;display:block;margin:6px 0}
-.footer-bottom{text-align:center;margin-top:30px;opacity:.6}
+.login-box{
+  background:#000;
+  padding:40px;
+  border-radius:20px;
+}
+
+/* Animations */
+@keyframes float{
+  50%{transform:translateY(-40px)}
+}
+@keyframes jump{
+  50%{transform:translateY(-12px)}
+}
 
 </style>
 
@@ -154,32 +157,42 @@ section{padding:120px 30px}
 <!-- PARTICLES -->
 <div id="particles-js"></div>
 
+<!-- FLOATING ICONS -->
+<div class="floating-icons">
+  <span>💼</span>
+  <span>🤖</span>
+  <span>📊</span>
+  <span>☁️</span>
+</div>
+
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SmartHire</div>
-  <div class="nav-links">
-    <a href="#why">Why</a>
-    <a href="#jobs">Jobs</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#stats">Stats</a>
-    <a href="#faq">FAQ</a>
+
+  <div class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html" class="admin-link">Admin</a>
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="openLogin()">Login</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1 class="float-text">Find Your <span>Dream Job</span></h1>
-    <p>AI-powered hiring platform connecting talent with top companies worldwide.</p>
-    <div class="hero-btns">
-      <a href="#jobs" class="btn primary">Browse Jobs</a>
-      <a href="#pricing" class="btn outline">Pricing</a>
-    </div>
+  <h1 class="jump">Find Your <span>Dream Job</span></h1>
+  <p>AI-powered hiring platform connecting talent with top companies.</p>
+  <div class="btns">
+    <a href="jobs.html" class="btn primary">Browse Jobs</a>
+    <a href="pricing.html" class="btn outline">Explore</a>
   </div>
 </section>
 
 <!-- WHY -->
-<section id="why">
+<section>
   <h2 class="title">Why Choose SmartHire</h2>
   <p class="subtitle">Smarter, faster, AI-driven recruitment</p>
   <div class="cards">
@@ -196,109 +209,64 @@ section{padding:120px 30px}
     <div class="card tilt">
       <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
       <h3>Verified Companies</h3>
-      <p>Only trusted, verified recruiters and organizations.</p>
+      <p>Only trusted and verified organizations.</p>
     </div>
   </div>
 </section>
 
 <!-- JOBS -->
-<section id="jobs">
-  <h2 class="title">Latest Jobs</h2>
+<section class="dark">
+  <h2 class="title">Popular Jobs</h2>
   <div class="cards">
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
-      <h3>Frontend Developer</h3>
-      <p>Remote • React • UI/UX</p>
-    </div>
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee">
-      <h3>AI Engineer</h3>
-      <p>Python • ML • NLP</p>
-    </div>
-    <div class="card tilt">
-      <img src="https://images.unsplash.com/photo-1581092919535-7146c6a6e6a8">
-      <h3>Robotics Engineer</h3>
-      <p>ROS • Embedded Systems</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section id="stats">
-  <h2 class="title">Platform Statistics</h2>
-  <div class="stats">
-    <div class="stat"><h3>120K+</h3><p>Jobs Posted</p></div>
-    <div class="stat"><h3>85K+</h3><p>Companies</p></div>
-    <div class="stat"><h3>1M+</h3><p>Users</p></div>
-    <div class="stat"><h3>40+</h3><p>Countries</p></div>
+    <div class="card tilt">Frontend Developer</div>
+    <div class="card tilt">AI Engineer</div>
+    <div class="card tilt">Robotics Engineer</div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
-  <h2 class="title">Pricing Plans</h2>
+<section>
+  <h2 class="title">Pricing</h2>
   <div class="cards">
-    <div class="card tilt">
-      <h3>Free</h3>
-      <p class="price">₹0</p>
-      <p>Job Seekers</p>
-    </div>
-    <div class="card tilt highlight">
-      <h3>Pro</h3>
-      <p class="price">₹999</p>
-      <p>Recruiters & Startups</p>
-    </div>
-    <div class="card tilt">
-      <h3>Enterprise</h3>
-      <p class="price">Custom</p>
-      <p>Large Organizations</p>
-    </div>
+    <div class="card tilt"><h3>Free</h3><p>₹0</p></div>
+    <div class="card tilt highlight"><h3>Pro</h3><p>₹999</p></div>
+    <div class="card tilt"><h3>Enterprise</h3><p>Custom</p></div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq">
+<section class="dark">
   <h2 class="title">FAQ</h2>
   <div class="cards">
-    <div class="card">✔ Is SmartHire free? – Yes for job seekers</div>
-    <div class="card">✔ Are companies verified? – 100% verified</div>
-    <div class="card">✔ Remote jobs available? – Yes</div>
+    <div class="card">✔ Is SmartHire free? Yes</div>
+    <div class="card">✔ Remote jobs available? Yes</div>
+    <div class="card">✔ Companies verified? 100%</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <h4>SmartHire</h4>
-      <p>AI-powered job portal for the future workforce.</p>
-    </div>
-    <div>
-      <h4>Quick Links</h4>
-      <a href="#jobs">Jobs</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Email: support@smarthire.ai</p>
-      <p>24/7 Support</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2025 SmartHire — All Rights Reserved
-  </div>
+  © 2025 SmartHire — AI Job Portal
 </footer>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+  <div class="login-box">
+    <h3>Login</h3>
+    <input placeholder="Email">
+    <input placeholder="Password" type="password">
+    <button class="btn primary">Login</button>
+  </div>
+</div>
 
 <!-- PART 3 JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="script.js"> 
-   /* Scroll progress */
+<script src="script.js">
+  /* Scroll progress */
 window.addEventListener("scroll",()=>{
-  const st=document.documentElement.scrollTop;
+  const s=document.documentElement.scrollTop;
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById("scrollProgress").style.width=
-    (st/h)*100+"%";
+  document.getElementById("scrollProgress").style.width=(s/h)*100+"%";
 });
 
 /* Particles */
@@ -312,23 +280,20 @@ particlesJS("particles-js",{
   }
 });
 
-/* 3D Tilt */
+/* 3D tilt */
 document.querySelectorAll(".tilt").forEach(card=>{
   card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
-    const x=e.clientX-r.left;
-    const y=e.clientY-r.top;
     card.style.transform=
-      `rotateY(${(x-r.width/2)/15}deg)
-       rotateX(${-(y-r.height/2)/15}deg)
-       scale(1.05)`;
+      `rotateY(${(e.clientX-r.left-r.width/2)/15}deg)
+       rotateX(${-(e.clientY-r.top-r.height/2)/15}deg)`;
   });
   card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0) scale(1)";
+    card.style.transform="rotateX(0) rotateY(0)";
   });
 });
 
-/* GSAP */
+/* GSAP scroll animation */
 gsap.utils.toArray("section").forEach(sec=>{
   gsap.from(sec,{
     opacity:0,
@@ -340,6 +305,17 @@ gsap.utils.toArray("section").forEach(sec=>{
     }
   });
 });
+
+/* Login */
+function openLogin(){
+  document.getElementById("loginModal").style.display="flex";
+}
+document.getElementById("loginModal").onclick=e=>{
+  if(e.target.id==="loginModal") e.target.style.display="none";
+}
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
 
 </script>
 

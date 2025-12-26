@@ -5,7 +5,7 @@
 <title>SmartHire | Jobs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ================= THEME (SAME AS INDEX) ================= -->
+<!-- ================= THEME ================= -->
 <style>
 :root{
   --blue:#1e6fff;
@@ -70,22 +70,31 @@ body{
 }
 .desktop-nav a:hover{color:var(--blue-soft)}
 
-/* ================= HAMBURGER ================= */
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  cursor:pointer;
-}
-.hamburger span{
+/* ================= HAMBURGER (SAME AS INDEX) ================= */
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
   width:26px;
   height:3px;
   background:var(--white);
   border-radius:10px;
+  transition:.35s;
 }
+.hamburger{
+  display:none;
+  top:50%;
+  right:22px;
+  transform:translateY(-50%);
+  cursor:pointer;
+}
+.hamburger::before{transform:translateY(-8px)}
+.hamburger::after{transform:translateY(8px)}
+
 @media(max-width:900px){
   .desktop-nav{display:none}
-  .hamburger{display:flex}
+  .hamburger{display:block}
 }
 
 /* ================= MOBILE MENU ================= */
@@ -230,9 +239,8 @@ footer{
     <button onclick="toggleTheme()">🌙</button>
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <!-- ✅ SAME HAMBURGER AS INDEX -->
+  <div class="hamburger" onclick="toggleMenu()"></div>
 </nav>
 
 <!-- ================= MOBILE MENU ================= -->
@@ -244,9 +252,7 @@ footer{
   <a href="contact.html">Contact</a>
   <a href="admin.html">Admin</a>
 
-  <button onclick="toggleTheme()" class="mobile-theme-btn">
-    🌙 
-  </button>
+  <button onclick="toggleTheme()" class="mobile-theme-btn">🌙</button>
 </div>
 
 <!-- ================= HEADER ================= -->
